@@ -80,7 +80,7 @@ FORCE_REBUILD = .force_rebuild
 
 USEPDFTEX ?= 0 # can be externally set
 
-USEBIBLATEX = 0
+USEBIBLATEX = 1
 BIBLATEXBACKEND = biber
 
 # Binaries
@@ -115,7 +115,7 @@ ifeq ($(strip $(USEBIBLATEX)), 1)
 		BIBTEX = bibtex
 	endif
 endif
- 
+
 # Other tex files that might be included in $(MAINTEX)
 INCLUDEDCHAPTERNAMES = $(shell grep -e "^[^%]*\include" $(MAINTEX) | \
 					   sed -n -e 's|.*{\(.*\)}.*|\1|p')

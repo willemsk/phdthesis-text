@@ -30,7 +30,7 @@ given_settings = {
   'makeglossary':     True,
   'makenomenclature': True,
 
-  'usebiblatex':      False,
+  'usebiblatex':      True,
   'biblatexbackend':  'biber', # alternative: bibtex
 
   'cleanext':         ['.tdo','.fls','.toc','.aux','.log','.bbl','.blg','.log',

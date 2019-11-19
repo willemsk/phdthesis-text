@@ -1,11 +1,34 @@
-% math
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
+% Shorthands
+\newcommand{\todo}[1]{\textbf{\textcolor{orange}{#1}}}
+\newcommand{\ahl}{\textalpha HL}
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\cisi}{\textit{cis}}
+\newcommand{\transi}{\textit{trans}}
+\newcommand{\lumen}{\textit{lumen}}
 
-% unit shorthands
+\newcommand{\DHFR}[2]{DHFR\textsubscript{#1}#2}
+\newcommand{\DHFRt}{DHFR\textsubscript{tag}}
+\newcommand{\ires}{\rm{I}_{\rm{res}}}
+\newcommand{\iresp}{\ires\%}
+\newcommand{\iopen}{\rm{I}_0}
+\newcommand{\iblock}{\rm{I}_b}
+\newcommand{\ilevel}[1]{\rm{L}_{#1}}
+
+
+% Units
+\DeclareSIUnit{\molar}{\mole\per\cubic\deci\metre}
+\DeclareSIUnit{\Molar}{\textsc{M}}
+\DeclareSIUnit{\atm}{\textsc{atm}}
+\DeclareSIUnit{\dalton}{\textsc{D\!a}}
+\newcommand{\uM}{\micro\Molar}
 \newcommand{\mM}{\milli\Molar}
+\newcommand{\nM}{\nano\Molar}
 \newcommand{\mV}{\milli\volt}
+\newcommand{\pA}{\pico\ampere}
 \newcommand{\um}{\micro\meter}
 \newcommand{\nm}{\nano\meter}
+\newcommand{\ms}{\milli\second}
+\newcommand{\us}{\micro\second}
 \newcommand{\ns}{\nano\second}
 \newcommand{\ps}{\pico\second}
 \newcommand{\fs}{\femto\second}
@@ -15,16 +38,26 @@
 \newcommand{\mps}{\meter\per\second}
 \newcommand{\cnmpnspv}{\cubic\nano\meter\per\nano\second\per\volt}
 
+% Vectors and math stuff
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\rpos}{\vec{r}} % positional vector
+\newcommand{\normvec}{\vec{\hat{n}}} % normal vector
+\newcommand{\identity}{\vec{\rm{I}}} % Identity vector
+\newcommand{\stdev}{\sigma}
+\newcommand{\pav}[2]{\left< #1 \right>_{\text{#2}}} % Pore average
+\newcommand{\vc}[2]{#1_{#2}}
+\newcommand{\pd}[2]{\displaystyle\frac{\partial #1}{\partial #2}}
+
 % Physical constants
-\newcommand{\boltzmann}{k_{\rm B}}
-\newcommand{\avogadro}{N_{\rm A}}
-%\newcommand{\temp}{T}
+\newcommand{\boltzmann}{k_{\rm{B}}}
+\newcommand{\avogadro}{N_{\rm{A}}}
+\newcommand{\temperature}{T}
 \newcommand{\faraday}{\mathcal{F}}
 \newcommand{\echarge}{e}
 
 % Field variables
 \newcommand{\vel}{u}                  % Fluid velocity
-\newcommand{\force}{F}                % A force
+\newcommand{\force}{\mathcal{F}}      % A force
 \newcommand{\potential}{\varphi}			% Electrostatic potential
 \newcommand{\varpotential}{V}				  % Electrostatic potential
 \newcommand{\concentration}{c}				% Ion concentration
@@ -33,3 +66,130 @@
 \newcommand{\efield}{\vec{E}}         % Electrical field
 \newcommand{\displacement}{\vec{D}}   % Electrical displacement field
 \newcommand{\walldistance}{d}				  % Wall distance
+
+% Barrier model
+\newcommand{\barrier}{\Delta E}
+\newcommand{\potbar}{\Delta V}
+\newcommand{\rate}{k}
+\newcommand{\dwelltime}{t_{\rm{d}}}
+\newcommand{\vthresh}{V_{\rm{max}}^{\rm{bias}}}
+\newcommand{\tthresh}{t_{\rm{d,max}}}
+\newcommand{\kinetic}{E}
+\newcommand{\transition}{c}
+\newcommand{\kbt}{k_{\rm{B}} T}
+\newcommand{\ddt}[1]{\frac{d #1}{dt}}
+\newcommand{\vbias}{\varpotential^{\rm{bias}}}
+\newcommand{\ep}{{\rm{ep}}}
+\newcommand{\eo}{{\rm{eo}}}
+\newcommand{\osm}{{\rm{eo}}}
+\newcommand{\ext}{{\rm{ex}}}
+\newcommand{\intr}{{\rm{in}}}
+\newcommand{\static}{{\rm{es}}}
+\newcommand{\steric}{{\rm{st}}}
+\newcommand{\Eep}{E_{\ep}}
+\newcommand{\Eosm}{E_{\osm}}
+\newcommand{\Eeo}{E_{\eo}}
+\newcommand{\Eext}{E_{\ext}}
+\newcommand{\forceep}{\force_{\ep}}
+\newcommand{\forceosm}{\force_{\osm}}
+\newcommand{\forceeo}{\force_{\eo}}
+\newcommand{\cis}{{\rm{cis}}}
+\newcommand{\trans}{{\rm{trans}}}
+\renewcommand{\min}{{\rm{min}}}
+\newcommand{\xcis}{x^\cis}
+\newcommand{\xtrans}{x^\trans}
+\newcommand{\xmin}{x^\min}
+\newcommand{\dcis}{\delta^\cis}
+\newcommand{\dtrans}{\delta^\trans}
+\newcommand{\dxcis}{\Delta x^\cis}
+\newcommand{\dxtrans}{\Delta x^\trans}
+\newcommand{\Nnet}{N_{\rm{net}}}
+\newcommand{\Ntag}{N_{\rm{tag}}}
+\newcommand{\Nbody}{N_{\rm{body}}}
+\newcommand{\Nosm}{N_{\osm}}
+\newcommand{\Neo}{N_{\eo}}
+\newcommand{\ratefc}{\rate_{\rm{eff}}^\cis}
+\newcommand{\rateft}{\rate_{\rm{eff}}^\trans}
+\newcommand{\Vt}{\frac{\kbt}{\ec}}
+\newcommand{\variance}{{\rm{Var}}}
+
+\newcommand{\onefiguresource}[3]
+{\begin{figure}[t]
+   \centering
+   \begin{minipage}{0.9\textwidth}
+      \centering
+      #1
+      \caption{#3}
+      \label{#2}
+   \end{minipage}
+\end{figure}
+}
+
+\newcommand{\kineticscheme}[3]
+{
+   \begin{equation}\label{#3}
+      \setchemfig{scheme debug=false,#1}
+      \schemestart
+         #2
+      \schemestop
+   \end{equation}
+}
+
+% transport modelling
+
+% Dimensionless variables
+\newcommand{\dconc}{\bar{\concentration}}		% Dimensionless concentration
+\newcommand{\dwall}{\bar{\walldistance}}		% Dimensionless wall distance
+
+% Material and ion parameters
+\newcommand{\permittivity}{\varepsilon}
+\newcommand{\absperm}{\permittivity_0}				% Permittivity of vacuum
+\newcommand{\relperm}{\permittivity_r}				% Relative permittivity
+\newcommand{\dielectric}{\relperm}				    % Relative permittivity
+\newcommand{\diffusion}{\mathcal{D}}		     	% Diffusion coefficient
+\newcommand{\mobility}{\mu}				         		% Electrophoretic mobility
+\newcommand{\transportn}{t}				         		% Transport number
+\newcommand{\chargen}{z}				          		% Ion charge number
+\newcommand{\ionsize}{a}					           	% Ion size for smPNP
+\newcommand{\density}{\varrho}			     			% Fluid density
+\newcommand{\viscosity}{\eta}				         	% Fluid viscosity
+
+\newcommand{\iondiffusion}[1]{\diffusion_{#1}}	        % Ion Diffusion coefficient
+\newcommand{\ionmobility}[1]{\mobility_{#1}}	          % Ion electrophoretic mobility
+\newcommand{\iontransportn}[1]{\transportn{#1}}	        % Ion transport number
+\newcommand{\avionconc}{\langle\concentration\rangle}   % Average ion concentration
+
+\newcommand{\tna}{\transportn_{\ce{Na+}}}
+
+\newcommand{\molarconductivity}{\Lambda}
+\newcommand{\specmolarconductivity}{\lambda}
+
+% Derived properties
+\newcommand{\scd}{\rho}							% Total charge density
+\newcommand{\scdpore}{\scd_{\text{pore}}^f}		% Fixed charge density
+\newcommand{\scdion}{\scd_{\text{ion}}}			% Ionic charge density
+\newcommand{\flux}{\vec{J}} 							% Ion flux
+\newcommand{\volumeforce}{\vec{\force}_{\rm ion}}	% Fluid volume force
+
+\newcommand{\current}{I}
+\newcommand{\currentsim}{\current_{\rm sim}}
+\newcommand{\currentexp}{\current_{\rm exp}}
+\newcommand{\conductance}{G}
+\newcommand{\icr}{\alpha}
+
+% Shorthands
+\newcommand{\ci}{\concentration_{i}}
+\newcommand{\cbulk}{\concentration_\text{s}}
+\newcommand{\Na}{\ce{Na+}}
+\newcommand{\Cl}{\ce{Cl-}}
+\newcommand{\Qion}{Q_{\rm ion}}
+\newcommand{\radpot}{\left<\potential\right>_\text{rad}}
+\newcommand{\radenergy}{\left< U_{\text{E},i} \right>_{\text{rad}}}
+\newcommand{\deltaEt}{\Delta E_{\text{B},i}}
+\newcommand{\pH}[1]{pH~\num{#1}}
+\newcommand{\kT}{\boltzmann\temp}
+\newcommand{\kTe}{\kT / \echarge}
+
+% Atom properties
+\newcommand{\partialcharge}{\delta}
+\newcommand{\atomradius}{R}
