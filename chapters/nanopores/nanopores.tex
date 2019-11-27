@@ -61,31 +61,143 @@ secreted by \textit{Staphylococcus aureus}.
 \subsubsection{Applications}
 
 
-
-
 \subsection{Cytolysin A (ClyA)}
+
+\begin{figure*}[p]
+  \centering
+  \medskip
+    %
+  \begin{minipage}{52mm}
+    \begin{subfigure}[b]{52mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:clya_pore_side}
+      \includegraphics[scale=1]{clya_pore_side}
+    \end{subfigure}
+    %
+    \vspace{5mm} \\
+    %
+    \begin{subfigure}[b]{52mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:clya_pore_top}
+      \includegraphics[scale=1]{clya_pore_top}
+    \end{subfigure}
+  \end{minipage}
+  %
+  \begin{minipage}{66mm}
+    \begin{subfigure}[t]{60mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:clya_pore_section}
+      \includegraphics[scale=1]{clya_pore_section}
+    \end{subfigure}
+    %
+    \vspace{5mm} \\
+    %
+    \begin{subfigure}[b]{37mm}
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:clya_monomer}
+      \includegraphics[scale=1]{clya_monomer}
+    \end{subfigure}
+    %
+    \begin{subfigure}[b]{28mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:clya_protomer}
+      \includegraphics[scale=1]{clya_protomer}
+    \end{subfigure}
+  \end{minipage}
+\caption{%
+  \textbf{Structure of the Cytolysin A (ClyA) porin.}
+  %
+  (\subref{fig:clya_pore_side})
+  %
+  Side view and 
+  %
+  (\subref{fig:clya_pore_top})
+  %
+  top view of the dodecameric \gls{clya} nanopore (\pdbid{6MRT} \cite{Peng-2019}), with a single
+  subunit (protomer) highlighted in color and the location of the lipid bilayer indicated in blue.
+  %
+  (\subref{fig:clya_pore_section})
+  %
+  Cross-section view of the interior molecular surface of the pore, colored according to its estimated
+  electrostatic potential in physiological conditions as calculated by \gls{apbs}
+  \cite{Baker-2001,Baker-2005}.
+  %
+  (\subref{fig:clya_monomer})
+  %
+  The \SI{34}{\kilo\dalton} water-soluble \gls{clya} monomer (\pdbid{1QOY} \cite{Wallace-2000}) consists of a
+  core bundle of \ta-helices (\ta A1, \ta A2, \ta B, \ta C, \ta F), onto which a hydrophobic \tb-tongue
+  motif---flanked by two short \ta-helices (\ta D and \ta E)---and a C-terminal \ta-helix (\ta G) are packed.
+  The two glycines in the \tb-tongue confer it with a high degree of flexibility, while the removal of Phe191
+  from its hydrophobic pocket triggers pore formation.
+  %
+  (\subref{fig:clya_protomer})
+  %
+  A single ClyA protomer (\pdbid{6MRT} \cite{Peng-2019}), with the same coloring as the monomer, showing the
+  insertion of the \ta-tongue into the lipid bilayer and the near \SI{14}{\nm} conformational change required
+  for the \ta A1 helix to form the transmembrane part of the pore.
+  %
+  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:clya_pore_structure}
+\end{figure*}
 
 In 2009, Mueller \etal{} revealed the crystal structure of Cytolysin A (\gls{clya}) \cite{Mueller-2009}, a
 large \textalpha-\gls{pft} secreted by various \textit{Salmonella enterica} and \textit{Esterischia coli}
-strains with a high affinity for mammalian cell membranes. In contrast to the most commonly used protein
-nanopores at the time such as \gls{ahl} and \gls{mspa}, which were geared towards \gls{dna} sequencing
-applications with their small constrictions (\SI{\le 1.5}{\nm}), \gls{clya} is much wider at its narrowest
-point (\SI{3.3}{\nm}) and boasts a large, cylindrically-shapoed \lumen{} (\SI{5.5}{\nm} diameter, \SI{10}{\nm}
-height). This makes the pore particularly well equipped to fully capture and study larger biopolymers, such as
-proteins, in their native three-dimensional configuration (i.e., folded). In the following section, we will
-outline the oligomerization mechanism of \gls{clya} and discuss its structure in detail.
+strains with a high affinity for mammalian cell membranes. The large size of its \lumen---relative to
+\gls{ahl} and \gls{mspa}, the most commonly used protein nanopores at the time---makes \gls{clya} particularly
+well equipped to fully capture and study larger biopolymers, such as proteins, in their native
+three-dimensional configuration (\ie~folded). In the following section, we will discuss the structure and
+oligomerization mechanism of \gls{clya} in detail.
 
-\subsubsection{Pore structure and formation}
+\subsubsection{Pore structure}
 
-\paragraph{Oligomerization state.}
+\paragraph{Pore shape and charge.}
 %
-The quaternary structure of the \gls{clya} pore is formed by the ring-like oligomerization of a number of
-identical subunits: 12 (dodecamer, `Type I'), 13 (tridecamers, `Type II') or 14 (tetradecamers, `Type
-III') \cite{Soskine-2013}. Aside from their increased aperture size, the overal structure and assembly
-mechanism of the Type II and Type III pores is identical to that of the dodecamer, and hence the following
-discussion will be limited to ClyA Type I. Interested readers are referred to the work of Peng and
-coworkers \cite{Peng-2019}, who recently obtained high-resolution structures of the Type II and III pores using
-\gls{cryo-em}.
+The \SI{408}{\kilo\dalton} \gls{clya} pore consists of 12 idential subunits (protomers), arranged in a ring
+like quaternary structure to form a cylindrical structure roughly \SI{14}{\nm} in height and \SI{11}{\nm} in
+diameter (\cref{fig:clya_pore_side,fig:clya_pore_top}). The pore walls in contact with the solvent are formed
+by a core bundle of four tightly packed \ta-helixes per protomer, and the transmembrane region is formed by
+the iris-like arrangement of the amphiphatic N-terminal \ta-helices. Virtually all helices contribute to
+interprotomer contacts, resulting in the burying of \SI{\approx2400}{\square\angstrom} surface area, and the
+formation of 25~H-bonds and 13~salt bridges per protomer-protomer interface. The interior shape of \gls{clya}
+can be described as a set of two hollow cylinders placed on top of each other: a large \cisi{} chamber
+(`\lumen{}') with an inner diameter of \SI{5.5}{\nm} and a height of \SI{10}{\nm} and a smaller \transi{}
+chamber (`\textit{constriction}') with a width of \SI{3.3}{\nm} and a height of \SI{4}{\nm}
+(\cref{fig:clya_pore_section}). \Gls{clya} has an excess negative charge (\SI{-60}{\ec} at \pH{7.5}), most of
+which riddle the interior walls of the pore. This results in a negative electrostatic potential inside both
+the \lumen{} and the constriction of the pore (\cref{fig:clya_pore_section}) and explains the observed cation
+selectivity \cite{Soskine-2012,Franceschini-2016}.
+
+\paragraph{Note on the oligomerization state.}
+%
+Next to the typical 12-subunit pore (dodecamer, `Type I'), \gls{clya} can also form 13-mers (tridecamers,
+`Type II') and 14-mers (tetradecamers, `Type III') \cite{Soskine-2013}. Aside from their increased aperture
+size, the overal structure and assembly mechanism of these pores is identical to that of the dodecamer, and
+hence the following discussion will be limited to the Type I pore. Interested readers are referred to the work
+of Peng and coworkers \cite{Peng-2019}, who recently obtained high-resolution structures of the Type II and
+III pores using \gls{cryo-em}.
+
+
+\subsubsection{Pore formation and kinetics}
+
+\paragraph{From water-soluble monomer to oligomeric transmembrane pore.}
+%
+Like the pore, the water-soluble monomer (\cref{fig:clya_monomer}) consists of predominantly \ta-helices, with
+the core of the protein formed by a bundle of four long \ta-helices (\ta A, \ta B, \ta C and \ta F). Packed at
+the top and bottom of this bundle are respectively the C-terminal helix (\ta G) and a hydrophobic \tb-hairpin
+motif flanked by to short \ta-helices (\ta D and \ta E) \cite{Wallace-2000,Mueller-2009}. Comparing this
+structure to that of the protomer (\cref{fig:clya_protomer}), reveals that while three of the core helices are
+merely straightened and elongated (at the expense of the \tb-hairpin and the \ta A2, \ta D and \ta E helices),
+the \ta A1 helix must move to the opposite side of the monomer, a distance of \SI{\approx14}{\nm} (!). The
+mechanism that enables these large conformational changes is similar to that of a spring-loaded lock, which is
+opened upon membrane binding. The latter is facilitated---\textit{via} both specific and non-specific
+interactions---by the partially solvent-exposed hydrophobic residues of the \tb-hairpin motif, causing it to
+swing outwards (with Gly180 and Gly201 acting as hinges) and insert into the lipid bilayer.  This removes a
+stabilizing aromatic residue (Phe190) from its hydrophobic pocket and unlatches a two-helix spring-loaded
+mechanism that results in 1) the straightening and extension of three of the core helices (\ta B, \ta C and
+\ta F), and 2) a \SI{180}{\degree} swinging of the \ta A helix (relative to \ta B, \ta C and \ta F). The
+amphiphatic \ta-A1 helix, which will form the \gls{tmd}, now rests on top of the membrane and is connected to
+the rest of the protein via a helix-turn-helix motif, with Pro36 acting as a hinge. The subsequent
+oligomerization of the membrane-bound monomers further packs and buckles the \ta A1 helices, effectivily
+pushing them downwards and allowing them to `wedge' a hole into the lipid bilayer.
 
 \paragraph{Oligomerization kinetics.}
 %
@@ -139,18 +251,6 @@ abundance of $\ce{P_5}$, $\ce{P_6}$ and $\ce{P_7}$ dictate that \SI{>50}{\percen
 formed by these oligomers \cite{Benke-2015}.
 
 
-\paragraph{Monomer and protomer structure.}
-
-\paragraph{Final pore shape and charge.}
-As touched upon above, \gls{clya} can be described as two hollow cylinders placed on top of each other: a large \cisi{} chamber (`\lumen{}') with an inner diameter of \SI{5.5}{\nm} and a height of \SI{10}{\nm} and a smaller \transi{} chamber (`\textit{constriction}') with a width of \SI{3.3}{\nm} and a height of \SI{4}{\nm}. The walls of the \lumen{} are formed by a bundle of three long \textalpha-helices (\textalpha B, \textalpha C and \textalpha F), while the constriction is formed by a short N-terminal helix (\textalpha A) arranged in an iris-like fashion. Finally, the C-terminal helix (\textalpha G) flanks the outside walls at the top of the three-helix bundle.
-
-
-lined with charged, pre-dominantly negative, amino acids, given rise to its observed cation selectivity. 
-
-
-
-
-
 
 
 \subsubsection{Applications}
@@ -166,6 +266,70 @@ Fragaceatoxin C (\gls{frac})
 
 \subsubsection{Structure and assembly mechanism}
 
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+    %
+  \begin{minipage}{58mm}
+    \begin{subfigure}[t]{58mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:frac_pore_side}
+      \includegraphics[scale=1]{frac_pore_side}
+    \end{subfigure}
+    %
+    \vspace{5mm} \\
+    %
+    \begin{subfigure}[t]{58mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:frac_pore_top}
+      \includegraphics[scale=1]{frac_pore_top}
+    \end{subfigure}
+  \end{minipage}
+  %
+  \begin{minipage}{58mm}
+    \begin{subfigure}[t]{58mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:frac_pore_section}
+      \includegraphics[scale=1]{frac_pore_section}
+    \end{subfigure}
+    %
+    \vspace{5mm} \\
+    %
+    \begin{subfigure}[t]{28mm}
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:frac_monomer}
+      \includegraphics[scale=1]{frac_monomer}
+    \end{subfigure}
+    %
+    \begin{subfigure}[t]{28mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:frac_protomer}
+      \includegraphics[scale=1]{frac_protomer}
+    \end{subfigure}
+  \end{minipage}
+\caption{%
+  \textbf{Structure of the Fragaceatoxin C (FraC) porin.}
+  %
+  (\subref{fig:frac_pore_side})
+  %
+  %
+  %
+  (\subref{fig:frac_pore_top})
+  %
+  %
+  %
+  (\subref{fig:frac_pore_section})
+  %
+  (\subref{fig:frac_monomer})
+  %
+  %
+  (\subref{fig:frac_protomer})
+  %
+  Images were rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:frac_pore_structure}
+\end{figure*}
+
+
 \subsubsection{Applications}
 
 
@@ -176,6 +340,69 @@ Pleurotolysin AB (\gls{plyab})
 
 \subsubsection{Structure and assembly mechanism}
 
+\begin{figure*}[t]
+  \centering
+  \medskip
+    %
+  \begin{minipage}{56mm}
+    \begin{subfigure}[t]{56mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:plyab_pore_side}
+      \includegraphics[scale=1]{plyab_pore_side}
+    \end{subfigure}
+    %
+    \vspace{5mm} \\
+    %
+    \begin{subfigure}[t]{56mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:plyab_pore_top}
+      \includegraphics[scale=1]{plyab_pore_top}
+    \end{subfigure}
+  \end{minipage}
+  %
+  \begin{minipage}{60mm}
+    \begin{subfigure}[t]{56mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:plyab_pore_section}
+      \includegraphics[scale=1]{plyab_pore_section}
+    \end{subfigure}
+    %
+    \vspace{5mm} \\ 
+    %
+    \begin{subfigure}[t]{35mm}
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:plyab_monomer}
+      \includegraphics[scale=1]{plyab_monomer}
+    \end{subfigure}
+    %%
+    \begin{subfigure}[t]{24mm}
+      \centering
+      \caption{}\vspace{-8.5mm}\hspace{1.5mm}\label{fig:plyab_protomer}
+      \includegraphics[scale=1]{plyab_protomer}
+    \end{subfigure}
+  \end{minipage}
+\caption{%
+  \textbf{Structure of the Pleurotolysin AB (PlyAB) porin.}
+  %
+  (\subref{fig:plyab_pore_side})
+  %
+  %
+  %
+  (\subref{fig:plyab_pore_top})
+  %
+  %
+  %
+  (\subref{fig:plyab_pore_section})
+  %
+  (\subref{fig:plyab_monomer})
+  %
+  %
+  (\subref{fig:plyab_protomer})
+  %
+  Images were rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:plyab_pore_structure}
+\end{figure*}
+
+
 \subsubsection{Applications}
 
 
@@ -185,19 +412,6 @@ Pleurotolysin AB (\gls{plyab})
 \section{Solid-state nanopores}
 
 \section{Hybrid nanopores}
-
-
-
-
-% Some dummy code show how to include images.
-\begin{figure}
-  \centering
-  \medskip
-  \includegraphics[width=.9\textwidth]{sine}
-  \caption{Illustration of how to include a figure. }
-  \label{fig:sine}
-\end{figure}
-
 
 
 
