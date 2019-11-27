@@ -131,6 +131,17 @@
   \crefname{section}{Sec.}{Secs.}
   \Crefname{section}{Section}{Sections}
 
+% captions
+\usepackage[font=footnotesize,labelfont=bf,labelsep=period]{caption}
+  \captionsetup[table]{singlelinecheck=false}
+  \captionsetup[table]{font=footnotesize}
+  \captionsetup[table]{labelfont=bf}
+\usepackage[font=footnotesize,labelfont=bf,labelsep=period,margin=1mm]{subcaption}
+  \captionsetup[subfigure]{labelfont=bf}
+  \captionsetup[subfigure]{textfont=normalfont}
+  \captionsetup[subfigure]{labelformat=simple}
+  \captionsetup[subfigure]{singlelinecheck=false}
+
 % epigraphs (quotes)
 \usepackage{epigraph}
 

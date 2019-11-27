@@ -2,6 +2,8 @@
 \newcommand{\todo}[1]{\textbf{\textcolor{orange}{#1}}}
 \newcommand{\ahl}{\textalpha HL}
 \newcommand{\etal}{\textit{et al.}}
+\newcommand{\ie}{\textit{i.e.},}
+\newcommand{\eg}{\textit{e.g.},}
 \newcommand{\cisi}{\textit{cis}}
 \newcommand{\transi}{\textit{trans}}
 \newcommand{\lumen}{\textit{lumen}}
@@ -125,6 +127,15 @@
 \end{figure}
 }
 
+
+\makeatletter
+\newcommand\reaction@[1]{\begin{equation}\ce{#1}\end{equation}}
+\newcommand\reaction@nonumber[1]%
+{\begin{equation*}\ce{#1}\end{equation*}}
+\newcommand\reaction{\@ifstar{\reaction@nonumber}{\reaction@}}
+\makeatother
+
+
 \newcommand{\kineticscheme}[3]
 {
    \begin{equation}\label{#3}
@@ -189,6 +200,9 @@
 \newcommand{\pH}[1]{pH~\num{#1}}
 \newcommand{\kT}{\boltzmann\temp}
 \newcommand{\kTe}{\kT / \echarge}
+\newcommand{\ta}{\textalpha}
+\newcommand{\tb}{\textbeta}
+\newcommand{\pdbid}[1]{PDBID:~\href{https://www.rcsb.org/structure/#1}{#1}}
 
 % Atom properties
 \newcommand{\partialcharge}{\delta}
