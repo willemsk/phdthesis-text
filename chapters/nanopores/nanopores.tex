@@ -24,41 +24,74 @@ The text and figures of this introductory chapter were entirely written and crea
 
 \newpage
 
+%
+%
 \section{Introduction}
 
+\todo{nanopores chapter general intro}
 
-
+%
+%
 \section{Molecular sensors}
 
+\todo{molecular sensors}
+
+%
+%
 \section{Nanopores as single-molecular sensors}
 
+\todo{nanopores as single-molecular sensors}
 
 
-\section{Nanopore types}
+%
+%
+\section{Types of nanopores}
+
+\todo{types of nanopores}
 
 Depending on their constituent material, nanopores are often classified into two distinct groups: the protein-based, \emph{biological} nanopores (\glspl{bnp}) and the semiconductor-based, \emph{solid-state} nanopores (\glspl{ssnp}).\cite{Dekker-2007} This division runs deeper than the material however, as BNPs are are formed in a bottom-up manner through self-assembly, while SSNPs are fabricated top-down using micromachining techniques. Perhaps the most crucial difference between the two classes is the extent to which they can be modified and manipulated. The proteiaceuous
 
 In recent years, many different types of nanopores have been developed that do not necessarily fall within either category. 
 
+\subsection{Solid-state nanopores}
 
+\subsubsection{Dielectric membranes}
 
+\subsubsection{Quasi 2D membranes}
 
+\subsection{Biological nanopores}
 
-\section{Biological nanopores}
-
-
-Was published \cite{Willems-VanMeervelt-2017}
+\subsubsection{Pore forming toxins (PFTs)}
 
 Pore-forming toxins (\glspl{pft})
 
-\subsection{\textalpha-Hemolysin}
+\paragraph{\ta-\glspl{pft}}
+
+\paragraph{\tb-\glspl{pft}}
+
+
+%
+%
+\section{Biological nanopores of interest}
+
+\todo{alpha-hemolysin general description}
+
+\subsection{\ta-Hemolysin (\ta Hl)}
 
 The most widely studied biological nanopore is \textalpha-hemolysin (\gls{ahl}), a homoheptameric porin
 secreted by \textit{Staphylococcus aureus}.
 
-\subsubsection{Structure and assembly mechanism}
+\subsubsection{Pore structure}
 
-\subsubsection{Applications}
+\paragraph{Pore shape and charge.}
+
+\paragraph{Oligomerization state.}
+
+\subsubsection{Pore formation and kinetics}
+
+\paragraph{Pore formation.}
+
+\paragraph{Oligomerization kinetics.}
 
 
 \subsection{Cytolysin A (ClyA)}
@@ -103,7 +136,7 @@ secreted by \textit{Staphylococcus aureus}.
       \includegraphics[scale=1]{clya_protomer}
     \end{subfigure}
   \end{minipage}
-\caption{%
+\caption[Structure of the Cytolysin A (ClyA) porin.]{%
   \textbf{Structure of the Cytolysin A (ClyA) porin.}
   %
   (\subref{fig:clya_pore_side})
@@ -123,8 +156,8 @@ secreted by \textit{Staphylococcus aureus}.
   %
   (\subref{fig:clya_monomer})
   %
-  The \SI{34}{\kilo\dalton} water-soluble \gls{clya} monomer (\pdbid{1QOY} \cite{Wallace-2000}) consists of a
-  core bundle of \ta-helices (\ta A1, \ta A2, \ta B, \ta C, \ta F), onto which a hydrophobic \tb-tongue
+  The \SI{34}{\kDa} water-soluble \gls{clya} monomer (\pdbid{1QOY} \cite{Wallace-2000}) consists of a core
+  bundle of \ta-helices (\ta A1, \ta A2, \ta B, \ta C, \ta F), onto which a hydrophobic \tb-tongue
   motif---flanked by two short \ta-helices (\ta D and \ta E)---and a C-terminal \ta-helix (\ta G) are packed.
   The two glycines in the \tb-tongue confer it with a high degree of flexibility, while the removal of Phe191
   from its hydrophobic pocket triggers pore formation.
@@ -141,7 +174,7 @@ secreted by \textit{Staphylococcus aureus}.
 
 In 2009, Mueller \etal{} revealed the crystal structure of Cytolysin A (\gls{clya}) \cite{Mueller-2009}, a
 large \textalpha-\gls{pft} secreted by various \textit{Salmonella enterica} and \textit{Esterischia coli}
-strains with a high affinity for mammalian cell membranes. The large size of its \lumen---relative to
+strains with a high affinity for mammalian cell membranes. The large size of its \lumen---compared to
 \gls{ahl} and \gls{mspa}, the most commonly used protein nanopores at the time---makes \gls{clya} particularly
 well equipped to fully capture and study larger biopolymers, such as proteins, in their native
 three-dimensional configuration (\ie~folded). In the following section, we will discuss the structure and
@@ -151,53 +184,58 @@ oligomerization mechanism of \gls{clya} in detail.
 
 \paragraph{Pore shape and charge.}
 %
-The \SI{408}{\kilo\dalton} \gls{clya} pore consists of 12 idential subunits (protomers), arranged in a ring
-like quaternary structure to form a cylindrical structure roughly \SI{14}{\nm} in height and \SI{11}{\nm} in
-diameter (\cref{fig:clya_pore_side,fig:clya_pore_top}). The pore walls in contact with the solvent are formed
-by a core bundle of four tightly packed \ta-helixes per protomer, and the transmembrane region is formed by
-the iris-like arrangement of the amphiphatic N-terminal \ta-helices. Virtually all helices contribute to
-interprotomer contacts, resulting in the burying of \SI{\approx2400}{\square\angstrom} surface area, and the
-formation of 25~H-bonds and 13~salt bridges per protomer-protomer interface. The interior shape of \gls{clya}
-can be described as a set of two hollow cylinders placed on top of each other: a large \cisi{} chamber
-(`\lumen{}') with an inner diameter of \SI{5.5}{\nm} and a height of \SI{10}{\nm} and a smaller \transi{}
-chamber (`\textit{constriction}') with a width of \SI{3.3}{\nm} and a height of \SI{4}{\nm}
-(\cref{fig:clya_pore_section}). \Gls{clya} has an excess negative charge (\SI{-60}{\ec} at \pH{7.5}), most of
-which riddle the interior walls of the pore. This results in a negative electrostatic potential inside both
-the \lumen{} and the constriction of the pore (\cref{fig:clya_pore_section}) and explains the observed cation
-selectivity \cite{Soskine-2012,Franceschini-2016}.
+The \SI{408}{\kDa} \gls{clya} pore (\pdbid{6mrt} \cite{Peng-2019}) consists of 12 idential subunits
+(protomers), arranged in a ring like quaternary structure to form a cylindrical structure roughly \SI{14}{\nm}
+in height and \SI{11}{\nm} in diameter (\cref{fig:clya_pore_side,fig:clya_pore_top}). The pore walls in
+contact with the solvent are formed by a core bundle of four tightly packed \ta-helixes per protomer, and the
+transmembrane region is formed by the iris-like arrangement of the amphiphatic N-terminal \ta-helices.
+Virtually all helices contribute to interprotomer contacts, resulting in the burying of
+\SI{\approx2400}{\square\angstrom} surface area, and the formation of 25~H-bonds and 13~salt bridges per
+protomer-protomer interface. The interior shape of \gls{clya} can be described as a set of two hollow
+cylinders placed on top of each other: a large \cisi{} chamber (`\lumen{}') with an inner diameter of
+\SI{\approx5.5}{\nm} and a height of \SI{10}{\nm} and a smaller \transi{} chamber (`\textit{constriction}')
+with a width of \SI{\approx3.6}{\nm} and a height of \SI{4}{\nm} (\cref{fig:clya_pore_section}). \Gls{clya}
+has an excess negative charge (\SI{-60}{\ec} at \pH{7.5}), most of which riddle the interior walls of the
+pore. This results in a negative electrostatic potential inside both the \lumen{} and the constriction of the
+pore (\cref{fig:clya_pore_section}) and explains the observed cation selectivity
+\cite{Soskine-2012,Franceschini-2016}.
 
-\paragraph{Note on the oligomerization state.}
+\paragraph{Monomer vs. protomer.}
 %
-Next to the typical 12-subunit pore (dodecamer, `Type I'), \gls{clya} can also form 13-mers (tridecamers,
-`Type II') and 14-mers (tetradecamers, `Type III') \cite{Soskine-2013}. Aside from their increased aperture
-size, the overal structure and assembly mechanism of these pores is identical to that of the dodecamer, and
-hence the following discussion will be limited to the Type I pore. Interested readers are referred to the work
-of Peng and coworkers \cite{Peng-2019}, who recently obtained high-resolution structures of the Type II and
-III pores using \gls{cryo-em}.
-
-
-\subsubsection{Pore formation and kinetics}
-
-\paragraph{From water-soluble monomer to oligomeric transmembrane pore.}
-%
-Like the pore, the water-soluble monomer (\cref{fig:clya_monomer}) consists of predominantly \ta-helices, with
-the core of the protein formed by a bundle of four long \ta-helices (\ta A, \ta B, \ta C and \ta F). Packed at
-the top and bottom of this bundle are respectively the C-terminal helix (\ta G) and a hydrophobic \tb-hairpin
+The water-soluble \gls{clya} monomer (\cref{fig:clya_monomer}) consists of predominantly \ta-helices, with the
+core of the protein formed by a bundle of four long \ta-helices (\ta A, \ta B, \ta C and \ta F). Packed at the
+top and bottom of this bundle are respectively the C-terminal helix (\ta G) and a hydrophobic \tb-hairpin
 motif flanked by to short \ta-helices (\ta D and \ta E) \cite{Wallace-2000,Mueller-2009}. Comparing this
 structure to that of the protomer (\cref{fig:clya_protomer}), reveals that while three of the core helices are
 merely straightened and elongated (at the expense of the \tb-hairpin and the \ta A2, \ta D and \ta E helices),
 the \ta A1 helix must move to the opposite side of the monomer, a distance of \SI{\approx14}{\nm} (!). The
 mechanism that enables these large conformational changes is similar to that of a spring-loaded lock, which is
-opened upon membrane binding. The latter is facilitated---\textit{via} both specific and non-specific
-interactions---by the partially solvent-exposed hydrophobic residues of the \tb-hairpin motif, causing it to
-swing outwards (with Gly180 and Gly201 acting as hinges) and insert into the lipid bilayer.  This removes a
-stabilizing aromatic residue (Phe190) from its hydrophobic pocket and unlatches a two-helix spring-loaded
-mechanism that results in 1) the straightening and extension of three of the core helices (\ta B, \ta C and
-\ta F), and 2) a \SI{180}{\degree} swinging of the \ta A helix (relative to \ta B, \ta C and \ta F). The
-amphiphatic \ta-A1 helix, which will form the \gls{tmd}, now rests on top of the membrane and is connected to
-the rest of the protein via a helix-turn-helix motif, with Pro36 acting as a hinge. The subsequent
-oligomerization of the membrane-bound monomers further packs and buckles the \ta A1 helices, effectivily
-pushing them downwards and allowing them to `wedge' a hole into the lipid bilayer.
+opened upon membrane binding.
+
+\paragraph{Oligomerization stoichiometry.}
+%
+Next to the typical 12-subunit pore (dodecamer, `Type I'), \gls{clya} can also form 13-mers (tridecamers,
+`Type II') and 14-mers (tetradecamers, `Type III') \cite{Soskine-2013,Peng-2019}, with constriction diameters
+of \SIrange{3.3}{4.0}{\nm}, \SIrange{3.7}{4.4}{\nm} and \SIrange{4.2}{5.2}{\nm}, respectively. Aside from
+their increased aperture size, the overal structure and assembly mechanism of these pores is identical to that
+of the dodecamer, and hence the following discussion will be limited to the Type I pore. Interested readers
+are referred to the work of Peng and coworkers \cite{Peng-2019}, who recently obtained high-resolution
+structures of the Type II and III pores using \gls{cryo-em}.
+
+\subsubsection{Pore formation mechanism}
+
+\paragraph{Pore formation.}
+%
+Initial binding of \gls{clya} monomers to the membrane (\textit{via} both specific and non-specific
+interactions) is mediated by the partially solvent-exposed, hydrophobic residues of the \tb-hairpin motif.
+Using Gly180 and Gly201 as hinges, the \tb-hairpin swings outwards to insert itself into the lipid bilayer,
+which removes a stabilizing aromatic residue (Phe190) from its hydrophobic pocket and unlatches a two-helix
+spring-loaded mechanism. This results in 1) the straightening and extension of three of the core helices (\ta
+B, \ta C and \ta F), and 2) a \SI{180}{\degree} swinging of the \ta A helix (relative to \ta B, \ta C and \ta
+F). The amphiphatic \ta-A1 helix, which will form the \gls{tmd}, now rests on top of the membrane and is
+connected to the rest of the protein via a helix-turn-helix motif, with Pro36 acting as a hinge. The
+subsequent oligomerization of the membrane-bound monomers further packs and buckles the \ta A1 helices,
+effectivily pushing them downwards and allowing them to `wedge' a hole into the lipid bilayer.
 
 \paragraph{Oligomerization kinetics.}
 %
@@ -222,7 +260,7 @@ Note that converting from \ce{M -> I} ($k_{\text{MI}}$) is $\approx17~\times$ fa
 ($k_{\text{MP}}$), resulting the initial accumulation of molten globule-like intermediates. On the long term,
 however, most of the monomers will convert to protomers, as the reverse reaction in the monomer to protomer
 transition \ce{P -> M} ($k_{\text{PM}}$) is $\approx36~\times$ slower compared to its forward reaction
-\ce{M -> P}.
+\ce{M -> P} ($k_{\text{MP}}$).
 
 After sufficient monomers have bound to the membrane, the increased probability of intermolecular collision
 between protomers results in the formation of linear mixtures of oligomers ($\ce{P_{n/m}}$) by a process
@@ -251,21 +289,7 @@ abundance of $\ce{P_5}$, $\ce{P_6}$ and $\ce{P_7}$ dictate that \SI{>50}{\percen
 formed by these oligomers \cite{Benke-2015}.
 
 
-
-
-\subsubsection{Applications}
-Starting \gls{clya}  has since been repurposed by the Maglia group for capture and study of folded proteins, 
-
-
-% be purified and isolated using native polyacrylamide gel electrophoresis (\gls{page})
-
-
 \subsection{Fragaceatoxin C (FraC)}
-
-Fragaceatoxin C (\gls{frac})
-
-\subsubsection{Structure and assembly mechanism}
-
 
 \begin{figure*}[t]
   \centering
@@ -307,32 +331,129 @@ Fragaceatoxin C (\gls{frac})
       \includegraphics[scale=1]{frac_protomer}
     \end{subfigure}
   \end{minipage}
-\caption{%
+\caption[Structure of the Fragaceatoxin C (FraC) porin.]{%
   \textbf{Structure of the Fragaceatoxin C (FraC) porin.}
   %
   (\subref{fig:frac_pore_side})
   %
-  %
+  Side and 
   %
   (\subref{fig:frac_pore_top})
   %
-  %
+  top views of the octameric \SI{176}{\kDa} \gls{frac} porin crystal structure (\pdbid{4TSY}
+  \cite{Tanaka-2015}) with single protein subunit highlighted in color and the co-crystalized sphingomyelin
+  lipids indicated in yellow. The overall shape is that of a funnel with a height of \SI{7}{\nm}, and top and
+  bottom diameters of \SIlist{11;3.5}{\nm}, respectively.
   %
   (\subref{fig:frac_pore_section})
   %
+  Cross-sectional view of the internal molecular surface of \gls{frac}, colored according to the local
+  electrostatic potential at physiological conditions as calculated by \gls{apbs}
+  \cite{Baker-2001,Baker-2005}. \Gls{frac} has inner diameters of \SIlist{6;1.6}{\nm} on the \cisi{} and
+  \transi{} sides, respectively. Note the fenestrations between the subunits, which are partly filled
+  by permanently bound lipids and hence expose and the core of membrane bilayer to the solvent.
+  %
   (\subref{fig:frac_monomer})
   %
+  The crystal structure of the \SI{20}{\kDa} \gls{frac} monomer (\pdbid{3VWI} \cite{Tanaka-2015}) shows that
+  in its water-soluble form the N-terminal \gls{tmd} (blue) is packed tightly against the \tb-sheet rich core
+  domain (orange). Displacement of Phe16 (mauve) from its hydrophobic pocket by Val60 (grey) trigger pore
+  formation.
   %
   (\subref{fig:frac_protomer})
   %
-  Images were rendered using VMD \cite{Humphrey-1996,Stone-1998}.
-  }\label{fig:frac_pore_structure}
+  The N-terminal \ta-helix of each \gls{frac} protomer (\pdbid{4TSY} \cite{Tanaka-2015}) first elongates and
+  then flips \SI{180}{\degree} to span the entire membrane. The conformation of \tb-core remains virtually
+  identical to that of the monomer. Where the L2 and L3 lipids are bound to a single subunits, the L1 lipid is
+  wedged in between two protomers and contributes \emph{structurally} to the solvent-exposed pore walls.
+  Images were rendered using VMD \cite{Humphrey-1996,Stone-1998}.}\label{fig:frac_pore_structure}
 \end{figure*}
 
+Fragaceatoxin C (\gls{frac}) is an \ta-\gls{pft} belonging to the family of the actinoporins, and is produced
+by the sea anemone \textit{Actinia fragacea}. Its X-ray structure was resolved in 2015 by Tanaka \etal{}
+\cite{Tanaka-2015}, and suprisingly contained several co-crystalized sphingomyelin (\gls{sm}) lipids per
+subunit. This indicates that \gls{frac} does not merely exhibit a high degree of specificity towards
+\gls{sm}-containing membranes, these lipids comprise an essential structural element of the pore itself. In
+the following section we will describe and discuss the structure and assembly mechanism of \gls{frac}.
 
-\subsubsection{Applications}
+\subsubsection{Pore structure}
+
+\paragraph{Pore shape and charge.}
+%
+The full \SI{176}{\kDa} \Gls{frac} porin (\pdbid{4TSY} \cite{Tanaka-2015}) consists of eight identical protein
+subunits and three \gls{sm} lipids per protomer, bound at highly specific locations
+(\cref{fig:frac_pore_side,fig:frac_pore_top}). It is shaped as a funnel with a height of \SI{7}{\nm} and
+\cisi{} and \transi{} outer diameters of \SIlist{11;3.5}{\nm}, respectively. The extracellular (\cisi) part of
+the pore comprises the bulk of each protomer and is rich in \tb-sheets (\tb-core). The \gls{tmd} is formed by
+the iris-like arrangement of the N-terminal \ta-helices of each subunit, which are long enough (\SI{3.5}{\nm})
+to span the entire lipid bilayer. The protomer-protomer interface buries a surface area of
+\SI{777}{\square\angstrom}, to which both the \tb-core and the \gls{tmd} \ta-helices contribute, and is
+further stabilized by protein-lipid H-bonding \cite{Tanaka-2015}. Close inspection of the pore walls reveal
+the presence of eight lateral fenestrations, one between each protomer, that expose the hydrophobic core of
+the membrane to the aqueous solvent (\cref{fig:frac_pore_section}). These openings are at least partially
+occluded by the co-crystallized \gls{sm} lipids, which as such contribute \emph{structurally} to the pore.
+Even though the precise biological function of these fenestrations remains unclear, it is likely that they
+contribute significantly to the toxicity of sea anemone venom by 1) facilitating the diffusion of its small
+hydrophobic components directly into the core of the lipid bilayer, and 2) disrupting the leaflet composition
+of the membrane by catalyzing the flip-flip movement of lipids \cite{Tanaka-2015}. The interior of \gls{frac}
+is also funnel-shaped, with a \cisi{} diameter of \SI{6}{\nm} and a \trans{} diameter, which is also the
+pore's narrowest constriction, of only \SI{1.6}{\nm}. Consistent with the observation of its cation
+selectivity \cite{Garcia-Ortega-2011,Wloka-2016}, the interior walls of the pore are predominantly negatively
+charged, particularly at the \transi{} constriction (\cref{fig:frac_pore_section}). The extracellular regions
+of the pore near the lipid headgroups exhibit a strong positive potential however, which likely aides in the
+initial adhesion of \gls{frac} to the membrane \cite{Tanaka-2015}.
+
+\paragraph{Monomer vs. protomer.}
+%
+In the water-soluble \gls{frac} monomer (\pdbid{3VWI} \cite{Tanaka-2015}) the N-terminal region (residues
+1--29; contains a short \tb-sheet, a 3$_10$ helix and an \ta-helix) is packed closely against the C-terminal
+\tb-core (residues 30--179; contains 11 \tb-sheets in a \tb-sandwich fold and one \ta-helix) and held in place
+by the interaction between Phe16 and a hydrophobic cavity in the \tb-core (\cref{fig:frac_monomer}). The
+\tb-core remains virtually unchanged in the protomer structure (\pdbid{4TSY} \cite{Tanaka-2015}), while the
+N-terminal domain forms a much longer \ta-helix that spans the entire lipid bilayer
+(\cref{fig:frac_protomer}). In addition, three lipids (`L1', `L2' and `L3') are bound at specific locations to
+the \tb-core. Of these, the L1 position can be considered to be of high affinity and specific only to
+\gls{sm}, whereas L2 and L3 are of lower affinity and hence more promiscuous \cite{Tanaka-2015}. 
+
+\paragraph{Oligomerization stoichiometry.}
+%
+The a lytically active \gls{frac} pore can be obtained as an 8-mer (octamer, `Type I'), 7-mer (heptamer `Type
+II') and 6-mer (hexamer, `Type III') \cite{Huang-2019}, with constriction diameters of
+\SIlist{1.6;1.1;0.84}{\nm}, respectively. A non-lytic 9-mer (nonamer) has also been crystalized (\pdbid{3LIM}
+\cite{Mechaly-2011}), and lower oligomeric states also appear to be capable of forming pores
+\cite{Rojka-2016}.
+
+\subsubsection{Pore formation mechanism}
+
+\paragraph{Pore formation.}
+%
+Upon initial attachment of the monomer to the membrane, the binding of a single \gls{sm} lipid to the L1
+pocket induces dimerization \cite{Tanaka-2015}. The resulting small conformational change (at residues 14--17)
+displaces Phe16 from its hydrophobic pocket in favor of Val60 and partially unfolds the N-terminal domain.
+Because dimerization is only possible in the presence of \gls{sm}, this lipid acts as both a receptor and an
+assembly co-factor that contributes to the final structure of the pore. Sequential addition of other dimeric
+units \textit{via} random collisions---which can occur frequently in the small \gls{sm} lipid raft
+domains---give rise to higher oligomeric complexes that further destabilize the N-terminal region. Given the
+limited space avaible in the lumen of the final pore (\SI{\approx2}{\nm} diameter), it is likely that the
+insertion of the N-terminal \ta-helix occurs in a non-concerted manner prior to full ring closure
+\cite{Cosentino-2016}. It is also possible that a pre-pore structure is formed, similar to the non-lytic
+\gls{frac} nonamer \cite{Mechaly-2011}, with the amphipatic N-termini pushing through the membrane in a
+concerted fashion \cite{Tanaka-2015,Rojko-2016} much like the \gls{clya} porin. Evidence favors the first
+mechanism however, given that a sole N-terminal helix of many actinoporins can exist at the lipid-water
+interface in a so-called `protein-lipid pore' \cite{Cosentino-2016}.
 
 
+\paragraph{Oligomerization scheme.}
+%
+\kineticscheme{arrow coeff=4}{
+  M
+  \arrow{->} 
+  \chemfig{M^{*}}
+  \arrow{->[\chemfig{+ M^{*} + SM}]}
+  \chemfig{M^{**}_2}
+  \arrow{->[\chemfig{+ M^{**}_2}]}
+  \chemfig{(M^{**}_2)_2}
+}{eq:frac_pore_formation}
 
 \subsection{Pleurotolysin AB (PlyAB)}
 
@@ -380,7 +501,7 @@ Pleurotolysin AB (\gls{plyab})
       \includegraphics[scale=1]{plyab_protomer}
     \end{subfigure}
   \end{minipage}
-\caption{%
+\caption[Structure of the Pleurotolysin AB (PlyAB) porin.]{%
   \textbf{Structure of the Pleurotolysin AB (PlyAB) porin.}
   %
   (\subref{fig:plyab_pore_side})
@@ -403,15 +524,21 @@ Pleurotolysin AB (\gls{plyab})
 \end{figure*}
 
 
-\subsubsection{Applications}
+%
+%
+\section{Nanopore applications}
+
+\subsection{Small molecules}
+
+\subsection{Nucleic acids }
+
+\subsection{Proteins and peptides}
+
+
+\todo{frac nanopore applications}
 
 
 
-\subsection{Other noteworthy biological nanopores}
-
-\section{Solid-state nanopores}
-
-\section{Hybrid nanopores}
 
 
 
