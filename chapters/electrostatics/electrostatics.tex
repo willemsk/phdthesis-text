@@ -4,12 +4,294 @@
 \ldots
 \section{Introduction}
 \ldots
+
+\section{Computational methods}
+%
+
+\subsection{Molecular modelling}
+%
+
+\subsubsection{Molecular modelling tools}
+%
+
+\subsubsection{Construction of the ClyA homology models}
+
+
+\paragraph{MODELLER.}
+
+\paragraph{ \gls{vmd} and \gls{namd}}
+
+\subsubsection{Construction of the FraC homology models}
+%
+
+\paragraph{Wild-type \gls{frac} homology model from the \pdbid{4tsy} structure.}
+
+\paragraph{\gls{refrac}}
+
+\subsubsection{Construction of the PlyAB homology models}
+
+
+\subsection{Electrostatic modelling}
+%
+
+\subsubsection{Computing protein electrostatic potentials with the Poisson-Boltzmann equation}
+%
+
+\gls{apbs}
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \begin{minipage}[t]{120mm}
+    \centering
+    \begin{subfigure}[t]{50mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_clya_pqr}
+      \includegraphics[scale=1]{apbs_focussing_clya_pqr}
+    \end{subfigure}
+    %
+    \hspace{2mm}
+    %
+    \begin{subfigure}[t]{55mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_clya_apbs_setup}
+      \includegraphics[scale=1]{apbs_focussing_clya_apbs_setup}
+    \end{subfigure}
+  \end{minipage}
+  %
+  \\ \vspace{4mm}
+  %
+  \begin{minipage}[t]{120mm}
+    \centering
+    \begin{subfigure}[t]{50mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_frac_pqr}
+      \includegraphics[scale=1]{apbs_focussing_frac_pqr}
+    \end{subfigure}
+    %
+    \hspace{2mm}
+    %
+    \begin{subfigure}[t]{55mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_frac_apbs_setup}
+      \includegraphics[scale=1]{apbs_focussing_frac_apbs_setup}
+    \end{subfigure}
+  \end{minipage}
+  %
+  \\ \vspace{4mm}
+  %
+  \begin{minipage}[t]{120mm}
+    \centering
+    \begin{subfigure}[t]{50mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_plyab_pqr}
+      \includegraphics[scale=1]{apbs_focussing_plyab_pqr}
+    \end{subfigure}
+    %
+    \hspace{2mm}
+    %
+    \begin{subfigure}[t]{55mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_plyab_apbs_setup}
+      \includegraphics[scale=1]{apbs_focussing_plyab_apbs_setup}
+    \end{subfigure}
+  \end{minipage}
+  %
+
+\caption[APBS simulation setup.]{%
+  \textbf{APBS simulation setup.}
+  %
+  (\subref{fig:apbs_focussing_clya_pqr})
+  %
+  Side view and 
+  %
+  (\subref{fig:apbs_focussing_clya_apbs_setup})
+  %
+  (\subref{fig:apbs_focussing_frac_pqr})
+  %
+  %
+  (\subref{fig:apbs_focussing_frac_apbs_setup})
+  %
+  (\subref{fig:apbs_focussing_plyab_pqr})
+  %
+  %
+  (\subref{fig:apbs_focussing_plyab_apbs_setup})
+  %
+  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:apbs_focussing}
+\end{figure*}
+
+
+\paragraph{Protein electrostatics with the adaptive Poisson-Boltzmann solver.}
+
+\paragraph{Assigning atomic charges and radii with PBD2PQR.}
+
+\paragraph{Properly accounting for solution pH with fractional protonation.}
+
+
+\subsubsection{Pore-particle electrostatic interaction energies using the Poisson-Boltzmann equation}
+%
+
+\paragraph{Electrostatic energies with the adaptive Poisson-Boltzmann solver.}
+
+
 \section{Results and discussion}
+
+\subsection{Electrostatic analysis of the ClyA nanopore}
+%
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_mutants_residues}
+    \includegraphics[scale=1]{clya_mutants_residues}
+  \end{subfigure}
+  %
+  \\ \vspace{-2mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:clya_mutants_potential_0150}
+    \includegraphics[scale=1]{clya_mutants_potential_0150}
+  \end{subfigure}
+  %
+  \\ \vspace{0mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:clya_mutants_potential_2500}
+    \includegraphics[scale=1]{clya_mutants_potential_2500}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic potential inside ClyA mutants.]{%
+  \textbf{Electrostatic potential inside ClyA mutants.}
+  %
+  (\subref{fig:clya_mutants_residues})
+  %
+  Side view and 
+  %
+  (\subref{fig:clya_mutants_potential_0150})
+  %
+  (\subref{fig:clya_mutants_potential_2500})
+  %
+  %
+  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:clya_mutants}
+\end{figure*}
+
+
+\subsection{Electrostatic analysis of the FraC nanopore}
+%
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \begin{subfigure}[t]{50mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_pka_scatter}
+    \includegraphics[scale=1]{frac_mutants_pka_scatter}
+  \end{subfigure}
+  %
+  \hspace{-4mm}
+  %
+  \begin{subfigure}[t]{70mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{0.0mm}\label{fig:frac_mutants_pka_residues}
+    \includegraphics[scale=1]{frac_mutants_pka_residues}
+  \end{subfigure}
+  %
+  \\ \vspace{2mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_partialcharge_residues}
+    \includegraphics[scale=1]{frac_mutants_partialcharge_residues}
+  \end{subfigure}
+  %
+  \\ \vspace{-2mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_potential_1000}
+    \includegraphics[scale=1]{frac_mutants_potential_1000}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic potential inside FraC mutants.]{%
+  \textbf{Electrostatic potential inside FraC mutants.}
+  %
+  (\subref{fig:frac_mutants_pka_scatter})
+  %
+  (\subref{fig:frac_mutants_pka_residues})
+  %
+  (\subref{fig:frac_mutants_partialcharge_residues})
+  %
+  (\subref{fig:frac_mutants_potential_1000})
+  %
+  %
+  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:frac_mutants}
+\end{figure*}
+
+\subsection{Electrostatic analysis of the PlyAB nanopore}
+%
+
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:plyab_mutants_residues}
+    \includegraphics[scale=1]{plyab_mutants_residues}
+  \end{subfigure}
+  %
+  \\ \vspace{-2mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:plyab_mutants_potential_0300}
+    \includegraphics[scale=1]{plyab_mutants_potential_0300}
+  \end{subfigure}
+  %
+  \\ \vspace{0mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:plyab_mutants_potential_2500}
+    \includegraphics[scale=1]{plyab_mutants_potential_1000}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic potential inside PlyAB mutants.]{%
+  \textbf{Electrostatic potential inside PlyAB mutants.}
+  %
+  (\subref{fig:plyab_mutants_residues})
+  %
+  Side view and
+  %
+  (\subref{fig:plyab_mutants_potential_0300})
+  %
+  (\subref{fig:plyab_mutants_potential_2500})
+  %
+  %
+  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:plyab_mutants}
+\end{figure*}
+
 \ldots
 \section{Conclusion}
 \ldots
-\section{Materials and methods}
-\ldots
+
 \section{Additional remarks}
 \ldots
 
