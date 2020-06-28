@@ -2,8 +2,27 @@
 
 \section{Abstract}
 \ldots
+
+%
 \section{Introduction}
-\ldots
+
+Next to their geometry (\ie~shape, size and length), the fixed charge distribution can strongly influence the
+transport properties of a nanopores for molecules of all size: from ions to \gls{dna} to proteins. The reason
+for this that, just like ions, most molecules carry a net charge, which will interact electrostatically with
+the charges present in the interior walls of the pore. For sub-nanometre pores the precise positioning of
+charged residues along the length of the pore not only confers a selectivity towards ions of opposite charge,
+but can even allow distinguishing between same charge ions, even if they have the same valence. For example,
+the BK channel exhibits a x-fold preference to transport \ce{K+} over \ce{Na+} ions. In larger pores, the
+predominant wall charges promotes and hinders the transport of respectively opposing- and same-charge ions.
+When coupled with an asymmetric geometry, charged walls typically result in a higher conductance at opposing
+bias voltages of the same magnitude, called ionic current rectification.
+
+Next to directly influence the ionic current, fixed charges can also respond to changes in transmembrane
+voltage, typically resulting in a closure of the channel. For example, the \gls{kcsa} channel
+\cite{Kopec-2019}. This behaviour is not limited to ion channels however, and can even be engineered in larger
+pores such as \gls{ahl}. In \gls{7r-ahl} where the addition of 49 ($7\times7$) positively charged residues in
+the stem region cause the pore to rapidly and reversibly close under negative bias voltages
+\cite{Maglia-2009}.
 
 \section{Computational methods}
 %
@@ -284,9 +303,114 @@
   (\subref{fig:plyab_mutants_potential_2500})
   %
   %
-  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  All images were prepared and rendered with VMD \cite{Humphrey-1996,Stone-1998}.
   }\label{fig:plyab_mutants}
 \end{figure*}
+
+
+\subsection{Electrostatic energy analysis of dsDNA translocation through ClyA}
+%
+
+%
+\subsubsection{DNA translocation at physiological ionic strength.}
+%
+\cref{fig:clya_mutants_dsdna_0150}
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \begin{subfigure}[t]{40mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_mutants_dsdna_0150_energy}
+    \includegraphics[scale=1]{clya_mutants_dsdna_0150_energy}
+  \end{subfigure}
+  %
+  \hspace{-3.7mm}
+  %
+  \begin{subfigure}[t]{81.5mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_mutants_dsdna_0150_potential}
+    \includegraphics[scale=1]{clya_mutants_dsdna_0150_potential}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic energy analysis of dsDNA translocation through ClyA at physiological ionic strength.]{%
+  \textbf{Electrostatic energy analysis of dsDNA translocation through ClyA at physiological ionic strength.}
+  %
+  (\subref{fig:clya_mutants_dsdna_0150_energy})
+  %
+  Net electrostatic energy ($\energyelec$, \cref{eq:electrostatic_energy}), at physiological ionic strength
+  (\SI{150}{\mM}), for a \SI{51}{\bp} piece of \gls{dsdna} (\SI{\approx17.5}{\nm}) as a function of its
+  $z$-position ($z_{\mathrm{DNA}}$) inside the \gls{clya} variants AS, R, RR, RR$_{56}$ and RR$_{56}$K. The
+  mutation S110R eliminates the \SI{8}{\kT} energy penalty for \gls{dsdna} to enter \lumen{} of \gls{clya}
+  from the \cisi{} side up until \SI{150}{\angstrom}. In contrast to D64R, which briefly promotes the
+  downwards motion up of \gls{dsdna} starting from \SI{150}{\angstrom}, Q56R only manages to slow the rise of
+  the energy barrier. Once inside the constriction, the Q8K mutation results in an energy drop from
+  \SIrange{\approx40}{60}{\kT}.
+  %
+  (\subref{fig:clya_mutants_dsdna_0150_potential})
+  %
+  Vertical and horizontal cross-sections of the electrostatic potential ($\potential$) inside the \gls{clya}
+  variants as the \gls{dsdna} begins to enter the \cisi{} entrance (\SI{200}{\angstrom}, top), reaches the
+  center of the \lumen{} (\SI{150}{\angstrom}, middle) and fully entered the \transi{} constriction
+  (\SI{65}{\angstrom}, bottom).
+  %
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}. Molecular images were rendered
+  with VMD \cite{Humphrey-1996,Stone-1998}.
+  %
+  }\label{fig:clya_mutants_dsdna_0150}
+\end{figure*}
+
+
+%
+\subsubsection{DNA translocation at high ionic strength.}
+%
+\cref{fig:clya_mutants_dsdna_2500}
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \begin{subfigure}[t]{40mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_mutants_dsdna_2500_energy}
+    \includegraphics[scale=1]{clya_mutants_dsdna_2500_energy}
+  \end{subfigure}
+  %
+  \hspace{-3.7mm}
+  %
+  \begin{subfigure}[t]{81.5mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_mutants_dsdna_2500_potential}
+    \includegraphics[scale=1]{clya_mutants_dsdna_2500_potential}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic energy analysis of dsDNA translocation through ClyA at high ionic strength.]{%
+  \textbf{Electrostatic energy analysis of dsDNA translocation through ClyA at high ionic strength.}
+  %
+  (\subref{fig:clya_mutants_dsdna_2500_energy})
+  %
+  Net electrostatic energy ($\energyelec$, \cref{eq:electrostatic_energy}), at high ionic strength
+  (\SI{2.5}{\Molar}), for a \SI{51}{\bp} piece of \gls{dsdna} (\SI{\approx17.5}{\nm}) as a function of its
+  $z$-position ($z_{\mathrm{DNA}}$) inside the \gls{clya} variants AS, R, RR, RR$_{56}$ and RR$_{56}$K. Once
+  inside the \transi{} constriction, $\energyelec$ fluctutates periodically with a magnitude of
+  \SI{\approx2.5}{\kT} every \SI{36}{\angstrom}, which is close to the pitch of \SI{34}{\angstrom} of B-DNA.
+  %
+  (\subref{fig:clya_mutants_dsdna_2500_potential})
+  %
+  Vertical and horizontal cross-sections of the electrostatic potentials ($\potential$) inside the \gls{clya}
+  variants as the \gls{dsdna} traverses the \transi{} constriction, showing the first maximum
+  (\SI{60}{\angstrom}, top), first mininum (\SI{40}{\angstrom}, middle) and second maximum
+  (\SI{25}{\angstrom}, bottom).
+  %
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}. Molecular images were rendered
+  with VMD \cite{Humphrey-1996,Stone-1998}.
+  %
+  }\label{fig:clya_mutants_dsdna_2500}
+\end{figure*}
+
 
 \ldots
 \section{Conclusion}

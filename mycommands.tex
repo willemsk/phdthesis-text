@@ -17,29 +17,7 @@
 \newcommand{\ilevel}[1]{\rm{L}_{#1}}
 
 
-% Units
-\DeclareSIUnit{\molar}{\mole\per\cubic\deci\metre}
-\DeclareSIUnit{\Molar}{\textsc{M}}
-\DeclareSIUnit{\atm}{\textsc{atm}}
-\DeclareSIUnit{\dalton}{\textsc{D\!a}}
-\newcommand{\kDa}{\kilo\dalton}
-\newcommand{\uM}{\micro\Molar}
-\newcommand{\mM}{\milli\Molar}
-\newcommand{\nM}{\nano\Molar}
-\newcommand{\mV}{\milli\volt}
-\newcommand{\pA}{\pico\ampere}
-\newcommand{\um}{\micro\meter}
-\newcommand{\nm}{\nano\meter}
-\newcommand{\ms}{\milli\second}
-\newcommand{\us}{\micro\second}
-\newcommand{\ns}{\nano\second}
-\newcommand{\ps}{\pico\second}
-\newcommand{\fs}{\femto\second}
-\newcommand{\pN}{\pico\newton}
-\newcommand{\ec}{\elementarycharge}
-\newcommand{\dC}{\degreeCelsius}
-\newcommand{\mps}{\meter\per\second}
-\newcommand{\cnmpnspv}{\cubic\nano\meter\per\nano\second\per\volt}
+
 
 % Vectors and math stuff
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
@@ -199,8 +177,8 @@
 \newcommand{\radenergy}{\left< U_{\text{E},i} \right>_{\text{rad}}}
 \newcommand{\deltaEt}{\Delta E_{\text{B},i}}
 \newcommand{\pH}[1]{pH~\num{#1}}
-\newcommand{\kT}{\boltzmann\temp}
-\newcommand{\kTe}{\kT / \echarge}
+% \newcommand{\kT}{\boltzmann\temp}
+% \newcommand{\kTe}{\kT / \echarge}
 \newcommand{\ta}{\textalpha}
 \newcommand{\tb}{\textbeta}
 \newcommand{\pdbid}[1]{PDBID:~\href{https://www.rcsb.org/structure/#1}{#1}}
@@ -208,3 +186,35 @@
 % Atom properties
 \newcommand{\partialcharge}{\delta}
 \newcommand{\atomradius}{R}
+
+
+% Electrostatics
+\newcommand{\energyelec}{\Delta \Delta G _{\mathrm{el}}}
+
+
+% Units
+\DeclareSIUnit{\molar}{\mole\per\cubic\deci\metre}
+\DeclareSIUnit{\Molar}{\textsc{M}}
+\DeclareSIUnit{\atm}{\textsc{atm}}
+\DeclareSIUnit{\dalton}{\textsc{D\!a}}
+\DeclareSIUnit{\bp}{\textsc{bp}}
+\DeclareSIUnit{\kT}{\textit{k}\textsubscript{B} \textit{T}}
+\DeclareSIUnit{\kTe}{\kT\per\elementarycharge}
+\newcommand{\kDa}{\kilo\dalton}
+\newcommand{\uM}{\micro\Molar}
+\newcommand{\mM}{\milli\Molar}
+\newcommand{\nM}{\nano\Molar}
+\newcommand{\mV}{\milli\volt}
+\newcommand{\pA}{\pico\ampere}
+\newcommand{\um}{\micro\meter}
+\newcommand{\nm}{\nano\meter}
+\newcommand{\ms}{\milli\second}
+\newcommand{\us}{\micro\second}
+\newcommand{\ns}{\nano\second}
+\newcommand{\ps}{\pico\second}
+\newcommand{\fs}{\femto\second}
+\newcommand{\pN}{\pico\newton}
+\newcommand{\ec}{\elementarycharge}
+\newcommand{\dC}{\degreeCelsius}
+\newcommand{\mps}{\meter\per\second}
+\newcommand{\cnmpnspv}{\cubic\nano\meter\per\nano\second\per\volt}
