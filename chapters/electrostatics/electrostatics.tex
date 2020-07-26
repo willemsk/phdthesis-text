@@ -1,106 +1,319 @@
-\chapter{Modelling the electrostatics of biological nanopores}\label{ch:electrostatics}
+%
+\cleardoublepage
+%
+%
+\chapter{The electrostatics of biological nanopores}\label{ch:electrostatics}
+%
+%
+\epigraphhead[80]{\epigraph{``The sciences are monuments devoted to the public good; each citizen owes to them
+a tribute proportional to his talents. While the great men, carried to the summit of the edifice, draw and put
+up the higher floors, the ordinary artists scattered in the lower floors, or hidden in the obscurity of the
+foundations, must only seek to improve what cleverer hands have created.''}{
+    \textit{`Charles-Augustin de Coulomb'}
+  }
+}
+%
+%
 
-\section{Abstract}
-\ldots
+%
+%
+\definecolor{shadecolor}{gray}{0.85}
+\begin{shaded}
+Parts of this chapter were adapted from:
+%
+% \begin{footnotesize}
+\begin{itemize}
+  \item K. Willems*, D. Rui\'{c}*, A. Biesemans*, N. S. Galenkamp, P. Van Dorpe and G. Maglia.
+        \textit{ACS Nano} \textbf{13 (9)}, 9980--9992 (2019) %\cite{Willems-Ruic-Biesemans-2019}
+  \item G. Huang, K. Willems, M. Soskine, C. Wloka and G. Maglia.
+        \textit{Nat. Commun.} \textbf{8 (1)}, 1--9 (2017) %\cite{Huang-2017}
+  \item L. Franceschini,  T. Brouns, K. Willems, E. Carlon and G. Maglia.
+        \textit{ACS Nano} \textbf{10 (9)}, 8394--8402 (2017) %\cite{Franceschini-2016}
+  \item G. Huang, K. Willems, M. Bartelds, P. Van Dorpe, M. Soskine and G. Maglia.
+        \textit{Nano Lett.} \textbf{20 (50)}, 3819--3827 (2020) %\cite{Huang-2020}
+  \item M. Bayoumi, S. Nomidis, K. Willems, E. Carlon and G. Maglia.
+        \textit{XXXX} \textbf{X (X)}, XX--XX (2020) %\cite{Bayoumi-2020}
+\end{itemize}
+%
+*equal contributions
+%
+% \end{footnotesize}
+\newpage
+\end{shaded}
+%
+%
+
+
+In this chapter, the electrostatic properties of the \gls{plyab}, \gls{frac} and \gls{clya} nanopores are
+investigated \textit{in silico} using the \gls{pbe}, corroborating results published in previous studies. We
+demonstrate the extent with which their electrostatic potentials can be manipulated by modifcation of specific
+amino acids of the pore on the one hand, and by altering the ionic strength and the pH of the electrolyte on
+the other. Additionally we use electrostatic energy computations to analyze the translocation of \gls{ssdna}
+and \gls{dsdna} through respectively \gls{frac} and \gls{clya} nanopores.
+%
+\\
+%
+The text and figures of this chapter represent entirely my own work. Several parts were adapted from
+co-authored papers.
+%
+The section
+%
+``Construction of the PlyAB homology models''
+%
+was adapted from ref.~\cite{Huang-2020}.
+%
+%
+The sections
+%
+``Computing the electrostatic potentials within nanopores''
+%
+and
+%
+``Computing nanopore-particle electrostatic interaction energies''
+%
+were adapted from ref.~\cite{Willems-Ruic-Biesemans-2019}.
+%
+%
+The paragraphs
+%
+``Partial protonation: partial charges at pH-values close to the $\pKa$.''
+%
+``A link between the electrostatic potential, ion-selectivity and electro-osmotic flow.''
+%
+
+%
+%
+The paragraph 
+%
+``All charges are important at physiological ionic strength.''
+%
+was adapted from ref.~\cite{Franceschini-2016}.
+%
+%
+The section
+%
+``Confinement of DNA to the center of the ClyA''
+%
+was adapted from ref.~\cite{Bayoumi-2020}.
+%
+
+%
+%
+\cleardoublepage
+%
+%
+
+
+
+
 
 %
 \section{Introduction}
+%
+\label{sec:elec:intro}
+%
 
-Next to their geometry (\ie~shape, size and length), the fixed charge distribution can strongly influence the
-transport properties of a nanopores for molecules of all size: from ions to \gls{dna} to proteins. The reason
-for this that, just like ions, most molecules carry a net charge, which will interact electrostatically with
-the charges present in the interior walls of the pore. For sub-nanometre pores the precise positioning of
-charged residues along the length of the pore not only confers a selectivity towards ions of opposite charge,
-but can even allow distinguishing between same charge ions, even if they have the same valence. For example,
-the BK channel exhibits a x-fold preference to transport \ce{K+} over \ce{Na+} ions. In larger pores, the
-predominant wall charges promotes and hinders the transport of respectively opposing- and same-charge ions.
+As one of the four fundamental forces of nature, electromagnetism dominates the behaviour and properties of
+virtually all physical phenomena beyond the size of the atomic nucleus (aside from gravity). At the
+macroscale, electromagnetism powers almost all of our technology, whereas at the nanoscale it powers life
+itself: it is involved in all chemical phenomena, from the properties of salty solutions to intra- and
+inter-molecular interactions and chemical reactions. The electromagnetic force is also highly versatile: it
+can either be attractive or repulsive, short- or long-ranged, directional or omnidirectional, and weak or
+strong \cite{Walker-2011}. Here, we are interested in the electrostatic component of the electromagnetic force
+(\ie~the static interaction between fixed and mobile charges) and the electrostatic potential and energies
+that result from it.
+
+For a biological nanopore, the fixed charge distribution lining its interior walls, next to its geometry,
+dominates the transport properties for both ions and many larger molecules. Direct interactions between the
+charges of the nanopore and the ions in the surrounding electrolyte lead to observable phenomena such as the
+ion selectivity, ionic current rectification and electro-osmotic flow. Indirect interactions (\ie~mediated
+through the external electric field) can result in voltage- or pH-dependent gating. For example, the direct
+electrostatic interactions between ions and the precisely positioned charges within the sub-nanometer aperture
+of the BK ion channel confers it not only with a selectivity towards ions of the opposite charge, but even
+allows distinguishing between ions of the \emph{same} charge and valence. In larger pores, the predominant
+charges on the wall either promote or hinder the transport of respectively opposing- and same-charge ions.
 When coupled with an asymmetric geometry, charged walls typically result in a higher conductance at opposing
-bias voltages of the same magnitude, called ionic current rectification.
+bias voltages of the same magnitude, a phenomenon called ionic current rectification. Charges that are not
+directly exposed to the electrolyte may also respond to changes in the electrostatic field by inducing
+conformational changes. These typically result in either an opening or closure of the channel, as is the case
+in the \gls{kcsa} channel \cite{Kopec-2019}. This behaviour is not limited to ion channels however, and can
+even be engineered in larger pores. The \gls{ahl} variant \gls{7r-ahl}---in which 49 ($7\times7$) positively
+charged residues were added in the stem region---rapidly closes and opens under negative and positive bias
+voltages, respectively \cite{Maglia-2009}.
 
-Next to directly influence the ionic current, fixed charges can also respond to changes in transmembrane
-voltage, typically resulting in a closure of the channel. For example, the \gls{kcsa} channel
-\cite{Kopec-2019}. This behaviour is not limited to ion channels however, and can even be engineered in larger
-pores such as \gls{ahl}. In \gls{7r-ahl} where the addition of 49 ($7\times7$) positively charged residues in
-the stem region cause the pore to rapidly and reversibly close under negative bias voltages
-\cite{Maglia-2009}.
+% TODO: add more here, but what?
+% Add section for larger molecules, EOF?
+% \cite{Zhou-2020}
 
+In this chapter, we have investigated the electrostatic properties of the several experimentally relevant
+variants of the biological nanopores \gls{plyab}, \gls{frac} and \gls{clya} by numerically solving the
+\gls{pbe} for their atomistic models. After describing our computational methods, we begin with an analysis of
+the electrostatic potential distribution within the wild-type \gls{plyab}, \gls{plyab-e2} and \gls{plyab-r},
+at \SIlist{0.3;1.0}{\Molar} ionic strength. These two pores have oppositely charged constrictions and showed
+different protein capture characteristics in experiments. These could be attributed to a significantly reduced
+\gls{eof} in \gls{plyab-r} \cite{Huang-2020}, and are supported by our computed electrostatic potentials.
+
+Next, we switch to the much smaller \gls{wtfrac} (wild-type) and \gls{refrac} pores, who also have oppositely
+charged constrictions and were used in two separate studies. In the first \cite{Huang-2017}, the opposing
+response of the \gls{eof} strength to lowering of the electrolyte pH from \numrange{7.5}{4.5} revealed that
+the capture of peptides by \gls{frac} is driven primarily by the \gls{eof}. In the second \cite{Wloka-2016},
+it was shown that, unlike its wild-type counterpart, \gls{refrac} was able to translocate both \gls{ssdna} and
+\gls{dsdna}. We show that the pH-dependency of the \gls{eof} is in agreement with our computations, and that
+the energy barrier for \gls{ssdna} translocation is significantly lowered for \gls{refrac}.
+
+Lastly, we turn to \gls{clya}, for which we analyzed several variants of \gls{clya-as} at ionic strengths of
+\SIlist{0.15;2.5}{\Molar}. These mutants showed a varying ability to translocate \gls{dsdna}
+\cite{Franceschini-2016}, a result corroborated by our electrostatic potential and \gls{dsdna} translocation
+electrostatic energy calculations. Finally, we show that the strong repulsion between the negatively charged
+constriction and the \gls{dna} confines the latter to the center of the pore \cite{Bayoumi-2020}.
+
+%
+%
+\clearpage
+%
+%
+
+
+%
+%
 \section{Computational methods}
+%
+\label{sec:elec:methods}
 %
 
 \subsection{Molecular modelling}
 %
+\label{sec:elec:methods:molec}
 
-\subsubsection{Molecular modelling tools}
+\subsubsection{Construction of the PlyAB homology models}
 %
+% Adapted from Huang-2020
 
-\subsubsection{Construction of the ClyA homology models}
+\paragraph{Note on the \gls{plyab}, \gls{plya} and \gls{plyb} structures.}
+%
+As described in \cref{sec:np:plyab}, the \Gls{plyab} nanopore consist of 39 individual protein chains (26
+\gls{plya} and 13 \gls{plyb} chains), arranged in an \ce{(BA2)13} configuration with a 13-fold symmetry
+(\cref{fig:plyab_pore_structure}). Even though a \gls{cryo-em} structure of the full pore complex is available
+(\pdbid{4V2T} \cite{Lukoyanova-Kondos-2015}), it only contains the C\ta{} atoms of the entire protein
+backbone. Fortunately, the same authors also released full-atom crystal structures of the \gls{plya}
+(\pdbid{4OEB} \cite{Lukoyanova-Kondos-2015}) and \gls{plyab} (\pdbid{4OEJ} \cite{Lukoyanova-Kondos-2015})
+monomers in their water-soluble conformations, which can be used, together with the \gls{cryo-em} map and the
+C\ta{} atoms of the full pore, to create a full atom model of \gls{plyab} \textit{via} constrained homology
+modelling and \gls{mdff}.
 
+\paragraph{Construction of an artificial full-atom `prepore' complex.}
+%
+First, an artificial `prepore' full atom structure was constructed by aligning 13 copies of the soluble
+\gls{plyb} monomer and 26 copies of the \gls{plya} monomer to the C\ta{} atoms of the \gls{cryo-em} structure
+(with the PyMOL \code{align} command \cite{PyMOL}), resulting in \gls{rmsd} values of \SI{0.126}{\angstrom}
+(\gls{plya} to subunit A1), \SI{0.081}{\angstrom} (\gls{plya} to subunit A2) and \SI{1.371}{\angstrom}
+(\gls{plyb} to subunit B). Hence, the backbone conformations of the water-soluble and pore for both \gls{plya}
+and \gls{plyb} match very closely, with the exception of the transmembrane region of \gls{plyb} (\ie~residues
+\numrange{105}{171} and \numrange{229}{296}).
 
-\paragraph{MODELLER.}
+\paragraph{Homology modelling of the full-atom pore structure.}
+%
+The prepore complex is a better start for building a full-atom homology model than the \gls{cryo-em}
+structure, given that the former contains realistic locations for all of the side-chains in the \gls{plya}
+subunits, and for the bulk of the residues in \gls{plyb} protomers (\ie~everthing except the pore-forming
+region). The full sequence of \gls{plyab}, together with the positional information given by the all the
+C\ta{} atoms in the \gls{cryo-em} structure and that of the pre-pore, barring those residues involved in the
+transmembrane region, were then used as input for MODELLER \code{automodel} algorithm \cite{Sali-1993}.
+MODELLER produced five full-atom homology models, of which the best one (\ie~the one with the lowest DOPE
+score) was fitted to the PlyAB cryo-EM map using simulated annealing molecular dynamics optimization as
+implemented in the Flex-EM \cite{Topf-2008} extension of MODELLER. This entailed a \gls{md} simulated
+annealing, constrained by the \gls{cryo-em} density map and a maximum shift of \SI{0.39}{\angstrom}, of 100
+steps at \SIlist{150;250;500;1000}{\kelvin}, followed by 200 steps at \SIlist{800;500;250;150;50;0}{\kelvin}
+and two conjugate gradients energy minimizations of 200 steps with and without density contraints. Further
+refinement of the structure was carried out using symmetry constrained \gls{mdff} (implicit solvent) to the
+\gls{cryo-em} density map with \gls{namd} \cite{Phillips-2005,McGreevy-2014} for \SI{5}{\ns}, followed by
+5~cycles of simulated annealing (\ie~heating from \SIrange{25}{350}{\kelvin} and cooling from
+\SIrange{350}{300}{\kelvin} in steps of \SI{10}{ps} per \SI{25}{\kelvin}) and a \SI{5}{\ns} equilibration at
+\SI{300}{\kelvin} with light (force constant $k = \mSI{0.1}{\kilo\cal\per\mole\per\square\angstrom}$)
+harmonic constraints on the C\ta{} atoms.
 
-\paragraph{ \gls{vmd} and \gls{namd}}
+\paragraph{Construction of the \gls{plyab-e2} and \gls{plyab-r} mutants.}
+%
+The homology models of \gls{plyab-e2} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, N107D, G218R, A328T, C441A,
+A464V) and \gls{plyab-r} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, K255E, E260R, E270R, A328T, C441A, A464V)
+were created from the homology model of the wild type structure with a custom \gls{tcl} script and \gls{vmd}'s
+\code{psfgen} plugin \cite{Humphrey-1996}. Finally, the energy of each mutant was briefly minimized with an
+\gls{md} run (implicit solvent, CHARMM36 force field \cite{Best-2012}) of \SI{100}{\ps} using \gls{namd}, with
+harmonic constraints on the C\ta{} atoms (force constant $k =
+\mSI{1}{\kilo\cal\per\mole\per\square\angstrom}$).
+
 
 \subsubsection{Construction of the FraC homology models}
 %
 
-\paragraph{Wild-type \gls{frac} homology model from the \pdbid{4tsy} structure.}
+\paragraph{On the \gls{frac} crystal structure.}
+%
+Next to the protein chains, the crystal structure of \gls{frac} (\pdbid{4TSY} \cite{Tanaka-2015}) contains
+also several fragments of the lipid \gls{sph} that form structural part of the pore itself
+(\cref{sec:np:frac,fig:frac_pore_structure}). Given that their charged headgroups are positioned outside of
+the \lumen{} of the pore, we do not expect these lipids to contribute significantly to its electrostatics.
+Therefor, we opted not to include these in our homology models and simulations.
 
-\paragraph{\gls{refrac}}
+\paragraph{Construction of the \gls{wtfrac} and \gls{refrac} mutants.}
+%
+Similarly to the \gls{plyab} mutants, the \gls{refrac} mutant (D10R, K159E) was constructed from the crystal
+structure using \gls{vmd}'s \code{psfgen} plugin \cite{Humphrey-1996}. \Gls{wtfrac} required no additional
+mutations, but its missing atoms where also added with \code{psfgen}. Both structures were minimized with an
+\gls{md} run (implicit solvent, CHARMM36 force field \cite{Best-2012}) of \SI{100}{\ps} using \gls{namd}, with
+harmonic constraints on the C\ta{} atoms (force constant $k =
+\mSI{1}{\kilo\cal\per\mole\per\square\angstrom}$).
 
-\subsubsection{Construction of the PlyAB homology models}
+
+\subsubsection{Construction of the ClyA homology models}
+
+\paragraph{On the \gls{clya} crystal structure.}
+%
+The docecameric \textit{E. coli} \gls{clya} crystal structure (\pdbid{2WCD} \cite{Mueller-2009}) contains all
+residues, aside from short fragments at the N- (residues \numrange{1}{7}) and C-termini (residues
+\numrange{293}{303}) of each chain. Those at the C-terminus are located outside of the \lumen{} of pore, and
+hence not expected to contribute significantly to the electrostatics. The missing residues at the N-terminus
+are more import however, given their location at the \transi{} entry (\cref{fig:clya_pore_structure}). Hence,
+we opted to add a single negatively charged amino acid  (Glu 7) in our models.
+
+\paragraph{Construction of the \gls{clya-as} mutant.}
+%
+As with the previous pore, the wild-type crystal structure was processed with \code{psfgen} to add any missing
+atoms and converted to \gls{clya-as} by introduction of the relevant mutations (Q8K, N15S, Q38K, A57E, T67V,
+C87A, A90V, A95S, L99Q, E103G, K118R, L119I, I124V, T125K, V136T, F166Y, K172R, V185I, K212N, K214R, S217T,
+T224S, N227A, T244A, E276G, C285S and K290Q). Next, a 200-by-\SI{200}{\angstrom} \gls{dphpc} lipid bilayer
+patch was created with the CHARMM-GUI membrane builder \cite{Jo-2008,Lee-2015}, and any lipid residues whose
+headgroups were location either inside the pore \lumen{} or protein core were physically removed, followed by
+a \SI{100}{\ps} steered \gls{md} run in \gls{namd}, using the mass-density of \gls{clya} as a virtual
+repulsive force, to push any lipid tails out of the protein core. The resulting bilayer was then merged with
+the \gls{clya-as} structure, solvated with 213364 {TIP3P} water molecules (\gls{vmd}'s \code{solvate} plugin)
+and neutralized to \SI{0.15}{\Molar} with 674 \ce{Na+} and 602 \ce{Cl-} ions (\gls{vmd}'s \code{autoionize}
+plugin). The resulting system was then equilibrated with \gls{md} (NPT ensemble with a Langevin dynamics
+thermostat and a Nos\'{e}-Hoover Langevin barostat, CHARMM36 force field parameters \cite{Best-2012}) for
+\SI{5}{\ns} at \SI{298.15}{\kelvin} while constraining the proteins C\ta{} atoms harmonically (force constant
+$k = \mSI{1}{\kilo\cal\per\mole\per\square\angstrom}$).
+
+\paragraph{Construction of the \gls{clya-r}, \gls{clya-rr}, \gls{clya-rr56} and \gls{clya-rr56k} mutants.}
+%
+The other \gls{clya} mutants where constructed from the \gls{clya-as} system described above by introduction
+of the relevant mutants with \code{psfgen}: \gls{clya-r} (S110R), \gls{clya-rr} (S110R/D64R), \gls{clya-rr56}
+(S110R/Q56R) and \gls{clya-rr56k} (S110R/Q56R/Q8K). The resulting systems were equilibrated with \gls{md} for
+\SI{1}{\ns} using the same conditions are those described above for \gls{clya-as}, and the coordinates of the
+pores isolated in individual files.
 
 
 \subsection{Electrostatic modelling}
 %
+\label{sec:elec:methods:elec}
 
-\subsubsection{Computing protein electrostatic potentials with the Poisson-Boltzmann equation}
+\subsubsection{Computing the electrostatic potentials within nanopores}
 %
+% Adapted from Willems-Ruic-Biesemans-2019
 
-\gls{apbs}
-
-\begin{figure*}[t]
+\begin{figure*}[p]
   \centering
   \medskip
   %
-  \begin{minipage}[t]{120mm}
-    \centering
-    \begin{subfigure}[t]{50mm}
-      \centering
-      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_clya_pqr}
-      \includegraphics[scale=1]{apbs_focussing_clya_pqr}
-    \end{subfigure}
-    %
-    \hspace{2mm}
-    %
-    \begin{subfigure}[t]{55mm}
-      \centering
-      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_clya_apbs_setup}
-      \includegraphics[scale=1]{apbs_focussing_clya_apbs_setup}
-    \end{subfigure}
-  \end{minipage}
-  %
-  \\ \vspace{4mm}
-  %
-  \begin{minipage}[t]{120mm}
-    \centering
-    \begin{subfigure}[t]{50mm}
-      \centering
-      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_frac_pqr}
-      \includegraphics[scale=1]{apbs_focussing_frac_pqr}
-    \end{subfigure}
-    %
-    \hspace{2mm}
-    %
-    \begin{subfigure}[t]{55mm}
-      \centering
-      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_frac_apbs_setup}
-      \includegraphics[scale=1]{apbs_focussing_frac_apbs_setup}
-    \end{subfigure}
-  \end{minipage}
-  %
-  \\ \vspace{4mm}
-  %
-  \begin{minipage}[t]{120mm}
+  \begin{minipage}[t]{50mm}
     \centering
     \begin{subfigure}[t]{50mm}
       \centering
@@ -108,59 +321,1021 @@ the stem region cause the pore to rapidly and reversibly close under negative bi
       \includegraphics[scale=1]{apbs_focussing_plyab_pqr}
     \end{subfigure}
     %
-    \hspace{2mm}
+    \\ \vspace{2mm}
+    %
+    \centering
+    \begin{subfigure}[t]{50mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_frac_pqr}
+      \includegraphics[scale=1]{apbs_focussing_frac_pqr}
+    \end{subfigure}
+    %
+    \\ \vspace{2mm}
+    %
+    \centering
+    \begin{subfigure}[t]{50mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_clya_pqr}
+      \includegraphics[scale=1]{apbs_focussing_clya_pqr}
+    \end{subfigure}
+    %
+  \end{minipage}
+  %
+  \hspace{2mm}
+  %
+  \begin{minipage}[t]{55mm}
+    \centering
     %
     \begin{subfigure}[t]{55mm}
       \centering
       \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_plyab_apbs_setup}
       \includegraphics[scale=1]{apbs_focussing_plyab_apbs_setup}
     \end{subfigure}
+    %
+    \\ \vspace{2mm}
+    %
+    \begin{subfigure}[t]{55mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_frac_apbs_setup}
+      \includegraphics[scale=1]{apbs_focussing_frac_apbs_setup}
+    \end{subfigure}
+    %
+    \\ \vspace{2mm}
+    %
+    \begin{subfigure}[t]{55mm}
+      \centering
+      \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:apbs_focussing_clya_apbs_setup}
+      \includegraphics[scale=1]{apbs_focussing_clya_apbs_setup}
+    \end{subfigure}
   \end{minipage}
-  %
 
 \caption[APBS simulation setup.]{%
   \textbf{APBS simulation setup.}
-  %
-  (\subref{fig:apbs_focussing_clya_pqr})
-  %
-  Side view and 
-  %
-  (\subref{fig:apbs_focussing_clya_apbs_setup})
-  %
-  (\subref{fig:apbs_focussing_frac_pqr})
-  %
-  %
-  (\subref{fig:apbs_focussing_frac_apbs_setup})
+  Top-side views of the PQR files of  
   %
   (\subref{fig:apbs_focussing_plyab_pqr})
   %
+  \gls{plyab},
+  %
+  (\subref{fig:apbs_focussing_frac_pqr})
+  %
+  \gls{frac}, and
+  %
+  (\subref{fig:apbs_focussing_clya_pqr})
+  %
+  \gls{clya}. Molecules are represented as \gls{vdw} spheres and colored according to their partial charge
+  $\partialcharge$. The area of a single subunit is highlighted with a green wedge.
+  %
+  Axial cross-sections of the relative permittivity (top) and calculated electrostatic potential (bottom)
+  grids for
   %
   (\subref{fig:apbs_focussing_plyab_apbs_setup})
   %
-  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  \gls{plyab},
+  %
+  (\subref{fig:apbs_focussing_frac_apbs_setup})
+  %
+  \gls{frac}, and
+  %
+  (\subref{fig:apbs_focussing_clya_apbs_setup})
+  %
+  \gls{clya}. The \gls{apbs} focussing approach uses two sequential calculations, `coarse' and `fine', to
+  obtain a realistic potential distribution.
+  %
+  Molecular representations were rendered using \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
   }\label{fig:apbs_focussing}
 \end{figure*}
 
+\paragraph{The Poisson-Boltzmann equation.}
+%
+The electrostatic potential distribution of a protein dissolved in an electrolyte medium can be estimated by
+solving the \gls{pbe} \cite{Baker-2001,Baker-2005}
+%
+\begin{equation}\label{eq:pbe}
+  - \nabla \cdot \left[ \permittivity (\vec{r}) \nabla \potential (\vec{r}) \right] = \scd_{\rm{c}} (\vec{r})
+  \text{ ,}
+\end{equation}
+%
+with $\vec{r}$ the location vector, $\potential$ the electrostatic potential, $\permittivity$ the local
+permittivity, and $\scd_{\rm{c}}$ the charge density. For a molecular system in an electrolyte,
+$\scd_{\rm{c}}$ can be split into two parts
+%
+\begin{equation}
+  \scd_{\rm{c}} (\vec{r}) = \scd^{\rm{f}}(\vec{r}) + \scd^{\rm{m}}(\vec{r})
+  \text{ ,}
+\end{equation}
+%
+with $\scd^{\rm{f}}$ the fixed charge density---resulting from the distribution of to the atomic partial
+charges---and $\scd^{\rm{m}}$ the mobile part charge density---resulting from the distribution of charged ions
+in the electrolyte. For $M$ atomic partial charges $\scd^{\rm{f}}$ is given by \cite{Baker-2001,Baker-2005}
+%
+\begin{equation}
+  \scd^{\rm{f}}(\vec{r}) = \dfrac{4\pi\ec^2}{\kbt} \sum_{i=1}^{M} Q_i \delta(\vec{r} - \vec{r_i})
+\end{equation}
+%
+with $\ec$ the elementary charge, $\kbt$ the thermal energy, $\delta$ the Dirac delta function. $Q_i$ and
+$\vec{r_i}$ represent the atomic partial charge and the location of atom $i$, respectively. The charge density
+due to $N$ mobile charge species can be expressed as \cite{Baker-2001,Baker-2005}
+%
+\begin{equation}
+  \scd^{\rm{m}}(\vec{r}) =
+    \dfrac{4\pi\ec^2}{\kbt}
+      \sum_{j=1}^{N} c_j q_j
+      \exp{\left[- q_j \potential(\vec{r}) - V_j(\vec{r}) \right]}
+\end{equation}
+%
+with $c_j$ the bulk concentration, $q_j$ the charge number and $V_j(\vec{r})$ the steric potential of ion
+species $j$. For a monovalent salt such as \ce{NaCl} this expression can be reduced to
+%
+\begin{equation}
+    \scd^{\rm{m}} (\vec{r}) = - \ionaccess^{-2} (\vec{r}) \sinh \left[ \potential (\vec{r}) \right]
+\end{equation}
+%
+with $\ionaccess$ a coefficient that includes both the ion accessibility and the bulk ion concentration.
 
-\paragraph{Protein electrostatics with the adaptive Poisson-Boltzmann solver.}
+\paragraph{Solving the \gls{pbe} with \gls{apbs} and \gls{pdb2pqr}.}
+%
+The \gls{pbe} solver \gls{apbs} \cite{Jurrus-2018,Baker-2001} requires several inputs regarding the nanopore
+(\ie~geometry, fixed charge distribution, relative permittivity) and the electrolyte medium (\ie~ion
+concentration, ion size and relative permittivity) and the computational system itself (\ie~grid size, grid
+spacing, boundary conditions). These are provided by the user in two input files: (1) a configuration file
+that contains all user-defined properties and (2) a ``PQR'' file that contains a coordinate, radius and
+partial charge for every atom in the system. The PQR format is similar to the PDB format, and can be generated
+from a PDB file using the \gls{pdb2pqr} software package \cite{Jurrus-2018,Dolinsky-2004,Dolinsky-2007}. We
+used the atom radius and partial charge parameters of the \gls{charmm36} force field \cite{Huang-2013} for all
+calculations except the \gls{frac} only pore, where we used the \gls{parse} force field
+\cite{Sitkoff-1994,Sitkoff-1996}. During conversion, \gls{pdb2pqr} assigns a protonation states to all
+titratable residues at any user-specified pH value using its \gls{propka} submodule \cite{Li-2005}.
 
-\paragraph{Assigning atomic charges and radii with PBD2PQR.}
+To improve their accuracy, \gls{apbs} simulations typically consist of a initial `coarse' calculation
+(\ie~with grid lengths \SI{>1}{\angstrom}) on a large grid size and with Dirichlet boundary conditions
+($\potential = 0$ or $\potential = \potential^{\code{mdh}}$). This is followed by a second `fine' calculation
+(\ie~with grid lengths \SI{\approx0.5}{\angstrom}) on a smaller grid size that uses the potentials obtained in
+the coarse simulation as a Dirichlet boundary condition ($\potential = \potential^{\mathrm{coarse}}$). The
+\code{mdh} superscript refers to the multiple Debye-H\"{u}ckel approach, where approximate values are obtained
+analytically with a Debye-H\"{u}ckel model for a multiple, non-interacting spheres containing point charges
+\cite{Baker-2001,Baker-2005,Stone-2010}. The full list of simulation parameters can be found in
+\cref{tab:pdb2pqr_apbs_parameters} and the simulation setups in \cref{fig:apbs_focussing}.
 
-\paragraph{Properly accounting for solution pH with fractional protonation.}
 
-
-\subsubsection{Pore-particle electrostatic interaction energies using the Poisson-Boltzmann equation}
+\begin{landscape}
+\begin{table}[p]
+  \footnotesize
+  \renewcommand{\arraystretch}{1.2}
+  \caption{\ Summary of the PDB2PQR and APBS input parameters.}
+  \centering
+  \label{tab:pdb2pqr_apbs_parameters}
+  \scriptsize
+  \begin{tabularx}{18cm}{%
+      >{\hsize=1cm}l%
+      >{\hsize=0.5cm}X%
+      >{\hsize=0.5cm}X%
+      >{\hsize=2.3cm}X%
+      >{\hsize=2.3cm}X%
+      >{\hsize=2.3cm}X%
+      >{\hsize=2.3cm}X%
+      >{\hsize=2.3cm}X%
+    }
+    %
+    \toprule
+    \multicolumn{2}{c}{Parameter} & & \multicolumn{5}{c}{System} \\
+    \cmidrule(r){1-2}\cmidrule(l){4-8}
+    %
+    Name/Symbol & Unit & Dom.$^\text{\emph{a}}$
+      & PlyAB & FraC & FraC\,+\,ssDNA & ClyA &  ClyA\,+\,dsDNA \\
+    \midrule
+    %
+    %
+    \multicolumn{8}{l}{\textbf{PDB2PQR}} \\[1mm]
+    %
+    pH$^\text{\emph{b}}$ & 1 
+      & n.a.
+      & 7.5 & 4.5, 7.5 & 7.5 & 7.5 & 7.5 \\
+    Force-field & n.a. 
+      & n.a.
+      & CHARMM & PARSE & CHARMM & CHARMM & CHARMM \\
+    %
+    %
+    \midrule
+    \multicolumn{8}{l}{\textbf{APBS}} \\[1mm]
+    %
+    $\temperature$ & \si{\kelvin}
+      & G      
+      & 298.15  & 298.15 & 298.15 & 298.15 & 298.15  \\
+    %
+    $\permittivity_{r,\text{electrolye}}$ & 1 
+      & E
+      & 80 & 80 & 78.15 & 80 & 78.15 \\
+    %
+    $\permittivity_{r,\text{protein}}$ & 1
+      & P
+      & 10 & 10 & 10 & 10 & 10 \\
+    %
+    $\permittivity_{r,\text{bilayer}}$ & 1
+      & B
+      & 2  & 2 & n.a. & 2 & n.a. \\
+    %
+    $\ionsize_{\pm}$ & \si{\angstrom}
+      & E
+      & 4 & 4 & 4 & 4 & 4 \\
+    %
+    $\chargen_{\pm}$ & 1
+      & E
+      & $\pm1$ & $\pm1$ & $\pm1$ & $\pm1$ & $\pm1$\\
+    %
+    $\concentration_{\pm}$ & \si{\Molar}
+      & E
+      & 0.3, 1.0 & 1.0 & 0.15, 2.5 & 1.0 & 0.15, 2.0, 2.5 \\
+    %
+    $g_{x}^{\mathrm{c}} \times g_{y}^{\mathrm{c}} \times g_{z}^{\mathrm{c}}$ & \si{\angstrom}
+      & G
+      & \apbsgrid{898}{898}{642}{} % PlyAB
+      & \apbsgrid{642}{642}{642}{} % FraC
+      & \apbsgrid{400}{400}{900}{} % FraC + ssDNA
+      & \apbsgrid{834}{837}{898}{} % ClyA
+      & \apbsgrid{400}{400}{1100}{} \\ % ClyA + dsDNA
+    %
+    $\Delta g_{x}^{\mathrm{c}} \times \Delta g_{y}^{\mathrm{c}} \times \Delta g_{z}^{\mathrm{c}}$ & \si{\angstrom}
+      & G
+      & \apbsgrid{2.00}{2.00}{2.00}{} % PlyAB
+      & \apbsgrid{2.00}{2.00}{2.00}{} % FraC
+      & \apbsgrid{1.25}{1.25}{0.74}{} % FraC + ssDNA
+      & \apbsgrid{2.00}{2.00}{2.00}{} % ClyA
+      & \apbsgrid{1.38}{1.38}{0.82}{} \\ % ClyA + dsDNA
+    %
+    $g_{x}^{\mathrm{f}} \times g_{y}^{\mathrm{f}} \times g_{z}^{\mathrm{f}}$ & \si{\angstrom}
+      & G
+      & \apbsgrid{225}{225}{209}{} % PlyAB
+      & \apbsgrid{161}{161}{161}{} % FraC
+      & \apbsgrid{150}{150}{600}{} % FraC + ssDNA
+      & \apbsgrid{209}{209}{225}{} % ClyA
+      & \apbsgrid{150}{150}{700}{} \\ % ClyA + dsDNA
+    %
+    $\Delta g_{x}^{\mathrm{f}} \times \Delta g_{y}^{\mathrm{f}} \times \Delta g_{z}^{\mathrm{f}}$ & \si{\angstrom}
+      & G
+      & \apbsgrid{0.50}{0.50}{0.50}{} % PlyAB
+      & \apbsgrid{0.50}{0.50}{0.50}{} % FraC
+      & \apbsgrid{0.47}{0.47}{0.49}{} % FraC + ssDNA
+      & \apbsgrid{0.50}{0.50}{0.50}{} % ClyA
+      & \apbsgrid{0.52}{0.52}{0.52}{} \\ % ClyA + dsDNA
+    %
+    $\potential_{\mathrm{boundary}}^{\mathrm{coarse}}$ & \si{\volt}
+      & G
+      & $\potential = 0$
+      & $\potential = 0$
+      & $\potential = \potential^{\code{mdh}}$
+      & $\potential = 0$
+      & $\potential = \potential^{\code{mdh}}$ \\
+    %
+    $\potential_{\mathrm{boundary}}^{\mathrm{fine}}$ & \si{\volt}
+      & G
+      & $\potential = \potential^{\mathrm{coarse}}$
+      & $\potential = \potential^{\mathrm{coarse}}$
+      & $\potential = \potential^{\mathrm{coarse}}$
+      & $\potential = \potential^{\mathrm{coarse}}$
+      & $\potential = \potential^{\mathrm{coarse}}$ \\
+    %
+    %
+    \midrule
+    \multicolumn{8}{l}{\textbf{\code{draw\_membrane2}}} \\[1mm]
+    %
+    $d_{\textrm{bilayer}}$ & \si{\angstrom}
+      & B
+      & 27 & 27 & 27 & n.a. & n.a. \\
+    %
+    $r_{\textrm{bilayer}}^{\textrm{top}}$ & \si{\angstrom}
+      & B
+      & 43 & 23 & 37 & n.a. & n.a. \\
+    %
+    $r_{\textrm{bilayer}}^{\textrm{bottom}}$ & \si{\angstrom}
+      & B
+      & 43 & 12 & 18 & n.a. & n.a. \\
+    \bottomrule
+  \end{tabularx}
+  \begin{flushleft}
+    $^\text{\emph{a}}$Domains: global (G), electrolyte (E), protein/DNA (P), lipid bilayer (B);
+    $^\text{\emph{b}}$pH values used by \gls{propka} during \gls{pdb2pqr} runtime;
+  \end{flushleft}
+\end{table}
+\end{landscape}
 %
 
-\paragraph{Electrostatic energies with the adaptive Poisson-Boltzmann solver.}
+\paragraph{Adding a lipid bilayer to APBS calculations.}
+%
+Being membrane proteins, active biological nanopores are embedded in a lipid bilayer and hence not surrounded
+by electrolyte medium everywhere. From an electrostatic point of view, a lipid bilayer can be modeled as an
+uncharged and ion-impermeable dielectric slab with a low permittivity: this is indeed very different from an
+ion-containing electrolyte medium with high permittivity. Hence, it is not surprising that the presence of a
+lipid bilayer influences the distribution of the electrostatic potential \cite{Homeyer-2015}. Even though
+\Gls{apbs} does not natively support the inclusion of a lipid bilayer, the software package does include an
+external program (\code{draw\_membrane2}) that allows adding one to the permittivity, ion-accessibility and
+charge maps produced by \gls{apbs} in the form of a dielectric slab with a conical hole at its center. The
+relevant parameters (thickness $d_{\textrm{bilayer}}$, top cone radius $r_{\textrm{bilayer}}^{\textrm{top}}$
+and bottom cone radius $r_{\textrm{bilayer}}^{\textrm{bottom}}$) are listed in
+\cref{tab:pdb2pqr_apbs_parameters}. The use of \code{draw\_membrane2} is a very I/O intensive task, as it
+requires \gls{apbs} to write out a set of 5 3D grids (typically \SI{>2}{\gibi\byte} each), for every
+individual simulation (\ie~both the coarse \emph{and} fine runs) to disk. Then, they are loaded into memory by
+\code{draw\_membrane2}, which adds in the bilayer and finally writes them out to the disk again, where they
+can be accessed by \gls{apbs}. This entire process requires large amounts of disk space (when many running
+simulations in parallel) and is rapidly I/O bottleneck, significantly slowing down a single simulation from
+\SIrange{20}{200}{\min}. Even though presence of a bilayer has an impact on the electrostatic
+enetgy,\cite{Bonthuis-2006} its inclusion in \gls{apbs} comes at a significant computational cost and its
+absence does not influence the \emph{qualitative} outcome of our energy comparisons. Hence, this approach was
+only when computing the electrostatic potential inside the pore-only systems (\num{\pm20} runs), and the
+bilayer was omitted entirely for all energy-based calculation of particle translocation (\num{>500} runs).  
+
+
+\paragraph{Partial protonation: partial charges at pH-values close to the p$\boldsymbol{K}_{\mathbf{a}}$.}
+%
+% Adapted from Huang-2017
+%
+When the pH of the solution is close to the $\pKa$ of a titratable residue (\ie~within \num{\pm2}~pH units),
+the residue will, on average, be neither fully protonated or deprotonated. The protonated fraction of an acid
+($\protfrac_{\mathrm{HA}}$) is given by 
+%
+\begin{align}\label{eq:pka_protonation}
+  \protfrac_{\mathrm{HA}} = \left[ 1 + 10^{\mathrm{pH} - \pKa} \right]^{-1}
+  \text{ .}
+\end{align}
+%
+Hence, when $\mathrm{pH} = \pKa$, the residue will be protonated \SI{50}{\percent} of the time and
+deprotonated for other \SI{50}{\percent}. This also means that, on average, the partial charge of the residue
+($\partialcharge$) lies somewhere between \SIrange{-1}{+1}{\ec}:
+%
+\begin{align}\label{eq:pka_partial_charge}
+  \partialcharge = \partialcharge_{\mathrm{HA}} \protfrac_{\mathrm{HA}}
+                    + \partialcharge_{\mathrm{A}^{-}} \left( 1 - \protfrac_{\mathrm{HA}} \right)
+  \text{ ,}
+\end{align}
+%
+with $\partialcharge_{\mathrm{HA}}$ and $\partialcharge_{\mathrm{A}^{-}}$ the partial charge of the fully
+protonated and deprotonated residue, respectively. \gls{pdb2pqr} does not take into account partial
+(de)protonation, and assigns partial charges in a discrete, all-or-nothing manner. This mean that acid
+residues (ASP, GLU, TYR, C-terminus) have a charge of \SI{-1}{\ec} if $\mathrm{pH} > \pKa$, and \SI{0}{\ec}
+otherwise. Likewise, basic residues (ARG, LYS, HIS, N-terminus) have a charge of \SI{+1}{\ec} if $\mathrm{pH}
+< \pKa$, and \SI{0}{\ec} otherwise. Because the side-chain $\pKa$'s of (free) amino acids are either below 6
+or above 9, this is a reasonable approximation for simulations at pH values close to 7. However, it does not
+adequately represent the equilibrium situation for lower (or higher) pH values. For example, \pH{4.5} is very
+close to the $\pKa$ values of glutamate (\num{4.4}) and aspartate (4.0) residues, and most of these residues
+would hence be fractionally charged. In addition, the proximity of many charged residues tends to shift their
+effective $\pKa$'s up or down, depending on wether the de(protonated) state is energetically favorable or not,
+which may even cause residues to be partially (de)protonated at neutral pH.
+
+To calculate the correct equilibrium electrostatic potentials of biological nanopores at lower pH values, we
+extended the Python code of \gls{pdb2pqr} (`\code{fractional-PDB2PQR}') with the ability to assign partial
+protonation states. The adapted program uses as input (1) a fully protonated PQR molecule (obtained by running
+\gls{pdb2pqr} at \pH{1}), (2) the per-residue $\pKa$ values (calculated by either \gls{propka}
+\cite{Olsson-2011} or \gls{delphipka} \cite{Wang-2015}), (3) a user-defined pH value and (4) the force-field
+of choice. This approach was used to compute the electrostatics of the \gls{frac} variants at \pH{4.5} and
+\num{7.5} \cite{Huang-2017}.
+%
+
+
+
+\subsubsection{Computing nanopore-particle electrostatic interaction energies}
+%
+% Adapted from Willems-Ruic-Biesemans-2019
+
+When using the \gls{pbe} to evaluate the electrostatic of a system, its electrostatic energy is given by
+\cite{Baker-2005}
+%
+\begin{equation}\label{eq:pbe_energy}
+  \gibbs (\potential, \permittivity) = \int_\Omega \left[
+    \scd^{\rm{f}}(\vec{r}) \potential
+    - \dfrac{\permittivity}{2}\left( \nabla \potential \right)^2
+    - \ionaccess^{-2} \left( \cosh \potential - 1 \right)
+  \right] \,dr
+  \text{ ,}
+\end{equation}
+%
+and hence depends not only on the electrostatic potential of the system (\text{via} $\potential$), but also on
+the choice of relative permittivities (\textit{via} $\permittivity$) and ionic properties (\textit{via}
+$\ionaccess$). \Cref{eq:pbe_energy} can be evaluated directly by \gls{apbs} by including the \code{calcenergy}
+keyword its the input file, which enables the rapid evaluation of the electrostatic energies of complex
+biomolecular systems. For example, the free electrostatic energy change caused by placing an another molecule
+(\ie~`particle') inside a nanopore ($\energyelec$) can be computed using \cite{Homeyer-2015}
+%
+\begin{equation}\label{eq:electrostatic_energy}
+  \energyelec = \gibbs^{\rm{pore+part}} - \gibbs^{\rm{pore}} - \gibbs^{\rm{part}}
+\end{equation}
+%
+with $\gibbs^{\rm{pore+part}}$, $\gibbs^{\rm{pore}}$ and $\gibbs^{\rm{part}}$ the electrostatic free energies
+of systems containing respectively both the nanopore and the particle molecule, the empty nanopore and the
+particle molecule alone. A sketch of these different systems is given in \cref{fig:apbs_energy_scheme}. This
+approach was used to map out the electrostatic energy landscape of \gls{ssdna} and \gls{dsdna} translocation
+through respectively the \gls{frac} and \gls{clya} nanopores in this chapter, and of a tagged \gls{dhfr}
+molecule through \gls{clya} in \cref{ch:trapping}.
+
+%
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \includegraphics[scale=1]{apbs_energy_scheme}
+
+\caption[Computing net electrostatic energies with APBS.]{%
+  \textbf{Computing net electrostatic energies with APBS.}
+  %
+  The net electrostatic energy difference $\energyelec$ for placing a particle, illustrated here as a
+  \gls{dsdna} molecule, inside a nanopore can be computed from the energy of the pore+particle system
+  $\gibbs^{\rm{pore+part}}$ (left) by substracting the energies of the empty pore $\gibbs^{\rm{pore}}$
+  (middle) and particle only $\gibbs^{\rm{part}}$ (right) systems.
+  %
+  }\label{fig:apbs_energy_scheme}
+\end{figure*}
+%
+
+%
+\clearpage
+%
 
 
 \section{Results and discussion}
-
-\subsection{Electrostatic analysis of the ClyA nanopore}
+%
+\label{sec:elec:results}
 %
 
+
+\subsection{Electrostatic analysis of the PlyAB nanopore}
+%
+\label{sec:elec:plyab}
+%
+
+\paragraph{Size matters: large proteins require large nanopores.}
+%
+To analyze folded proteins with biological nanopores, they must interact in a characteristic manner with the
+pore for a time period that is sufficiently long to be properly sampled \cite{Willems-VanMeervelt-2017}. For
+small nanopores such as \gls{ahl} or \gls{mspa} this can be achieved by tethering the protein in close
+proximity to the entry of pore \cite{Movileanu-2000,Fahie-2015,Ho-2015,Laszlo-2017,Thakur-2019}. Larger
+nanopores such as \gls{clya}, allow for the immobilization of the entire protein \emph{within} the \lumen{} of
+the nanopore itself
+\cite{Soskine-2012,Soskine-2013,Soskine-Biesemans-2015,Biesemans-2015,Wloka-2016,VanMeervelt-2017,Galenkamp-2018,Galenkamp-2020},
+which typically requires no modifications to the analyte proteins, even though better signals can sometimes be
+obtained with engineered versions \cite{Soskine-Biesemans-2015,Galenkamp-2020}. The latter approach does
+mandate that the protein physically fits inside the pore, which puts a strict upper size limit. Given that
+many eukaryotic proteins (average molecular weight of \SI{\approx50}{\kDa} \cite{Kozlowski-2016}) exceed
+\SI{5}{\nm} in diameter, only \gls{clya} has been used successfully so far. Compounding the lack of suitable
+nanopores is that, for more than two decades, nanopore research was focussed primarily towards \gls{dna}
+analysis, resulting in a wide selection of biological nanopores with narrow diameters
+(\SIrange{\approx1}{2}{\nm}) entries. With a \lumen{} of \SI{\approx7.2}{\nm} in diameter, the \gls{plyab}
+nanopore (see \cref{sec:np:plyab,fig:plyab_pore_structure}) is the ideal candidate for analyzing larger
+globular proteins. Huang \etal. employed directed evolution to improve the electrophysiological stability of
+the wild-type pore, resulting in the variants \gls{plyab-e2} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, N107D,
+G218R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues}, middle) and \gls{plyab-r} (\gls{plya}: C62S,
+C94S; \gls{plyb} N26D, K255E, E260R, E270R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues}, right)
+\cite{Huang-2020}. Notably, \gls{plyab-r} showed significantly altered behaviour w.r.t. capture of negatively
+charged proteins. In \gls{plyab-e2}, blockades are only observed for the relatively small (\SI{24}{\kDa})
+\tb-casein when it was added at the \transi{} side (at positive bias voltages), and not for the larger
+(\SI{66.5}{\kDa}) \gls{bsa}. \gls{plyab-r}, on the other hand, exhibited blockades for both \tb-casein and
+\gls{bsa}, and from either the \cisi{} (at positive bias voltages) or \transi{} (at positive bias voltages)
+side. In the following section we will describe the electrostatics of these \gls{plyab} variants, discuss the
+implications of their differences, and finally link them to the experimentally observed differences.
+
+%
+\begin{figure*}[p]
+  \centering
+  \medskip
+  %
+
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:plyab_mutants_residues}
+    \includegraphics[scale=1]{plyab_mutants_residues}
+  \end{subfigure}
+  %
+  \\ \vspace{-2mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:plyab_mutants_potential_0300}
+    \includegraphics[scale=1]{plyab_mutants_potential_0300}
+  \end{subfigure}
+  %
+  \\ \vspace{0mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:plyab_mutants_potential_1000}
+    \includegraphics[scale=1]{plyab_mutants_potential_1000}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic potential inside PlyAB mutants.]{%
+  \textbf{Electrostatic potential inside PlyAB mutants.}
+  %
+  (\subref{fig:plyab_mutants_residues})
+  %
+  Cartoon representation of a single subunit of the \gls{plyab-wt} (left), \gls{plyab-e2} (middle), and
+  \gls{plyab-r} (right), which were investigated for their ability to capture and analyze large protein in
+  Ref. \cite{Huang-2020}. The labels indicate the mutations w.r.t. the wild-type \gls{plyab}.
+  %
+  Radially averaged cross-sections ($\radpot$, left) and \SI{25}{\angstrom}-radius cylindrically averaged line
+  plots ($\cylpot$, right) of the electrostatic potentials at
+  %
+  (\subref{fig:plyab_mutants_potential_0300})
+  %
+  \SI{0.3}{\Molar}
+  %
+  (\subref{fig:plyab_mutants_potential_1000})
+  %
+  \SI{1.0}{\Molar}.
+  %
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Molecular representations were rendered using \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
+  %
+  }\label{fig:plyab_mutants_potential}
+\end{figure*}
+%
+
+\paragraph{Charge reversals induce potential reversals.}
+%
+Whereas \gls{plyab-e2} (\cref{fig:plyab_mutants_residues}, middle) introduces only one additional negative
+charge in the center of the \transi{} \lumen{} (N107D) and a single positive charge at the \transi{} entry
+(G218R), \gls{plyab-r} (\cref{fig:plyab_mutants_residues}, right) hosts three negative-to-positive (E260R,
+E261R, E270R) and one positive-to-negative (K255E) charge reversals inside the \cisi{} constriction alone. At
+an ionic strength of \SI{0.3}{\Molar}, the effect of these mutations is reflected clearly in the radially
+averaged ($\radpot$, \cref{fig:plyab_mutants_potential_0300}, left) and the cylindrically averaged ($\cylpot$,
+\cref{fig:plyab_mutants_potential_0300}, right) electrostatic potentials of the pores. Whereas $\radpot$
+represents the average potential within a cross-section of the pore, $\cylpot$ is the average potential along
+the length of the pore and within a the radius of the narrowest part of the channel (here \SI{25}{\angstrom}).
+From an electrostatic point-of-view, \gls{plyab-e2} is virtually identical to the wild-type, with the
+exception of a slightly more negative constriction (peak $\cylpot$ changes from \SIrange{-0.35}{-0.4}{\kTe} at
+$z = \mSI{90}{\angstrom}$) and a lightly more positive \transi{} entry (peak $\cylpot$ changes from
+\mSIrange{+0.25}{+0.5}{\kTe} at $z = \mSI{-15}{\angstrom}$) due to the N26D and G218R mutations, respectively.
+The many charge reversals in \gls{plyab-r}, on the other hand, also reversed the potential inside the
+constriction to strong positive (peak $\cylpot$ changes from \SIrange{-0.35}{+0.35}{\kTe} at $z =
+\mSI{90}{\angstrom}$). At higher ionic strengths (\SI{1}{\Molar}, \cref{fig:plyab_mutants_potential_1000}),
+the additional screening diminishes the magnitude of the peak $\cylpot$ values in the constriction, and
+virtually abolishes any differences in the \transi{} \lumen{} by dropping $\cylpot$ close to zero.
+
+\paragraph{An electro-osmotic tug of war.}
+%
+In a (large) nanopore, the electro-osmotic flow is caused by force exerted on the \gls{edl} by the external
+electric field, which results in a unidirectional movement of the \gls{edl} that drags on the fluid in the
+rest of the pore \cite{Qiao-Aluru-2003,Mao-2014,Tagliazucchi-2015,Bonome-2017}. The electrostatic potential
+along the walls of the wild-type and E2 variants of \gls{plyab} is predominantly negative, which results in a
+uniform, positively charged \gls{edl}. Hence, these pores are expected to generate a significant
+electro-osmotic flow from \cisi{} to \transi{} at negative voltages (and \textit{vice versa} at positive
+voltages). In \gls{plyab-r}, the negative potential inside the \transi{} \lumen{} is reversed abruptly to a
+high positive value at the \cisi{} constriction. Indeed, the \gls{edl} inside the constriction of
+\gls{plyab-r} is negatively charged, and will exert the opposite force on the fluid as the \gls{edl} in the
+\transi{} \lumen{}. The resulting direction of the electro-osmotic flow will depend will depend on whether the
+`tug of war' game is won by the \cisi{} or \transi{} side of the pore. Regardless of the final direction of
+the \gls{eof} in \gls{plyab-r}, this competition will significantly reduce the magnitude of the \gls{eof}
+compared to \gls{plyab-e2}. This may enable the electrophoretic force on the proteins to become stronger than
+the electro-osmotic force, and give rise to the capture behaviour observed experimentally \cite{Huang-2020}.
+
+% \clearpage
+
+\subsection{Electrostatic analysis of the FraC nanopore}
+%
+\label{sec:elec:frac}
+%
+
+\subsubsection{Two FraC or not two FraC.}
+%
+As with other nanopores, the narrowest location in \gls{frac}'s hydrophillic channel is expected to dominate
+its nanofluidic properties. Hence, it is no surprise that \gls{refrac} (D10R/K159E,
+\cref{fig:frac_mutants_pka_residues}) \cite{Wloka-2016}, which contains a negative-to-positive charge reversal
+mutation at the bottom of its constriction, showed a much lower conductance (cfr.~$\conductance =
+\mSI{1.91(17)}{\nS}$ (\gls{wtfrac}) and $\conductance = \mSI{1.19(12)}{\nS}$ (\gls{refrac}), at
+\SI{+50}{mV} and \SI{1}{\Molar} \ce{NaCl} \cite{Wloka-2016}) and a reversed ion selectivity
+(cfr.~$\permeabilityratio{\ce{K+}}{\ce{Cl-}} = 3.6$ (\gls{wtfrac}), $\permeabilityratio{\ce{K+}}{\ce{Cl-}} =
+0.57$ (\gls{refrac}), for \SI{0.467}{\Molar} \ce{KCl} (\cisi) $\|$ \SI{1.960}{\Molar} \ce{KCl} (\transi) at
+\pH{7.5} \cite{Huang-2017}). In addition, counter to its wild-type counterpart, \gls{refrac} showed a positive
+aptitude for \gls{dna} translocation, allowing it to differentiate between homopolymeric stretches of A, C and
+T polynucleotides \cite{Wloka-2016}. Finally, in a subsequent study it was shown that \gls{wtfrac}, but not
+\gls{refrac}, exhibted different peptide capture dynamics at low pH values \cite{Huang-2017}.
+
+In this section we aim to rationalize these findings, using electrostatic simulations as a guide. First, the
+difference in electrostatic potential between these two variants is investigated when changing the electrolyte
+pH from \numrange{7.5}{4.5}. Second, we look into their ability to translocate \gls{dna} by computing the
+electrostatic energy landscape of a translocating piece of \gls{ssdna}. For reference, a detailed discussion
+of the structure and general properties of \gls{frac} can be found in \cref{sec:np:frac}.
+
+%
 \begin{figure*}[t]
+  \centering
+  \medskip
+  %make
+  \begin{subfigure}[t]{65mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:frac_mutants_pka_residues}
+    \includegraphics[scale=1]{frac_mutants_pka_residues}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{50mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_pka_scatter}
+    \includegraphics[scale=1]{frac_mutants_pka_scatter}
+  \end{subfigure}
+
+\caption[Effective $\pKa$ values of Wt- and ReFraC.]{%
+  \textbf{Effective p$\boldsymbol{K}_{\mathbf{a}}$ values of Wt- and ReFraC.}
+  %
+  (\subref{fig:frac_mutants_pka_residues})
+  %
+  Molecular representation the most salient titratable residues of \gls{wtfrac} (left) and \gls{refrac}
+  (D10R/K159E, right), colored according to their subunit-averaged $\pKa$ values, as computed by \gls{propka}
+  \cite{Olsson-2011,Sondergaard-2011}.
+  %
+  (\subref{fig:frac_mutants_pka_scatter})
+  %
+  Scatterplot of the chain-averaged $\pKa$ values of all titratable residues of \gls{wtfrac} (red outlines)
+  and \gls{refrac} (blue outlines), as a function of their residue number. Because most $\pKa$ values are
+  identical between these two variants, only residues 10 and 159 where plotted for \gls{refrac}. The solid
+  lines indicate the baseline $\pKa$ values of the given amino acids used by \gls{propka}
+  \cite{Olsson-2011,Sondergaard-2011}.
+  %
+  Molecular structures were rendered using VMD \cite{Humphrey-1996,Stone-1998}.
+  %
+  }\label{fig:frac_mutants_pka}
+\end{figure*}
+%
+
+\subsubsection{The pH-dependence of Wt- and ReFraC's electrostatic potential.}
+%
+
+\paragraph{Wt- and ReFraC titrate differently at low pH.}
+%
+Before proceeding to the electrostatic simulations at \pHlist{7.5;4.5}, it is instructive to analyze the
+effective $\pKa$ values of all titratable residues in \gls{wtfrac} and \gls{refrac}
+(\cref{fig:frac_mutants_pka}). These values can be calculated self-consistently by software packages such as
+\gls{propka} \cite{Olsson-2011,Sondergaard-2011} or \gls{delphipka} \cite{Wang-2015}. Of all the titratable
+side-chains that face the interior channel wall, only specific residues will be influenced if the pH is
+lowered to \num{4.5} (\cref{fig:frac_mutants_pka_residues}). For \gls{wtfrac} these comprise D10 ($\pKa =
+4.25$), D17 ($\pKa = 3.76$), E24 ($\pKa = 4.55$), E40 ($\pKa = 5.38$), H67 ($\pKa = 6.28$), H169 ($\pKa =
+4.76$), E173 ($\pKa = 4.45$) and H175 ($\pKa = 6.94$); for \gls{refrac} they consist of D17 ($\pKa = 3.80$),
+E24 ($\pKa = 4.55$), E40 ($\pKa = 5.38$), H67 ($\pKa = 6.28$), H169 ($\pKa = 4.76$), E173 ($\pKa = 4.45$) and
+H175 ($\pKa = 6.94$). Note that these lists are virtually identical, except for the absence of residue 10 in
+the case of \gls{refrac}, since it was mutated to an arginine residue ($\pKa = 11.95$). This suggests that the
+electrostatic influence of residue 10 will remain unchanged for \gls{refrac} at \pH{4.5}
+($\protfrac_{\mathrm{HA}} = 1.00$), whereas the D10 in \gls{wtfrac} will be in a protonated state for a
+significantly part of the time ($\protfrac_{\mathrm{HA}} = 0.36$). Inside the confined space of a nanopore
+\lumen{}, the close proximity of the like-charged and oppositely-charged residues respectively destabilzes and
+stabilizes their (de)protonated states \cite{Olsson-2011}. This can be observed as significant $\pKa$ shifts
+relative to the typical values found inside proteins ($\Delta \pKa = \pKa^{\textrm{effective}} -
+\pKa^{\textrm{baseline}}$). In \cref{fig:frac_mutants_pka_scatter}, we plotted the chain-averaged $\pKa$
+values of all titratable residues in \gls{wtfrac} and \gls{refrac} together with their conventional baseline
+values, as used by \gls{propka}. These values are also summarized \cref{tab:frac_pka_summary}. The effective
+$\pKa$ of most charged residues---acidic \emph{and} basic---are lower compared to their baseline values. This
+suggests that the deprotonated states of the \num{\approx10} acidic residues (Glu + Asp) are stabilized, at
+the cost of the destabilization of their \num{\approx20} basic counterparts (Lys + Arg). Given that the ratio
+of positively over negative charged residues is \num{\approx2}, this is a locigal result.
+
+%
+\begin{table}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.2}
+  \caption{\ Summary of the WtFraC's and ReFraC's $\pKa$ values.}
+  \centering
+  \label{tab:frac_pka_summary}
+  \scriptsize
+  \begin{tabularx}{9.5cm}{lSSSSSSS}
+    %
+    \toprule
+    %
+    \multicolumn{2}{c}{Residue}
+    & \multicolumn{2}{c}{$\pKa^{\textrm{effective}}$}
+    & \multicolumn{2}{c}{$\Delta \pKa$$^\text{\emph{*}}$}
+    & \multicolumn{2}{c}{Count} \\
+    \cmidrule(r){1-2} \cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+    {Name} & {$\pKa^{\text{baseline}}$} & {Wt} & {Re} & {Wt} & {Re} & {Wt} & {Re} \\
+    %
+    \midrule
+    %
+    C-  & 3.20  & 3.34  & 3.40  & +0.14 & +0.20 & 1   & 1   \\
+    ASP & 3.80  & 3.52  & 3.42  & -0.28 & -0.38 & 8   & 7   \\
+    GLU & 4.50  & 4.31  & 4.40  & -0.19 & -0.10 & 5   & 6   \\
+    HIS & 6.50  & 5.59  & 5.60  & -0.91 & -0.90 & 6   & 6   \\
+    N+  & 8.00  & 7.86  & 7.84  & -0.14 & -0.16 & 1   & 1   \\
+    TYR & 10.00 & 11.61 & 11.61 & +1.61 & +1.61 & 11  & 11  \\
+    LYS & 10.50 & 10.16 & 10.18 & -0.34 & -0.32 & 11  & 10  \\
+    ARG & 12.50 & 12.21 & 12.19 & -0.29 & -0.31 & 10  & 11  \\
+    %
+    \bottomrule
+  \end{tabularx}
+  \begin{flushleft}
+    $^\text{\emph{*}}$$\pKa$-shift $\Delta \pKa = \pKa^{\textrm{effective}} - \pKa^{\textrm{baseline}}$.
+  \end{flushleft}
+\end{table}
+%
+
+%
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_partialcharge_residues}
+    \includegraphics[scale=1]{frac_mutants_partialcharge_residues}
+  \end{subfigure}
+  %
+  \\ \vspace{-2mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_potential_1000}
+    \includegraphics[scale=1]{frac_mutants_potential_1000}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic potential distribution inside Wt- and ReFraC.]{%
+  \textbf{Electrostatic potential distribution inside Wt- and ReFraC.}
+  %
+  (\subref{fig:frac_mutants_partialcharge_residues})
+  %
+  Molecular models of the partial charges of the most important titratable residues of \gls{wtfrac} and
+  \gls{refrac} at \pHlist{7.5;4.5}, as computed with \cref{eq:pka_partial_charge}.
+  %
+  (\subref{fig:frac_mutants_potential_1000})
+  %
+  Radially averaged cross-sections ($\radpot$, left) and \SI{6}{\angstrom}-radius cylindrically averaged line
+  plots ($\cylpot$, right) of the electrostatic potentials at at \SI{1}{\Molar} ionic strength and for
+  \pHlist{7.5;4.5}, computed from the fractionally charged PQR files with \gls{apbs}.
+  %
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Molecular representations were rendered with \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:frac_mutants_potential}
+\end{figure*}
+
+\paragraph{Partial charges of Wt- and ReFraC at pH 4.5 and 7.5.}
+%
+Whereas most residues have a unitary charge at \pH{7.5}, this is no longer the case at \pH{4.5}. As discussed
+in the methods of this chapter (\cref{sec:elec:methods:elec}), and corroborated by the effective $\pKa$
+analysis in the previous paragraph, most of \gls{frac}'s acidic residues will be not be fully (de)protonated
+at \pH{4.5}. Translated to electrostatic simulations, this means that at \pH{4.5}, these residues will carry,
+on average, a charge between \SIrange{-1}{0}{\ec} (\cref{fig:frac_mutants_partialcharge_residues}), depending
+on their exact $\pKa$ value (\cref{fig:frac_mutants_pka,tab:frac_pka_summary}). For \gls{wtfrac}, the most
+important negatively charged residues are D10 (\SIrange{-1}{-0.64}{\ec}), D17 (\SIrange{-1}{-0.85}{\ec}), E24
+(\SIrange{-1}{-0.47}{\ec}), E40 (\SIrange{-1}{-0.12}{\ec}), and E173 (\SIrange{-1}{-0.53}{\ec}). In the case
+of \gls{refrac}, these are D17 (\SIrange{-1}{-0.85}{\ec}), E24 (\SIrange{-1}{-0.47}{\ec}), E40
+(\SIrange{-1}{-0.12}{\ec}), E173 (\SIrange{-1}{-0.54}{\ec}), and E159 (\SIrange{-1}{-0.29}{\ec}). Notice that
+all basic residues (aside from histidine) do not change their protonation state when going from
+\pHrange{7.5}{4.5}. This includes R10 in \gls{refrac}, which, in constrast to D10 in \gls{wtfrac}, keeps its
+full charge at low pH.
+
+\paragraph{Wt- and ReFraC: electrostatic opposites.}
+%
+As evidenced by the radially averaged cross-sections and the cylindrical averages of \gls{wtfrac}'s and
+\gls{refrac}'s electrostatic potentials at \pH{7.5} and \SI{1}{\Molar} ionic strength
+(\cref{fig:frac_mutants_potential_1000}), the D10R mutation fully reverses the electrostatic potential inside
+the constriction from negative to positve. Because arginine is significantly bulkier compared to glutamate,
+the charged groups are packed closer together inside the constriction, resulting in a increase of the peak
+cylindrically averaged potential ($\cylpot$) from \SI{\approx-2.5}{\kTe} in \gls{wtfrac} to
+\SI[retain-explicit-plus]{\approx+5}{\kTe} in \gls{refrac}. The central part of \gls{frac} (at $z \approx
+\mSI{30}{\angstrom}$) is strongly positive, whereas the rest of the \cisi{} side ($z > \mSI{30}{\angstrom}$)
+is negative.
+
+Lowering the pH to \num{4.5} has a large effect on the constriction of \gls{wtfrac}, which becomes
+significantly less negative. The $\cylpot$ amplitude inside the constriction reduces by \SI{40}{\percent},
+from \SIrange{-2.5}{-1.5}{\kTe}). In contrast, maximum $\cylpot$ value inside the constriction of \gls{refrac}
+remains steady at \SI[retain-explicit-plus]{+5}{\kTe}. Finally, at low pH, the interior walls of the larger
+\cisi{} side ($z > \mSI{30}{\angstrom}$) also reverse their potential, become predominantly positive instead
+of negative in both \gls{frac} variants.
+
+\paragraph{A link between the electrostatic potential, ion-selectivity and electro-osmotic flow.}
+%
+% Adapted from Huang-2017
+%
+The electrostatic potentials described above corroborate the experimentally determined ion selectivities at
+\pHlist{7.5;4.5} \cite{Huang-2017}. Whereas \gls{wtfrac} becomes less cation-selective, as evidenced by the
+\SI{\approx42}{\percent} drop of its potassium permeability ratio ($\permeabilityratio{\ce{K+}}{\ce{Cl-}}$)
+from \num{3.64(37)} (\pH{7.5}) to \num{2.11(23)} (\pH{4.5}), \gls{refrac} becomes \emph{more} anion-selective,
+with a \SI{\approx60}{\percent} increase of its chloride permeability ratio
+($\permeabilityratio{\ce{Cl-}}{\ce{K+}}$) from \num{1.75(12)} (\pH{7.5}) to \num{2.78(62)} (\pH{4.5}).
+Overall, these findings are in agreement with changes observed in the electrostatic potential of these pores,
+but the increase in anion selectivity for \gls{refrac} at \pH{4.5} indicates that all charges along the wall
+of a nanopore constribute to the ion selectivity, not just those at its narrowest location. If we assume the
+preferential transport of a given ion and its hydration shell results in the net directional transport of
+water through a nanopore, it follows that the \gls{eof} moves in the direction of the most permeable ion and
+the net number of water molecules flowing through the pore ($\flux_{w}$) can be estimated using
+\cite{Piguet-2014}
+%
+\begin{equation}\label{eq:water_flux_permeability}
+  \flux_{w} = N_{w} \dfrac{\current}{\echarge} 
+    \left[ \dfrac%
+        {1 - \permeabilityratio{\ce{K+}}{\ce{Cl-}}}%
+        {1 + \permeabilityratio{\ce{K+}}{\ce{Cl-}}}%
+    \right]
+    \text{ ,}
+\end{equation}
+%
+with $N_{w}$ the average number of water molecules per ion (\ie~the hydration shell), $\current$ the ionic
+current through the pore at a given bias voltage and $\echarge$ the elementary charge. Note that
+\cref{eq:water_flux_permeability} likely underestimates the true water flux, as it does not take the
+additional drag on the fluid---due to the unidirectional movement of the electrical double layer---into
+account.
+
+Assuming a hydration shell of 10 water molecules (\ie~$N_{w} = 10$) \cite{Boukhet-2016,Piguet-2014} and a bias
+voltage of \SI{-50}{\mV}, \gls{wtfrac} transports water molecules from \cisi{} to \transi{} at rates of
+\SI{6.1e9}{\per\second} (\pH{7.5}) and \SI{2.5e9}{\per\second} (\pH{4.5}). A reduction of
+\SI{\approx59}{\percent} from \pHrange{7.5}{4.5}. Because \Gls{refrac} is anion-selective water will flow in
+the opposite direction, or from \cisi{} to \transi{} at positive potentials. Using \gls{refrac}'s current at
+\SI{+50}{\mV} in \cref{eq:water_flux_permeability} yields rates of \SI{1.4e9}{\per\second} (\pH{7.5}) and
+\SI{2.1e9}{\per\second} (\pH{4.5}). An increase of \SI{\approx51}{\percent} from \pHrange{7.5}{4.5}. The flow
+rates can be translated to velocities using
+%
+\begin{equation}\label{eq:water_flux_to_velocity}
+  \velocity = \dfrac{\flux_{w} V_{w}}{\pi R^2}
+  \text{ ,}
+\end{equation}
+%
+with $\velocity$ the velocity, $V_{w}$ the volume occupied by a single water molecule
+(\SI{\approx30}{\cubic\angstrom}) and $R$ the local radius of the pore. Assuming a radius of \SI{1}{\nm}
+(\eg~in the center of \gls{frac}'s channel), the rates above become velocities of \SI{58}{\mmps} (Wt @
+\pH{7.5}), \SI{24}{\mmps} (Wt @ \pH{4.5}), \SI{13}{\mmps} (Re @ \pH{7.5}), and \SI{20}{\mmps} (Re @ \pH{4.5}).
+These velocities are comparable to literature values for pores of similar size
+\cite{Boukhet-2016,Piguet-2014,Pederson-2015}.
+
+Overall, these data confirm the experimental finding from Huang \etal{} (see~\cite{Huang-2017}), that, at
+least for larger proteins such as chymotrypsin, the \gls{eof} drives their interactiong with \gls{frac}. The
+observed reduction and increase in capture rates for respectively \gls{wtfrac} (at negative bias) and
+\gls{refrac} (at positive bias) when lowering the pH from \numrange{7.5}{4.5}, is in agreement with the
+respective trends of their electro-osmotic flow velocities at these pH values.
+
+
+%
+\begin{figure*}[p]
+  \centering
+  \medskip
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_bead-ssdna_1000_energy}
+    \includegraphics[scale=1]{frac_mutants_bead-ssdna_1000_energy}
+  \end{subfigure}
+  %
+  \\ \vspace{3.38mm}
+  %
+  \begin{subfigure}[t]{120mm}
+    \centering
+    \caption{}\vspace{-10mm}\hspace{1.5mm}\label{fig:frac_mutants_bead-ssdna_1000_potential}
+    \includegraphics[scale=1]{frac_mutants_bead-ssdna_1000_potential}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic energy of ssDNA translocation through Wt- and ReFraC.]{%
+  \textbf{Electrostatic energy of ssDNA translocation through Wt- and ReFraC.}
+  %
+  (\subref{fig:frac_mutants_bead-ssdna_1000_energy})
+  %
+  Electrostatic energy landscape ($\energyelec$) for the translocation of \gls{ssdna}, represented here by a
+  string of \SI{1}{\nm} diameter beads with \SI{-1}{\ec} charge each, through \gls{wtfrac} and \gls{refrac} at
+  \SI{1.0}{\Molar} ionic strength. Due to its positively charged constriction, the energy barrier for
+  \gls{refrac} is only \SI{14}{\kT}, almost a third of the \SI{38}{\kT} observed for \gls{wtfrac}.
+  %
+  (\subref{fig:frac_mutants_bead-ssdna_1000_potential})
+  %
+  Vertical (top) and horizontal (bottom) cross-sections of the electrostatic potential ($\potential$) inside
+  \gls{wtfrac} and \gls{refrac} as the \gls{ssdna} enters the pore from the \cisi{}-side ($\zdna =
+  \mSI{150}{\angstrom}$, left) and when it reaches the constriction ($\zdna = \mSI{85}{\angstrom}$, left). The
+  location of the horizontal slices are indicated using a grey line (\sliceline).
+  %
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Molecular representations were rendered with \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:frac_mutants_bead-ssdna_1000}
+\end{figure*}
+%
+
+
+\subsubsection{Translocation of ssDNA through Wt- and ReFraC.}
+%
+
+\paragraph{Calculating electrostatic energies using a ssDNA bead model.}
+%
+When observing the contrary electrostatic potentials within the constriction of \gls{wtfrac} and \gls{refrac}
+(\cref{fig:frac_mutants_bead-ssdna_1000_potential}), it is unsurprising that only the latter is able to
+translocate \gls{dna}. As evinced by the rotaxane experiments performed by Wloka \etal{}, \gls{refrac} is able
+to translocate both ss- and \gls{dsdna} \cite{Wloka-2016}. The fact that the diameter of \gls{dsdna}
+(\SI{22}{\angstrom}) is almost twice the width of constriction (\SI{12}{\angstrom}) implies that the
+N-terminal \ta-helices of \gls{refrac}'s are pushed apart during \gls{dsdna} translocation. Due to the static
+nature of our simulations, we cannot model this without resorting to \gls{md} simulations, and are thus
+limited to \gls{ssdna} (\SI{10}{\angstrom} diameter). However, the short persistence length of \gls{ssdna}
+(\SI{13}{\angstrom} \cite{Tinland-1997}) makes it difficult to model atomistically with a reasonable
+conformation. Hence, we opted to represent it as a simple linear string of 20 beads with a radius of
+\SI{5}{\angstrom} and a charge of \SI{-1}{\ec}, spaced \SI{10}{\angstrom} apart. By placing this bead model at
+different heights (from $200 \ge \zdna \ge \mSI{-150}{\angstrom}$) along the center of \gls{wtfrac} and
+\gls{refrac}, we were able to map the net electrostatic energy ($\energyelec$, \cref{eq:electrostatic_energy})
+caused by the translocation of a \gls{ssdna} molecule through these pores at \SI{1}{\Molar} ionic strength
+(\cref{fig:frac_mutants_bead-ssdna_1000}). 
+
+\paragraph{Reversing the electrostatic potential at the constriction significantly lowers the energy barrier.}
+%
+When translocating the \gls{ssdna} model from \cisi{} to \transi{}
+(\cref{fig:frac_mutants_bead-ssdna_1000_energy}), their is virtually no change in $\energyelec$ observed
+between the \gls{dna} entering the pore ($\zdna = \mSI{150}{\angstrom}$,
+\cref{fig:frac_mutants_bead-ssdna_1000_potential}, left) up until the moment it reaches the top of the
+constriction ($\zdna = \mSI{110}{\angstrom}$). Entering the constriction however, is accompanied by a steep
+increase of $\energyelec$ between $ \mSI{110}{\angstrom} > \zdna > \mSI{85}{\angstrom}$
+(\cref{fig:frac_mutants_bead-ssdna_1000_potential}, right) from \SI{\approx0}{\kT} to \SI{38}{\kT} for
+\gls{wtfrac} and \SI{14}{\kT} for \gls{refrac}. Note that these energy changes are both positive, and hence
+energetically \emph{unfavorable}. Even though the interaction between the positively charged R10 residues in
+\gls{refrac} and the negatively charged beads in the \gls{ssdna} model reduce the energy barrier in the
+constriction by approximately a third, it is still insufficient to make \gls{ssdna} translocation
+electrostatically favorable. Once inside the constriction, the energy level remains stable at their respective
+maxima until drops rapidly to \SI{0}{\kT} once the \gls{ssdna} exits from the pore at the \transi{} entry
+($\mSI{-90}{\angstrom} > \zdna >  \mSI{-120}{\angstrom}$).
+
+\paragraph{Overcoming the energy barriers inside the constriction.}
+%
+For the piece of \gls{ssdna} to translocate (at positive bias potentials), it must over come the energy
+barrier presented by the constriction: \SI{\approx38}{\kT} for \gls{wtfrac} and \SI{\approx14}{\kT} for
+\gls{refrac}. In the case of \gls{wtfrac}, the energy barrier is not only more than twice as high as the one
+in \gls{refrac}, the effective force exerted on the \gls{dna} at any given bias voltage will also be less due
+to the opposing \gls{eof}. Nevertheless, if we ignore the \gls{eof}, and assume that, in order for it to
+translocate, the \gls{dna} only uses the electrophoretic force exerted on it as the first base moves from the
+\cisi{} entry ($\zdnac = \mSI{150}{\angstrom}$, \cref{fig:frac_mutants_bead-ssdna_1000_potential}, left) to
+the bottom of \transi{} constriction ($\zdnat = \mSI{85}{\angstrom}$,
+\cref{fig:frac_mutants_bead-ssdna_1000_potential}, right). The electrophoretic energy ($\Delta
+\gibbs^{\textrm{ep}}$) gained by moving a piece of \gls{ssdna} from positions $z_1$ to $z_2$ along length the
+pore is given by
+%
+\begin{align}\label{eq:ep_energy}
+  \Delta \gibbs^{\textrm{ep}} ={}& - \int_{z_1}^{z_2} \forceep (z) \,dz \nonumber \\
+                              ={}& - \int_{z_1}^{z_2} \chargeq (z) \efield (z) \,dz
+  \text{ ,}
+\end{align}
+%
+with $\forceep (z)$ the electrophoretic force, $\chargeq (z)$ the amount of charge inside the pore, and the
+$\efield (z)$ the electric field, all a function of \gls{dna} position $z$. Assuming a uniform decay of the
+applied potential $\vbias$ along the length of pore ($\length$), $\efield$ can be simplified to
+%
+\begin{equation}\label{eq:linear_efield}
+  \efield (z) = \dfrac{\vbias}{\length}
+  \text{ .}
+\end{equation}
+%
+Additionally, $\chargeq (z)$ can be approximated by the linear function
+%
+\begin{equation}\label{eq:ssdna_charge_in_pore}
+  \chargeq (z) = 
+        \dfrac{ n_2 - n_1 } { z_2 - z_1 } 
+        \left( z - z_1 \right) \chargeq_{\textrm{base}}
+  \text{ ,}
+\end{equation}
+%
+with $n_1$ and $n_2$ the number of bases inside the pore when the $z$ is at positions $z_1$ and $z_2$,
+respectively, and $q_{\textrm{base}}$ the net charge of a single base.
+
+Finally, plugging \cref{eq:linear_efield,eq:ssdna_charge_in_pore} in \cref{eq:ep_energy} and integrating
+yields
+%
+\begin{align}\label{eq:ep_energy_dna}
+  \Delta \gibbs^{\textrm{ep}} %
+     ={}& - \int_{z_1}^{z_2} %
+          \left(  n_2 - n_1 \right) %
+          \dfrac{ z - z_1 }{z_2 - z_1}
+          \chargeq_{\textrm{base}} \dfrac{\vbias}{\length} \,dz \nonumber \\
+     ={}& - 0.5 \left(  n_2 - n_1 \right)  \chargeq_{\textrm{base}}
+            \dfrac{\vbias}{\length} \left(  z_2 - z_1 \right)
+  \text{ ,}
+\end{align}
+%
+Using the parameters $n_1 = 0$, $n_2 = 7$, $z_1 = \mSI{150}{\angstrom}$, $z_2 = \mSI{85}{\angstrom}$,
+$q_{\textrm{base}} = \mSI{-1}{\ec}$, $\vbias = \mSI{+100}{\mV}$ and $\length = \mSI{65}{\angstrom}$, in
+\cref{eq:ep_energy_dna} yields $\Delta \gibbs^{\textrm{ep}} = \mSI{-13.6}{\kT}$. Indeed, this value is very
+close to the barrier height of \SI{14}{\kT} observed for \gls{refrac}, but it is far from sufficient for
+crossing the \SI{38}{\kT} barrier presented by \gls{wtfrac}. Additionally, because the \gls{eof} works with
+the $\forceep$ in \gls{refrac}, but against it in \gls{wtfrac}, the magnitude of $ \left| \Delta
+\gibbs^{\textrm{ep}} \right| = \mSI{13.6}{\kT}$ is an underestimation for \gls{refrac}, but an overestimation
+for \gls{wtfrac}, which would reduce its ability to translocate \gls{ssdna} even further.
+
+
+%
+%
+\subsection{Electrostatic analysis of the ClyA nanopore}
+%
+\label{sec:elec:clya}
+%
+
+\subsubsection{Electrostatic potential at physiological and high ionic strengths.}
+%
+
+\paragraph{Precise manipulation of charges enables DNA translocation at physiological ionic strengths.}
+%
+As indicated in \cref{sec:np:clya}, the interior walls of \gls{clya} are lined predominantly with negatively
+charged residues (cfr.~\cref{fig:clya_pore_section}), which prevents the pore from translocating \gls{dna} at
+salt concentrations lower than \SI{\approx1}{\Molar} \cite{Franceschini-2013,Franceschini-2016}. This
+concentration is far from the physiological ionic strengths (\ie~\SI{0.15}{\Molar}) required for the (optimal)
+functioning of many \gls{dna}-processing enzymes. In an extensive mutagenesis study by Franceschini \etal,
+more than 20 variants of \gls{clya-as} were tested for their ability to translocate \gls{dsdna} at an ionic
+strength of \SI{0.15}{\Molar} \cite{Franceschini-2016}. These mutants introduced additional positive charges
+at key locations throughout the interior walls of the pore (either at the \cisi{} entry, \lumen{} or \transi{}
+constriction), typically by the mutagenesis of a neutral (\ie~net \SI{+1}{\ec}) or negatively charged (\ie~net
+\SI{+2}{\ec}) residue to arginine or lysine. Interestingly, only the S110R/D64R double mutant (\gls{clya-rr})
+was able to translocate \gls{dsdna}, and only from the \cisi{} side. Because analyzing all 20 variants would
+be too computationally intensive, we have limited our analysis here to several mutants representative for the
+observed electrostatic phenomena: \gls{clya-as}, \gls{clya-r} (S110R), \gls{clya-rr} (S110R/D64R),
+\gls{clya-rr56} (S110R/Q56R), and \gls{clya-rr56k} (S110R/Q56R/Q8K). The locations of their mutations are
+indicated in \cref{fig:clya_mutants_residues}.
+
+%
+\begin{figure*}[p]
   \centering
   \medskip
   %
@@ -188,135 +1363,136 @@ the stem region cause the pore to rapidly and reversibly close under negative bi
   \end{subfigure}
   %
 
-\caption[Electrostatic potential inside ClyA mutants.]{%
-  \textbf{Electrostatic potential inside ClyA mutants.}
+\caption[Electrostatic potential distribution inside several ClyA variants.]{%
+  \textbf{Electrostatic potential distribution inside several ClyA variants.}
   %
   (\subref{fig:clya_mutants_residues})
   %
-  Side view and 
+  Cartoon representation of a single subunit of the ClyA-AS, -R, -RR, RR$_{56}$ and -RR$_{56}$K pores, all of
+  which were investigated for their ability to translocate DNA under physiological ionic strength in Ref.
+  \cite{Franceschini-2016}. The labels indicate the mutations w.r.t. the \textit{S. typhi} wild-type (for AS),
+  or w.r.t. \gls{clya-as} (for the others).
+  %
+  Radially averaged cross-sections ($\radpot$, left) and \SI{15}{\angstrom}-radius cylindrically averaged line
+  plots ($\cylpot$, right) of the electrostatic potentials at
   %
   (\subref{fig:clya_mutants_potential_0150})
   %
+  \SI{0.15}{\Molar}
+  %
   (\subref{fig:clya_mutants_potential_2500})
   %
+  \SI{2.5}{\Molar}.
   %
-  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
-  }\label{fig:clya_mutants}
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Molecular representations were rendered using \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
+  }\label{fig:clya_mutants_potential}
 \end{figure*}
-
-
-\subsection{Electrostatic analysis of the FraC nanopore}
 %
 
-\begin{figure*}[t]
+
+\paragraph{All charges are important at physiological ionic strength.}
+%
+% Adapted from Franceschine-2016
+%
+When observing the evolution of the electrostatic potential at an ionic strength of \SI{0.15}{\Molar}
+(\cref{fig:clya_mutants_potential_0150,tab:clya_potential_summary}) from \cisi{} to \transi{}, the effect of
+the different mutations is clearly visible. The mutation S110R is located at the \cisi{} entry of \gls{clya}
+($z \approx \mSI{120}{\angstrom}$), and it switches the potential from negative (\SI{-0.12}{\kTe}) in
+\gls{clya-as} to a slightly positive value (\SIrange{+0.02}{0.04}{\kTe}) in the other mutants. Even though
+this is a small change, it means that \gls{dna} will now be attracted towards, instead of repelled from, the
+\cisi{} entry of the pore. This may help with aligning the \gls{dna} strand with the central axis of the pore,
+priming it for entry into the \lumen{}. Next up are mutations D64R and Q56R, both of which are located in the
+middle of the \lumen{} ($z \approx \mSI{60}{\angstrom}$). However, whereas D64R introduces two positive
+charges, Q56R only yields a single one. This is clearly reflected in the electrostatic potential, where for
+Q56R it remains negative (from \SIrange{-0.32}{-0.20}{\kTe}), but D64R manages to push it to be significantly
+positive (from \SIrange{-0.32}{+0.20}{\kTe}). This large change towards a positive potential observed inside
+the \lumen{} of \gls{clya-rr} may allow the \gls{dna} penetrate sufficiently deep into the pore and hence to
+build up enough force from the external electric field to overcome the high negative potential at the
+\transi{} constriction. At the bottom of the \lumen{} ($z \approx \mSI{30}{\angstrom}$), the electrostatic
+potential falls rapidly to high negative values. The influence of the Q8K mutation, which located in at bottom
+of the constriction ($z \approx \mSI{-10}{\angstrom}$), is not clearly visible when comparing \gls{clya-as}
+with \gls{clya-rr56k} since the potential decreases from \SIrange{-1.44}{-1.84}{\kTe}. Nevertheless, relative
+to the other mutants, \gls{clya-rr56k} does have the least negative constriction. The discrepancies between
+the peak values inside the constrictions are likely caused by minor conformational changes in the side chains
+the residues that make up \gls{clya}'s \gls{tmd}. Given that they are located at the protein's N-terminus,
+they enjoy much more conformational freedom that the other mutated residues, and hence may have moved more
+during the \gls{md} equilibration phase of the model creation (see \cref{sec:elec:methods:molec}). Regardless
+of its conformation, the Q8K mutation does not significantly impact the negative potential inside the
+constriction and as such is not expected to impact \gls{dna} translocation. 
+
+
+\paragraph{The constriction dominated at high ionic strengths.}
+%
+At \SI{2.5}{\Molar}, the overal electrostatic potential inside the pore drops to virtually \SI{0}{\kTe}
+everywhere, except inside the constriction
+(\cref{fig:clya_mutants_potential_2500,tab:clya_potential_summary}). The magnitude of the negative potential
+is significantly reduced for all mutants (\SI{\approx-0.5}{\kTe}) and its influence starts only inside the
+constriction itself ($z \approx \mSI{0}{\angstrom}$). This means that at high salt concentrations, the
+\gls{dna} can enter into the pore and move down to its constriction unopposed, after which only a small
+barrier must be overcome to complete the translocation.
+
+
+%
+\begin{table}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.2}
+  \caption{\ Electrostatic potential at key locations for several ClyA variants.}
   \centering
-  \medskip
-  %
-  \begin{subfigure}[t]{50mm}
-    \centering
-    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_pka_scatter}
-    \includegraphics[scale=1]{frac_mutants_pka_scatter}
-  \end{subfigure}
-  %
-  \hspace{-4mm}
-  %
-  \begin{subfigure}[t]{70mm}
-    \centering
-    \caption{}\vspace{-5mm}\hspace{0.0mm}\label{fig:frac_mutants_pka_residues}
-    \includegraphics[scale=1]{frac_mutants_pka_residues}
-  \end{subfigure}
-  %
-  \\ \vspace{2mm}
-  %
-  \begin{subfigure}[t]{120mm}
-    \centering
-    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_partialcharge_residues}
-    \includegraphics[scale=1]{frac_mutants_partialcharge_residues}
-  \end{subfigure}
-  %
-  \\ \vspace{-2mm}
-  %
-  \begin{subfigure}[t]{120mm}
-    \centering
-    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:frac_mutants_potential_1000}
-    \includegraphics[scale=1]{frac_mutants_potential_1000}
-  \end{subfigure}
-  %
-
-\caption[Electrostatic potential inside FraC mutants.]{%
-  \textbf{Electrostatic potential inside FraC mutants.}
-  %
-  (\subref{fig:frac_mutants_pka_scatter})
-  %
-  (\subref{fig:frac_mutants_pka_residues})
-  %
-  (\subref{fig:frac_mutants_partialcharge_residues})
-  %
-  (\subref{fig:frac_mutants_potential_1000})
-  %
-  %
-  All images were prepared and rendered using VMD \cite{Humphrey-1996,Stone-1998}.
-  }\label{fig:frac_mutants}
-\end{figure*}
-
-\subsection{Electrostatic analysis of the PlyAB nanopore}
-%
-
-
-\begin{figure*}[t]
-  \centering
-  \medskip
-  %
-
-  \begin{subfigure}[t]{120mm}
-    \centering
-    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:plyab_mutants_residues}
-    \includegraphics[scale=1]{plyab_mutants_residues}
-  \end{subfigure}
-  %
-  \\ \vspace{-2mm}
-  %
-  \begin{subfigure}[t]{120mm}
-    \centering
-    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:plyab_mutants_potential_0300}
-    \includegraphics[scale=1]{plyab_mutants_potential_0300}
-  \end{subfigure}
-  %
-  \\ \vspace{0mm}
-  %
-  \begin{subfigure}[t]{120mm}
-    \centering
-    \caption{}\vspace{-2.5mm}\hspace{1.5mm}\label{fig:plyab_mutants_potential_2500}
-    \includegraphics[scale=1]{plyab_mutants_potential_1000}
-  \end{subfigure}
-  %
-
-\caption[Electrostatic potential inside PlyAB mutants.]{%
-  \textbf{Electrostatic potential inside PlyAB mutants.}
-  %
-  (\subref{fig:plyab_mutants_residues})
-  %
-  Side view and
-  %
-  (\subref{fig:plyab_mutants_potential_0300})
-  %
-  (\subref{fig:plyab_mutants_potential_2500})
-  %
-  %
-  All images were prepared and rendered with VMD \cite{Humphrey-1996,Stone-1998}.
-  }\label{fig:plyab_mutants}
-\end{figure*}
-
-
-\subsection{Electrostatic energy analysis of dsDNA translocation through ClyA}
+  \label{tab:clya_potential_summary}
+  \scriptsize
+  \begin{tabularx}{8.5cm}{lSSSSSS}
+    %
+    \toprule
+    %
+     & \multicolumn{6}{c}{ {Electrostatic potential ($\cylpot$) [\si{\kTe}]} } \\
+    %
+    \cmidrule(l){2-7}
+    %
+     & \multicolumn{2}{c}{$z = \mSI{120}{\angstrom}$}
+     & \multicolumn{2}{c}{$z = \mSI{60}{\angstrom}$}
+     & \multicolumn{2}{c}{$z = \mSI{-10}{\angstrom}$} \\
+    %
+    \cmidrule(r){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} 
+    %
+    {Variant}
+      & \SI{0.15}{\Molar} & \SI{2.5}{\Molar}
+      & \SI{0.15}{\Molar} & \SI{2.5}{\Molar}
+      & \SI{0.15}{\Molar} & \SI{2.5}{\Molar} \\
+    %
+    \midrule
+    %
+    AS         & -0.12 & -0.00 & -0.32 & -0.00 & -1.44 & -0.25 \\
+    R          & +0.02 & +0.00 & -0.31 & -0.00 & -1.91 & -0.36 \\
+    RR         & +0.03 & +0.00 & +0.20 & +0.00 & -1.88 & -0.36 \\
+    RR$_{56}$  & +0.04 & +0.00 & -0.20 & -0.00 & -2.14 & -0.57 \\
+    RR$_{56}$K & +0.04 & +0.00 & -0.20 & +0.00 & -1.84 & -0.53 \\
+    %
+    \bottomrule
+  \end{tabularx}
+\end{table}
 %
 
 %
-\subsubsection{DNA translocation at physiological ionic strength.}
+\subsubsection{Electrostatic energy of DNA translocation through ClyA.}
 %
-\cref{fig:clya_mutants_dsdna_0150}
 
-\begin{figure*}[t]
+\paragraph{Computing the energy of DNA translocation with full-atom dsDNA model.}
+%
+Using the same methodology that was used with \gls{ssdna} translocation through \gls{frac} in
+\cref{sec:elec:frac}, we used a full atom \gls{dsdna} model to map out the electrostatic energy landscape of
+\gls{dna} translocation through the \gls{clya} variants discussed above at \SI{0.15}{\Molar}
+(\cref{fig:clya_mutants_dsdna_0150}) and \SI{2.5}{\Molar} (\cref{fig:clya_mutants_dsdna_2500}) ionic
+strengths. Here, a bead model is not needed since the long persistence length of \gls{dsdna}
+(\SI{390}{\angstrom} \cite{Gross-2011}) effectively fixes the conformation of a \SI{51}{\bp} strand
+(\SI{\approx175}{\angstrom} long) to that of a rigid rod. Additionally, \gls{clya}'s \transi{} constriction is
+sufficiently wide (\SI{33}{\angstrom}) to accomodate the full width of a \gls{dsdna} strand
+(\SI{22}{\angstrom}).
+
+
+%
+\begin{figure*}[p]
   \centering
   \medskip
   %
@@ -341,7 +1517,7 @@ the stem region cause the pore to rapidly and reversibly close under negative bi
   (\subref{fig:clya_mutants_dsdna_0150_energy})
   %
   Net electrostatic energy ($\energyelec$, \cref{eq:electrostatic_energy}), at physiological ionic strength
-  (\SI{150}{\mM}), for a \SI{51}{\bp} piece of \gls{dsdna} (\SI{\approx17.5}{\nm}) as a function of its
+  (\SI{150}{\mM}), for a \SI{51}{\bp} piece of \gls{dsdna} (\SI{\approx175}{\angstrom}) as a function of its
   $z$-position ($z_{\mathrm{DNA}}$) inside the \gls{clya} variants AS, R, RR, RR$_{56}$ and RR$_{56}$K. The
   mutation S110R eliminates the \SI{8}{\kT} energy penalty for \gls{dsdna} to enter \lumen{} of \gls{clya}
   from the \cisi{} side up until \SI{150}{\angstrom}. In contrast to D64R, which briefly promotes the
@@ -354,21 +1530,63 @@ the stem region cause the pore to rapidly and reversibly close under negative bi
   Vertical and horizontal cross-sections of the electrostatic potential ($\potential$) inside the \gls{clya}
   variants as the \gls{dsdna} begins to enter the \cisi{} entrance (\SI{200}{\angstrom}, top), reaches the
   center of the \lumen{} (\SI{150}{\angstrom}, middle) and fully entered the \transi{} constriction
-  (\SI{65}{\angstrom}, bottom).
+  (\SI{65}{\angstrom}, bottom). The location of the horizontal slices are indicated using a grey line
+  (\sliceline).
   %
-  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}. Molecular images were rendered
-  with VMD \cite{Humphrey-1996,Stone-1998}.
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Molecular representations were rendered with \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
   %
   }\label{fig:clya_mutants_dsdna_0150}
 \end{figure*}
+%
 
+\paragraph{DNA translocation at physiological ionic strengths is a fragile balance of energies.}
+%
+Upon entry into the pore from the \cisi{} side ($\zdna = \mSI{200}{\angstrom}$,
+\cref{fig:clya_mutants_dsdna_0150_potential}, top), the S110R mutation interacts favorably with the
+\gls{dna}strand, preventing the gradual \SI{+8}{kT} rise in energy observed when \gls{clya-as} when the
+\gls{dna} moves towards the location of the  D64R (or Q56R) mutation in the middle of the lumen ($\zdna =
+\mSI{150}{\angstrom}$, \cref{fig:clya_mutants_dsdna_0150_potential}, middle). When moving further down, the
+Q56R mutation in \gls{clya-rr56} and \gls{clya-rr56k} manages to limit the energy increase compared to
+\gls{clya-as} and \gls{clya-r}, but the D64R mutation in \gls{clya-rr} \emph{lowers} the energy by
+\SI{\approx5}{\kT}. Once the \gls{dna} begins to enter the constriction (from $\zdna = \mSI{100}{\angstrom}$),
+however, the energy rises dramatically for all variants by an additional \SI{\approx40}{\kT} until it reaches
+a maximum when the \gls{dna} starts to exit the pore from the \transi{} side ($\zdna = \mSI{200}{\angstrom}$,
+\cref{fig:clya_mutants_dsdna_0150_potential}, bottom). The influence of the Q8K mutation is also clearly
+visible, with \gls{clya-rr56k} having a significantly lower energy (\SI{\approx10}{\kT}) compared to
+\gls{clya-rr56}. As the \gls{dna} moves through the constriction, its energy levels appear to fluctuate by a
+few \si{\kT} with a period of \SI{\approx30}{\angstrom}. This phenomenom is even more prominent at high salt
+concentrations, and will hence be discussed in the next section. 
+
+As we shall see in the next chapter, at positive bias voltages the \gls{eof} in \gls{clya} flows from
+\transi{} to \cisi{} and hence exerts a significant amount of upward force on the \gls{dna}, pushing it back
+towards \cisi{} entry. If the electro-osmotic force is equal to half the electrophoretic force---a
+conservative estimate---any energy gains due to the electrophoretic force will be cut in half. In other words,
+this would equate to an effective charge of \SI{-1}{\ec\per\bp} instead of \SI{-2}{\ec\per\bp}. In order to
+successfully translocate, the \gls{dsdna} strand must reduce its energy sufficiently to overcome the
+\SI{\approx60}{\kT} energy barrier presented by the constriction.  Moving the \gls{dna} strand from the
+\cisi{} entry to top of the energy barrier (\cref{eq:ep_energy_dna}, $n_1 = 0$, $n_2 = 41$, $z_1 =
+\mSI{200}{\angstrom}$, $z_2 = \mSI{65}{\angstrom}$, $q_{\textrm{base}} = \mSI{-1}{\ec}$, $\vbias =
+\mSI{+100}{\mV}$) yields an energy reduction of $\Delta \gibbs^{\textrm{ep}} = \mSI{-76}{\kT}$, which should
+indeed be sufficient to overcome the barrier. However, for the \gls{dna} to accrue this much energy reduction,
+it must be able to physically reach that location. The S110R mutation helps here by removing the initial
+\SI{+8}{\kT} energy increase between $200 > \zdna > \mSI{150}{\angstrom}$ observed only in \gls{clya-as}. Past
+this point, the Q56R mutation reduces the rate at which \gls{dna} gains energy compared to \gls{clya-as} and
+\gls{clya-r}, but not to same extent as D64R in \gls{clya-rr}, where moving downwards briefly \emph{reduces}
+the energy. Likely, at this point in the translocation process, the force balance is precarious in all
+mutants. Hence, where the downwards force in \gls{clya-rr} tips the energy balance in favor of the downwards
+movement of the \gls{dna}, the opposite is true for the other mutants. In other words, it appears that the
+D64R mutation enables the \gls{dna} to move further down into the \lumen{} than the Q56R mutation, allowing it
+to sufficiently reduce its energy and eventually overcome the barrier at the constriction.
+
+Note that this analysis presents the situation where the \gls{dsdna} is aligned perfectly with the entry of
+the pore, which will often not be the case in reality. Additionally, outside of the pore, the relative
+magnitude of the electro-osmotic force is significantly stronger than its electrophoretic counterpart, which
+would further compound the chances of \gls{dna} to enter \gls{clya} at all.
 
 %
-\subsubsection{DNA translocation at high ionic strength.}
-%
-\cref{fig:clya_mutants_dsdna_2500}
-
-\begin{figure*}[t]
+\begin{figure*}[p]
   \centering
   \medskip
   %
@@ -393,9 +1611,9 @@ the stem region cause the pore to rapidly and reversibly close under negative bi
   (\subref{fig:clya_mutants_dsdna_2500_energy})
   %
   Net electrostatic energy ($\energyelec$, \cref{eq:electrostatic_energy}), at high ionic strength
-  (\SI{2.5}{\Molar}), for a \SI{51}{\bp} piece of \gls{dsdna} (\SI{\approx17.5}{\nm}) as a function of its
-  $z$-position ($z_{\mathrm{DNA}}$) inside the \gls{clya} variants AS, R, RR, RR$_{56}$ and RR$_{56}$K. Once
-  inside the \transi{} constriction, $\energyelec$ fluctutates periodically with a magnitude of
+  (\SI{2.5}{\Molar}), for a \SI{51}{\bp} piece of \gls{dsdna} (\SI{\approx175}{\angstrom}) as a function of
+  its $z$-position ($z_{\mathrm{DNA}}$) inside the \gls{clya} variants AS, R, RR, RR$_{56}$ and RR$_{56}$K.
+  Once inside the \transi{} constriction, $\energyelec$ fluctutates periodically with a magnitude of
   \SI{\approx2.5}{\kT} every \SI{36}{\angstrom}, which is close to the pitch of \SI{34}{\angstrom} of B-DNA.
   %
   (\subref{fig:clya_mutants_dsdna_2500_potential})
@@ -403,22 +1621,177 @@ the stem region cause the pore to rapidly and reversibly close under negative bi
   Vertical and horizontal cross-sections of the electrostatic potentials ($\potential$) inside the \gls{clya}
   variants as the \gls{dsdna} traverses the \transi{} constriction, showing the first maximum
   (\SI{60}{\angstrom}, top), first mininum (\SI{40}{\angstrom}, middle) and second maximum
-  (\SI{25}{\angstrom}, bottom).
+  (\SI{25}{\angstrom}, bottom). The location of the horizontal slices are indicated using a grey line
+  (\sliceline).
   %
-  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}. Molecular images were rendered
-  with VMD \cite{Humphrey-1996,Stone-1998}.
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Molecular representations were rendered with \gls{vmd} \cite{Humphrey-1996,Stone-1998}.
   %
   }\label{fig:clya_mutants_dsdna_2500}
 \end{figure*}
+%
+
+\paragraph{High ionic strength smooths out and lowers energy barriers.} 
+%
+At an ionic strengths of \SI{2.5}{\Molar}, no large differences are observed between energy landscapes of the
+different \gls{clya} mutants (\cref{fig:clya_mutants_dsdna_2500_energy}). As the \gls{dsdna} enters the pore
+from \cisi{} side, its $\energyelec$ remains flat until the it reaches the constriction ($200 > \zdna >
+\mSI{100}{\angstrom}$), after which it rises rapidly by \SI{\approx+10}{\kT} inside the constriction. As
+discussed in the previous paragraph, at $\zdna = \mSI{100}{\angstrom}$ the \gls{dna} strand will have
+decreased its energy by $\Delta \gibbs^{\textrm{ep}} = \mSI{-76}{\kT}$, which exceeds the energy barrier bat
+the constriction by almost an order of magnitude. This is in full agreement with the experimental obervations
+of \gls{dsdna} translocation through \gls{clya-as} at higher ionic strengths
+\cite{Franceschini-2013,Franceschini-2016}.
+
+\paragraph{The chirality of \gls{dsdna} may induce rotation.}
+%
+As the \gls{dsdna} traverses the constriction, its energy is observed to fluctuate sinusoidally with an
+amplitude of \SI{2.5}{\kT} (\cref{fig:clya_mutants_dsdna_2500_energy}). Likely, the peaks
+(\cref{fig:clya_mutants_dsdna_2500_potential}, top and bottom) and valleys
+(\cref{fig:clya_mutants_dsdna_2500_potential}, middle) correlate with the precise amount of negative charges
+present inside the constriction, which in turn corresponds to how much of the B-\gls{dna}'s minor groove
+(\ie~high charge density) or major groove (\ie~low charge density) occupies the constriction. Given that, from
+a geometric point of view, moving a B-\gls{dna} strand up or down is identical to rotating it around its
+length axis, it is likely that a \SI{2.5}{\kT} energy reduction is sufficient make the \gls{dna} rotate as it
+translocates through \gls{clya}.
 
 
-\ldots
+\subsubsection{Confinement of DNA to the center of the ClyA}
+%
+% Adapted from Bayoumi-2020
+
+
+\begin{figure*}[t]
+  \centering
+  \medskip
+  %
+  \begin{subfigure}[t]{60mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_dsdna_constriction_energy_heatmap}
+    \includegraphics[scale=1]{clya_dsdna_constriction_energy_heatmap}
+  \end{subfigure}
+  %
+  \hspace{-3mm}
+  %
+  \begin{subfigure}[t]{60mm}
+    \centering
+    \caption{}\vspace{-5mm}\hspace{1.5mm}\label{fig:clya_dsdna_constriction_energy_averaged}
+    \includegraphics[scale=1]{clya_dsdna_constriction_energy_averaged}
+  \end{subfigure}
+  %
+
+\caption[Electrostatic confinement of dsDNA within the constriction of ClyA-AS.]{%
+  \textbf{Electrostatic confinement of dsDNA within the constriction of ClyA-AS.}
+  %
+  (\subref{fig:clya_dsdna_constriction_energy_heatmap})
+  %
+  Contour plot of the electrostatic energy cost/gain ($\Delta \energyelec_{r=0}$) of moving a piece of dsDNA
+  away from the axial center of ClyA-AS. The red crosses indicate the location of datapoints.
+  %
+  (\subref{fig:clya_dsdna_constriction_energy_averaged})
+  %
+  Energy costs averaged over all angles ($\langle \Delta \energyelec_{r=0} \rangle_{\phi}$), together with the
+  corresponding Boltzmann probability distribution $\probability$.
+  %
+  Computations were performed using \gls{apbs} \cite{Baker-2001,Baker-2005}.
+  %
+  Figure adapted with permission from \cite{Bayoumi-2020}.
+  %
+  }\label{fig:clya_dsdna_constriction}
+\end{figure*}
+
+
+Given the electrostatic repulsion between \gls{clya-as}'s constriction and the \gls{dsdna}, we expect that the
+the latter will be pushed to remain in the center of the pore. To quantify the extent of this confinement, we
+computed the electrostatic energy cost of moving a piece of dsDNA away from the center of the pore (\ie~
+closer to the walls of \gls{clya}). This information allowed the use of a narrower constriction within the
+coarse-grained \gls{md} simulations prsented in Bayoumi \etal{} \cite{Bayoumi-2020}, and was crucial to
+properly model the behaviour of the \gls{ssdna}- and \gls{dsdna}-rotaxanes within \gls{clya}.
+
+\paragraph{System setup and energy calculation.}
+%
+The same piece of \SI{51}{\bp} \gls{dsdna} from previous sections was placed inside \gls{clya-as} at a fixed
+height ($\zdna = \mSI{60}{\angstrom}$). Next, the \gls{dna} was moved away from the center of the
+constriction ($x = 0$, $y = 0$), using cylindrical coordinates $\vec{r}_{\mathrm{DNA}} = (r, \phi)$ such that
+$x = r \cos{\phi}$ and $y = r \sin{\phi}$:
+%
+\begin{equation}
+  \vec{r}_{\mathrm{DNA}} = %
+  \begin{cases}
+    r: [0,5] \msi{\angstrom} &\mbox{with } \Delta r    = \mSI{0.5}{\angstrom} \\
+    r: [0,360] \msi{\degree} &\mbox{with } \Delta \phi = \mSI{45}{\degree} \\
+  \end{cases}
+  \text{ ,}
+\end{equation}
+%
+resulting in 177 unique systems (\ie~1 reference system with only the pore, 88 reference systems with only the
+DNA and 88 systems containing the pore and the DNA). The electrostatic potentials and energies at an ionic
+strength of \SI{2}{\Molar} where computed as before with \gls{apbs}, using two sequential focussing
+calculations (coarse grid: \apbsgrid{500}{500}{700}{\angstrom} size with
+\apbsgrid{1.42}{1.42}{0.87}{\angstrom} spacing; fine grid: \apbsgrid{175}{175}{400}{\angstrom} size with
+\apbsgrid{0.50}{0.50}{0.50}{\angstrom} spacing). The energy cost (or gain) for moving the \gls{dna} away from
+the center of the pore ($r = 0$) was then calculated using
+%
+\begin{align}
+  \Delta \energyelec_{r=0} (r, \phi) = \energyelec (r, \phi) - \energyelec (0,0)
+  \text{  .}
+\end{align}
+%
+
+\paragraph{The energy mininum is not at the center.}
+%
+The contour plot of $\Delta \energyelec_{r=0}$ (\cref{fig:clya_dsdna_constriction_energy_heatmap}) reveals
+that the energetic mininum for a piece of \gls{dsdna} does not lie at the center of the pore but is slightly
+offset, approximately \SI{1}{\angstrom} in both $x$- and $y$-directions. Likely, this is a consequence of the
+chirality of the \gls{dna} and the precise location of the major and minor grooves within the constriction of
+\gls{clya}, similarly to the fluctuations observed during translocation
+(\cref{clya_mutants_dsdna_0150_energy,fig:clya_mutants_dsdna_2500_energy}). 
+
+\paragraph{Effective pore size.}
+%
+The angle-averaged relative energy $\langle \Delta \energyelec_{r=0} \rangle_{\phi}$
+(\cref{fig:clya_dsdna_constriction_energy_averaged}) reveals quasi exponential increase of energy required to
+move a mere \SI{5}{\angstrom} away the center of pore: from \SIrange{0}{7}{\kT}. Even a small offset confers a
+significant electrostatic energy penalty, with shifts of \SI{2.0}{\angstrom} and \SI{3.5}{\angstrom} giving
+rise to increases of \SI{1}{\kT} and \SI{3}{\kT}, respectively. Asuming Boltzmann statistics, the probability
+$\probability$ of the \gls{dna} to be present at a certain offset from the center of the pore
+(\cref{fig:clya_dsdna_constriction_energy_averaged}) is given by 
+%
+\begin{align}
+  \probability = \exp{
+    \left( \dfrac{\langle \Delta \energyelec_{r=0} \rangle_{\phi}}{\boltzmann\temperature} \right)
+    }
+    \text{  .}
+\end{align}
+%
+This means that at any given time, \SI{63}{\percent} and \SI{95}{\percent} of \gls{dna} molecules will be
+within radius of \SI{2.0}{\angstrom} and \SI{3.5}{\angstrom} from the center of the pore, respectively. Hence,
+when placing a cut-off at \SI{3}{\kT}, the electrostatic energy confines the DNA to a circular region with a
+radius of \SI{14.5}{\angstrom} ($\mSI{11}{\angstrom} + \mSI{3.5}{\angstrom}$), yielding an effective
+constriction size of \SI{29}{\angstrom}, instead of the traditional \SI{33}{\angstrom}.
+
+
 \section{Conclusion}
-\ldots
+%
+\label{sec:elec:conclusion}
+%
 
-\section{Additional remarks}
-\ldots
+The the electrostatic interactions between nanopores and analyte molecules can play a determining role in the
+properties of nanopores. In this chapter we have investigated the influence of ionic strength and solution pH
+on the distribution of the equilibrium electrostatic potential (\ie~without an external electric field) within
+several variants of the \gls{plyab}, \gls{frac} and \gls{clya} nanopores. This enabled us to provide insights
+into experimentally observed properties such a as ion selectivity, and postulate the influence on second order
+effects such as the electro-osmotic flow. Self-consistent computation of the electrostatic interaction
+energies between a translocating \gls{dna} strand and the \gls{frac} and \gls{clya} nanopores, provided
+further insights into the \gls{dna} translocation mechanisms of there pores, confirming experimental
+observations.
 
+It is clear that, by studying its electrostatics, one can already reveal a significant fraction a nanopore's
+secrets. Nevertheless, as we shall see in the following chapters, equilibrium electrostatics comprise only a
+part of a nanopore's. Hence, developing a full understanding requires a thorough quantitative analysis of the
+\emph{non-equilibrium} effects (\ie~with an external electric field), such as electrophoresis,
+electro-osmosis, and steric hindrance.
 
 
 

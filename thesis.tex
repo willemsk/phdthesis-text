@@ -1,4 +1,4 @@
-\documentclass[showinstructions,faculty=fw,department=che,phddegree=bct]{adsphd}
+\documentclass[showinstructions,faculty=fw,department=che,phddegree=bct,10pt]{adsphd}
 %\documentclass[showinstructions,showlabels,coverfontpercent=100,faculty=firw,department=cws,phddegree=cws]{adsphd}
 %\documentclass[croppedpdf,showinstructions,faculty=firw,department=cws,phddegree=cws]{adsphd}
 %\documentclass[online,faculty=firw,department=cws,phddegree=cws]{adsphd}
@@ -23,10 +23,9 @@
 \supervisor{Prof.~dr.~G.~Maglia}{}
 \supervisor{Prof.~dr.~ir.~P.~Van~Dorpe}{}
 \supervisor{Prof.~dr.~ir.~J.~Hofkens}{}
-\president{Prof.~dr.~ir.~The~Chairman}
-\jury{Prof.~dr.~ir.~The~One\\
-      Prof.~dr.~ir.~The~Other
-}
+\president{Prof.~dr.~ir.~The~Chairman}{}
+\jurymember{Prof.~dr.~ir.~The~One}{}
+\jurymember{Prof.~dr.~ir.~The~Other}{}
 \externaljurymember{Prof.~dr.~External~Jurymember}{Far Away}
 
 % Your research group within the department
@@ -36,7 +35,7 @@
 \email{Kherim.Willems@imec.be} % Leave empty to hide
 
 \address{Kapeldreef 75}
-% \addresscity{B-3001 Leuven} % This is the default value. Note
+\addresscity{B-3001 Leuven} % This is the default value. Note
                               % that 'B-3001 Heverlee' is _incorrect_!!
                               % /[https://www.kuleuven.be/communicatie/marketing/intranet/huisstijl/taalgebruik.html]
 
@@ -98,7 +97,7 @@
 % Fonts
 \usepackage{textcomp} % nice greek alphabet
 \usepackage{pifont}   % Dingbats
-\usepackage{booktabs}
+\usepackage{booktabs, tabularx, multirow}
 \usepackage{amssymb,amsthm}
 \usepackage{amsmath}
 \usepackage{textgreek}
@@ -114,7 +113,9 @@
 	\sisetup{tight-spacing=true}
 	\sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
 	\sisetup{list-units=single}
-	\sisetup{range-units=single}
+  \sisetup{range-units=single}
+  \sisetup{binary-units=true}
+  \sisetup{retain-explicit-plus=true}
 
 \DeclareSIUnit \Molar {\textsc{M}}
 \DeclareSIUnit \atm {\textsc{atm}}
@@ -145,6 +146,20 @@
 % epigraphs (quotes)
 \usepackage{epigraph}
 
+% graphics
+\usepackage{tikz}
+
+% rotated pages
+\usepackage{pdflscape}
+
+% code blocks
+\usepackage{listings}
+\lstset{
+  language=bash,
+  basicstyle=\ttfamily
+}
+
+
 \input{mycommands.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,6 +171,8 @@
 \makefrontcoverXII
 
 \maketitle
+
+\input{quotepage}
 
 \frontmatter % to get \pagenumbering{roman}
 

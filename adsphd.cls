@@ -6,13 +6,13 @@
 %% conditions of the LaTeX Project Public License, either
 %% version 1.2 of this license or (at your option) any later
 %% version.  The latest version of the license is in:
-%%
+%% 
 %%    http://www.latex-project.org/lppl.txt
-%%
+%% 
 %% Information about the ADS guidelines:
 %%
 %%    https://set.kuleuven.be/intranet-associatie/ADS/guidelines_PhDthesis.htm
-%%
+%% 
 \NeedsTeXFormat{LaTeX2e}[2009/09/24]
 \ProvidesClass{adsphd}
     [2016/05/30 v1.3 Standard KU Leuven Arenberg Doctoral School PhD class]
@@ -58,8 +58,26 @@
 \newlength{\tmplength}
 
 % Colors
-\definecolor{blueXIIdark}{cmyk}{.81,.19,.12,.06}
-\definecolor{blueXIIlight}{cmyk}{.59,.05,.02,.00}
+\definecolor{kullightblue}{cmyk/RGB/rgb}{.59,.07,0,0/82,189,236/.322,.741,.925}
+\definecolor{kulcorporateblue}{cmyk/RGB/rgb}{1,.64,0,.38/0,64,122/0,.251,.478}
+\definecolor{kulprimaryblue}{cmyk/RGB/rgb}{.65,0,0,.35/29,141,176/.114,.553,.690}
+\definecolor{kulsecondaryblue}{cmyk/RGB/rgb}{.13,0,0,.07/220,231,240/.863,.906,.941}
+\definecolor{kultertiarylightblue}{cmyk/RGB/rgb}{.59,.07,0,0/82,189,236/.322,.741,.925}
+\definecolor{kultertiaryblue}{cmyk/RGB/rgb}{.65,0,0,.55/70,110,135/.275,.431,.529}
+\definecolor{kultertiarydarkblue}{cmyk/RGB/rgb}{.65,0,0,.75/47,77,93/.184,.302,.365}
+\definecolor{kultertiaryaccent1}{cmyk/RGB/rgb}{.60,0,.30,0/135,192,189/.529,.753,.741}
+\definecolor{kultertiaryaccent2}{cmyk/RGB/rgb}{0,.35,.90,0/231,176,55/.906,.690,.216}
+\definecolor{kultertiaryaccent3}{cmyk/RGB/rgb}{.30,0,.70,.30/156,166,90/.612,.651,.353}
+\definecolor{kultertiaryaccent4}{cmyk/RGB/rgb}{.14,.05,.90,0/228,218,62/.894,.855,.243}
+\definecolor{kultertiaryaccent5}{cmyk/RGB/rgb}{.31,0,.12,.10/184,208,212/.722,.816,.831}
+\definecolor{kultertiaryaccent6}{cmyk/RGB/rgb}{.34,.36,.59,.0/176,159,118/.690,.624,.463}
+\definecolor{kultertiaryaccent7}{cmyk/RGB/rgb}{0,.65,.50,0/212,119,110/.831,.467,.431}
+\definecolor{kultertiaryaccent8}{cmyk/RGB/rgb}{0,.10,1,.23/203,182,16/.796,.714,.063}
+\definecolor{kultertiaryaccent9}{cmyk/RGB/rgb}{0,.51,.20,.30/170,121,130/.667,.475,.510}
+\definecolor{kultertiaryaccent10}{cmyk/RGB/rgb}{.10,.50,.10,.05/199,147,174/.780,.576,.682}
+\definecolor{kultertiaryaccent11}{cmyk/RGB/rgb}{.25,0,.90,0/212,216,66/.831,.847,.259}
+\definecolor{kultertiaryaccent12}{cmyk/RGB/rgb}{.03,.60,.80,.15/186,113,60/.729,.443,.235}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Options that can be passed to adsphd.cls:
@@ -241,7 +259,7 @@
 \fi
 
 \ifadsphd@draft
-  \typeout{adsphd.cls: [draft]}
+  \typeout{adsphd.cls: [draft]}  
   \PassOptionsToClass{draft}{report}
   \adsphd@showlabelstrue
   % Show a frame around each logical
@@ -306,11 +324,11 @@
 
 \ifadsphd@showgit
   \DisableKeyvalOption[action=warning,package=adsphd]{adsphd}{showgit}
-  \def\gittmpfile{/tmp/gitdescribe.txt}
-  \immediate\write18{touch \gittmpfile}
-  % Check whether shell escapes are enabled
-  \IfFileExists{\gittmpfile}{\shellescapetrue}{\shellescapefalse}
-  \ifshellescape
+  \def\gittmpfile{/tmp/gitdescribe.txt} 
+  \immediate\write18{touch \gittmpfile} 
+  % Check whether shell escapes are enabled 
+  \IfFileExists{\gittmpfile}{\shellescapetrue}{\shellescapefalse} 
+  \ifshellescape 
     \adsphd@showgittrue
     %\newcommand*\cropgitinfo{\gitdescribe}
     \immediate\write18{git describe --tags --long --always > \gittmpfile} %
@@ -377,6 +395,36 @@
 \let\supervisor\@supervisorfirst
 
 
+% Allow for multiple presidents
+\DTLnewdb{president}
+\newcommand{\@president}[2]{%
+  \DTLnewrow{president}%
+  \DTLnewdbentry{president}{name}{#1}%
+  \DTLnewdbentry{president}{affiliation}{#2}%
+}
+\newcommand{\@presidentfirst}[2]{%
+  \DTLforeach{president}{}{\DTLremovecurrentrow}
+  \let\president\@president
+  \president{#1}{#2}
+}
+\let\president\@presidentfirst
+
+
+% Allow for multiple jury members
+\DTLnewdb{jury}
+\newcommand{\@jurymember}[2]{%
+  \DTLnewrow{jury}%
+  \DTLnewdbentry{jury}{name}{#1}%
+  \DTLnewdbentry{jury}{affiliation}{#2}%
+}
+\newcommand{\@jurymemberfirst}[2]{%
+  \DTLforeach{jury}{}{\DTLremovecurrentrow}
+  \let\jurymember\@jurymember
+  \jurymember{#1}{#2}
+}
+\let\jurymember\@jurymemberfirst
+
+
 % Allow for multiple external jury members
 \DTLnewdb{externaljury}
 \newcommand{\@externaljurymember}[2]{%
@@ -393,8 +441,6 @@
 
 \def\subtitle#1{\gdef\@subtitle{#1}}
 \def\author#1#2{\gdef\@authorf{#1}\gdef\@authorl{#2}}
-\def\president#1{\gdef\@president{#1}}
-\def\jury#1{\gdef\@jury{#1}}
 \def\udc#1{\gdef\@udc{#1}}
 \def\depot#1{\gdef\@depot{#1}}
 \def\isbn#1{\gdef\@isbn{#1}}
@@ -443,10 +489,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Default values and other settings
 \author{Guust}{Flater}
-\@supervisor{Prof.dr.ir.~Supervisor}{}
-\president{Mr.~De~Voorzitter}
-\jury{Jurylid 1\\Jurylid 2}
-\@externaljurymember{External jury member}{External affiliation}
+\@supervisor{Prof.~dr.~ir.~Supervisor}{}
+\@president{Prof.~dr.~ir.~The~Chairman}{}
+\@jurymember{Prof.~dr.~ir.~The~One}{}
+\@jurymember{Prof.~dr.~ir.~The~Other}{}
+\@externaljurymember{Prof.~dr.~External~Jurymember}{Far Away}
 \udc{}
 \depot{}
 \isbn{}
@@ -533,13 +580,14 @@
   \ifadsphd@epub\else
   \RequirePackage[center,pdftex]{crop}
   \fi
-  \RequirePackage[pdftex]{graphicx}
+  \RequirePackage{graphicx}
   \DeclareGraphicsExtensions{.pdf, .jpg, .tif, .png}
   % Use utf-8 encoding for foreign characters
     \ifPDFTeX
       \RequirePackage[utf8]{inputenc}
     \fi
 \else
+  \typeout{Using DVIPS}
   % Load the crop package
   \RequirePackage[center,dvips]{crop} % Option [a3] already passed
   \RequirePackage[dvips]{graphicx}
@@ -717,7 +765,7 @@
 \renewcommand{\sfdefault}{\origsfdefault}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% The document consists of
+% The document consists of 
 %  \frontmatter -> Preface, Summary, etc
 %  \mainmatter  -> Main text
 %  \appendix    -> Appendix
@@ -729,7 +777,7 @@
 % and Pages]).
 % In the course of the booklet, the numbering should be changed
 % (resetted) only twice(!), i.e., using \frontmatter and \mainmatter.
-\pagenumbering{alph}
+\pagenumbering{alph} 
 
 \newcommand{\frontmatter}{\cleardoublepage\pagenumbering{roman}}
 
@@ -934,8 +982,8 @@
 \newenvironment{ftw_instructions}{
   \definecolor{shadecolor}{gray}{0.85}
   \begin{shaded}
-  \textbf{Instructies van de faculteit:}
-
+  \textbf{Instructies van de faculteit:} 
+  
   }%
   {
     \end{shaded}
@@ -1172,7 +1220,7 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
     \typeout{adsphd.cls: Using custom cover page (\@customcoverpage)}
     \input{\@customcoverpage}
   }{
-    \typeout{adsphd.cls: Cannot find custom cover page
+    \typeout{adsphd.cls: Cannot find custom cover page 
       (\@customcoverpage). Restoring default cover page.}
     \let\makefrontcovergeneralX\orig@makefrontcovergeneralX
     \let\makebackcovergeneralX\orig@makebackcovergeneralX
@@ -1231,13 +1279,15 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   \thispagestyle{empty}
   % Blue bar on top
   \begin{textblock*}{\adsphdpaperwidth+\lbleed+\rbleed}(0mm-\lbleed+#1,20mm)
-  \textblockcolour{blueXIIdark}
+  \textblockcolour{kulprimaryblue}
   %\vspace{-\parskip}
   \rule{0pt}{20mm}
   \end{textblock*}
   %
   % Create logo box
   \begin{textblock*}{56mm}(10mm+#1,15mm)
+  % explicitly turn off block colour to prevent the coloured background from popping up due to misalignment of the logo
+  \textblockcolour{}
   \includegraphics[width=56mm,height=20mm]{image/KULEUVEN_LOGO_2012}
   \end{textblock*}
   %
@@ -1290,7 +1340,7 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   }
   \end{textblock*}
   %
-  % Create blue background
+  % Create blue background 
   \begin{textblock*}{60mm+\lbleed}(0mm-\lbleed+#1, 20mm)
   \textblockcolour{}
   \includegraphics[width=60mm+\lbleed,height=20mm]{image/blue}
@@ -1355,20 +1405,20 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   % Create header
   \frontcoverheaderXII{#1}
   %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   %
   % Title, subtitle, authorname, text and date can be moved around.
-  % Change the textblock* commands below.
+  % Change the textblock* commands below. 
   %
   % Syntax of textblock environment:
-  %
+  % 
   %   \begin{textblock*}{width}(xpos,ypos)
   %     ...
   %   \end{textblock*}
-  %
+  % 
   % !! Make sure not to remove the '+#1' part!!!
   %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   %
   % Place the DRAFT notifier on the front page to avoid printing a wrong
   % version
@@ -1391,7 +1441,7 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   \textblockcolour{}
   \vspace{-\parskip}
   \raggedright
-  \coverfontsize{30}{34}\selectfont\sffamily{\color{blueXIIdark}\@title}\\
+  \coverfontsize{30}{34}\selectfont\sffamily{\color{kulprimaryblue}\@title}\\
   \coverfontsize{20}{25}\selectfont\sffamily{\@subtitle}
   \end{textblock*}
   %
@@ -1438,8 +1488,12 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
     \begin{minipage}[t]{67mm}
       \coverfontsize{12}{15}\selectfont\sffamily
       %\begin{tabular}[t]{p{6.9cm}}
-      Examination committee:\\
-      \@president, chair
+      Examination committee:
+      \DTLforeach{president}{\name=name,\affiliation=affiliation}{%
+      \\\name, chair
+      \ifthenelse{\equal{\affiliation}{}}{}{%
+        \\\rule{0.5cm}{0pt}(\affiliation)
+      }}
       \DTLforeach{supervisor}{\name=name,\affiliation=affiliation}{%
       \\\name, supervisor
       \ifthenelse{\equal{\affiliation}{}}{}{%
@@ -1450,10 +1504,14 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
       %\ifthenelse{\equal{\affiliation}{}}{}{%
         %\\\rule{0.25cm}{0pt}(\affiliation)
       %}}
-      \\\@jury%
+      \DTLforeach{jury}{\name=name,\affiliation=affiliation}{%
+      \\\name
+      \ifthenelse{\equal{\affiliation}{}}{}{%
+        \\\rule{0.5cm}{0pt}(\affiliation)
+      }}
       \DTLforeach{externaljury}{\name=name,\affiliation=affiliation}{%
-      \\\name \\
-      \rule{0.25cm}{0pt}(\affiliation)
+      \\\name
+      \\\rule{0.25cm}{0pt}(\affiliation)
       }
       \\
       \if\empty\@udc \else U.D.C. \@udc\fi
@@ -1487,12 +1545,12 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   %
   % Bottom blue bar
   \begin{textblock*}{\adsphdpaperwidth+\lbleed+\rbleed}(0mm-\lbleed+#1,234mm)
-  \textblockcolour{blueXIIlight}
+  \textblockcolour{kullightblue}
   %\vspace{-\parskip}
   \rule{0pt}{2.1mm}
   \end{textblock*}
   %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   %
   % Add footer
   \frontcoverfooterXII{#2}
@@ -1506,20 +1564,20 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   % Create header
   \frontcoverheaderX{#1}
   %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   %
   % Title, subtitle, authorname, text and date can be moved around.
-  % Change the textblock* commands below.
+  % Change the textblock* commands below. 
   %
   % Syntax of textblock environment:
-  %
+  % 
   %   \begin{textblock*}{width}(xpos,ypos)
   %     ...
   %   \end{textblock*}
-  %
+  % 
   % !! Make sure not to remove the '+#1' part!!!
   %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   %
   % Place the DRAFT notifier on the front page to avoid printing a wrong
   % version
@@ -1573,7 +1631,7 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   \begin{center} {\small\sffamily\@date }\end{center}
   \end{textblock*}
   %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   %
   % Add footer
   \frontcoverfooterX{#2}
@@ -1618,8 +1676,12 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
 \vspace{-\parskip}
 \begin{minipage}[t]{7.32cm}
 %  \begin{tabular}[t]{p{6.9cm}}
-    Examination committee:\\
-    \@president, chair
+    Examination committee:
+    \DTLforeach{president}{\name=name,\affiliation=affiliation}{%
+    \\\name, chair
+    \ifthenelse{\equal{\affiliation}{}}{}{%
+      \\\rule{0.5cm}{0pt}(\affiliation)
+    }}
     \DTLforeach{supervisor}{\name=name,\affiliation=affiliation}{%
     \\\name, supervisor
     \ifthenelse{\equal{\affiliation}{}}{}{%
@@ -1630,10 +1692,14 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
     %\ifthenelse{\equal{\affiliation}{}}{}{%
       %\\\rule{0.25cm}{0pt}(\affiliation)
     %}}
-    \\\@jury%
+    \DTLforeach{jury}{\name=name,\affiliation=affiliation}{%
+    \\\name
+    \ifthenelse{\equal{\affiliation}{}}{}{%
+      \rule{0.5cm}{0pt}(\affiliation)
+    }}
     \DTLforeach{externaljury}{\name=name,\affiliation=affiliation}{%
-    \\\name \\
-    \rule{0.25cm}{0pt}(\affiliation)
+    \\\name
+    \\\rule{0.25cm}{0pt}(\affiliation)
     }
     \\
     \if\empty\@udc \else U.D.C. \@udc\fi
@@ -1773,12 +1839,12 @@ without written permission from the publisher.
   % Blue lines in right corner
   %
   \begin{textblock*}{55mm}(#1+97.5mm,20mm)
-  \textblockcolour{blueXIIlight}
+  \textblockcolour{kullightblue}
   %\vspace{-\parskip}
   \rule{0pt}{2mm}
   \end{textblock*}
   \begin{textblock*}{2mm}(#1+152mm,20mm)
-  \textblockcolour{blueXIIlight}
+  \textblockcolour{kullightblue}
   %\vspace{-\parskip}
   \rule{0pt}{18mm}
   \end{textblock*}
@@ -1792,7 +1858,7 @@ without written permission from the publisher.
   %\vspace{-3mm}
   {\scriptsize {\sffamily\MakeUppercase\@faculty}}\\[-1mm]
   {\scriptsize {\sffamily\MakeUppercase\@department}}\\[-1mm]
-  {\scriptsize {\sffamily\MakeUppercase\@researchgroup}}\\[-1mm]
+  \ifdefempty{\@researchgroup}{}{{\scriptsize {\sffamily\MakeUppercase\@researchgroup}}\\[-1mm]}
   {\scriptsize {\sffamily\@address}}\\[-1mm]
   {\scriptsize {\sffamily{}\@addresspc}}\\[-1mm]
   \ifdefempty{\@email}{}{{\scriptsize {\sffamily{}\@email}}\\[-1mm]}
@@ -1833,9 +1899,9 @@ without written permission from the publisher.
 \newcommand{\backcoverfooterXII}[1]{%
   % Bottom blue bar
   %\begin{textblock*}{\adsphdpaperwidth}(#1,222mm)
-  \begin{textblock*}{\adsphdpaperwidth+\lbleed+\rbleed}(#1-\lbleed,222mm)
+  \begin{textblock*}{\adsphdpaperwidth+\lbleed+\rbleed}(#1-\rbleed,222mm)
   %\begin{textblock*}{\adsphdpaperwidth}(0mm+#1,234mm)
-  \textblockcolour{blueXIIdark}
+  \textblockcolour{kulprimaryblue}
   %\vspace{-\parskip}
   \rule{0pt}{15mm}
   \end{textblock*}
@@ -1890,7 +1956,7 @@ without written permission from the publisher.
   %
   % Get adsphdspinewidth as #3
   \setlength{\adsphdspinewidth}{#3}
-  %
+  % 
   % Get spinetitlewidth as #4
   \ifthenelse{\equal{#4}{}}
   {}{
@@ -1932,7 +1998,7 @@ without written permission from the publisher.
     }
   }
   %
-  \begin{textblock*}{\adsphdspinewidth}(0mm+#1,49mm-\authorlenpenalty) % 9mm whitespace
+  \begin{textblock*}{\adsphdspinewidth}(0mm+#1,49mm-\authorlenpenalty) % 9mm whitespace 
                                         % between blue and first letter of the author name
                                         % (possibly less because the author name might be
                                         % reallyreally long)
@@ -1969,7 +2035,7 @@ without written permission from the publisher.
   %
   % Get adsphdspinewidth as #3
   \setlength{\adsphdspinewidth}{#3}
-  %
+  % 
   % Get spinetitlewidth as #4
   \ifthenelse{\equal{#4}{}}
   {}{
@@ -2004,7 +2070,7 @@ without written permission from the publisher.
     }
   }
   %
-  \begin{textblock*}{\adsphdspinewidth}(0mm+#1,20mm-\authorlenpenalty) % 9mm whitespace
+  \begin{textblock*}{\adsphdspinewidth}(0mm+#1,20mm-\authorlenpenalty) % 9mm whitespace 
                                         % between blue and first letter of the author name
                                         % (possibly less because the author name might be
                                         % reallyreally long)

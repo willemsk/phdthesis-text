@@ -7,58 +7,93 @@
 
 \newglossaryentry{7r-ahl}{
   name={7R-\textalpha{}HL},
-  description={\textalpha{}HL variant with the mutations M113R/T115R/T117R/G119R/N121R/N123R/T125R}
+  description={\textalpha{}HL variant with the mutations M113R, T115R, T117R, G119R, N121R, N123R, T125R}
 }
 
 
 \newacronym{clya}{ClyA}{Cytolysin A}
+
 \newglossaryentry{clya-as}{
   name={ClyA-AS},
-  description={optimized variant of the wild type ClyA}
+  description={\textit{S. typhi} wild-type ClyA variant with the mutations C87A, L99Q, E103G, F166Y, I203V, C285S, K294R, H307Y}
 }
+
 \newglossaryentry{clya-r}{
   name={ClyA-R},
   description={ClyA-AS variant with the mutation S110R}
 }
+
 \newglossaryentry{clya-rr}{
   name={ClyA-RR},
-  description={ClyA-AS variant with the mutations S110R/D64R}
+  description={ClyA-AS variant with the mutations S110R, D64R}
 }
+
 \newglossaryentry{clya-rr56}{
   name={ClyA-RR$_{56}$},
-  description={ClyA-AS variant with the mutations S110R/Q56R}
+  description={ClyA-AS variant with the mutations S110R, Q56R}
 }
+
 \newglossaryentry{clya-rr56k}{
   name={ClyA-RR$_{56}$K},
-  description={ClyA-AS variant with the mutations S110R/Q56R/Q8K}
+  description={ClyA-AS variant with the mutations S110R, Q56R, Q8K}
 }
+
 \newacronym{mspa}{MspA}{\textit{Mycobacterium smegmatis} porin A}
 
 \newacronym{frac}{FraC}{Fragaceatoxin C}
+
+\newglossaryentry{wtfrac}{
+  name={WtFraC},
+  description={Wild-type FraC variant}
+}
+
 \newglossaryentry{refrac}{
   name={ReFraC},
   description={FraC variant with mutations D10R/K159E}
 }
 
 \newacronym{plyab}{PlyAB}{Pleurotolysin AB}
+\newacronym{plya}{PlyA}{Pleurotolysin A}
+\newacronym{plyb}{PlyB}{Pleurotolysin B}
+
+\newglossaryentry{plyab-wt}{
+  name={PlyAB-WT},
+  description={PlyAB wild-type variant}
+}
+
+\newglossaryentry{plyab-e2}{
+  name={PlyAB-E2},
+  description={PlyAB variant with mutations C62S, C94S (PlyA) and N26D, N107D, G218R, A328T, C441A, A464V (PlyB)}
+}
+
+\newglossaryentry{plyab-r}{
+  name={PlyAB-R},
+  description={PlyAB variant with mutations C62S, C94S (PlyA) and N26D, K255E, E260R, E270R, A328T, C441A, A464V (PlyB)}
+}
+
 
 \newglossaryentry{kcsa}{
   name={KcsA},
   description={K channel of \textit{Streptomyces A}}
 }
 
+% Nanopore terms
 
+\newacronym{eof}{EOF}{electro-osmotic flow}
 
 
 % General molecules, proteins
 
+\newacronym{pdb}{PDB}{protein data bank}
 \newacronym{tmd}{TMD}{transmembrane domain}
 \newacronym{sm}{SM}{sphingomyelin}
 \newacronym{macpf}{MACPF}{membrane attack complex/perforin-like}
 \newacronym{hth}{HTH}{helix-turn-helix}
 \newacronym{dna}{DNA}{deoxyribonucleic acid}
+\newacronym{ssdna}{ssDNA}{single-stranded DNA}
 \newacronym{dsdna}{dsDNA}{double-stranded DNA}
-
+\newacronym{sph}{SPH}{sphingomyelin}
+\newacronym{dphpc}{DPhPC}{1,2-diphytanoyl-\textit{sn}-glycero-3-phosphocholine}
 
 % Computational
 \newacronym{md}{MD}{molecular dynamics}
@@ -66,6 +101,39 @@
 \newacronym{namd}{NAMD}{nanoscale molecular dynamics}
 \newacronym{apbs}{APBS}{adaptive Poisson-Boltzman solver}
 \newacronym{com}{COM}{center-of-mass}
+\newacronym{mdff}{MDFF}{molecular dynamics flexible fitting}
+\newacronym{tcl}{Tcl}{Tool Command Language}
+\newacronym{rmsd}{RMSD}{root-mean-square deviation}
+
+\newacronym{pbe}{PBE}{Poisson-Boltzman equation}
+
+\newacronym{mdh}{\code{mdh}}{multiple Debye-H\"{u}ckel}
+
+\newglossaryentry{pdb2pqr}{
+  name={PDB2PQR},
+  description={software package to convert PDB into PQR files}
+}
+
+\newglossaryentry{propka}{
+  name={PROPKA},
+  description={software package to predict the $\pKa$-values of protein residues with an empirical approach}
+}
+
+\newglossaryentry{delphipka}{
+  name={DelPhiPKa},
+  description={software package to predict the $\pKa$-values of protein residues with an electrostatic approach}
+}
+
+
+\newglossaryentry{charmm36}{
+  name={CHARMM36},
+  description={chemistry at Harvard macromolecular mechanics force field version 36}
+}
+
+\newglossaryentry{parse}{
+  name={PARSE},
+  description={parameters for solvation energy force field}
+}
 
 % Biochemistry
 \newacronym{dna}{DNA}{deoxyribonucleic acid}
@@ -75,3 +143,8 @@
 \newacronym{ddm}{DDM}{\textit{n}-dodecyl \textbeta-D-maltoside}
 \newacronym{rbc}{RBC}{red blood cells}
 \newacronym{fret}{FRET}{F\"{o}rster resonance energy transfer}
+\newacronym{nmr}{NMR}{nuclear magnetic resonance}
+\newacronym{edl}{EDL}{electrical double layer}
+\newacronym{vdw}{VDW}{van der Waals}
+\newacronym{dhfr}{DHFR}{dihydrofolate reductase}
+\newacronym{bsa}{BSA}{bovine serum albumin}

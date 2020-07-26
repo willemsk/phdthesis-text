@@ -1,3 +1,6 @@
+% Markup
+\newcommand{\code}[1]{\texttt{#1}}
+
 % Shorthands
 \newcommand{\todo}[1]{\textbf{\textcolor{orange}{#1}}}
 \newcommand{\ahl}{\textalpha HL}
@@ -140,9 +143,11 @@
 \newcommand{\mobility}{\mu}				         		% Electrophoretic mobility
 \newcommand{\transportn}{t}				         		% Transport number
 \newcommand{\chargen}{z}				          		% Ion charge number
+\newcommand{\chargeq}{q}				          		% Charge
 \newcommand{\ionsize}{a}					           	% Ion size for smPNP
 \newcommand{\density}{\varrho}			     			% Fluid density
 \newcommand{\viscosity}{\eta}				         	% Fluid viscosity
+\newcommand{\length}{l}				         	% Length
 
 \newcommand{\iondiffusion}[1]{\diffusion_{#1}}	        % Ion Diffusion coefficient
 \newcommand{\ionmobility}[1]{\mobility_{#1}}	          % Ion electrophoretic mobility
@@ -174,10 +179,14 @@
 \newcommand{\Cl}{\ce{Cl-}}
 \newcommand{\Qion}{Q_{\rm ion}}
 \newcommand{\radpot}{\left<\potential\right>_\text{rad}}
+\newcommand{\cylpot}{\left<\potential\right>_\text{cyl}}
 \newcommand{\radenergy}{\left< U_{\text{E},i} \right>_{\text{rad}}}
 \newcommand{\deltaEt}{\Delta E_{\text{B},i}}
 \newcommand{\pH}[1]{pH~\num{#1}}
-% \newcommand{\kT}{\boltzmann\temp}
+\newcommand{\pHrange}[2]{pH~\numrange{#1}{#2}}
+\newcommand{\pHlist}[1]{pH~\numlist{#1}}
+\newcommand{\pKa}{\text{p}K_{\mathrm{a}}}
+% \newcommand{\kT}{\boltzmann\temperature}
 % \newcommand{\kTe}{\kT / \echarge}
 \newcommand{\ta}{\textalpha}
 \newcommand{\tb}{\textbeta}
@@ -188,8 +197,31 @@
 \newcommand{\atomradius}{R}
 
 
-% Electrostatics
-\newcommand{\energyelec}{\Delta \Delta G _{\mathrm{el}}}
+% Electrostatic chapter
+\newcommand{\apbsgrid}[4]{$#1 \times #2 \times #3 $~\si{#4}}
+
+% PBE
+\newcommand{\ionaccess}{\kappa}
+
+% Fractional PQR
+
+\newcommand{\protfrac}{f}
+
+% Energy
+\newcommand{\gibbs}{G}
+\newcommand{\energyelec}{\Delta \gibbs^{\mathrm{el}}}
+\newcommand{\zdna}{z_{\mathrm{DNA}}}
+\newcommand{\zdnac}{z_{\mathrm{DNA}}^{\text{\cisi}}}
+\newcommand{\zdnat}{z_{\mathrm{DNA}}^{\text{\transi}}}
+
+% Probalilities
+\newcommand{\probability}{p}
+
+% Permeability ration
+\newcommand{\permeabilityratio}[2]{ P_{#1} / P_{#2} }
+
+% Drawings
+\newcommand{\sliceline}{\tikz \draw [>-<,>={Straight Barb},>={Straight Barb}] (0,.5) -- (0.5,.5);}
 
 
 % Units
@@ -200,12 +232,14 @@
 \DeclareSIUnit{\bp}{\textsc{bp}}
 \DeclareSIUnit{\kT}{\textit{k}\textsubscript{B} \textit{T}}
 \DeclareSIUnit{\kTe}{\kT\per\elementarycharge}
+\DeclareSIUnit{\cal}{cal}
 \newcommand{\kDa}{\kilo\dalton}
 \newcommand{\uM}{\micro\Molar}
 \newcommand{\mM}{\milli\Molar}
 \newcommand{\nM}{\nano\Molar}
 \newcommand{\mV}{\milli\volt}
 \newcommand{\pA}{\pico\ampere}
+\newcommand{\nS}{\nano\siemens}
 \newcommand{\um}{\micro\meter}
 \newcommand{\nm}{\nano\meter}
 \newcommand{\ms}{\milli\second}
@@ -217,4 +251,11 @@
 \newcommand{\ec}{\elementarycharge}
 \newcommand{\dC}{\degreeCelsius}
 \newcommand{\mps}{\meter\per\second}
+\newcommand{\mmps}{\milli\meter\per\second}
 \newcommand{\cnmpnspv}{\cubic\nano\meter\per\nano\second\per\volt}
+
+% Math mode SI wrapping
+\newcommand{\mSI}[2]{\text{\SI{#1}{#2}}}
+\newcommand{\msi}[2]{\text{\si{#1}{#2}}}
+\newcommand{\mSIrange}[3]{\text{\SIrange{#1}{#2}{#3}}}
+\newcommand{\mSIlist}[2]{\text{\SIlist{#1}{#2}}}
