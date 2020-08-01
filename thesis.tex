@@ -59,6 +59,9 @@
 
 %%% COVER: End settings %%%
 
+% PDFTeX page group warning
+\pdfsuppresswarningpagegroup=1
+
 % for the nomenclature (comment out if you do not use the nomencl package
 \usepackage{nomencl}   % For nomenclature
 \renewcommand{\nomname}{List of Symbols}
@@ -97,7 +100,7 @@
 % Fonts
 \usepackage{textcomp} % nice greek alphabet
 \usepackage{pifont}   % Dingbats
-\usepackage{booktabs, tabularx, multirow}
+\usepackage{booktabs, tabularx, multirow, threeparttable}
 \usepackage{amssymb,amsthm}
 \usepackage{amsmath}
 \usepackage{textgreek}
@@ -133,10 +136,11 @@
   \Crefname{section}{Section}{Sections}
 
 % captions
-\usepackage[font=footnotesize,labelfont=bf,labelsep=period]{caption}
+\usepackage[font=scriptsize,labelfont=bf,labelsep=period]{caption}
   \captionsetup[table]{singlelinecheck=false}
-  \captionsetup[table]{font=footnotesize}
+  \captionsetup[table]{font=scriptsize}
   \captionsetup[table]{labelfont=bf}
+
 \usepackage[font=footnotesize,labelfont=bf,labelsep=period,margin=1mm]{subcaption}
   \captionsetup[subfigure]{labelfont=bf}
   \captionsetup[subfigure]{textfont=normalfont}
@@ -172,7 +176,7 @@
 
 \maketitle
 
-\input{quotepage}
+\input{myquotepage}
 
 \frontmatter % to get \pagenumbering{roman}
 
@@ -209,24 +213,33 @@
 \input{mynomenclature.tex}
 
 \part{Introduction}
+%
+\cleardoublepage
+%
 \includechapter{nanopores}
 \includechapter{modelling}
 \includechapter{aims}
 
 \part{Results}
+%
+\cleardoublepage
+%
 \includechapter{electrostatics}
 \includechapter{trapping}
 \includechapter{transport}
 \includechapter{dynamics}
 
 \part{Conclusions}
+%
+\cleardoublepage
+%
 \includechapter{conclusion}
 \includechapter{riskanalysis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{Appendices}
 \appendix
-\includeappendix{myappendix}
+\includeappendix{trapping_appendix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter

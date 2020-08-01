@@ -62,9 +62,11 @@
 \newcommand{\transition}{c}
 \newcommand{\kbt}{k_{\rm{B}} T}
 \newcommand{\ddt}[1]{\frac{d #1}{dt}}
-\newcommand{\vbias}{\varpotential^{\rm{bias}}}
+\newcommand{\cbulk}{\concentration_\text{s}}
+\newcommand{\vbias}{\varpotential_\text{b}}
 \newcommand{\ep}{{\rm{ep}}}
 \newcommand{\eo}{{\rm{eo}}}
+\newcommand{\st}{{\rm{ster}}}
 \newcommand{\osm}{{\rm{eo}}}
 \newcommand{\ext}{{\rm{ex}}}
 \newcommand{\intr}{{\rm{in}}}
@@ -77,6 +79,7 @@
 \newcommand{\forceep}{\force_{\ep}}
 \newcommand{\forceosm}{\force_{\osm}}
 \newcommand{\forceeo}{\force_{\eo}}
+\newcommand{\forcest}{\force_{\st}}
 \newcommand{\cis}{{\rm{cis}}}
 \newcommand{\trans}{{\rm{trans}}}
 \renewcommand{\min}{{\rm{min}}}
@@ -92,13 +95,14 @@
 \newcommand{\Nbody}{N_{\rm{body}}}
 \newcommand{\Nosm}{N_{\osm}}
 \newcommand{\Neo}{N_{\eo}}
+\newcommand{\Ntot}{N_{\rm{tot}}}
 \newcommand{\ratefc}{\rate_{\rm{eff}}^\cis}
 \newcommand{\rateft}{\rate_{\rm{eff}}^\trans}
 \newcommand{\Vt}{\frac{\kbt}{\ec}}
 \newcommand{\variance}{{\rm{Var}}}
 
-\newcommand{\onefiguresource}[3]
-{\begin{figure}[t]
+\newcommand{\onefiguresource}[4]
+{\begin{figure}[#4]
    \centering
    \begin{minipage}{0.9\textwidth}
       \centering
@@ -174,7 +178,6 @@
 
 % Shorthands
 \newcommand{\ci}{\concentration_{i}}
-\newcommand{\cbulk}{\concentration_\text{s}}
 \newcommand{\Na}{\ce{Na+}}
 \newcommand{\Cl}{\ce{Cl-}}
 \newcommand{\Qion}{Q_{\rm ion}}
@@ -216,6 +219,7 @@
 
 % Probalilities
 \newcommand{\probability}{p}
+\newcommand{\probtrans}{\probability_{\rm{transl}}}
 
 % Permeability ration
 \newcommand{\permeabilityratio}[2]{ P_{#1} / P_{#2} }

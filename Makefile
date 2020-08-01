@@ -94,7 +94,7 @@ MAKEINDEX = makeindex
 DETEX = detex
 GNUDICTION = diction
 GNUSTYLE = style
-ASPELL = aspell --lang=en_GB --add-tex-command="eqref p" \
+ASPELL = aspell --lang=en_US --add-tex-command="eqref p" \
 			--add-tex-command="psfrag pP" --add-tex-command="special p" \
 			--encoding=iso-8859-1 -t
 

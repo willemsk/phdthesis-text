@@ -1,18 +1,1412 @@
-\chapter{Engineering and modeling the electrophoretic trapping of a single protein inside a nanopore}\label{ch:trapping}
+%
+\chapter{Trapping of a single protein inside a nanopore}
+%
+\label{ch:trapping}
+%
+%
+\epigraphhead[80]{\epigraph{``Magic is organizing chaos. And while oceans of mystery remain, we have deduced that this requires two things. Balance and control.''}{
+    \textit{`Tissaia De Vries'}
+  }
+}
+%
+%
 
+%
+%
+\definecolor{shadecolor}{gray}{0.85}
+\begin{shaded}
+This chapter was published as:
+%
+% \begin{footnotesize}
+\begin{itemize}
+  \item K. Willems*, D. Rui\'{c}*, A. Biesemans*, N. S. Galenkamp, P. Van Dorpe and G. Maglia.
+        \textit{ACS Nano} \textbf{13 (9)}, 9980--9992 (2019) %\cite{Willems-Ruic-Biesemans-2019}
+\end{itemize}
+%
+*equal contributions
+%
+% \end{footnotesize}
+\newpage
+\end{shaded}
+%
+%
+
+% Glossary reset
+\glsresetall
+%
+
+In this chapter we used experimental, computational, and theoretical methods to investigate the trapping
+behavior of a small protein, \gls{dhfr}, within the \gls{clya} nanopore. It builds upon the electrostatic
+energy methodology developed in \cref{ch:electrostatics} to parametrize and verify a mathematical model that
+captures the essential physics of the experimentally observed voltage- and charge-dependent dwell times of a
+tagged \gls{dhfr} molecule in \gls{clya}. \\
+%
+
+%
+The text and figures of this chapter represent entirely my own work. All experimental work was performed by
+Dr.~Annemie Biesemans, and the trapping model was derived by Dr.~rer.~nat.~Dino Rui\'{c}
+(see~\cref{sec:trapping_appendix:escape_rates}). To the extent possible, the main and supplementary texts and
+figures of the original manuscript were integrated into this chapter, and the remainder of the supplementary
+information can be found in \cref{ch:trapping_appendix}.
+%
+%
+\cleardoublepage
+%
+%
+
+
+
+%
 \section{Abstract}
-\ldots
-\section{Introduction}
-\ldots
-\section{Results and discussion}
-\ldots
-\section{Conclusion}
-\ldots
-\section{Materials and methods}
-\ldots
-\section{Additional remarks}
-\ldots
+%
+\label{sec:trapping:abstract}
+%
 
+The ability to confine and to study single molecules has enabled important advances in natural and applied
+sciences. Recently, we have shown that unlabeled proteins can be confined inside the biological nanopore
+\gls{clya} and conformational changes monitored by ionic current recordings. However, trapping small proteins
+remains a challenge. Here we describe a system where steric, electrostatic, electrophoretic, and
+electro-osmotic forces are exploited to immobilize a small protein, \gls{dhfr}, inside \gls{clya}. Assisted by
+electrostatic simulations, we show that the dwell time of \gls{dhfr} inside \gls{clya} can be increased by
+orders of magnitude (from milliseconds to seconds) by manipulation of the \gls{dhfr} charge distribution.
+Further, we describe a physical model that includes a double energy barrier and the main electrophoretic
+components for trapping \gls{dhfr} inside the nanopore. Simultaneous fits to the voltage dependence of the
+dwell times allowed direct estimates of the \cisi{} and \transi{} translocation probabilities, the mean dwell
+time, and the force exerted by the electro-osmotic flow on the protein (\SI{\approx9}{\pN} at \SI{-50}{\mV})
+to be retrieved. The observed binding of \gls{nadph} to the trapped \gls{dhfr} molecules suggested that the
+engineered proteins remained folded and functional inside \gls{clya}. Contact-free confinement of single
+proteins inside nanopores can be employed for the manipulation and localized delivery of individual proteins
+and will have further applications in single-molecule analyte sensing and enzymology studies.
+
+
+%
+\section{Introduction}
+%
+\label{sec:trapping:intro}
+%
+
+Sensors capable of the label-free interrogation of proteins at the single-molecule level have applications in
+biosensing, biophysics, and enzymology~\cite{Gooding-2016,Xie-2001,Willems-VanMeervelt-2017}. In particular,
+the ability to observe the behavior of individual proteins allows one to directly retrieve the rates of
+kinetic processes and provides a wealth of mechanistic, energetic and structural information,which are not
+readily obtained from statistically averaged ensemble (bulk) measurements~\cite{Gooding-2016}. To achieve
+single-molecular sensitivity at high signal-to-noise ratios, the observational volume of the sensor should be
+similar in size to the object of interest (\ie~zeptoliter-range for a protein with a radius of \SI{2.5}{\nm}).
+Moreover, many kinetic processes have relatively long time scales (\eg~\SIrange{e-3}{e0}{\second}) which in
+turn necessitate long observational times to obtain a statistically relevant number of events. Hence, the
+protein must also remain inside the observational volume for seconds or minutes, a feat that is only possible
+if the protein is either physically immobilized or trapped in a local energetic minimum that is significantly
+deeper than the thermal energy~\cite{Krishnan-2010,Myers-2015}.
+
+To counteract the random thermal motion of nanoscale objects in solution several optical, microfluidic, and
+nanofluidic methodologies have been developed over the years. The optical trapping of nanoscale objects
+(\SI{<50}{\nm} radius) requires the sub-diffraction limited confinement of light~\cite{Neuman-2004,Baker-2017,
+Bradac-2018} which can be achieved with photonic~\cite{Yang-2009,Mandal-2010} or
+plasmonic~\cite{Juan-2009,Chen-2011,
+Pang-2011,Bergeron-2013,Kotnala-2014,Kerman-2015,Chen-2018,Verschueren-2019}, nanostructures. Although optical
+techniques have been shown be capable of trapping proteins with a radius of
+\SI{\approx2.3}{\nm}~\cite{Kotnala-2014}, the high optical intensities required and the solid-state nature of
+the devices tend to not only trap the proteins but also unfold them, limiting the scope of their
+applicability~\cite{Pang-2011, Verschueren-2019}.
+
+Microfluidic techniques might offer softer alternatives for the immobilization of single molecules. The
+\gls{abel} trap makes use of optical tracking to electrophoretically counteract the Brownian motion of
+individual dielectric particles~\cite{Cohen-2005,Cohen-2006,Goldsmith-2010, Goldsmith-2011}, enabling the
+trapping of proteins down to \SI{\approx2.9}{\nm} radius~\cite{Goldsmith-2011} and even single
+fluorophores~\cite{Fields-2011}. Because this technique uses fluorescence microscopy to track the movement of
+their targets, the observational time window is ultimately limited by the photobleaching of the
+dye~\cite{Cohen-2005,Goldsmith-2010}.
+
+Nanopores, which are nanometer-sized apertures in a membrane separating two electrolyte reservoirs, have been
+used extensively to study single
+molecules~\cite{Ma-2009,Laszlo-2016,Willems-VanMeervelt-2017,Varongchayakul-2018}. In nanopore analyses, an
+electric field is applied across the membrane and information about a molecule passing through the pore is
+collected by monitoring the modulations of the ionic charge current. As proteins typically transit the pore at
+high velocities (\SIrange{\approx e-3}{e-2}{\meter\per\second})~\cite{Fologea-2007,Plesa-2013,Li-2013B,
+Larkin-2014}, the dwell time (\ie~the duration a molecule of interest spends inside the observable volume) is
+on the order of \SIrange{e-6}{e-3}{\second}. These timescales have proven sufficient for obtaining structural
+information such as protein size, shape, charge, dipole moment, and
+rigidity~\cite{Fologea-2007,Larkin-2014,Waduge-2017,Hu-2018,Houghtaling-2019}, but they are too brief to
+efficiently study the enzymatic cycle of the majority of human enzymes (turnover numbers between
+\SIrange{e-3}{e3}{\per\second}).
+
+
+%
+\begin{figure*}[t]
+  %
+  \begin{minipage}{6cm}
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \centering
+      \caption{}\vspace{-3mm}\label{fig:trapping_concept_clya}
+      \includegraphics[scale=1]{trapping_concept_clya}
+    \end{subfigure}
+    %
+  \end{minipage}
+  %
+  \begin{minipage}{6cm}
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \centering
+      \caption{}\vspace{-3mm}\label{fig:trapping_concept_dhfr}
+      \includegraphics[scale=1]{trapping_concept_dhfr}
+    \end{subfigure}
+    %
+    \\
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \centering
+      \caption{}\vspace{-3mm}\label{fig:trapping_concept_sequence}
+      \includegraphics[scale=1]{trapping_concept_sequence}
+    \end{subfigure}
+    %
+  \end{minipage}
+
+\caption[Trapping of proteins inside the ClyA-AS nanopore.]{%
+  \textbf{Trapping of proteins inside the ClyA-AS nanopore.}
+  %
+  (\subref{fig:trapping_concept_clya})
+  %
+  Surface representation of a type I \gls{clya-as} nanopore embedded in a planar lipid bilayer (derived
+  through homology modeling from \pdbid{2WCD}~\cite{Mueller-2009}, see~\cref{sec:elec:methods:molec}), and
+  colored according to its electrostatic potential in \SI{150}{\mM} \ce{NaCl} (calculated by
+  \gls{apbs}~\cite{Baker-2001,Dolinsky-2004,Dolinsky-2007}, see~\cref{sec:elec:methods:elec}).
+  %
+  %
+  (\subref{fig:trapping_concept_dhfr})
+  %
+  \glsreset{dhfr}
+  %
+  Depiction of a single \gls{dhfr} molecule extended with a positively charged C-terminal
+  polypeptide tag (\DHFR{4}{S}) inside a \gls{clya-as} nanopore. The secondary structure of the tag (primarily
+  \textalpha-helical) was predicted by the {PEP-FOLD} server~\cite{Thevenet-2012,Shen-2014}. At negative
+  applied bias voltages relative to \transi{}, the electric field ($\protect\overrightarrow{E}$) is expected
+  to pull the negatively charged body of \gls{dhfr} upward ($\forceep^{\rm{body}}$) and the positively charged
+  fusion tag downward ($\forceep^{\rm{tag}}$), while the the electro-osmotic flow pushes the entire protein
+  downward ($\forceeo$). Lastly, as the body of \gls{dhfr} is larger than the diameter of the \transi{}
+  constriction, the force required to overcome the steric hindrance ($\forcest$) during full
+  \cisi{}-to-\transi{} translocation is expected to be significant.
+  %
+  (\subref{fig:trapping_concept_sequence})
+  %
+  Sequence of \DHFR{4}{S} fusion tag with its positive and negative residues colored blue and red,
+  respectively. The sequence of the Strep-tag starts at residue 183, and the GSS and GSA linkers are shown in
+  italicized font. Note that, at \pH{7.5}, the C- and N-termini contribute one negative charge to the body and
+  one positive charge to the tag, respectively.
+  %
+  %
+  Images were rendered using \gls{vmd}~\cite{Humphrey-1996,Stone-1998}.
+  %
+  }\label{fig:clya_dhfr_trapping_concept}
+\end{figure*}
+%
+
+
+
+To increase the observation window of proteins by nanopores, researchers have made extensive use of
+noncovalent interactions. By coating solid-state nanopores with \gls{nta} receptors, the dwell time of
+His-tagged proteins could be prolonged up to six orders of magnitude~\cite{Wei-2012}. In another account, the
+diffusion coefficient of several proteins was reduced 10-fold \textit{via} tethering to a lipid bilayer coated
+nanopore~\cite{Yusko-2011,Yusko-2016}. The decoration of biological nanopores with thrombin-specific aptamers
+enabled the investigation of the binding kinetics of thrombin to its aptamer~\cite{Rotem-2012} and the
+selective detection in the presence of a 100-fold excess of non-cognate proteins~\cite{Soskine-2012}.
+Electrophoretic translocation of protein-DNA complexes through small nanopores (\SI{<3}{\nm} diameter)
+typically results in the temporary trapping of the entire complex, which has allowed for the study of
+polymerase enzymes~\cite{Lieberman-2010,Derrington-2015} and DNA-binding
+proteins~\cite{Squires-2015,Yang-2018}. Although promising, none of these approaches could efficiently control
+the trapping of the protein inside the nanopore or allow observation of enzyme kinetics or ligand-induced
+conformational changes.
+
+The energetic landscape of a protein translocating through a nanopore stems directly from the electrostatic,
+electrophoretic, electro-osmotic, and steric forces exerted on it~\cite{Muthukumar-2014}. Given the relatively
+high motility of proteins, the creation of a long lasting (\SIrange{10}{100}{\second}), contact-free trap
+within a spatial region of a few nanometers mandates the presence of a deep potential energy well within the
+nanopore~\cite{Movileanu-2005}. Such a potential profile was achieved by Luchian and co-workers, who showed
+that the dwell time of a polypeptide inside the \gls{ahl} pore could be significantly increased by
+manipulating the strength of the electro-osmotic flow~\cite{Mereuta-2014,Asandei-2016} or by placement of
+oppositely charged amino acids at the polypeptide's termini~\cite{Asandei-2015}. In a similar approach, a
+single barnase enzyme was trapped inside \gls{ahl} \textit{via} the addition of a positively charged
+N-terminal tag~\cite{Mohammad-2008}.
+
+Previous work in the Maglia group on protein analysis with nanopores was centered around the biological
+nanopore Cytolysin A (\gls{clya})---a protein with a highly negatively charged interior whose shape can best
+be described by a large (\SI{\approx 5.5}{\nm} diameter, \SI{\approx 10}{\nm} height, \cisi{} \lumen{}) and a
+small (\SI{\approx 3.3}{\nm} diameter, \SI{\approx 4}{\nm} height, \transi{} constriction) cylinder stacked on
+top of each other (\cref{fig:trapping_concept_clya})~\cite{Soskine-2012,Soskine-2013}. Upon capture from the
+\cisi{} side of the pore, certain proteins exhibited exceptionally long dwell times inside \gls{clya} from
+seconds up to tens of
+minutes~\cite{Soskine-2012,Soskine-2013,Soskine-Biesemans-2015,Wloka-2017,VanMeervelt-2017,Galenkamp-2018},
+enabling the monitoring of conformational changes~\cite{VanMeervelt-2014, Galenkamp-2018,Biesemans-2015} and
+even of the orientation~\cite{VanMeervelt-2014} of the proteins inside the nanopore. A subset of the
+investigated proteins, such as lysozyme, Dendra2\_M159A and dihydrofolate reductase (\gls{dhfr}), resided
+inside the nanopore \lumen{} only for hundreds of microseconds and hence could not be
+studied~\cite{Soskine-2012,Soskine-Biesemans-2015}. It was observed that the size of the nanopore plays a
+crucial role in the effectiveness of protein trapping, as a mere \SI{<10}{\percent} increase of \gls{clya}'s
+diameter (\ie~by using \gls{clya} nanopores with a higher oligomeric state) is enough to reduce the dwell time
+of proteins by almost three orders of magnitude~\cite{Soskine-2013}. Next to pore size, the charge
+distribution of proteins can significantly affect their dwell time inside a nanopore. For example, the binding
+of the negatively charged (\SI{-2}{\ec}) inhibitor \gls{mtx} to a modified \gls{dhfr} molecule with positively
+charged fusion tag at the C-terminus (\DHFRt{}) increased the dwell time of the protein inside the \gls{clya}
+nanopore from \SI{\approx3}{\ms} to \SI{\approx3}{\second} at \SI{-90}{\mV}~\cite{Soskine-Biesemans-2015}.
+
+In this work the immobilization of individual \textit{Escherichia coli} \gls{dhfr} molecules
+(\cref{fig:trapping_concept_dhfr}) inside the \gls{clya} biological nanopore (specifically type I
+\gls{clya}-AS~\cite{Soskine-2013}, \cref{fig:trapping_concept_clya}) is investigated in detail. Using
+nanoscale protein electrostatic simulations as a guideline, our results show that the dwell time of
+\DHFR{4}{S}---a molecule identical to the above-mentioned \DHFRt{} aside from the insertion of a single
+alanine residue its fusion tag (A174\_A175insA, \cref{fig:trapping_concept_sequence})---inside \gls{clya} can
+be increased several orders of magnitude by manipulating the distribution of positive and negative charges on
+its surface. To elucidate the physical origin of the trapping mechanism, a double energy barrier model was
+developed which---by fitting the voltage dependency of the dwell times for various \gls{dhfr} mutants---yields
+direct estimates of the \cisi{} and \transi{} translocation rates and the magnitude of force exerted by the
+electro-osmotic flow on \gls{dhfr}\@. Our method provides an efficient means to increase the dwell time of the
+\gls{dhfr} protein inside the \gls{clya} nanopore and suggests a general mechanism to tune the dwell time of
+other proteins, which we believe has significant value for single-molecule sensing and analysis applications.
+
+
+%
+\section{Results and discussion}
+%
+\label{sec:trapping:results_discussion}
+%
+
+\subsection{Phenomenology of {DHFR} trapped inside {ClyA}}
+%
+
+To effectively study the enzymes at the single-molecular level, one must be able to collect a statistically
+significant (\ie~typically hundreds) of catalytic cycles from the same enzyme. In the case of the \textit{E.
+coli} \gls{dhfr}, which has a turnover number of \SI{\approx0.08}{\second}~\cite{Kohen-2015}, this means that
+the protein must remain trapped inside the pore for tens of seconds. However, as detailed above, such long
+dwell times were only achieved for \gls{dhfr} by adding a positively charged polypeptide tag to the C-terminus
+of \gls{dhfr}, together with the binding of the negatively charged inhibitor
+\gls{mtx}~\cite{Soskine-Biesemans-2015}. Although these long dwell times are encouraging, the requirement for
+\gls{mtx} excludes the study of the full enzymatic cycle. Hence, using these previous findings as a starting
+point we aim to find out how to prolong the dwell time of a tagged \gls{dhfr} molecule inside the
+\gls{clya-as} nanopore without the use of \gls{mtx} and to understand the fundamental physical mechanisms that
+determine the escape of \gls{dhfr} from the pore.
+
+The structure of \DHFR{4}{S}, the tagged \gls{dhfr} molecule used as a starting point in this work, can be
+roughly divided into a `body', which encompasses the enzyme itself and has a net negative charge,
+$\Nbody=\mSI{-10}{\ec}$, and a `tag', which comprises the C-terminal polypeptide extension and bears a net
+positive charge, $\Ntag=\mSI{+4}{\ec}$ (\cref{fig:trapping_concept_dhfr,fig:trapping_concept_sequence}). To
+capture a tagged \gls{dhfr} molecule, an electric field oriented from \cisi{} to \transi{} (\ie~negative bias
+voltage) must be applied across the nanopore which gives rise to an electro-osmotic flow pushing the protein
+into the pore ($\forceeo$). The electrophoretic force on the body ($\forceep^{\rm{body}}$) strongly opposes
+this electro-osmotic force, but is significantly weakened by the electrophoretic force on the tag
+($\forceep^{\rm{tag}}$), allowing the protein to be
+captured~\cite{Soskine-2012,Soskine-Biesemans-2015,Biesemans-2015}. As the body and tag of the \gls{dhfr}
+molecules bear a significant amount of opposing charges, it is likely that the molecule will align itself with
+the electric field, where the tag is oriented toward the \transi{} side. In this configuration the body sits
+in the \gls{clya} \lumen{} and the tag is located in or near the narrow constriction. Because the body
+(\SI{\approx4}{\nm}) is larger than the diameter of the constriction (\SI{3.3}{\nm}), the steric hindrance
+between the body and the pore is expected to strongly disfavor full translocation to the \transi{} reservoir,
+giving rise to an apparent `steric hindrance' force ($\forcest$). Finally, Poisson-Boltzman electrostatic
+calculations showed that the negatively charged interior of \gls{clya-as} creates a negative electrostatic
+potential within both the \lumen{} (\SI{\approx-0.3}{\kTe}) and the constriction (\SI{\approx-1}{\kTe}) of the
+pore~\cite{Franceschini-2016}, which will result in disfavorable and favorable interactions with the body and
+the tag, respectively.
+
+%
+\begin{figure*}[p]
+  \centering
+  \begin{minipage}{6cm}
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \caption{}\vspace{-3mm}\label{fig:trapping_apbs_model}
+      \includegraphics[scale=1]{trapping_apbs_model}
+    \end{subfigure}
+    %
+    \\
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \caption{}\vspace{-3mm}\label{fig:trapping_apbs_energy}
+      \includegraphics[scale=1]{trapping_apbs_pqrs}
+      \includegraphics[scale=1]{trapping_apbs_energy_landscape}
+    \end{subfigure}
+    %
+  \end{minipage}
+  %
+  \hspace{-5mm}
+  %
+  \begin{minipage}{6cm}
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \caption{}\vspace{-3mm}\label{fig:trapping_apbs_barrier_body}
+      \includegraphics[scale=1]{trapping_apbs_barrier_body}
+    \end{subfigure}
+    %
+    \\
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \caption{}\vspace{-3mm}\label{fig:trapping_apbs_barrier_tag}
+      \includegraphics[scale=1]{trapping_apbs_barrier_tag}
+    \end{subfigure}
+    %
+  \end{minipage}
+  \caption[Energy landscape of \DHFR{4}{S} inside ClyA.]{%
+    \textbf{Energy landscape of \DHFR{4}{S} inside ClyA.}
+    %
+    (\textbf{\subref{fig:trapping_apbs_model}})
+    %
+    Coarse-grained model of \DHFR{4}{S} used in the electrostatic energy calculations in \gls{apbs}\@. The
+    body of \gls{dhfr} consists of seven negatively charged (\SI{-1.43}{\ec}) beads (\SI{1.6}{\nm} diameter)
+    in a spherical configuration (\SI{0.8}{\nm} spacing), whereas the tail is represented by a linear string
+    of beads (\SI{1}{\nm} diameter, \SI{0.6}{\nm} spacing), each holding the net charge of three amino acids.
+    %
+    %
+    (\textbf{\subref{fig:trapping_apbs_energy}})
+    %
+    Electrostatic energy ($\energyelec$) resulting from a series of \gls{apbs} energy calculations where the
+    coarse-grained \DHFR{4}{S} bead model is moved along the central axis of the pore. The distances $\dxcis$
+    and $\dxtrans$ refer to the distances between the energy minimum near the bottom of the \lumen{}
+    ($z_{\rm{body}} = \mSI{3}{\nm}$) and the maximum at, respectively, \cisi{} ($z_{\rm{body}} =
+    \mSI{5.7}{\nm}$) and \transi{} ($z_{\rm{body}} = \mSI{-0.6}{\nm}$).
+    %
+    %
+    (\textbf{\subref{fig:trapping_apbs_barrier_body}})
+    %
+    Although every additional negative charge to the body of \gls{dhfr} increases the \transi{} electrostatic
+    barrier by \SI{1.46}{\kT}, it has virtually no effect on the \cisi{} barrier, which increases only by
+    \SI{0.04}{\kT} per charge.
+    %
+    %
+    (\textbf{\subref{fig:trapping_apbs_barrier_tag}})
+    %
+    Addition of a single positive charge to \gls{dhfr}'s tag affects the height of the \transi{} and \cisi{}
+    much more similarly, with increases of \SI{0.875}{\kT} and \SI{0.621}{\kT} per charge, respectively.
+    %
+  }\label{fig:apbs_simulation_results}
+\end{figure*}
+%
+
+
+\subsection{Energy landscape of {DHFR} in {ClyA}}
+%
+
+To increase the dwell time of \gls{dhfr}---and to generalize our findings for other proteins---it is necessary
+to understand how the forces exerted on \gls{dhfr} inside the pore behave as a function of the the
+experimental conditions (\ie~charge distribution and applied bias). In the absence of specific high affinity
+interactions, \gls{dhfr}'s trapping behavior should be chiefly determined by its electrostatic interactions
+with the pore, whereas the external electrophoretic and electro-osmotic forces can be viewed as modifications
+thereof. Hence, we will start by investigating the molecule's electrostatic energy landscape within \gls{clya}
+in equilibrium where the externally applied electric field vanishes.
+
+To this end, we used \gls{apbs}~\cite{Baker-2001,Dolinsky-2004,Dolinsky-2007,Li-2005} to compute the
+electrostatic energy ($\energyelec$) of a simplified bead-like tagged \gls{dhfr} molecule model as it moves
+through the pore (\cref{fig:trapping_apbs_model,fig:trapping_apbs_energy}), similar to the approach used in
+\cref{ch:electrostatics} (\cref{sec:elec:methods:elec:energy}) to investigate \gls{ssdna}
+(\cref{sec:elec:frac:dna}) and \gls{dsdna} (\cref{sec:elec:clya:dna}) translocation through \gls{frac} and
+\gls{clya}, respectively. The tagged \gls{dhfr} molecule was reduced to a coarse-grained `bead' model
+(\cref{fig:trapping_apbs_model}), where the bulk of the protein (body) was defined by seven negatively charged
+beads ($r = \SI{0.8}{\nm}$, $Q_i = \SI{-1.7143}{\ec}$) in a spherical configuration (\SI{0.8}{\nm} spacing);
+and the C-terminal fusion tag (tail) was represented by nine smaller beads ($r = \SI{0.5}{\nm}$, $Q_i =
+\num{-3}$ to \SI{+3}{\ec} depending on the amount of charges in their corresponding amino acids) each
+representing three amino acids in an alpha-helix (\SI{0.6}{\nm} nm spacing). Our reasons for this
+simplification were two-fold: (1) the high degree of axial symmetry in the bead model resulted in a free
+energy that was independent of the precise orientation of \gls{dhfr}, significantly reducing the number of
+required computations; and (2) the reduced body size of the coarse-grained model compared to the full atom
+model allowed for the placement of \gls{dhfr} along the entire length of the pore without unphysical overlaps
+between the atoms of \gls{clya} and \gls{dhfr} inside the \transi{} constriction, resulting in more realistic
+free energies. This allows the body to pass the constriction without necessitating conformational changes,
+which cannot be modeled using \gls{apbs}. Hence, this also means that the magnitude of maxima of the
+electrostatic energy landscape, which occur when the charges of the bead model come close to those of the
+pore, should be viewed as indicative and not absolute.
+
+Nevertheless, the energy profile of \DHFRt{} (\cref{fig:trapping_apbs_energy}) clearly shows that there is a
+significant electrostatic barrier, $\barrier^{\trans}_{\rm{es}}$, to overcome when the body of the \gls{dhfr}
+moves through the constriction of the pore. Moreover, we observed a second smaller electrostatic barrier,
+$\barrier^{\cis}_{\rm{es}}$, toward the \cisi{} side so that an energetic minimum exists inside \gls{clya} in
+which the molecule can reside. The size difference between these two barriers clearly suggests that in the
+absence of an external force (\ie~at \SI{0}{\mV} bias) the molecule will exit toward \cisi{} with overwhelming
+probability.
+
+To estimate how the charges on \gls{dhfr} impact its dwell time, we modified the number of charges in the body
+from \SIrange{-10}{-13}{\ec} and recomputed the energy landscape using \gls{apbs}
+(\cref{fig:trapping_apbs_barrier_body}). We found that the electrostatic energy barrier toward \cisi{} was
+largely unaffected (\SI{0.04}{\kT} increase per negative charge) while the barrier for \transi{} exit
+increased significantly (\SI{1.46}{\kT} increase per negative charge). The latter is a reflection of the
+highly negatively charged and narrow \transi{} constriction of \gls{clya}.
+
+Contrary to the body of \gls{dhfr}, the modification of the charge in the tag from \num{+4} to \SI{+9}{\ec}
+influenced the heights of both the \cisi{} and the \transi{} barrier similarly, with increases of
+\SI{0.621}{\kT} and \SI{0.875}{\kT} per positive elementary charge, respectively
+(\cref{fig:trapping_apbs_barrier_tag}). This behavior can be explained by the fact that, at \gls{dhfr}'s
+equilibrium position within the pore, the positively charged tag resides in the highly negatively
+electrostatic well present in the \transi{} constriction of the nanopore (\cref{fig:trapping_apbs_energy}).
+Moving the molecule from this position into either direction requires this Coulombic attraction to be overcome
+which is directly proportional to the number of charges on the tag, irrespective of whether the molecule moves
+toward \cisi{} or toward \transi{}.
+
+Note that when an external electric field is applied, the electrophoretic and electro-osmotic forces must be
+taken into account. If their net balance is positive (\ie~a net force toward \cisi{}) or negative (\ie~a net
+force toward \transi{}), the electrostatic landscape will be tilted upward and downward, respectively
+(see~\cref{fig:trapping_apbs_external_biased}). The capture of highly negative charged (\SI{-11}{\ec}) wild
+type \gls{dhfr} molecules against the electric field~\cite{Soskine-Biesemans-2015} strongly indicates that the
+electro-osmosis outweighs electrophoresis and the energy landscape will be shifted downward at \transi{}
+(see~\cref{sec:trapping:biased_landscape}), resulting in higher and lower barrier heights at \cisi{} and
+\transi{}, respectively. This effectively deepens the energy minimum, which should manifest as an increase of
+\gls{dhfr}'s dwell time.
+
+\subsection{Dwell time measurements}
+%
+
+The entry of a single protein into \gls{clya} results in a temporary reduction of the ionic current from the
+`open pore' ($\iopen$) to a characteristic `blocked pore' ($\iblock$) level. Previously we revealed that the
+\gls{dhfr} protein shows a main current blockade with $\iresp = \iblock / \iopen \approx \SI{70}{\percent}$
+(see~\cref{fig:trapping_traces}). However, occasionally deeper blocks are observed which most likely represent
+the transient visit of \gls{dhfr} to multiple locations inside the nanopore. Here we assume that the dwell
+time ($\dwelltime$) is simply given by the time from the initial capture to the final release where the
+current level returns to the open pore current.
+
+After gathering sufficient statistics for the dwell time events, we computed the expectation value of
+$\dwelltime$ by taking the arithmetic mean of all dwell time events. This is because the chance for an escape
+can be modeled as the probability of overcoming a potential barrier whose distribution function is exponential
+(see~\cref{sec:trapping_appendix:escape_rates}). Note that even if the molecule transitions through multiple
+meta-states with individual rates connecting each of them before it exits, the expectation value is still
+given by the arithmetic mean (see~\cref{eq:tau_arithmetic_mean}).
+
+%
+\begin{table}[t]
+  \begin{threeparttable}
+    \centering
+    \footnotesize
+    
+    %
+    \caption[width=12cm]{Mutations and charges of all {DHFR} variants.}
+    \label{tab:dhfr_variants}
+    %
+  
+    \renewcommand{\arraystretch}{1.15}
+    \scriptsize
+    
+    \begin{tabularx}{12cm}{Xllccc}
+      \toprule
+        & \multicolumn{2}{c}{Mutations\tnote{a}} &
+      \multicolumn{3}{c}{$\chargeq_{\rm{DHFR}}$\tnote{b} [\si{\ec}]} \\
+      \cmidrule(r){2-3}  \cmidrule(l){4-6}
+      Name  & Body & Tag & Body & Tag & Total \\
+      \midrule
+      \DHFR{4}{S}   &  --- & ---
+                    & \num{-10} & \num{+4} & \num{-6} \\
+      \DHFR{4}{I}   & V88E P89E & ---
+                    & \num{-12} & \num{+4} & \num{-8} \\
+      \DHFR{4}{C}   & A82E A83E & ---
+                    & \num{-12} & \num{+4} & \num{-8} \\
+      \DHFR{4}{O1}  & E71Q & ---
+                    & \num{-12} & \num{+4} & \num{-8} \\
+      \DHFR{4}{O2}  & T68E R71E & ---
+                    & \num{-13} & \num{+4} & \num{-9} \\
+      \midrule
+      \DHFR{5}{O1}  & E71Q      & A175K
+                    & \num{-12} & \num{+5} & \num{-7} \\
+      \DHFR{7}{O1}  & E71Q      & A175K A174K A176K
+                    & \num{-12} & \num{+7} & \num{-5} \\
+      \DHFR{5}{O2}  & T68E R71E & A175K
+                    & \num{-13} & \num{+5} & \num{-8} \\
+      \DHFR{6}{O2}  & T68E R71E & A175K A174K
+                    & \num{-13} & \num{+6} & \num{-7} \\
+      \DHFR{7}{O2}  & T68E R71E & A175K A174K A176K
+                    & \num{-13} & \num{+7} & \num{-6} \\
+      \DHFR{8}{O2}  & T68E R71E & A175K A174K A176K A169K
+                    & \num{-13} & \num{+8} & \num{-5} \\
+      \DHFR{9}{O2}  & T68E R71E & A175K A174K A176K A169K L177K
+                    & \num{-13} & \num{+9} & \num{-4} \\
+      \bottomrule
+    \end{tabularx}
+
+    \begin{tablenotes}
+      \item[a] W.r.t. \DHFR{4}{S}: body residues \numrange{1}{163} and tag residues \numrange{164}{190};
+      \item[b] Net charge of \gls{dhfr} at \pH{7.5}.
+    \end{tablenotes}
+
+  \end{threeparttable}
+\end{table}
+%
+
+We observed before that the dwell time of tagged \gls{dhfr} molecules depends strongly on the applied
+bias~\cite{Biesemans-2015}. That is, exponentially rising with voltage until a certain bias---which we will
+refer to as the \emph{threshold voltage}---followed by an exponential fall. This behavior has also been
+observed for charged peptides in \gls{ahl}~\cite{Movileanu-2005}, and is typical for a decay of a bound state
+into multiple final states, such as an escape to either \cisi{} or \transi{}
+(see~\cref{sec:trapping_appendix:escape_rates}). Therefore, the dwell time of the molecule, as a function of
+bias voltage, $\vbias$, can be expressed as the inverse of the sum of two escape rates~\cite{Movileanu-2005}
+%
+\begin{align}\label{eq:double_barrier_simple}
+	\dfrac{1}{\dwelltime} = \rate = \rate^\cis + \rate^\trans	=
+    \rate^\cis_0 \exp \left( -\dfrac{\alpha^\cis \ec \vbias}{\kbt} \right) +
+    \rate^\trans_0 \exp \left( \dfrac{\alpha^\trans \ec \vbias}{\kbt} \right)
+\end{align}
+%
+where $\rate^{\cis/\trans}$ are the molecule's escape rates toward \cisi{} and \transi{}, respectively. These
+can be further decomposed into attempt frequencies $\rate^{\cis/\trans}_0$ and bias dependent barriers in the
+exponentials. Although this equation can help to qualitatively describe the experimental data, the reduction
+of the entire protein-nanopore system to four parameters does not allow for their physical interpretation.
+
+%
+\begin{figure*}[p]
+  \centering
+
+  %
+	\begin{subfigure}[t]{4cm}
+		\centering
+		\caption{}\vspace{-5mm}\label{fig:trapping_dwell_times_body_model}
+		\includegraphics[scale=1]{trapping_dwell_times_body_model}
+  \end{subfigure}
+  %
+	\begin{subfigure}[t]{6.5cm}
+		\centering
+		\caption{}\vspace{-3mm}\label{fig:trapping_dwell_times_body_data}
+    \includegraphics[scale=1]{trapping_dwell_times_body_data}
+  \end{subfigure}
+  %
+
+	\caption[Effect of the body charge on the dwell time of tagged {DHFR}\@.]{%
+    \textbf{Effect of the body charge on the dwell time of tagged {DHFR}\@.}
+    %
+    (\subref{fig:trapping_dwell_times_body_model})
+    %
+    Surface representation of the five tested \DHFR{4}{X} body charge mutants, and the \DHFR{4}{S}+MTX
+    complex. The mutated residues are indicated for each variant. The positive charges in the fusion tag are
+    colored blue. From top to bottom: \DHFR{4}{S}, \DHFR{4}{I}, \DHFR{4}{C}, \DHFR{4}{O1}, \DHFR{4}{O2}, and
+    \DHFR{4}{S}$_{\text{MTX}}$.
+    %
+    %
+    (\subref{fig:trapping_dwell_times_body_data})
+    %
+    Voltage dependence of the average dwell time ($\dwelltime$) inside \gls{clya-as} for \gls{dhfr} mutants in
+    (\subref{fig:trapping_dwell_times_body_model}). The solid lines represent the voltage dependency predicted
+    by fitting the double barrier model given by \cref{eq:double_barrier_simple} to the data
+    (see~\cref{tab:fitting_parameters_simple}). The dotted lines represent the dwell times due the \cisi{}
+    (low to high) and \transi{} (high to low) barriers. The threshold voltages at the maximum dwell time were
+    estimated by inserting the fitting parameters into \cref{eq:threshold_voltage_simple}. The error envelope
+    represents the minimum and maximum values obtained from repeats at the same condition. All measurements
+    were performed at \SI{\approx28}{\celsius} in aqueous buffer at \pH{7.5} containing \SI{150}{\mM}
+    \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl}. Current traces were sampled at \SI{10}{\kilo\hertz} and filtered
+    using a low pass Bessel filter with a \SI{2}{\kilo\hertz} cutoff.
+    %
+  }\label{fig:trapping_dwell_times_body}
+\end{figure*}
+%
+
+
+\subsection{Engineering {DHFR}'s dwell time by manipulation of its charge}
+%
+
+The results from the \gls{apbs} simulations, together with the previous work with \DHFRt{} and
+\gls{mtx}~\cite{Soskine-Biesemans-2015}, suggest that the dwell time of \gls{dhfr} in \gls{clya} can be
+increased by the manipulation of its charge distribution. To achieve the increase in dwell time without the
+need for MTX, several nonconserved amino acids on the surface of \DHFR{4}{S} were identified and mutated to
+negatively charged glutamate residues, resulting in the molecules \DHFR{4}{I}, \DHFR{4}{C}, \DHFR{4}{O1}, and
+\DHFR{4}{O2} (\cref{tab:dhfr_variants} and \cref{fig:trapping_dwell_times_body_model}). These mutations modify
+the number of charges in the body compared to \DHFR{4}{S} and their charges are also in different locations.
+For convenience, this series of mutations will be referred to as the \emph{body charge variations} from here
+on out.
+
+We performed ionic current measurements for all body charge variations for a wide range of bias voltages
+(\SIrange{-40}{-120}{\mV}, see~\cref{fig:trapping_traces,fig:trapping_blockades}) and extracted the dwell
+times as shown in \cref{fig:trapping_dwell_times_body_data}. All body charge variations showed the same
+increase of the dwell time at low electric fields and decreased at high fields. However, we observed
+differences in the threshold voltage and the magnitude of the maximum dwell time. These differences cannot
+simply be explained by the total number of charges as \DHFR{4}{I} and \DHFR{4}{C} have the same charge as
+\DHFR{4}{O1} but their dwell times are 10-fold lower (\cref{fig:trapping_dwell_times_body_data}). This result
+implies that the location of the body charge on \gls{dhfr} plays an important role.
+
+Additional body mutations could potentially compromise the catalytic cycle of \gls{dhfr}\@. Hence, we
+proceeded by systematically increasing the number of positive charges to the fusion tag ($\Ntag$) of
+\DHFR{4}{O2}, the variant that exhibited the longest dwell time, \textit{via} lysine substitution from
+\SIrange{+4}{+9}{\ec} (\cref{tab:dhfr_variants,fig:trapping_dwell_times_tag}). The resulting
+\DHFR{$\Ntag$}{O2} mutants  will be referred to as the \emph{tag charge variations}.
+
+Subsequent characterization of their the dwell times revealed that the addition of positive charges to the tag
+significantly increased \gls{dhfr}'s dwell time (\cref{fig:trapping_dwell_times_tag_data}). We observed a
+similar increase for \DHFR{4}{O1} variants with \num{+5} and \num{+7} tag charge numbers
+(see~\cref{fig:trapping_model_comparison_o1_simple}). This behavior is consistent with the tag being trapped
+electrostatically inside the negatively charged \transi{}
+constriction~\cite{Franceschini-2016,Movileanu-2005,Asandei-2015,Asandei-2016} and it suggests that the tag
+plays a crucial role in the trapping of \gls{dhfr}, which was already observed in previous
+work~\cite{Soskine-Biesemans-2015}.
+
+%
+\begin{figure*}[p]
+  \centering
+
+  %
+	\begin{subfigure}[t]{4.5cm}
+		\centering
+		\caption{}\vspace{-5mm}\label{fig:trapping_dwell_times_tag_model}
+    \includegraphics[scale=1]{trapping_dwell_times_tag_model}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{6.5cm}
+		\centering
+		\caption{}\vspace{-3mm}\label{fig:trapping_dwell_times_tag_data}
+    \includegraphics[scale=1]{trapping_dwell_times_tag_data}
+  \end{subfigure}
+  %
+
+	\caption[Effect of the tag charge on the dwell time of \DHFR{$\Ntag$}{O2}.]{%
+    \textbf{Effect of the tag charge on the dwell time of \DHFR{$\Ntag$}{O2}.}
+    %
+    (\subref{fig:trapping_dwell_times_tag_model})
+    %
+    Surface representations of all \DHFR{$\Ntag$}{O2} mutants going from $\Ntag=4$ (top) to $\Ntag=9$
+    (bottom). The positively charged residues in the tag have been annotated and highlighted in blue.
+    %
+    %
+    (\subref{fig:trapping_dwell_times_tag_data})
+    %
+    Voltage dependencies of the mean dwell time ($\dwelltime$) for the mutant on the left hand side, fitted
+    with the double barrier model of \cref{eq:double_barrier_complex}. The annotated threshold voltages were
+    computed by ESI \cref{eq:threshold_voltage_complex}. Solid lines represent the double barrier dwell time,
+    and the dotted lines show the dwell times due the \cisi{} (low to high) and \transi{} (high to low)
+    barriers. Fitting parameters can be found in \cref{tab:fitting_params_complex}. The error envelope
+    represents the minimum and maximum values obtained from repeats at the same condition. Experimental
+    conditions are the same as those in \cref{fig:trapping_dwell_times_body}.
+    %
+  }\label{fig:trapping_dwell_times_tag}
+\end{figure*}
+%
+
+\subsection{Binding of {NADPH} reveals that {DHFR} remains folded inside the pore}
+%
+
+To verify that our \gls{dhfr} variants remained folded inside the nanopore, we measured and analyzed the
+binding of \gls{nadph} to the enzyme. The addition of the \gls{nadph} co-factor to the \transi{} solution of
+nanopore-entrapped \gls{dhfr} molecules induced reversible ionic current enhancements that reflect the binding
+and unbinding of the co-factor to the protein (\cref{fig:trapping_nadph_trace} and
+\cref{fig:trapping_nadph_o2_traces,tab:nadph_rates}).
+
+Not all \gls{dhfr} variants were found to be suitable for \gls{nadph}-binding analysis: \DHFR{5}{O2} did not
+dwell long enough inside \gls{clya-as} at \SI{-60}{\mV} ($\dwelltime = \SI{0.32\pm0.17}{\second}$) to allow a
+detailed characterization of \gls{nadph} binding, whereas \gls{nadph}-binding events to \DHFR{8}{O2} were too
+noisy for a proper determination of $\rate_{\rm{on}}$ and $\rate_{\rm{off}}$. No \gls{nadph} binding events to
+\DHFR{9}{O2} could be observed.  \gls{nadph}-binding events to the other \gls{dhfr} variants (\DHFR{5}{O2},
+\DHFR{6}{O2}, and \DHFR{7}{O2}) showed similar values for $\rate_{\rm{on}}$, $\rate_{\rm{off}}$, and event
+amplitude (\cref{tab:nadph_rates}), suggesting that the binding of \gls{nadph} to \gls{dhfr} inside the
+\gls{clya-as} nanopore is not affected by the number of positive charges in the C-terminal fusion tag.
+Possibly, the inability of \DHFR{8}{O2} and \DHFR{9}{O2} to bind the substrate is due the lodging of
+\gls{dhfr} closer to the \transi{} constriction.
+
+%
+\begin{figure*}[!t]
+  \centering
+  %
+  \begin{subfigure}[t]{6.25cm}
+    \centering
+    \caption{}\vspace{-3mm}\label{fig:trapping_nadph_trace}
+    \includegraphics[scale=1]{trapping_nadph_trace}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{5cm}
+    \centering
+    \caption{}\vspace{-3mm}\label{fig:trapping_nadph_ires}
+    \includegraphics[scale=1]{trapping_nadph_ires}
+  \end{subfigure}
+  %
+
+  \caption[Binding of NADPH to \DHFR{7}{O2}.]{%
+    \textbf{Binding of NADPH to \DHFR{7}{O2}.}
+    %
+    (\subref{fig:trapping_nadph_trace})
+    %
+    Top: Typical current trace after the addition of \SI{50}{\nM} \DHFR{7}{O2} to a single \gls{clya-as}
+    nanopore added to the \cisi{} reservoir at \SI{-60}{\mV} applied potential. The open-pore current
+    (`$\iopen$') and the blocked pore levels (`L1') are highlighted. Bottom: Current trace showing the blocked
+    pore current of a single \DHFR{7}{O2} molecule (\SI{50}{\nM}, \cisi) at \SI{-60}{\mV} applied potential
+    before (left) and after (right) the addition of \SI{27}{\uM} \gls{nadph} to the \transi{} compartment.
+    \Gls{nadph} binding to confined \gls{dhfr} molecule is reflected by current enhancements from the unbound
+    `L1' to the \gls{nadph}-bound `L1\textsubscript{NADPH}' current levels, and showed association
+    ($\rate_{\rm{on}}$) and dissociation ($\rate_{\rm{off}}$) rate constants of
+    \SI{2.03\pm0.58e6}{\per\Molar\per\second} and \SI{71.2\pm20.4}{\per\second}, respectively
+    (see~\cref{tab:nadph_rates}).
+    %
+    (\subref{fig:trapping_nadph_ires})
+    %
+    Dependence of the $\iresp$ on the applied potential for \DHFR{7}{O2} and \DHFR{7}{O2} bound to
+    \gls{nadph}\@. All current traces were collected in \SI{250}{\mM} \ce{NaCl} and \ce{15}{\mM}
+    \ce{Tris-HCl}, \pH{7.5}, at \SI{23}{\celsius}, by applying a Bessel low-pass filter with a
+    \SI{2}{\kilo\hertz} cutoff and sampled at \SI{10}{\kilo\hertz}.
+    %
+  }\label{fig:trapping_nadph}
+
+\end{figure*}
+
+
+Work with solid-state nanopores also previously reported that electric fields inside a nanopore may unfold
+proteins during translocation~\cite{Talaga-2009}, suggesting that the high degree of charge separation between
+the body and tag of \gls{dhfr} might destabilize its structure. To further investigate the effect of the
+applied potential on the protein structure, we analyzed the dependency of the residual current on the applied
+potential (\cref{fig:trapping_nadph}). We found that the residual current of both the apo-\gls{dhfr} and the
+ligand-bound enzyme increased by \SI{\approx2.5}{\percent} from \SIrange{-60}{-100}{\mV}. A voltage-dependent
+change in residual current is compatible with a force-induced stretching of the enzyme. However,
+single-molecule force spectroscopy experiments showed that \gls{nadph} binding increases the force required to
+unfold the protein by more than 3-fold from \num{27} to \SI{98}{\pN}~\cite{Ainavarapu-2005}. As the change of
+residual current over the potential was identical for both apo- and ligand-bound \gls{dhfr}
+(\cref{fig:trapping_nadph}), a likely explanation is that, rather than stretching \gls{dhfr}, the applied bias
+changes the position of \gls{dhfr} within the nanopore. Hence, our data suggest that, as previously reported
+for several other proteins~\cite{VanMeervelt-2017,Galenkamp-2018}, the protein remains folded at different
+applied bias.
+
+
+\subsection{Double barrier model for the trapping of {DHFR}}
+
+Puzzled by the strong dependence of the dwell time on the tag charge, we set out to understand the underlying
+trapping mechanism by building a quantitative model. To this end, we will focus on the data set of the dwell
+time of \DHFR{$\Ntag$}{O2} shown in \cref{fig:trapping_dwell_times_tag_data}.
+
+We propose a double barrier model that describes the trapping of the molecule as a combination of escape rates
+toward \cisi{} and toward \transi{} (see~\cref{sec:trapping_appendix:double_barrier}). Similar to
+\cref{eq:double_barrier_simple}, the dwell time is defined in terms of the rate $\rate$ which in turn is given
+by the sum of the rate for \cisi{} exit and the rate for \transi{} exit. However, now we define the rates in
+terms of energy barriers:
+%
+\begin{align}\label{eq:double_barrier}
+    \frac{1}{\dwelltime} = \rate =
+        \rate_0 \exp \left( - \dfrac{\barrier^{\cis}}{\kbt} \right)
+        + \rate_0 \exp \left( - \dfrac{\barrier^{\trans}}{\kbt} \right),
+\end{align}
+%
+where $\rate_0$ is the attempt rate and $\barrier^{\cis/\trans}$ are the energy barriers the molecule has to
+overcome in order to escape toward \cisi{} and \transi{}, respectively. These can be readily decomposed into
+\emph{steric}, \emph{electrostatic}, and \emph{external} contributions:
+%
+\begin{subequations}\label{eq:decomposition}
+\begin{align}
+  \barrier^{\cis} ={}&
+    \barrier^{\cis}_{\steric,0}
+    + \barrier^{\cis}_\static
+    + \barrier^{\cis}_\ext, \\
+  \barrier^{\trans} ={}&
+    \barrier^{\trans}_{\steric,0}
+    + \barrier^{\trans}_\static
+    + \barrier^{\trans}_\ext.
+\end{align}
+\end{subequations}
+%
+The steric components $\barrier^{\cis/\trans}_{\steric,0}$ are defined as those interactions of the molecule
+with the nanopore that are not electrostatic in nature, such as size- or conformation-related effects as
+\gls{dhfr} translocates through the narrow constriction toward \transi{}.
+
+Supported by the \gls{apbs} simulations (\cref{fig:trapping_apbs_energy}) and the corresponding barrier
+height to tag charge dependency analyses (\cref{fig:trapping_apbs_barrier_tag}), we infer that the
+electrostatic components $\barrier^{\cis/\trans}_{\static}$ can be further decomposed as
+%
+\begin{subequations}\label{eq:static-barrier}
+\begin{align}
+	\barrier^{\cis}_\static ={}&
+			\barrier^{\cis}_{\static,0}
+			+ \Ntag \ec \potbar_{\rm{tag}}^{\cis},\\
+	\barrier^{\trans}_\static ={}&
+			\barrier^{\trans}_{\static,0}
+			+ \Ntag \ec \potbar_{\rm{tag}}^{\trans},
+\end{align}
+\end{subequations}
+%
+where $\potbar_{\rm{tag}}^{\cis/\trans}$ are the electrostatic potentials associated with the tag charge
+$\Ntag$ for the \cisi{} and \transi{} barriers (\ie~the change in barrier height per additional charge in
+$\Ntag$) and $\barrier^{\cis/\trans}_{\static,0}$ are two constant terms that combine all electrostatic
+interactions between the protein and the pore that do not depend on $\Ntag$ (\eg~body charge related
+interactions with the electric fields in the nanopore).
+
+
+%
+\begin{table}[t]
+  \centering
+  \begin{threeparttable}
+    \footnotesize
+    \centering
+  
+    %
+    \caption[width=12cm]{Fitting parameters for \DHFR{$\Ntag$}{O2}.}
+    \label{tab:fitting_params_complex}
+    %
+  
+    \renewcommand{\arraystretch}{1.5}
+    \scriptsize
+  
+    \begin{tabularx}{12cm}{XXll}
+      \toprule
+      Parameter   & Description & Type  & Value\tnote{a} \\
+      \midrule
+      $\vbias$
+        & Aplied bias voltage
+        & independent & \SIrange{40}{120}{\mV} \\
+      $\Ntag$
+        & Tag charge number
+        & independent & \SIrange{4}{9}{} \\
+      $\Nbody$
+        & Body charge number
+        & fixed       & \SI{-13}{} \\
+      $\Neo$
+        & Equivalent osmotic charge number
+        & dependent   & \SI{15.5\pm0.9}{} \\
+      $L$
+        & Nanopore length
+        & fixed       & \SI{14}{\nm} \\
+      $\dxtrans$
+        & Distance to \transi{} barrier\tnote{b}
+        & fixed       & \SI{3.5}{\nm} \\
+      $\dxcis$
+        & Distance to \cisi{} barrier\tnote{b}
+        & dependent   & \SI{5.21\pm1.32}{\nm} \\
+      $\potbar_{\rm{tag}}^{\trans}$
+        & Change of $\barrier^{\trans}_\static$ with tag charge
+        & dependent   & \SI{0.860\pm0.078}{\kbt\per\ec} \\
+      $\potbar_{\rm{tag}}^{\cis}$
+        & Change of $\barrier^{\cis}_\static$ with tag charge
+        & dependent   & \SI{0.218\pm0.167}{\kbt\per\ec} \\
+      $\ln (\rateft/\si{\hertz})$
+        & Effective attempt rate for the \transi{} barrier
+        & dependent   & \num{-3.44\pm1.24} (\SI{3.21e-2}{\hertz}) \\
+      $\ln (\ratefc/\si{\hertz})$
+        & Effective attempt rate for the \cisi{} barrier
+        & dependent   & \num{7.39\pm1.02} (\SI{1.62e3}{\hertz}) \\
+      \bottomrule
+    \end{tabularx}
+  
+    \begin{tablenotes}
+      \item[a] Errors are confidence intervals for one standard deviation.
+      \item[b] Relative to the energetic minimum inside the pore. 
+    \end{tablenotes}
+  
+    \sisetup{table-format=2.4}
+  \end{threeparttable}
+  \end{table}
+  %
+
+
+The external forces acting on a protein trapped inside \gls{clya} under applied bias voltages manifest in the
+barrier contribution $\barrier^{\cis/\trans}_\ext$. They comprise an \emph{electrophoretic} component
+$\barrier^{\cis/\trans}_\ep$ and an \emph{electro-osmotic} component $\barrier^{\cis/\trans}_\eo$. The former
+results from the strong electric field (\SI{\approx3.5e6}{\volt\per\meter} at \SI{-50}{\mV}) and the nonzero
+net charge on the molecule, whereas the latter springs from the force exerted by \gls{clya}'s electro-osmotic
+flow, which is strong enough to allow the capture of negatively charged proteins even in opposition to the
+electrophoretic force~\cite{Soskine-2012,Soskine-2013,Soskine-Biesemans-2015,Biesemans-2015}. It is assumed
+that the bias potential changes linearly over the length of the pore, the external energy barriers are given
+by (see~\cref{sec:trapping_appendix:escape_rates})
+%
+\begin{subequations}\label{eq:external-barrier}
+\begin{align}
+  \barrier^{\cis}_\ext ={}&
+    \barrier^{\cis}_\ep + \barrier^{\cis}_\eo =
+    -(\Nnet + \Neo) \ec \dfrac{\dxcis}{L} \vbias,\\
+  \barrier^{\trans}_\ext ={}&
+    \barrier^{\trans}_\ep + \barrier^{\trans}_\eo =
+    +(\Nnet + \Neo) \ec \dfrac{\dxtrans}{L} \vbias,
+\end{align}
+\end{subequations}
+%
+where $\Nnet = \Nbody + \Ntag$ is the total number of charges on \gls{dhfr}\@, $L$ is the length of the
+nanopore (\SI{14}{\nm}), and $\vbias$ is the negative applied bias.  The strength of the electro-osmotic force
+is defined by the \emph{equivalent osmotic charge number} $\Neo$---the number of charges that must be added to
+\gls{dhfr} to create an equal electrophoretic force on the molecule. Defining the electro-osmotic force in
+terms of an equivalent osmotic charge number reveals its complete analogy to an electrophoretic force, which
+has the benefit that the magnitudes of both forces can be readily compared. Moreover, the equivalent osmotic
+charge number is an invariant related solely to the size and shape of the molecule.
+
+The quantities $\Delta x^{\cis/\trans}$ are defined as the distances from the electrostatic energy minimum to
+the \cisi{} and \transi{} barriers, which depend on the energetic landscape of \gls{clya} and on the precise
+location of residence of \gls{dhfr} within the pore. To estimate these values, we can use the APBS simulations
+(\cref{fig:trapping_apbs_energy}) from which we can read off that $\dxtrans \approx \SI{3.5}{\nm}$. The
+\cisi{} distance is more difficult to define as the \cisi{} electrostatic barrier is much shallower. Without
+external fields, it has a distance of about $\SI{\approx2.7}{\nm}$, but as we shall see in
+\cref{fig:trapping_apbs_external_biased}, when the energy landscape is tilted by an external force, the
+barrier that needs to be overcome is actually located at the \cisi{} entrance of the pore. In practice,
+$\dxcis$ will need to be adjusted to a value between these two possibilities to give an adequate estimate and
+hence will be left as a fitting parameter.
+
+Inserting \cref{eq:decomposition,eq:static-barrier,eq:external-barrier} into \cref{eq:double_barrier} yields
+the final dwell time model:
+%
+\begin{equation}\label{eq:double_barrier_complex}
+	\begin{split}
+    \frac{1}{\dwelltime} = \rate ={}&
+	\ratefc \exp{%
+		\left(
+			-\dfrac{%
+				\Ntag \ec \potbar_{\rm{tag}}^{\cis}
+				- (\Nnet + \Neo) \ec \dfrac{\dxcis}{L} \vbias}{\kbt}
+		\right)
+		} \\
+	&\enspace +
+	\rateft \exp{%
+		\left(
+			-\dfrac{%
+				\Ntag \ec \potbar_{\rm{tag}}^{\trans}
+				+ (\Nnet + \Neo) \ec \dfrac{\dxtrans}{L} \vbias}{\kbt}
+		\right)
+		},
+	\end{split}
+\end{equation}
+%
+where the static terms are absorbed into the prefactor to form the effective \cisi{} and \transi{} barrier
+attempt rates $\rate_{\rm{eff}}^{\cis/\trans}$. The formulation of \cref{eq:double_barrier_complex} offers a
+compact description of the most salient features of the molecule-nanopore system, and it enables us to
+describe the dwell time of \gls{dhfr} inside \gls{clya} quantitatively as a function of the physical
+properties of the system. Fitting this model to all \DHFR{$\Ntag$}{O2} data \emph{simultaneously}---with both
+$\vbias$ and $\Ntag$ as independent variables---leads to the fitting values in
+\cref{tab:fitting_params_complex} and the plots in \cref{fig:trapping_dwell_times_tag_data}, which show
+excellent accuracy considering the simplicity of our model. This is a strong indication that we captured the
+essence of the trapping mechanism within our model.
+
+
+%
+\begin{figure*}[p]
+  \centering
+  %
+  \begin{subfigure}[t]{27.5mm}
+		\centering
+		\caption{}\vspace{-3mm}\label{fig:trapping_apbs_external_model}
+    \includegraphics[scale=1]{trapping_apbs_external_model}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{42.5mm}
+		\centering
+    \caption{}\vspace{-3mm}%
+    \label{fig:trapping_apbs_external_equilibrium}
+    \includegraphics[scale=1]{trapping_apbs_external_equilibrium}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{42.5mm}
+		\centering
+    \caption{}\vspace{-5mm}%
+    \label{fig:trapping_apbs_external_biased}
+    \includegraphics[scale=1]{trapping_apbs_external_biased}
+  \end{subfigure}
+  %
+  \caption[Electrostatic landscape of a {DHFR} bead model in ClyA-AS.]%
+    {%
+      \textbf{Electrostatic landscape of a {DHFR} bead model in ClyA-AS.}
+      %
+      (\subref{fig:trapping_apbs_external_model})
+      %
+      Simplified bead model of all \DHFR{$\Ntag$}{O2} in comparison with their corresponding full-atom
+      homology model.
+      %
+      (\subref{fig:trapping_apbs_external_equilibrium})
+      %
+      The simulated electrostatic energy landscapes of all \DHFR{$\Ntag$}{O2} variants. Increasing the number
+      of positive charges in the tag deepens the energetic mininum at $z \approx \mSI{3}{\nm}$.
+      %
+      %
+      (\subref{fig:trapping_apbs_external_biased})
+      %
+      Approximation of the `tilting' of the energy landscapes from
+      (\subref{fig:trapping_apbs_external_equilibrium}) by an applied bias voltage, which acts on the total
+      effective charge of \gls{dhfr} through a constant electric field (\ie~linear potential drop) inside the
+      pore (\cref{eq:external_energy}). Because the body is negative, increasing the number of positive
+      charges in the tag decreases the electrophoretic force countering the electro-osmotic force, resulting
+      in a higher degree of tilting. Down- and upward faces triangles indicate the presence of a local minimum
+      and maximum, respectively.
+      %
+  }\label{fig:trapping_apbs_external}
+\end{figure*}
+%
+
+
+\subsection{Effect of tag charge and bias voltage on the energy landscape}
+%
+\label{sec:trapping:biased_landscape}
+%
+
+Our equilibrium electrostatics simulations showed the existence of an electrostatic energy minimum
+(\cref{fig:trapping_apbs_external_equilibrium}) at the bottom of \gls{clya}'s \lumen{} ($z = \SI{3}{\nm}$),
+flanked by two maxima, located at the \transi{} constriction ($z = \SI{-0.6}{\nm}$), and at the middle of the
+\cisi{} \lumen{} ($z = \SI{5.7}{\nm}$). Hence, when \gls{dhfr} resides at the electrostatic potential minimum
+inside the nanopore, the largest electrostatic barrier is given by the narrower and negatively charged
+\transi{} constriction while the barrier at the \cisi{} side is much shallower. Under the influence of an
+external force (\ie~the bias voltage), however, the entire energy landscape will become `tilted', reducing
+some barriers and enhancing others. The biased energy $\energyelec_{\vbias}$ is thus
+%
+\begin{align}\label{eq:external_energy}
+  \energyelec_{\vbias} =  \energyelec + \Eext
+\end{align}
+%
+where $\Eext$ is the energy of the \gls{dhfr} molecule due to the external bias voltage. Assuming the bias
+voltage changes linearly from \cisi{} to \transi{}, $\Eext$ can be approximated as
+%
+\begin{align}\label{eq:external_energy_model}
+  \Eext =
+  \begin{cases}
+      \Ntot \dfrac{\vbias}{\SI{14}{\nm}} (z - \SI{11}{\nm})
+              & \text{for}\; -3 < z < \SI{11}{\nm},\\
+      0,      & \text{for}\;  z >= \SI{11}{\nm},\\
+      \Ntot \vbias, & \text{for}\;  z <  \SI{-3}{\nm}
+  \end{cases}
+\end{align}
+%
+with $\Ntot = \Nbody + \Ntag + \Neo$ the effective charge of charge of \gls{dhfr}. In the case of
+\DHFR{$\Ntag$}{O2} (\cref{fig:trapping_apbs_external_model}), the net charge of the protein is negative
+($\Nbody = -13$) and the electro-osmotic flow exerts an opposing force ($\Neo = 15.5$). This means that
+increasing the number of positive charges in the tag decreases the net electrophoretic force and thus leads to
+a more pronounced tilting of the entire energy landscape, deepening the electrostatic minimum
+(cf.~\cref{fig:trapping_apbs_external_equilibrium,fig:trapping_apbs_external_biased}). This increases the
+barrier heights at both the \cisi{} and \transi{} sides similarly, which results in the lowering of both the
+\cisi{} and \transi{} escape rates and hence longer dwell times. Because the \cisi{} energy barrier in the
+\lumen{} is relatively shallow, it disappears at moderate applied voltages (\SI{>-50}{\mV}). This indicates
+that, under a negative applied bias voltage, the location of the \cisi{} barrier is voltage dependent and
+hence the distance $\dxcis$ is not well defined. The \cisi{} barrier at low and high biases it is located at
+respectively the middle of the \lumen{} ($z \approx \mSI{5.7}{\nm}$) and the \cisi{} entry ($z \approx
+\mSIrange{10}{13}{\nm}$).
+
+%
+\begin{figure*}[b]
+  \centering
+
+  %
+  \begin{subfigure}[t]{5.5cm}
+    \centering
+    \caption{}\vspace{-3mm}\label{fig:trapping_translocation_voltage}
+    \includegraphics[scale=1]{trapping_translocation_voltage}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{5.5cm}
+    \centering
+    \caption{}\vspace{-3mm}\label{fig:trapping_translocation_probability}
+    \includegraphics[scale=1]{trapping_translocation_probability}
+  \end{subfigure}
+  %
+
+  \caption[Tag charge dependence of the threshold voltage and translocation probability.]{%
+    \textbf{Tag charge dependence of the threshold voltage and translocation probability.}
+    %
+    (\subref{fig:trapping_translocation_voltage})
+    %
+    Every additional positive charge in the fusion tag of the \DHFR{$\Ntag$}{O2} variants increases the
+    threshold voltage (\cref{eq:threshold_voltage_complex}) by \SI{\approx5.21}{\mV}. The solid line is a
+    linear fit to the data.
+    %
+    %
+    (\subref{fig:trapping_translocation_probability})
+    %
+    Translocation probability voltage $\vbias^{P_{\rm{transl}}}$ plotted against tag charge for
+    $P_{\rm{transl}} = \mSIlist{0.1;5;50;95;99.9}{\percent}$, shows that variants with high tag charge
+    require less bias voltage to fully translocate the pore. Values were obtained through interpolation from
+    \cref{eq:ptrans}, using the parameters in \cref{tab:fitting_params_complex}.
+    %
+  }\label{fig:trapping_translocation}
+\end{figure*}
+%
+
+%
+\begin{table}
+  \centering
+  \begin{threeparttable}[t]
+    \centering
+    %
+    \caption[width=12cm]{Summary of all estimated threshold voltages and their corresponding dwell times.}
+    \label{tab:threshold_voltages_and_dwelltimes}
+    %
+    \renewcommand{\arraystretch}{1.2}
+    \footnotesize
+    %
+    \begin{tabularx}{12cm}{Xllll}
+      \toprule
+                    & \multicolumn{2}{c}{Simple model\tnote{a}}
+                    & \multicolumn{2}{c}{Complex model\tnote{b}} \\
+      \cmidrule(r){2-3}\cmidrule(l){4-5}
+      {DHFR} variant & $\vthresh$ [mV] & $\tthresh$ [s]
+                    & $\vthresh$ [mV] & $\tthresh$ [s] \\
+      \midrule
+      \DHFR{4}{S}   & \num{56.1} & \num{0.31} & --- & --- \\
+      \DHFR{4}{I}   & \num{65.5} & \num{0.25} & --- & --- \\
+      \DHFR{4}{C}   & \num{63.7} & \num{0.44} & --- & --- \\
+      \DHFR{4}{O1}  & \num{71.5} & \num{2.11} & \num{75.6} & \num{2.28} \\
+      \DHFR{5}{O1}  & \num{70.7} & \num{3.14} & \num{69.8} & \num{4.16} \\
+      \DHFR{7}{O1}  & \num{65.4} & \num{15.6} & \num{61.6} & \num{13.9} \\
+      \DHFR{4}{O2}  & \num{83.0} & \num{2.69} & \num{87.3} & \num{2.28} \\
+      \DHFR{5}{O2}  & \num{78.5} & \num{5.68} & \num{79.2} & \num{4.16} \\
+      \DHFR{6}{O2}  & \num{70.8} & \num{11.8} & \num{73.0} & \num{7.59} \\
+      \DHFR{7}{O2}  & \num{65.4} & \num{10.8} & \num{68.1} & \num{13.9} \\
+      \DHFR{8}{O2}  & \num{63.6} & \num{35.1} & \num{64.1} & \num{25.3} \\
+      \DHFR{9}{O2}  & \num{59.8} & \num{80.2} & \num{60.4} & \num{46.2} \\
+      \bottomrule
+    \end{tabularx}
+    %
+    \begin{tablenotes}
+      \item[a] Estimated using \cref{eq:threshold_voltage_simple} after fitting of
+      \cref{eq:double_barrier_simple} the individual mean dwell times of each mutant.
+      \item[b] Estimated using \cref{eq:threshold_voltage_complex} after fitting of \cref{eq:double_barrier}
+      to all \DHFR{$\Ntag$}{O2} mean dwell time data.
+    \end{tablenotes}
+    %
+  \end{threeparttable}
+\end{table}
+%
+
+
+\subsection{Characteristics of the trapping}
+%
+
+As the double barrier model of \cref{eq:double_barrier_complex} is derived from the underlying physical
+interactions of the molecule with the nanopore and with the externally applied field, the fitted parameters of
+\cref{tab:fitting_params_complex} are physically relevant quantities that describe the characteristics of the
+system.
+
+The sizes of the electrostatic barriers $\potbar_{\rm{tag}}^{\cis/\trans}$ that the tag charges experience are
+in direct relation to the gradients of the barrier sizes computed using the \gls{apbs} model
+(\cref{fig:trapping_apbs_barrier_tag}). We find that the change of the \transi{} barrier with respect to tag
+charge, $\potbar_{\rm{tag}}^{\trans} = \text{\SI{0.860}{\kbt\per\ec}}$, is in excellent agreement with the
+simulated gradient of \SI{0.875}{\Vt}. The change observed for the \cisi{} barrier, $\potbar_{\rm tag}^{\cis}
+= \text{\SI{0.218}{\kbt\per\ec}}$, is approximately 3-fold smaller compared to its \gls{apbs} value of
+\SI{0.621}{\kbt\per\ec}. This deviation likely results from the shallowness of the \cisi{} barrier, causing it
+to disappear when the energy landscape is tilted under an applied bias voltage
+(see~\cref{fig:trapping_apbs_external_biased}). This gives rise to a \cisi{} barrier that lies at a location
+further away from the electrostatic minimum located inside the \transi{} constriction, effectively limiting
+the influence of the tag charge number on the barrier height. This claim is further corroborated by the
+finding that the fitted value of $\dxcis \approx \SI{5.2}{\nm}$, which is almost twice the distance predicted
+by the \gls{apbs} simulations and moves that \cisi{} barrier much closer to the \cisi{} entry.
+
+One of the key insights we obtain from our model is the ability to directly extract information on the
+strength of the osmotic flow. However, let us first observe that the equivalent electro-osmotic charge number
+$\Neo\approx15.5$ is much bigger than the net charge of all tag charge variations, $\Ntag + \Nbody = -
+9,\ldots, -4$, and also has the opposite sign. This is in agreement with the earlier assumption that the
+electro-osmotic force is strong enough to overcome the opposing electrophoretic force and is hence responsible
+for the capture of the molecule~\cite{Soskine-2012,Soskine-Biesemans-2015}. At a bias of $\vbias =
+\SI{-50}{\mV}$ the electro-osmotic force exerted onto the \gls{dhfr} molecule (\cref{eq:osmoticforce}) is
+%
+\begin{equation}
+  \forceeo = \ec \Neo \frac{\vbias}{L} \approx \SI{9}{\pN}
+  \qquad\text{.}
+\end{equation}
+%
+The magnitude of this force is in line with those found experimentally for
+DNA~\cite{Keyser-2006,vanDorp-2009,Lu-2012} and proteins~\cite{Oukhaled-2011} in solid-state nanopores.
+
+We found the threshold voltages (obtained from the fitted model, see~\cref{eq:threshold_voltage_complex}) to
+be roughly linearly dependent on the number of tag charges, with a decrease of \SI{\approx5}{\mV} per
+additional positive charge (\cref{fig:trapping_translocation_voltage}). This effect is caused by the increase
+of the net external force on the molecule with increasing tag charge, resulting in a simultaneous lowering of
+the \transi{} barrier and raising the \cisi{} barrier. The threshold voltages and their corresponding
+dwell times for both the simple and complex double barrier models are listed in
+\cref{tab:threshold_voltages_and_dwelltimes}.
+
+Another important finding of our model is that the \gls{dhfr} variations are essentially trapped by the
+electrostatic forces of the pore on the tag. This can be seen from the direct exponential dependence of the
+electrostatics on the tag charge as shown in \cref{eq:static-barrier}. If the molecule was trapped as a whole
+between two barriers, we would rather see a dependence on the net charge on the molecule. Indeed, we verified
+that such a net charge dependence \emph{cannot} be fitted to the data. This suggest that the tag acts as an
+anchor which is located in the electrostatic minimum created by the \transi{} constriction
+(\cref{fig:trapping_apbs_energy}).
+
+We can also determine the probability of a full translocation of \gls{dhfr} using
+%
+\begin{align}\label{eq:ptrans}
+  \probtrans = \rate^{\trans} / \left( \rate^{\cis} + \rate^{\trans} \right),
+\end{align}
+%
+where $k^\cis$ and $k^\trans$ can be computed using the individual components given by
+\cref{eq:double_barrier_complex} and the parameters in \cref{tab:fitting_params_complex}. At zero bias and
+zero tag charge, we find that only \SI{0.002}{\percent} of \gls{dhfr} molecules would exit to the \transi{}
+side, indicating that in the absence of an electrophoretic driving force a \cisi{} exit is much more likely
+than a \transi{} exit. This is in agreement with our expectations becasue \gls{dhfr}'s size leads to a
+significant steric hindrance when it tries to translocate through the nanopore constriction.
+
+Finally, from \cref{eq:ptrans} we can compute the voltage $\vbias^{\probtrans}$ required to obtain a given
+translocation probability (\cref{fig:trapping_translocation_probability}). The number of tag charges
+significantly lowers the voltage required to achieve full translocation, for example, $\vbias^{\probtrans}$
+for $\probtrans = \SI{99.9}{\percent}$ decreases from \SI{\approx-130}{\mV} to \SI{\approx-85}{\mV} going from
+$\Ntag = +4$ to \num{+9}. This effect is mainly due to the lowering of the \transi{} barrier height, as the
+\cisi{} escape probability voltage (\SI{0.01}{\percent} line in \cref{fig:trapping_translocation_probability})
+only changes from \SI{\approx-40}{\mV} to \SI{\approx-35}{\mV} going from \num{+4} to \num{+9} tag charges.
+Hence, the higher the tag charge number, the stronger the net external force which pushes the molecule through
+the \transi{} constriction of the pore.
+
+%
+\section{Conclusion}
+%
+\label{sec:trapping:conclusion}
+%
+We showed previously that neutral or weakly charged proteins larger than the \transi{} constriction
+(\SI{>3.3}{\nm}) of \gls{clya} can be trapped inside the nanopore for a relatively long duration (seconds to
+minutes) and that their behavior can be sampled by ionic current recordings~\cite{Soskine-2013,
+Soskine-2012,Soskine-Biesemans-2015,Biesemans-2015,VanMeervelt-2014}. In contrast, small proteins rapidly
+translocate through the nanopore due to the strong electro-osmotic flow and highly negatively charged proteins
+remain inside \gls{clya} only briefly or they do not enter at all~\cite{Soskine-2012}.
+
+In this work, we use \gls{dhfr} as a model molecule to enhance and investigate the trapping of small and
+negatively charged proteins inside the \gls{clya} nanopore~\cite{Biesemans-2015}. \gls{dhfr}
+(\SIrange{3.5}{4}{\nm}) is slightly too large to pass through the \transi{} constriction, and its negatively
+charged body ($\Nbody = -13$) only allowed trapping the protein inside the nanopore for a few milliseconds.
+The introduction of a positively charged C-terminal fusion tag partially counterbalanced the electrophoretic
+force and introduced an electrostatic trap in the \transi{} constriction of \gls{clya} that increased the
+\gls{dhfr} dwell time up to minutes.
+
+The \gls{dhfr} mutants showed a biphasic voltage dependency which was explained by using a physical model
+containing a double energy barrier to account for the exit on either side of the nanopore. The model contained
+steric, electrostatic, electrophoretic, and electro-osmotic components and it allowed us to describe the
+complex voltage-dependent data for the different \gls{dhfr} constructs. Furthermore, fitting to experimental
+data of a series of \DHFR{$\Ntag$}{O2} constructs, in which the positive charge of the tag was systematically
+increased, enabled us to deduce meaningful values for \gls{dhfr}'s intrinsic \cisi{} and \transi{}
+translocation probabilities, as well as an estimate of the force exerted by the electro-osmotic flow on the
+protein of \SI{0.178}{\pico\newton\per\milli\volt} (\eg~\SI{9}{\pN} at \SI{-50}{\mV},
+\cref{tab:fitting_params_complex}). We also showed that the \gls{apbs} simulation results of a simple bead
+model for the molecule are directly related to the independently fitted parameters of the double barrier
+model. In conclusion, this means that it should be possible to \emph{predict} the dwell times of similar
+experiments by obtaining parameters directly from these types of \gls{apbs} simulations.
+
+The double barrier model of \cref{eq:double_barrier_complex} in its current form does not adequately describe
+mutations that modify the body charge distribution of \gls{dhfr}\@. This is most likely because body charge
+variations close to the electrostatically trapped tag will impact the height of the barriers more strongly
+than modifications on the far end of the tag. Although a model accounting for this effect could be made, it
+would also make the double barrier model significantly more complex without providing any significant
+advantages over a more comprehensive atomistic simulation. A more detailed discussion can be found in
+\cref{sec:trapping_appendix:body_charge_variations}.
+
+We showed previously that neutral or weakly charged proteins larger than the \transi{} constriction
+(\SI{>3.3}{\nm}) of \gls{clya} can be trapped inside the nanopore for a relatively long duration (seconds to
+minutes) and that their behavior can be sampled by ionic current
+recordings~\cite{Soskine-2013,Soskine-2012,Soskine-Biesemans-2015,Biesemans-2015,VanMeervelt-2014}. In
+contrast, small proteins rapidly translocate through the nanopore due to the strong electro-osmotic flow and
+highly negatively charged proteins remain inside \gls{clya} only briefly or they do not enter at
+all~\cite{Soskine-2012}.
+
+Inside the \lumen{} of \gls{clya}, proteins are able to bind to their specific substrates at all applied
+potentials tested (up to \SI{-100}{\mV}), indicating that the electrostatic potential inside the nanopore and
+the electrostatic potential originating from the inner surface of the nanopore did not unfold the protein.
+Therefore, our results indicate that \gls{clya} nanopores can be used as nanoscale test tubes to investigate
+enzyme function at the single-molecule level. Compared to the wide variety of single-molecule techniques based
+on fluorescence, nanopore recordings are label-free, which have the advantage of allowing long observation
+times.
+
+The electrophoretic trapping of proteins inside nanopores is likely to have practical applications. For
+example, arrays of biological or solid-state nanopores will allow the precise alignment of proteins on a
+surface. In addition, proteins immobilized inside glass nanopipettes atop a scanning ion conductance
+microscope~\cite{Bruckbauer-2007,Babakinejad-2013} can be manipulated with nanometer-scale precision, which
+might be used, for instance, for the localized delivery of proteins. Furthermore, ionic current measurements
+through the nanopore can be used for the detection of analyte binding to an immobilized protein, which has
+applications in single-molecule protein studies and small analyte sensing.
+
+
+%
+\section{Materials and methods}
+%
+\label{sec:trapping:methods}
+%
+
+\subsection{Electrostatic energy landscape computation}
+%
+The electrostatic energy landscape of a coarse-grained \gls{dhfr} molecule translocating through a full-atom
+\gls{clya-as} model was computed using the \gls{apbs}~\cite{Baker-2001}, using the approach described in
+\cref{sec:elec:methods:elec:energy}. In summary, a full atom model of \gls{clya-as}~\cite{Franceschini-2016}
+was prepared \textit{via} homology modeling with MODELLER software package~\cite{Sali-1993} from the wild-type
+\gls{clya} crystal structure (\pdbid{2WCD}~\cite{Mueller-2009}) and its energy was further minimized using the
+\gls{vmd}~\cite{Humphrey-1996} and \gls{namd} programs~\cite{Phillips-2005}. A coarse-grained bead model of
+\gls{dhfr} was placed a various locations along the central axis of the pore using custom \code{Python} code
+and the \code{Biopython} package~\cite{Cock-2009}. The bead model of \DHFRt{} consisted of a `body' of seven
+negatively charged beads  (\SI{-1.43}{\ec}) beads (\SI{1.6}{\nm} diameter) in a spherical configuration and a
+`tail' of nine smaller beads (\SI{1}{\nm} diameter, \SI{0.6}{\nm} spacing) in a linear configuration with
+varying charge (depending on the net charge of the three amino acids they represent). Each atom in the the
+resulting \gls{clya}-\gls{dhfr} complexes was subsequently assigned a radius and partial charge (according to
+the CHARMM36 force-field~\cite{Huang-2013}) with the PDB2PQR program~\cite{Dolinsky-2004,Dolinsky-2007}, and
+the electrostatic was energy computed with \gls{apbs}. The net electrostatic energy cost or gain of placing a
+\gls{dhfr} molecule (\ie~$\energyelec$) along the central z-axis of \gls{clya} (from
+$z_{\rm{body}}=\SI{-12.5}{\nm}$ to $\SI{27.5}{\nm}$ relative to the center of the bilayer, with steps of
+\SI{0.5}{\nm} inside the pore) was computed by \cref{eq:electrostatic_energy}. To this end, all systems were
+solved using the non-linear \gls{pbe} (\code{npbe}) in two steps with the automatic solver (\code{mg-auto}):
+(1) a coarse calculation in a box of \SI{40x40x110}{\nm} with grid lengths of \SI{0.138x0.138x0.122}{\nm} and
+multiple Debye-H\"{u}ckel boundary conditions (\code{bcfl mdh}), followed by (2) a finer focussing calculation
+in a box of \SI{15x15x70}{\nm} with grid lengths of \SI{0.052x0.052x0.052}{\nm} that used the values of the
+coarse calculation at its boundaries. The monovalent salt concentration was set to \SI{0.150}{\Molar} with a
+radius of \SI{0.2}{\nm} for both ions. The solvent and solute relative permittivities were set to \num{78.15}
+and \num{10}, respectively~\cite{Li-2013}. Both the charge density and the ion accessibility maps were
+constructed using cubic B-spline discretization (\code{chgm spl2} and \code{srfm spl2}).
+
+
+\subsection{Protein mutagenesis, overexpression, and purification}
+%
+
+All \gls{dhfr} variants were constructed, overexpressed and purified using standard molecular biology
+techniques~\cite{Soskine-Biesemans-2015,Biesemans-2015}, as described in full detail in the supplementary
+information (see~\cref{sec:trapping_appendix:dhfr_cloning}). Briefly, the \DHFR{4}{S} DNA construct was built
+from the {pT7-SC1} plasmid containing the \DHFRt{} construct (see ref.~\cite{Soskine-Biesemans-2015}) by
+inserting an additional alanine residue at position 175 (located in the fusion tag) with site-directed
+mutagenesis. All other variants were derived---again using site-directed mutagenesis---either directly from
+\DHFR{4}{S} or from a variant thereof. The plasmids of each \gls{dhfr} variant were used to transform E.
+cloni\textsuperscript{\textregistered} EXPRESS BL21(DE3) cells (Lucigen, Middleton, USA), and the \gls{dhfr}
+proteins they encode were overexpressed overnight at \SI{25}{\celsius} in a liquid culture. After the
+bacterial cells were harvested by centrifugation, the overexpressed proteins were released into solution
+through lysis---using a combination of at least a single freeze-thaw cycle, incubation with lysozyme, and
+probe tip sonification. Finally, the \gls{dhfr} proteins were purified from the lysate with affinity
+chromotography with Strep-Tactin\textsuperscript{\textregistered} Sepharose\textsuperscript{\textregistered}
+(IBA Lifesciences, Goettingen, Germany), aliquoted, and stored at \SI{-20}{\celsius} until further use.
+
+
+\subsection{ClyA-AS overexpression, purification and oligomerization}
+%
+
+\gls{clya-as} oligomers were prepared as described previously~\cite{Soskine-2013}, and full details can be
+found in \cref{sec:trapping_appendix:dhfr_cloning}. Briefly, the \gls{clya-as} monomers were overexpressed and
+purified in a manner similar to that for \gls{dhfr}, with the largest difference being the use of
+\ce{Ni-NTA}-based affinity chromotography. After purification, \gls{clya-as} monomers were oligomerized in
+\SI{0.5}{\percent} \textbeta-dodecylmaltoside (GLYCON Biochemicals GmbH, Luckenwalde, Germany) at
+\SI{37}{\celsius} for \SI{30}{\minute}. The type I oligomer (12-mer) was isolated by gel extraction from a
+blue native \gls{page}.
+
+
+\subsection{Electrical recordings in planar lipid bilayers}
+%
+
+Electrical recordings of individual \gls{clya-as} nanopores were carried out using a typical planar lipid
+bilayer setup with an AxoPatch 200B (Axon Instruments, San Jose, USA) patch-clamp
+amplifier~\cite{Maglia-2010,Soskine-2012}. Briefly, a black lipid membrane consisting of
+1,2-diphytanoyl-sn-glycero-3-phosphocholine (Avanti Polar Lipids, Alabaster, USA), was formed inside a
+\SI{\approx 100}{\micro\meter} diameter aperture in a thin polytetrafluoroethylene film (Goodfellow Cambridge
+Limited, Huntingdon, England) separating two electrolyte compartments. Single nanopores were then made to
+insert into the \cisi{}-side chamber (grounded) by addition of \SIrange{0.01}{0.1}{\nano\gram} of
+preoligomerised \gls{clya-as} to the buffered electrolyte (\SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl}
+\pH{7.5}). All ionic currents were sampled at \SI{10}{\kilo\hertz} and filtered with a \SI{2}{\kilo\hertz}
+low-pass Bessel filter. A more detailed description can be found in
+\cref{sec:trapping_appendix:nanopore_experiments}.
+
+
+\subsection{Dwell time analysis and model fitting}
+%
+
+The dwell times of the \gls{dhfr} protein blocks were extracted from single-nanopore channel recordings using
+the `single-channel search' algorithm of the pCLAMP 10.5 (Molecular Devices, San Jose, USA) software suite.
+The process was monitored manually, and any events shorter than \SI{1}{\ms} were discarded. We processed the
+dwell time data, and fitted the double barrier model to it, using a custom Python code employing the
+\code{NumPy}~\cite{vanderWalt-2011}, \code{pandas}~\cite{McKinney-2010}, and \code{lmfit}~\cite{Newville-2014}
+packages. Fitting of the exponential models to the data was performed using non-linear least-squares
+minimization with the Levenberg-Marquardt algorithm as implemented by \code{lmfit}. Note that to improve the
+rubustness and quality of the fitted parameters, we moved the exponential prefactors into the exponential and
+we fitted the natural logarithm of the equations to the natural logarithm of the dwell time data.
+
+\subsection{Analytical expression for the threshold voltages}
+%
+
+An analytic expression for the threshold voltage $\vthresh$---the bias voltage at maximum dwell time---can
+found as the bias voltage for which $\dfrac{d\rate}{d\vbias} = 0$. For the simple double barrier model given
+by \cref{eq:double_barrier_simple} this becomes
+%
+\begin{align}\label{eq:threshold_voltage_simple}
+	\vthresh = \dfrac{ \left[
+	\frac{%
+	\log \left( \rateft / \ratefc \right)+
+	\log \left( -N_{\rm{eq}}^\trans / N_{\rm{eq}}^\cis \right)
+	}{%
+		N_{\rm{eq}}^\trans - N_{\rm{eq}}^\cis
+  }\right]}%
+  { \ec / \kbt }
+  \text{ ,}
+\end{align}
+%
+whereas for the more complex model given by \cref{eq:double_barrier_complex} it becomes
+%
+\begin{equation}\label{eq:threshold_voltage_complex}
+	\vthresh = - \dfrac{\left[
+	\frac{%
+	\log \left( \rateft / \ratefc \right)
+	+ \log \left( \dxtrans / \dxtrans \right)
+	+ \left( \potbar_{\rm{tag}}^{\cis} - \potbar_{\rm{tag}}^{\trans} \right)\Ntag
+	}{%
+		\left( \Nnet + \Neo \right) \left(\dxcis + \dxtrans \right) / L
+  }\right]}%
+  { \ec / \kbt }
+  \text{ .}
+\end{equation}
+%
 
 
 

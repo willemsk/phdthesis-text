@@ -1,0 +1,1369 @@
+\chapter{Supplementary: Trapping of a single protein inside a nanopore}
+%
+\label{ch:trapping_appendix}
+%
+
+%
+\section{Escape rates over a potential barrier}
+%
+\label{sec:trapping_appendix:escape_rates}
+%
+
+
+\subsection{Dwell times of bound states}
+%
+
+When measuring the dwell time of molecules in bound states such as when they are trapped in nanopores, we
+typically obtain a distribution of dwell times whose appearance yields direct information about the kinetics
+of the bound state. In this section we will discuss how to extract kinematic information from such
+distributions and how distributions of multi-level bound states look like.
+
+
+\subsubsection{Single bound state}
+%
+\label{sec:trapping_appendix:single_bound_state}
+%
+
+The simplest scenario is the decay of a single bound state. Suppose we measure the duration of the bound state
+many times in an experiment. This involves measuring the time trace noting the capture and release times and
+then plotting a histogram of events vs.~dwell time in the bound state. Since the energy obtained for the
+release of the molecule is thermal, the process is stochastic in nature and with growing event number the
+histogram approaches the underlying distribution associated with the kinetics of escaping from the bound
+state.
+
+For a single bound state with a rate of escape $\rate$, the probability distribution function of remaining in
+the bound state is given by the typical exponential distribution
+%
+\begin{align*}
+    f(t) = \rate \; e^{-\kT}
+    \text{ .}
+\end{align*}
+%
+The nature of the distribution function $f$ is sometimes confusing as it is often used interchangeably and
+without notational clarity as both a probability distribution and as an event distribution. In an experiment
+where we count events in time series data, we gather statistical data on the event distribution rather than on
+the probability distribution. In the simple case of a single bound state, this event distribution is given by
+%
+\begin{align}\label{eq:event_distri}
+    F(t) = F_0 \;f(t)
+    \text{ ,}
+\end{align}
+%
+where $F_0$ is the total number of events. Note that since $f$ is a probability distribution, it is
+necessarily normalized to unity
+%
+\begin{align}
+    \langle 1\rangle_f :={}& \int_0^\infty dt\;f(t) = 1
+    \text{ ,}
+\end{align}
+%
+and therefore the event distribution is normalized to the total number of events:
+%
+\begin{align}\label{eq:normalization}
+    \langle 1\rangle_F :={}& \int_0^\infty dt\;F(t) = F_0
+    \text{ .}
+\end{align}
+%
+
+Since the event distribution and the probability distribution are so closely related in this case, the rate of
+escape $\rate$ can simply be read off of a general exponential fit to the event histogram generated from the
+time-series data.
+
+For later reference, let us note that the \emph{expectation value} of the duration of the molecule in the
+bound state (\ie~the average dwell time) can be computed from the distribution function as
+%
+\begin{align*}
+    \tau :={}& \langle t\rangle_f
+    = \int_0^\infty dt\; t\; f(t)
+    = \int_0^\infty dt\; t\;\rate\; e^{-kt}
+    = - t e^{-kt}\Big|_{0}^\infty + \int_0^\infty dt \;e^{-kt}
+    = \frac{1}{\rate}
+    \text{ .}
+\end{align*}
+%
+On the other hand, if we want to compute the average dwell time from the event distribution, we need to take
+into account that the event distribution is differently normalized:
+%
+\begin{align}\label{eq:event_distri_norm}
+    \tau ={}& \frac{\langle t\rangle_F}{\langle 1\rangle_F}
+    = \frac{F_0\langle t\rangle_f}{F_0\langle 1\rangle_f}
+    = \langle t\rangle_f
+    \text{ .}
+\end{align}
+%
+
+The variance is defined as the squared deviation from the expectation value
+%
+\begin{align*}
+    \variance(t) = \left\langle (t - \langle t\rangle_f)^2\right\rangle_f
+                 = \langle t^2\rangle_f - \langle t\rangle_f^2
+    \text{ .}
+\end{align*}
+%
+In case of an event distribution $F$, we also need to normalize by $\langle 1\rangle_F$ as above.  The
+expectation value of the squared time is given by
+%
+\begin{align*}
+    \langle t^2\rangle_f ={}& \int_0^\infty dt\; t^2 f(t)
+        = \int_0^\infty dt\; t^2 \; \rate\; e^{- kt}
+        =  - t^2\; e^{-kt}\Big|_0^\infty + \int_0^\infty dt\; 2t\; e^{-kt}\\
+        ={}&  \frac{2}{\rate} \langle t\rangle_f = 2\langle t\rangle^2
+        \text{ .}
+\end{align*}
+%
+Therefore we find for the variance of the dwell time of events
+%
+\begin{align*}
+    \variance(t) = \langle t \rangle^2 = \tau^2 = \frac{1}{\rate^2}
+    \text{ .}
+\end{align*}
+%
+
+
+\subsubsection{Multi-level bound states}
+%
+\label{sec:trapping_appendix:multi_bound_state}
+
+Now let us take a look at the general $N$-level system. It can be described by the set of coupled \glspl{ode}
+%
+\begin{align}\label{eq:multi_ode}
+    \ddt{} f_i(t) = \sum_{j=1}^N m_{ij} f_j(t)
+    \text{ ,}
+\end{align}
+%
+where $f_i$ is the probability distribution of the $i$-th state and $N$ is the total number of states. Here we
+assume that each bound state can decay into another state \textit{via} the rate $m_{ij}$. If we choose one or
+more of the states to represent a free state where the molecule escapes, we can in principle describe trapping
+events with arbitrary number of transitions in between meta states before the escape of the molecule. The
+rates $m_{ij}$ of \cref{eq:multi_ode} are not entirely unrelated as they need to conserve probability. An
+obvious choice is to simply express the decrease of probability of a state as the increase of the other
+states:
+%
+\begin{align}\label{eq:matrix_elements}
+    m_{ij} =
+    \begin{cases}
+        - \sum_j \rate_{ij}, & \text{if}\; i=j \text{ ,}\\
+        \rate_{ji}, & \text{else} \text{ ,}
+    \end{cases}
+\end{align}
+%
+This means that a molecule that disappears in one state has to appear in another one. It cannot simply vanish
+nor can it appear out of thin air.
+
+It is known that systems of ODEs as in \cref{eq:multi_ode} describe solutions that can be expressed as the
+sums of exponentials of their rates:
+%
+\begin{align}\label{eq:ansatz}
+    f_i(t)  = \sum_{\ell, m=1}^N a_{i\ell m} e^{- \rate_{\ell m} t}
+    \text{ .}
+\end{align}
+%
+Inserting this ansatz into \cref{eq:multi_ode} tells us how the probability distributions are related:
+%
+\begin{align*}
+    \ddt{} f_i = \sum_{j} m_{ij} f_j
+               = \sum_{j} m_{ij} \sum_{\ell, m} a_{j\ell m} e^{- \rate_{\ell m} t}
+    \overset{!}{=} - \sum_{\ell, m} \rate_{\ell m} a_{i\ell m} e^{- \rate_{\ell m} t}
+    \text{ .}
+\end{align*}
+%
+Since all terms are linearly independent, we can compare the coefficients of the exponentials on each side and
+find
+%
+\begin{align}\label{eq:coeffeq}
+    \sum_j m_{ij} a_{j\ell m} = - \rate_{\ell m} a_{i\ell m}
+    \text{ .}
+\end{align}
+%
+Finally using \cref{eq:matrix_elements}, we find
+%
+\begin{align}\label{eq:finalcoeffs}
+    -\sum_j \rate_{ij} a_{i\ell m} + \sum_{j\ne i} \rate_{ji} a_{j\ell m}
+    ={}& - \rate_{\ell m} a_{i\ell m} \nonumber\\
+    \Rightarrow\qquad  a_{i\ell m}
+    ={}& \frac{\sum_{j\ne i} \rate_{ji} a_{j\ell m}}{\sum_j \rate_{ji} - \rate_{\ell m} }
+    \text{ .}
+\end{align}
+%
+\cref{eq:finalcoeffs} is a manifestation of the probability conservation in terms of a constraint on the
+possible values of the coefficients.
+
+This derivation tells us that we can express probability distributions of an arbitrary state in an $N$-level
+system by a simple linear combination of all the exponentials with the transition rates present in the
+systems. Moreover, the coefficients of the exponential terms in the distribution functions are directly
+related to the rates.
+
+
+\subsubsection{Interpretation of experimental data}
+
+Extracting events from time series data and plotting a histogram of the dwell time will yield the event
+distribution function. In a multi-state system, the observed event may be a consequence of multiple different
+states with transition rates between each other. If the experiment or the data analysis technique does not
+distinguish between these states but groups them together, what we observe may be the sum of multiple event
+distributions.
+
+Event distributions are, as shown \eg~in \cref{eq:event_distri}, mathematically equivalent to probability
+distributions, only their interpretation differs. When solving the \gls{ode} of \cref{eq:multi_ode} for event
+distributions instead of probability distributions, we can proceed completely analogously.  Only when we apply
+the initial conditions, we need to choose a normalization to events as in \cref{eq:event_distri}, rather than
+a normalization to probabilities. This is then also reflected in the way that expectation values are
+calculated, as was shown in \cref{eq:event_distri_norm}.
+
+In an $N$-level system with event distributions $F_i$, where the measurement or data analysis tools cannot
+distinguish between the levels $\alpha,\dots,\beta$, we observe a compound event distribution given by
+%
+\begin{align*}
+    F_{\alpha,\dots,\beta} = \sum_{i=\alpha}^{\beta} F_i
+        = \sum_{i=\alpha}^{\beta} F_{0}f_i
+    \text{ .}
+\end{align*}
+%
+Now $F_{\alpha,\dots,\beta}$ not only contains the sum of all independent event distributions in the states
+$\alpha,\dots,\beta$, it also contains all interactions between the states $\alpha,\dots,\beta$ and all other
+states. Note that we only need a single overall event normalization $F_0$ since the probabilities of finding
+the molecule in one of the many states at $t=0$ is set by the initial conditions chosen when solving the
+\gls{ode} of \cref{eq:multi_ode}. All differences between the distributions at time $t$ are then a consequence
+of the intrinsic rates in between states.
+
+Suppose we measure such a system and now we want to extract the kinetics of the process. The compound event
+distribution function can be split up into exponential terms using \cref{eq:ansatz}
+%
+\begin{align}\label{eq:compound_distri}
+    F_{\alpha,\dots,\beta} =
+        \sum_{i=\alpha}^\beta \sum_{\ell, m = 1}^N
+            F_{0} a_{i\ell m} e^{- \rate_{\ell m} t}
+    =: \sum_{\ell, m=1}^N F_{0} A_{\ell m} \rate_{\ell m} \;e^{-\rate_{\ell m} t}
+    \text{ .}
+\end{align}
+%
+Note that the rate $\rate_{\ell m}$ defined as appearing in the amplitude is to keep the analogy to the
+probability distribution of \cref{sec:trapping_appendix:single_bound_state}.  By fitting with a sum of
+exponentials, we can simply ignore the results for the coefficients $F_{0}$ and $A_{\ell m}$ and extract the
+rates $\rate_{\ell m}$ that are directly related to individual transitions between states.
+
+If we want to compute average dwell times using a compound event distribution function, we find
+%
+\begin{align}\label{eq:exp_dwell_time}
+    \tau = \frac{\langle t \rangle_{F_{\alpha,\dots,\beta}}}{%
+                 \langle 1 \rangle_{F_{\alpha,\dots,\beta}}}
+    = \frac{\sum_{\ell, m=1}^N \frac{A_{\ell m} }{\rate_{\ell m}}}{%
+        \sum_{\ell, m=1}^N A_{\ell m}}
+    \text{ ,}
+\end{align}
+%
+where we used that
+%
+\begin{align*}
+    \langle 1 \rangle_{F_{\alpha,\dots,\beta}}
+    =  \int_0^\infty dt \sum_{\ell, m=1}^N
+        F_{0} A_{\ell m} \rate_{\ell m}\;e^{-\rate_{\ell m} t}
+    = F_{0}\sum_{\ell, m=1}^N A_{\ell m}
+    \text{ ,}
+\end{align*}
+%
+and
+%
+\begin{align*}
+    \langle t \rangle_{F_{\alpha,\dots,\beta}}
+    =  \sum_{\ell, m=1}^N
+        F_{0} A_{\ell m} \rate_{\ell m}\int_0^\infty dt\;  t\;e^{-\rate_{\ell m} t}
+    =  F_{0}\sum_{\ell, m=1}^N \frac{A_{\ell m}}{\rate_{\ell m}}
+    \text{ .}
+\end{align*}
+%
+Note how the event number normalization $F_0$ neatly cancels. This should be obvious because the kinetics of
+the bound states cannot depend on whether a hundred or a thousand events are collected.
+
+One useful observation for the calculation of the dwell time of a multi-exponential distribution function is
+that the total expectation value is simply the arithmetic mean of the expectation values from the individual
+exponentials:
+%
+\begin{align}\label{eq:tau_arithmetic_mean}
+    \tau = \frac{\langle t \rangle_{F_{\alpha,\dots,\beta}}}{%
+                 \langle 1 \rangle_{F_{\alpha,\dots,\beta}}}
+    = \frac{\sum_{i=\alpha}^{\beta}\langle t \rangle_{F_i}}{%
+            \sum_{i=\alpha}^{\beta}\langle 1 \rangle_{F_i}}
+    = \frac{\sum_{i=\alpha}^{\beta}\langle t \rangle_{f_i}}{%
+            \sum_{i=\alpha}^{\beta}\langle 1 \rangle_{f_i}}
+    = \frac{1}{N_{\alpha,\ldots,\beta}}\sum_{i=\alpha}^{\beta}\tau_i
+    \text{ ,}
+\end{align}
+%
+where $N_{\alpha,\ldots,\beta}$ is the number of bound states of the compound distribution function.
+
+Another type of compounding that is often encountered is that compound distribution functions are collected
+from different experiments. The compound distribution function can then be expressed as
+%
+\begin{align*}
+    \mathcal{F} = \sum_\xi F^{\xi}_{\alpha,\dots,\beta}
+    \text{ ,}
+\end{align*}
+%
+where $\xi$ denotes the experiment and $F^{\xi}_{\alpha,\dots,\beta}$ is the compound distribution function of
+experiment $\xi$. Using \cref{eq:compound_distri} we find
+%
+\begin{align}\label{eq:exp_sum_distri}
+    \mathcal{F} = \sum_\xi\sum_{\ell, m=1}^N F_0^\xi A_{\ell m}\rate^{\xi} _{\ell m}
+    \;e^{-\rate^\xi_{\ell m} t}
+    \text{ .}
+\end{align}
+%
+Note that the rates $\rate^\xi_{\ell m}$ can vary systematically between experiments. If, for example, the
+temperature is not tightly controlled but measured for each experiment, the temperature dependence of the
+rates can in principle be taken into account to remove these kinds of systematic errors. However, for the
+present treatment, we will simply assume that the laboratory conditions are controlled tightly enough that we
+can assume the rates to be independent of the experiments, \textit{i.e.},
+%
+\begin{align}\label{eq:exp_independent}
+   \rate^\xi_{\ell m} = \rate_{\ell m}
+   \text{ .}
+\end{align}
+%
+Using \cref{eq:exp_sum_distri,eq:exp_independent} we can therefore express the average dwell time as
+%
+\begin{align*}
+    \tau = \frac{\langle t\rangle_{\mathcal{F}}}{\langle 1\rangle_{\mathcal{F}}}
+    =\frac{\sum_\xi F^\xi_{0}\sum_{\ell, m=1}^N \frac{A_{\ell m} }{\rate_{\ell
+        m}}}{\sum_\xi F^\xi_{0}\sum_{\ell, m=1}^N A_{\ell m}}
+    = \frac{\sum_{\ell, m=1}^N \frac{A_{\ell m} }{\rate_{\ell m}}}{%
+        \sum_{\ell, m=1}^N A_{\ell m}}
+    \text{ ,}
+\end{align*}
+%
+which is identical to \cref{eq:exp_dwell_time}. This means that as long as the experimental conditions are
+sufficiently close, we can simply sum up the results of experiments. On the other hand, if we have systematic
+differences in rates (\ie~$\rate^\xi_{\ell m}$ varies systematically between experiments) the above treatment
+can be easily extended to generalize the computation of average dwell times in the presence of systematic
+errors.
+
+Lastly we want to quantify how event distributions behave when two independent processes are measured within
+the same event distribution. An example for this would be that the molecule is captured into a completely
+separate state from which it has an escape rate with kinetics that are different from the actual state we want
+to measure. This could potentially be a meta state with negligible transition rate to the main trapping
+mechanism or it could simply be a capture in a different orientation.
+
+In that case we find that the total measured event distribution function is given by
+%
+\begin{align}\label{eq:two_population_distribution}
+    \mathcal{F} = F^A_{\alpha,\ldots,\beta} + F^B_{\gamma,\ldots,\delta}
+    \text{ .}
+\end{align}
+%
+The main observation in that case is that $F^A$ and $F^B$ may contain completely different rates and that the
+rates of $F^A$ and $F^B$ are not related as in \cref{eq:finalcoeffs}. A way to distinguish these types of
+distribution functions would be to quantify the capture ratio $F^A_0/F^B_0$ in terms of experimental
+conditions. Modifying the capture ratio would then yield predictable behavior of the ratio $F^A/F^B$ which can
+be used to untangle the two independent physical processes.
+
+
+\subsection{Escape from a single barrier system}
+%
+\label{sec:trapping_appendix:single_barrier_system}
+%
+
+We want to derive an expression for the dwell time of a molecule confined in a potential well with a single
+barrier as illustrated in \cref{fig:single_barrier}. This treatment will be useful as a stepping stone to a
+double barrier model but it will also tell us why the molecule trapped in a nanopore cannot be described by a
+single barrier model.
+
+\onefiguresource{%
+\begin{tikzpicture}[scale=1.5]
+    \draw[fill=blue!20] (0,-0.3) circle (0.2);
+
+    %potential profile
+    \draw plot [smooth, tension=0.5]  coordinates {%
+        (-1.5,2.5)
+        (-1,0.5)
+        (0,-0.5)
+        (1,0.5)
+        (1.5,2)
+        (2,1.5)
+        (2.5,0.5)
+    };
+
+    %trajectory
+    \draw[->, red,thick] (0,0) -- (0,2.1) node[midway,anchor=east]{$\kinetic$};
+    \draw[->, orange,thick] (0,2.1) -- (1.5,2.1) node[midway,anchor=south]{$c$};
+
+    % barrier
+    \draw[thick,dotted, teal] (0,-0.5) -- (3,-0.5);
+    \draw[thick,dotted, teal] (1.5,2.05) -- (3,2.05);
+    \draw[|-|, thick, teal] (3,-0.5) -- (3,2.05)
+        node[midway, anchor=west]{$\barrier^\cis$};
+
+    %axis
+    \draw[->, thick, black] (-2,-0.5) --++ (0,1) node[anchor=east]{energy};
+    \draw[->, thick, black] (-2,-0.5) --++ (1,0) node[anchor=north]{$x$};
+
+    %electroosmotic potential
+    \draw[green!50!black,densely dashed]
+        (-1.5, 1.3) node[anchor=east]{$\Eosm(x)$} --++ (4,1.3) ;
+
+    \draw[magenta!50!black,densely dashed]
+        (-1.5, 2)  node[anchor=east]{$\Eep(x)$} --++ (4,-1);
+
+    %regions
+    \draw[black,|-|] (-1.7,3) -- (2.7,3)
+        node[midway, anchor=south]{Nanopore} node[midway, anchor=north]{$L$};
+    \draw[black, ->] (3,3) --++ (1,0) node[anchor=south]{cis};
+    \draw[black, ->] (-2,3) --++ (-1,0) node[anchor=south]{trans};
+
+    %x locations
+    \draw[densely dotted] (0,-0.5) --++ (0,-0.5) node[anchor=north]{$\xmin$};
+    \draw[densely dotted] (1.55,2) --++ (0,-3) node[anchor=north]{$\xcis$};
+
+\end{tikzpicture}
+}{fig:single_barrier}{%
+    Molecule (blue circle) trapped in a potential well defined by a nanopore and trying to overcome the energy
+    barrier $\barrier^\cis$ by picking up the kinetic energy $\kinetic$ from its environment and then
+    propagating over the barrier with an instantaneous transition rate $\transition$. Overlaid are the linear
+    energy potentials from the electrophoretic force $\Eep$ and from the force of the electroosmotic flow
+    $\Eosm$.
+    %
+}{t}
+
+In order to overcome the barrier of \cref{fig:single_barrier}, the molecule has to pick up thermal energy
+randomly. The probability of finding a molecule with a kinetic energy of $\kinetic$ in an environment at
+thermal equilibrium is given by the usual (normalized) Boltzmann distribution
+%
+\begin{align*}
+    f(\kinetic) = \frac{1}{\kbt} e^{-\frac{\kinetic}{\kbt}}
+    \text{ .}
+\end{align*}
+%
+Then the scattering rate $\rate$ into a some final state can be expressed as
+%
+\begin{align}\label{eq:rate}
+    \rate = \int_0^\infty d\kinetic\; Z \;c(\kinetic)\;f(\kinetic)
+    \text{ ,}
+\end{align}
+%
+where $Z$ is the density of states and $c$ is the transition rate from an initial state at energy $\kinetic$
+into a final state. The density of states is assumed to be energy independent which means that the molecule
+can only have a fixed number of internal states, irrespective of the kinetic energy it picks up. Note that the
+transition rate $c$ could in principle depend on the internal states of the molecule but we neglected this as
+well. We will view the escape rate of the molecule from the potential well as an instantaneous scattering
+event that takes it over the barrier.
+
+In order to derive an approximation to this rate, we will assume that the molecule cannot escape (\ie~tunnel)
+as long as its kinetic energy is less then the required energy barrier that needs to be overcome. On the other
+hand, if the molecule acquires a kinetic energy equal or larger to the barrier, the transition rate $c$ is
+assumed to be constant. Thus we have
+%
+\begin{align*}
+    c(\kinetic) =
+        \begin{cases}
+            0, & \text{if}\; \kinetic < \barrier^\cis \text{ ,}\\
+            c_0, & \text{else} \text{ .}
+        \end{cases}
+\end{align*}
+%
+The escape rate over the barrier in \cref{eq:rate} therefore yields
+%
+\begin{align*}
+    \rate ={}& Z c_0 \int_{\barrier^\cis}^\infty d\kinetic\;f(\kinetic)\\
+    ={}& Z c_0\; e^{-\frac{\barrier^\cis}{\kbt}}\\
+    =:& \;\rate^{\cis}_0\; e^{-\frac{\barrier^\cis}{\kbt}}
+    \text{ .}
+\end{align*}
+%
+And the dwell time is the inverse of the escape rate:
+%
+\begin{align*}
+    \tau = \frac{1}{\rate}
+    \text{ .}
+\end{align*}
+%
+The barrier can be decomposed into steric, electrostatic, and external
+contributions:
+%
+\begin{align}\label{eq:barrier}
+    \barrier^\cis = \barrier^{\cis}_{\steric,0} + \barrier^\cis_\static +
+    \barrier^\cis_\ext
+    \text{ ,}
+\end{align}
+%
+where the steric contribution $\barrier^{\cis}_{\steric,0}$ accounts for all interactions of the molecule
+within the potential well that are not electrostatic in nature (\textit{e.g.}~size related effects). The
+barrier contribution from the electrostatic interactions can be expressed as
+%
+\begin{align}\label{eq:barrier_static}
+    \barrier^\cis_{\static} =
+    \barrier^{\cis}_{\static,0} + \Ntag \ec \potbar_{\rm{tag}}^\cis
+    \text{ ,}
+\end{align}
+%
+where $\Ntag$ is the signed net number of charges on the molecule being trapped in the electrostatic potential
+well. Since the molecule is large and charges may be located outside of the potential well, not all charges
+modify the barrier. For our present purpose we will refer to the number of charges in the well as the tag
+charge number in reference to the term used in \cref{ch:trapping}. Thus, $\potbar_{\rm tag}^\cis$ is the
+barrier height change due to a change in the tag charge number $\Ntag$. The electrostatic barrier
+contributions that are independent of $\Ntag$ are absorbed into the constant $\barrier^{\cis}_{\static,0}$.
+
+Moreover, $\barrier^\cis_\ext$ stems from the externally applied bias that results in an electrophoretic force
+and a force due to the electroosmotic flow and can therefore be split up as
+%
+\begin{align}\label{eq:barrier_ext}
+    \barrier^\cis_\ext = \barrier^\cis_\ep + \barrier^\cis_\osm
+    \text{ .}
+\end{align}
+%
+We will assume that both of these external forces are constant throughout the nanopore and therefore the
+associated energy potentials are linear in space as is illustrated in \cref{fig:single_barrier}. Thus we can
+express the potential energies due to the external forces as
+%
+\begin{align*}
+    \Eep(x)   ={}& -\forceep \;x + b_{\ep},\\
+    \Eosm(x)  ={}& -\forceosm\; x + b_{\osm}
+    \text{ ,}
+\end{align*}
+%
+where $\forceep$ is the constant electrophoretic force and $\forceosm$ is the constant force due to the
+electroosmotic force on the molecule. Note the sign in front of the force since the force points down the
+slope of the potential energy.
+
+Using the energy potentials we can compute the effect of the external fields on the energy barrier as
+%
+\begin{align*}
+    \Delta \Eep^\cis = \Eep(\xcis) - \Eep(\xmin)
+    = - \forceep \dxcis
+    \text{ ,}
+\end{align*}
+%
+where $\xcis$ is the location of the barrier and $\xmin$ is the location of the minimum. The distance of the
+barrier to the minimum is given by
+%
+\begin{align*}
+    \dxcis = \left|\xcis - \xmin\right|
+    \text{ .}
+\end{align*}
+%
+The constant energy shift $b_{\ep}$ does not contribute and therefore can be chosen arbitrarily. The
+electrophoretic force due to an applied external bias $\vbias$ can be expressed by Coulomb's law
+%
+\begin{align}\label{eq:forceep}
+    \forceep = \ec \Nnet   \frac{\vbias}{L}
+    \text{ ,}
+\end{align}
+%
+where $\Nnet = \Ntag +\Nbody$ is the signed net number of charges on the molecule, where we defined the body
+charge $\Nbody$ in reference to the terms in \cref{ch:trapping}. Moreover, $L$ is the length of the potential
+drop from \cisi{} to \transi{} (cf.~\cref{fig:single_barrier}).
+
+Likewise we can compute the change in barrier height due to the osmotic component as
+%
+\begin{align*}
+    \barrier^\cis_{\osm} = \Eosm(\xcis) - \Eosm(\xmin)
+    = - \forceosm \Delta \xcis
+    \text{ ,}
+\end{align*}
+%
+where the force is linearly dependent on the potential as
+%
+\begin{align}\label{eq:osmoticforce}
+    \forceosm = \ec \Neo \frac{\vbias}{L}
+    \text{ .}
+\end{align}
+%
+Note that for later convenience we expressed the osmotic force in complete analogy to the electrophoretic
+force of \cref{eq:forceep}, where we defined the parameter $\Neo$ that we will refer to as the
+\emph{equivalent osmotic charge number}. This number tells us what net charge a molecule would have to have in
+order to experience the same force \textit{via} electrophoresis. Thus if $\Nnet = -\Neo$, the net external
+force on the molecule vanishes.
+
+Using \cref{eq:barrier,eq:barrier_static,eq:barrier_ext} we find for the total barrier height
+%
+\begin{align}\label{eq:cisbarrier}
+    \barrier^\cis = \barrier^{\cis}_{\steric,0} + \barrier^{\cis}_{\static,0}
+        + \Ntag \ec  \potbar_{\rm{tag}}^\cis
+        - \left(\Nnet + \Neo\right) \frac{\Delta \xcis}{L}\ec \vbias
+    \text{ .}
+\end{align}
+%
+The escape rate (\ie~the inverse of the dwell time) is therefore given by
+%
+\begin{align}\label{eq:single_barrier_dwell_time}
+\begin{split}
+    \frac{1}{\tau(\Ntag, \vbias)} ={}& \rate (\Ntag, \vbias)\\
+    ={}& \rate^{\cis}_0 \exp\left(-\frac{\barrier^\cis}{\kbt}\right)\\
+    ={}& \rate^{\cis}_{\rm{eff}}\; \exp\bigg(
+        - \frac{\Ntag \ec  \potbar_{\rm{tag}}^\cis
+        - \left(\Nnet + \Neo\right) \frac{\Delta \xcis}{L}\ec \vbias}{\kbt}
+    \bigg)
+    \text{ ,}
+\end{split}
+\end{align}
+%
+where the constant steric and electrostatic terms $\barrier^{\cis}_{\steric,0}$ and
+$\barrier^{\cis}_{\static,0}$, respectively, have been absorbed into the effective attempt rate
+$\rate^{\cis}_{\rm{eff}}$.
+
+We immediately see that in a single barrier model the dwell time has to monotonically increase or decrease
+with the applied bias.  Data that exhibits a maximum as a function of $\vbias$, such as the dwell time data of
+\cref{ch:trapping}, cannot be described by the single barrier model.
+
+
+\onefiguresource{%
+\begin{tikzpicture}
+    \draw[fill=blue!20] (0,-0.3) circle (0.2);
+
+    %potential profile
+    \draw plot [smooth, tension=0.5]  coordinates {%
+        (-2.5,1)
+        (-2,2)
+        (-1.5,2.5)
+        (-1,0.5)
+        (0,-0.5)
+        (1,0.5)
+        (1.5,2)
+        (2,1.5)
+        (2.5,0.5)
+    };
+
+    %trajectory
+    \draw[->, red,thick] (0.1,0) -- (0.1,2.1) ;
+    \draw[->, red,thick] (-0.1,0) -- (-0.1,2.6)
+        node[midway,anchor=east]{$\kinetic$};
+    \draw[->, orange,thick] (0.1,2.1) -- (1.5,2.1)
+        node[midway,anchor=south]{$c^\cis$};
+    \draw[->, orange,thick] (-0.1,2.6) -- (-1.5,2.6)
+        node[midway,anchor=south]{$c^\trans$};
+
+    % barrier
+    \draw[thick,dotted, teal] (0,-0.5) -- (3,-0.5);
+    \draw[thick,dotted, teal] (1.5,2.05) -- (3,2.05);
+    \draw[|-|, thick, teal] (3,-0.5) -- (3,2.05)
+        node[midway, anchor=west]{$\barrier^\cis$};
+
+    \draw[thick,dotted, teal] (0,-0.5) -- (-3,-0.5);
+    \draw[thick,dotted, teal] (-1.5,2.55) -- (-3,2.55);
+    \draw[|-|, thick, teal] (-3,-0.5) -- (-3,2.55)
+        node[midway, anchor=east]{$\barrier^\trans$};
+
+    %regions
+    \draw[black,|-|] (-2.5,3.5) -- (2.7,3.5)
+        node[midway, anchor=south]{Nanopore} node[midway, anchor=north]{$L$};
+    \draw[black, ->] (3,3.5) --++ (1,0) node[anchor=south]{cis};
+    \draw[black, ->] (-2.7,3.5) --++ (-1,0) node[anchor=south]{trans};
+
+    %x locations
+    \draw[densely dotted] (0,-0.5) --++ (0,-0.5) node[anchor=north]{$\xmin$};
+    \draw[densely dotted] (1.55,2) --++ (0,-3) node[anchor=north]{$\xcis$};
+    \draw[densely dotted] (-1.6,2.5) --++ (0,-3.5) node[anchor=north]{$\xtrans$};
+
+    %axis
+    \draw[->, thick, black] (-4,-1) --++ (0,1) node[anchor=east]{energy};
+    \draw[->, thick, black] (-4,-1) --++ (1,0) node[anchor=north]{$x$};
+\end{tikzpicture}
+}{fig:second_barrier}{%
+    Molecule (blue ball) trapped in between two energy barriers $\barrier^\cis$
+    and $\barrier^\trans$. By picking up kinetic energy $\kinetic$ from its
+    environment it can transition through either barrier towards \cisi{} or
+    \transi{}.
+}{b}
+
+\subsection{Escape from a double barrier system}
+%
+\label{sec:trapping_appendix:double_barrier}
+%
+
+Now let us assume that there is a second barrier as illustrated in \cref{fig:second_barrier}, so that the
+molecule can escape towards the \transi{} side with finite probability. We can define the barrier to the
+\transi{} side in complete analogy to the \cisi{} barrier of \cref{eq:cisbarrier} as
+%
+\begin{align*}
+    \barrier^\trans = \barrier^{\trans}_{\steric,0}
+        + \barrier^{\trans}_{\static,0}
+        + \Ntag \ec  \potbar_{\rm{tag}}^\trans
+        + \left(\Nnet + \Neo\right) \frac{\dxtrans}{L}\ec \vbias
+        \text{ .}
+\end{align*}
+%
+Note, however, the opposite sign in front of the external barrier contributions since the external force
+points in the same direction as the \transi{} exit rather than opposite.
+
+Then the dwell time is given by the inverse of the sum of rates over either barrier
+%
+\begin{align}\label{eq:double_barrier_rate}
+\begin{split}
+    \frac{1}{\tau\left(\Ntag,\vbias\right)} ={}& \rate (\Ntag,\vbias)\\
+    ={}&
+     \rate_0\exp\left(-\frac{\barrier^\cis}{\kbt}\right)
+     + \rate_0\exp\left(-\frac{\barrier^\trans}{\kbt}\right)\\
+    ={}& \rate^{\cis}_{\rm{eff}}\; \exp\bigg(
+        -\frac{\Ntag \ec  \potbar_{\rm{tag}}^\cis
+        - \left(\Nnet + \Neo\right) \frac{\Delta \xcis}{L}\ec \vbias}{\kbt}
+    \bigg)\\
+    &+ \rate^{\trans}_{\rm{eff}}\; \exp\bigg(
+        -\frac{\Ntag \ec  \potbar_{\rm{tag}}^\trans
+        + \left(\Nnet + \Neo\right) \frac{\dxtrans}{L}\ec \vbias}{\kbt}
+    \bigg)
+    \text{ ,}
+\end{split}
+\end{align}
+%
+Again, the parameters $\rate^{\cis/\trans}_{\rm{eff}}$ are effective attemp rates related to the dwell time at
+zero tag charge and vanishing applied bias.
+
+The translocation probability is given by the ratio of the \transi{} escape rate to the total escape rate:
+%
+\begin{align*}
+    \probability ={}& \frac{\rate_0\exp\left(-\frac{\barrier^\trans}{\kbt}\right)}{\rate (\Ntag, \vbias)}
+    \text{ .}
+\end{align*}
+%
+The intrinsic, size-related probability for translocation without any trapping of the tag or applied fields
+can be directly computed as the ratio $\rate^{\trans}_{\rm{eff}}/(\rate^{\cis}_{\rm{eff}} +
+\rate^{\trans}_{\rm eff})$, which is a small number in the case of a large molecule trying to pass through a
+nanopore with a narrow \transi{} constriction as shown in the \cref{ch:trapping}.
+
+
+\section{Experimentally observed behavior of tagged {DHFR}}
+%
+
+\subsection{Multistate residences of {DHFR} inside {ClyA}}
+%
+
+%
+\begin{table}[b]
+  \centering
+
+  \begin{threeparttable}
+    \centering
+    %
+    \caption[width=10cm]{$\iresp$ values of the different {DHFR} variants.}
+    \label{tab:dhfr_iresp}
+    %
+    \renewcommand{\arraystretch}{1.0}
+    \footnotesize
+    \sisetup{table-format=2.4}
+    %
+    \begin{tabularx}{10cm}{Xllll}
+      \toprule
+                    &  & \multicolumn{3}{c}{$\iresp$\tnote{a}} \\
+                                            \cmidrule{3-5}
+      DHFR variant  & $\vbias$ [\si{\mV}] & L1  & L2 & L3   \\
+      \midrule
+      \DHFR{4}{S}   & \num{-80} & \num{67.4\pm2.1} & \num{46.4\pm0.2} & --- \\
+      \DHFR{4}{I}   & \num{-80} & \num{71.3\pm0.6} & --- & --- \\
+      \DHFR{4}{C}   & \num{-80} & \num{72.8\pm1.0} & --- & --- \\
+      \DHFR{4}{O1}  & \num{-80} & \num{74.1\pm0.4} & \num{57.0\pm1.0}
+                                                            & \num{38.7\pm1.1} \\
+      \DHFR{4}{O2}  & \num{-80} & \num{74.9\pm0.7} & \num{58.0\pm0.9} & --- \\
+      \DHFR{5}{O2}  & \num{-60} & \num{74.0\pm0.3} & \num{57.7\pm0.1} & --- \\
+      \DHFR{6}{O2}  & \num{-60} & \num{74.2\pm0.1} & \num{57.7\pm0.1} & --- \\
+      \DHFR{7}{O2}  & \num{-60} & \num{73.4\pm0.3} & \num{56.4\pm0.8}
+                                                            & \num{39.3\pm2.5} \\
+      \DHFR{8}{O2}  & \num{-60} & \num{74.7\pm1.0} & \num{58.4\pm1.1}
+                                                            & \num{41.4\pm1.5} \\
+      \DHFR{9}{O2}  & \num{-60} & \num{74.0\pm0.1} & \num{57.0\pm0.4}
+                                                            & \num{38.9\pm1.8} \\
+      \bottomrule
+    \end{tabularx}
+    %
+    \begin{tablenotes}
+      \item[a] $\iresp$ values for each \gls{dhfr} variant are based on at least 50 individual \gls{dhfr}
+      blockades collected from at least three different single nanopore experiments. Errors are standard
+      deviations from the mean.
+    \end{tablenotes}
+    %
+  \end{threeparttable}
+\end{table}
+%
+
+%
+\begin{figure*}[p]
+  \centering
+  %
+  \begin{subfigure}[t]{5.75cm}
+		\centering
+    \caption{}\vspace{-2mm}\label{fig:trapping_traces_body}
+    \includegraphics[scale=1]{trapping_traces_body}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{5.75cm}
+		\centering
+    \caption{}\vspace{-2mm}\label{fig:trapping_traces_tag}
+    \includegraphics[scale=1]{trapping_traces_tag}
+  \end{subfigure}
+  
+  \caption[Current blockades of {DHFR} molecules with a fusion tag.]{%
+    \textbf{Current blockades of {DHFR} molecules with a fusion tag.}
+    %
+    (\subref{fig:trapping_traces_body})
+    %
+    Typical current traces of the various \DHFR{4}{S} body charge variants (\DHFR{4}{C}, \DHFR{4}{I},
+    \DHFR{4}{O1} and \DHFR{4}{O2}) at \SI{-80}{\mV} applied bias. The C, I and O1 mutants have the same net
+    charge, but the location of their charges differs, which results in significantly different dwell times.
+    %
+    %
+    (\subref{fig:trapping_traces_tag})
+    %
+    Typical current recordings for the tag charge variants of \DHFR{4}{O2} (\DHFR{$\Ntag$}{O2}) at
+    \SI{-60}{\mV}, revealing the increased dwell time with increasing positive tag charges. Note that most
+    \gls{dhfr} variants showed complex multi-level blockades. Therefore, average dwell times ($\dwelltime$)
+    were used to guarantee a fair comparison between the different mutants. All current traces were collected
+    in \SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5} at \SI{28}{\celsius} after adding
+    \SI{\approx50}{\nM} of \gls{dhfr} to the \cisi{} side reservoir of a single \gls{clya-as} nanopore.
+    Signals were sampled at \SI{10}{\kilo\hertz} and filtered with a \SI{2}{\kilo\hertz} cutoff Bessel
+    low-pass filter.
+    %
+  }\label{fig:trapping_traces}
+\end{figure*}
+%
+
+At \SI{-80}{\mV}, in \SI{150}{\mM} \ce{NaCl} \SI{15}{mM} \ce{Tris-HCl} \pH{7.5}, the current blockades induced
+by the \DHFR{4}{S} variants (\cref{fig:trapping_traces,tab:dhfr_iresp}) showed a main current level
+($\ilevel{1}$) with relative residual current values ($\iresp$), expressed as a percentage of the open-pore
+current ($\iopen$), of \SI{67.4 \pm 2.1}{\percent}, \SI{71.3 \pm 0.6}{\percent}, \SI{72.8 \pm 1.0}{\percent},
+\SI{74.1 \pm 0.4}{\percent} and \SI{74.9 \pm 0.7}{\percent} for \DHFR{4}{S}, \DHFR{4}{I}, \DHFR{4}{C},
+\DHFR{4}{O1}, \DHFR{4}{O2}, respectively. As observed for other proteins~\cite{Soskine-2012,Soskine-2013,
+Soskine-Biesemans-2015,Biesemans-2015}, \DHFR{4}{S}, \DHFR{4}{O1} and \DHFR{4}{O2} also displayed a second
+current level ($\ilevel{2}$) with $\iresp$ values of \SI{46.4 \pm 0.2}{\percent} \SI{57.0 \pm 1.0}{\percent}
+\SI{58.0 \pm 0.9}{\percent}, respectively (\cref{tab:dhfr_iresp}). \DHFR{4}{I} and \DHFR{4}{C} also
+occasionally dwelled on a second current level, however, the dwell time at this level was too short to allow
+reliable determination of the $\iresp$ (\cref{fig:trapping_blockades}). \DHFR{4}{O1} often visited a third
+current level ($\ilevel{3}$) with $\iresp$ of \SI{38.7\pm 1.1}{\percent}. It is likely that the multiple
+current levels observed for the different \gls{dhfr} variants reflect the residence of the protein in
+different physical locations inside the nanopore~\cite{Soskine-2012}.
+
+The collected time series data may contain capture events that transition to several meta states before the
+molecule escapes the nanopore. For the purpose of our data analysis, we count the dwell time of an event as
+the elapsed time from the capture up until the escape, irrespective of how many transitions to meta states
+have been observed. Thus, the complex kinetics of the molecule in the captured state are simply summed over in
+the resulting dwell time event histograms (\cref{eq:compound_distri}). For the scope of this work, we make the
+assumptions that (1) there is only one dominant capture process involved and that (2) the molecules escape
+from the nanopore is dominated by a single rate, such that the dwell time distribution can then be
+approximated by a single exponential. Since a maximum likelihood fit of a single or multi-exponential
+distribution function is well represented by the arithmetic mean, we use the arithmetic mean directly as the
+expectation value of the entire distribution (\cref{eq:tau_arithmetic_mean}).
+
+
+
+%
+\begin{figure*}[t]
+  \centering
+  %
+  \begin{subfigure}[t]{5.5cm}
+    \centering
+    \caption{}\vspace{-2mm}\label{fig:trapping_blockades_I}
+    \includegraphics[scale=1]{trapping_blockades_I}
+  \end{subfigure}
+  %
+  \begin{subfigure}[t]{5.5cm}
+    \centering
+    \caption{}\vspace{-2mm}\label{fig:trapping_blockades_C}
+    \includegraphics[scale=1]{trapping_blockades_C}
+  \end{subfigure}
+  %
+
+  \caption[\DHFR{4}{I} and \DHFR{4}{C} blockades in {ClyA-AS} at \SI{-80}{\mV}.]{%
+    \textbf{\DHFR{4}{I} and \DHFR{4}{C} blockades in {ClyA-AS} at \SI{-80}{\mV}.}
+    %
+    Three individual blockades of (\subref{fig:trapping_blockades_I}) \DHFR{4}{I} and
+    (\subref{fig:trapping_blockades_C}) \DHFR{4}{C} in \gls{clya-as} at \SI{-80}{\mV} showing the L1 current
+    level (purple line) and short dwelling on a lower current level (green asterisks). The latter is too short
+    to be properly sampled at this potential (transitions to this additional current level are observed by
+    short, unresolved spikes). The teal line represents the open-pore current $\iopen$. The current traces
+    were collected in \SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5} at \SI{28}{\celsius}, by
+    applying a Bessel low-pass filter with a \SI{2}{\kilo\hertz} cutoff and sampled at \SI{10}{\kilo\hertz}.
+    %
+  }\label{fig:trapping_blockades}
+\end{figure*}
+%
+
+
+%
+\begin{table}[b]
+  \centering
+  %
+  \begin{threeparttable}
+    \footnotesize
+    \renewcommand{\arraystretch}{1.2}
+    \captionsetup{width=10cm}
+    \caption[NADPH binding/unbinding kinetics to trapped DHFR variants.]{%
+      \textbf{NADPH binding/unbinding kinetics to trapped DHFR variants.}\tnote{a}}%
+      \label{tab:nadph_rates}
+    \centering
+    \sisetup{table-format=2.4}
+    \begin{tabularx}{10cm}{Xlll}
+      \toprule
+      DHFR variant
+        & $\rate_{\rm{on}}$ [\si{\per\second\per\mM}]\tnote{b}
+        & $\rate_{\rm{off}}$ [\si{\per\second}]
+        & Amplitude [\si{\pA}]  \\
+      \midrule
+      \DHFR{4}{O2}  & \num{1684\pm225} & \num{60.2\pm23.2} & \num{-1.71\pm0.13} \\
+      \DHFR{6}{O2}  & \num{1390\pm397} & \num{55.9\pm5.1} & \num{-1.47\pm0.09} \\
+      \DHFR{7}{O2}  & \num{2032\pm578} & \num{71.2\pm20.4} & \num{-1.46\pm0.07} \\
+      \bottomrule
+    \end{tabularx}
+    %
+    \begin{tablenotes}
+      \item[a] At \SI{-60}{\mV} applied potential.
+      \item[b] $\rate_{\rm{on}}$, $\rate_{\rm{off}}$ and amplitude values for each \gls{dhfr} variant are
+      based on at least \num{300} \gls{nadph} binding events on more than 15 individual \gls{dhfr} blockades
+      collected from three different single nanopore experiments.
+    \end{tablenotes}
+    %
+  \end{threeparttable}
+\end{table}
+%
+
+\subsection{Analysis of {NADPH} binding to {DHFR} variants}
+%
+
+Typical current traces of \gls{nadph} binding to trapped \gls{dhfr} molecules are shown in
+\cref{fig:trapping_nadph_o2_traces}. Analysis of the on- ($\rate_{\rm{on}}$) and off-rates
+($\rate_{\rm{off}}$), and the event amplitudes of \gls{nadph} binding to \DHFR{4}{O2}, \DHFR{6}{O2} and
+\DHFR{7}{O2} entrapped within the nanopore are all similar (\cref{tab:nadph_rates}), suggesting that the
+proteins remain folded and active inside \gls{clya}.
+
+%
+\begin{figure*}[b]
+  \centering
+  %
+  \includegraphics[scale=1]{trapping_nadph_o2_traces}
+  %
+  \caption[{NADPH} binding to nanopore-confined \DHFR{$\Ntag$}{O2}.]{%
+    \textbf{{NADPH} binding to nanopore-confined \DHFR{$\Ntag$}{O2}.}
+    %
+    Typical current traces of single \DHFR{$\Ntag$}{O2} (\SI{\approx 50}{\nM}, \cisi{}) molecules inside
+    \gls{clya-as} at \SI{-80}{\mV} applied potential after addition of \SI{40}{\uM} \gls{nadph} to the trans
+    compartment. \gls{nadph} binding to confined \DHFR{$\Ntag$}{O2} is reflected by current enhancements from
+    the unbound L1 (purple line) to the \gls{nadph}-bound L1\textsubscript{NADPH} (orange line) current
+    levels. The open-pore current $\iopen$ is represented by the teal line. All current traces were collected
+    in \SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5} at \SI{28}{\celsius}, by applying a Bessel
+    low-pass filter with a \SI{2}{\kilo\hertz} cutoff and sampled at \SI{10}{\kilo\hertz}. An additional
+    Bessel 8-pole filter with \SI{500}{\hertz} cutoff was digitally applied to the current traces.
+    %
+    }\label{fig:trapping_nadph_o2_traces}
+\end{figure*}
+%
+
+%
+\clearpage
+%
+
+
+
+
+\section{Modeling of body charge variations}
+%
+\label{sec:trapping_appendix:body_charge_variations}
+%
+
+\subsection{Not all charges on the body are equivalent}
+
+
+The double barrier model of \cref{eq:double_barrier_complex} in its current form cannot adequately account for
+the body charge variations of \gls{dhfr}\@. Consider for example the body charge variants \DHFR{4}{I},
+\DHFR{4}{C}, and \DHFR{4}{O1} which share the same number of body charges, so that our model would predict the
+same dwell time (\cref{fig:trapping_model_comparison_body_complex}). However, the body charges of these
+variations are at different locations and as a consequence they exhibit different dwell times as can be seen
+in \cref{fig:trapping_dwell_times_body_data} of \cref{ch:trapping}. The reason for this is that the model
+describes the trapping mechanism as a function of the tag charge number $\Ntag$ only, while body charge
+related barrier modifications are absorbed into the constant terms $\barrier^{\cis/\trans}_{\static,0}$ of
+\cref{eq:static-barrier}.
+
+If we wanted to modify \cref{eq:static-barrier} such that it can account for changes in the trapping behavior
+we would need to account for the location of the body charges as is evident from the dwell time data sets of
+\DHFR{4}{I}, \DHFR{4}{C}, and \DHFR{4}{O1}. Such a model would drastically increase in complexity and it is
+not clear whether it can still be formulated analytically in a reasonable way. In that case it may in fact be
+more workable to use a more refined APBS simulations or even a full molecular dynamics simulation to compute
+parameters for the trapping.
+
+%
+\begin{figure*}[p]
+  \centering
+  %
+  \begin{subfigure}[t]{5.5cm}
+		\centering
+		\caption{}\vspace{-3mm}\label{fig:trapping_model_comparison_body_complex}
+    \includegraphics[scale=1]{trapping_model_comparison_body_complex}
+  \end{subfigure}
+  %
+  \begin{minipage}[t]{6cm}
+    \begin{subfigure}[t]{5.5cm}
+      \centering
+      \caption{}\vspace{-3mm}\label{fig:trapping_model_comparison_o1_simple}
+      \includegraphics[scale=1]{trapping_model_comparison_o1_simple}
+    \end{subfigure}
+    %
+    \\
+    %
+    \begin{subfigure}[t]{5.5cm}
+      \centering
+      \caption{}\vspace{-3mm}\label{fig:trapping_model_comparison_o1_complex}
+      \includegraphics[scale=1]{trapping_model_comparison_o1_complex}
+    \end{subfigure}
+  \end{minipage}
+
+  %
+  \caption[Effect of body and tag charge on the dwell time of {DHFR}.]
+  {%
+    \textbf{Effect of body and tag charge on the dwell time of {DHFR}.}
+    %
+    (\subref{fig:trapping_model_comparison_body_complex}) Predicted dwell times of the body charge variations
+    \DHFR{4}{S, -I, -C, -O1 and -O2} by \cref{eq:double_barrier} and using the parameters in
+    \cref{tab:fitting_params_complex}. Clearly, the location of the body charge plays an important, but
+    uncaptured, role in determining the dwell time of \gls{dhfr}.
+    %
+    (\subref{fig:trapping_model_comparison_o1_simple})
+    %
+    and
+    %
+    (\subref{fig:trapping_model_comparison_o1_complex})
+    %
+    are the voltage dependencies of the mean dwell time ($\dwelltime$) for several tag charge variants of
+    \DHFR{$\Ntag$}{O1}, fitted with the simple barrier model of \cref{eq:double_barrier_simple} and the full
+    double barrier model of \cref{eq:double_barrier_complex}, respectively. The annotated threshold voltages
+    for (\subref{fig:trapping_model_comparison_o1_simple}) and
+    (\subref{fig:trapping_model_comparison_o1_complex}) were computed by respectively
+    \cref{eq:threshold_voltage_simple} and \cref{eq:threshold_voltage_complex}. Solid lines represent the
+    double barrier dwell time while the dotted lines show the dwell times due the \cisi{} (low to high) and
+    \transi{} (high to low) barriers. Fitting parameters can be found in \cref{tab:fitting_parameters_simple}.
+    %
+    }\label{fig:trapping_model_comparison}
+\end{figure*}
+%
+
+
+\subsection{The distance from the tag matters}
+%
+
+Despite this limitation, the double barrier model is essentially a representation of how the tag is anchored
+to the electrostatic minimum in the pore, and hence we can deduce the way the body charge variations will
+impact trapping. For example, if we modify the charge on the far end of the body with respect to the tag
+location (\textit{i.e.},~far away from the tag). We hypothesize that the barriers responsible for trapping the
+tag will not be changed meaningfully---aside from the electrophoretic force which is included in the double
+barrier model (\cref{eq:double_barrier_complex}). Indeed, taking the model parameters of
+\cref{tab:fitting_params_complex} obtained from the fit to the \DHFR{$\Ntag$}{O2} data set and
+\emph{predicting} the dwell time data of \DHFR{$\Ntag$}{O1}, we find good agreement as shown in
+\cref{fig:trapping_model_comparison}.
+
+On the other hand, charges on the body that are close to the tag directly impact the electrostatic energy
+landscape and will modify the barrier heights. Such a body charge close to the tag location can be seen as
+effectively modifying the net charge on the tag. In that case, we expect that our model fitted to the
+\DHFR{$\Ntag$}{O2} data fails to \emph{predict} the dwell times as can be seen in
+\cref{fig:trapping_model_comparison_body_complex}.
+
+\begin{threeparttable}[!b]
+  \footnotesize
+  \renewcommand{\arraystretch}{1.2}
+  \captionsetup{width=11cm}
+  \caption{%
+    \textbf{Fitting parameters for the simple double barrier model.\tnote{a}}}
+  \centering
+  \label{tab:fitting_parameters_simple}
+  \begin{tabularx}{11cm}{
+    >{\raggedright\hsize=2.5cm}X
+    >{\hsize=1cm}l >{\hsize=1cm}l >{\hsize=1cm}l >{\hsize=1cm}l}
+    \toprule
+                  & \multicolumn{2}{c}{\cisi{} barrier\tnote{b}}
+                  & \multicolumn{2}{c}{\transi{} barrier\tnote{b}} \\
+    \cmidrule(r){2-3}\cmidrule(l){4-5}
+    DHFR variant  & $\ln k^\cis/V_T$ & $\alpha^\cis/V_T$
+                  & $\ln k^\trans/V_T$ & $\alpha^\trans/V_T$ \\
+    \midrule
+    \DHFR{4}{S}   & \num{11.91\pm3.14} & \num{5.38\pm1.83}
+                  & \num{-5.45\pm0.86} & \num{2.82\pm0.24} \\
+    \DHFR{4}{I}   & \num{15.15\pm4.88} & \num{5.88\pm2.34}
+                  & \num{-6.83\pm1.30} & \num{3.08\pm0.34} \\
+    \DHFR{4}{C}   & \num{15.87\pm3.52} & \num{6.56\pm1.72}
+                  & \num{-5.73\pm0.79} & \num{2.50\pm0.21} \\
+    \DHFR{4}{O1}  & \num{1.37\pm3.29}  & \num{0.88\pm1.37}
+                  & \num{-8.03\pm2.64} & \num{2.16\pm0.60} \\
+    \DHFR{4}{O2}  & \num{9.67\pm2.53}  & \num{3.70\pm1.01}
+                  & \num{-5.54\pm1.43} & \num{1.31\pm0.34} \\
+    \bottomrule
+  \end{tabularx}
+  \begin{tablenotes}
+    \item[a] Fitting coefficients for \cref{eq:double_barrier_simple} of the \cref{ch:trapping}.
+    \item[b] Errors represent one sigma confidence intervals.
+  \end{tablenotes}
+\end{threeparttable}
+
+
+\section{Extended materials and methods}
+%
+
+\subsection{Material suppliers}
+%
+
+Unless otherwise specified all chemicals were bought from Sigma-Aldrich (Overijse, Belgium). \Gls{dna} was
+purchased from Integrated DNA Technologies (IDT, Leuven, Belgium), enzymes from Fermentas (Merelbeke, Belgium)
+and lipids from Avanti Polar Lipids (Alabaster, USA).
+
+\subsection{Cloning of all {DHFR} variants}
+%
+\label{sec:trapping_appendix:dhfr_cloning}
+%
+
+\subsubsection{Cloning of DHFR$_{4}$S}
+%
+
+The \DHFR{4}{S} \gls{dna} construct was built from the \DHFRt\ construct~\cite{Soskine-Biesemans-2015} by
+inserting an additional alanine residue at position 175 (located in the fusion tag). \DHFRt\ contains two
+mutations with respect to wild type \textit{E. coli} \gls{dhfr} (C85A and C152S) and has a C-terminal fusion
+tag which possesses five net positive charges and ends with a Strep-tag. To construct \DHFR{4}{S}, the \DHFRt\
+circular \gls{dna} template was amplified using the \code{175Ala frwd} (forward) and \code{T7 terminator}
+(reverse) primers (\cref{tab:primers}) in the following \gls{pcr} reaction: \SI{\approx200}{\nano\gram} of
+template plasmid and \SI{\approx16}{\uM} of forward and reverse primers were mixed in \SI{0.3}{\milli\litre}
+final volume of \gls{pcr} mix, which contained \SI{150}{\micro\litre} RED Taq Ready Mix (Sigma-Aldrich). We
+performed 34 \gls{pcr} cycles following a pre-incubation step at \SI{98}{\celsius} for \SI{30}{\second}cycling
+protocol: denaturation at \SI{98}{\celsius} for \SI{10}{\second}, annealing at \SI{52}{\celsius} for
+\SI{30}{\second}, extension at \SI{72}{\celsius} for \SI{60}{\second}; and a final elongation step at
+\SI{72}{\celsius} for \SI{10}{\minute}. The resulting \gls{pcr} product was clean-upped using the QIAquick
+\gls{pcr} purification kit (Qiagen) and further gel purified using the QIAquick Gel Extraction Kit (Qiagen)
+before it was cloned into a pT7 expression plasmid (pT7-SC1)~\cite{Miles-2001} by the MEGAWHOP
+procedure~\cite{Miyazaki-2011}: \SI{\approx400}{\nano\gram} of the purified \gls{pcr} product was mixed with
+\SI{\approx 200}{\nano\gram} of the \DHFRt\ \gls{dna} template and amplification was carried out with Phire
+Hot Start II \gls{dna} polymerase (Finnzymes) in \SI{50}{\micro\litre} final volume (pre-incubation at
+\SI{98}{\celsius} for \SI{30}{\second}; then cycling: denaturation at \SI{98}{\celsius} for \SI{5}{\second},
+extension at \SI{72}{\celsius} for \SI{90}{\second}, for 30 cycles; followed by a final extension for
+\SI{10}{\minute} at \SI{72}{\celsius}). The template \gls{dna} was eliminated by incubation with DpnI (1~FDU)
+for \SI{1}{\hour} at \SI{37}{\celsius} and the enzyme was inactivated by incubation at \SI{65}{\celsius} for
+\SI{5}{\minute}. Finally, \SI{0.5}{\micro\litre} of the resulting mixture was transformed into
+\SI{50}{\micro\litre} of E.~cloni\textsuperscript{\textregistered} 10G electrocompetent cells (Lucigen) by
+electroporation. The transformed bacteria were grown overnight at \SI{37}{\celsius} on LB agar plates
+supplemented with \SI{100} {\micro\gram\per\milli\litre} ampicillin. The identity of the clones was confirmed
+by sequencing. \gls{dna} and protein sequences of \DHFR{4}{S} are listed below.
+
+%
+\begin{footnotesize}
+\begin{minipage}[t]{9cm}
+\begin{verbatim}
+>DHFR4S (DNA)
+ATGGCTTCGGCTATGATTTCTCTGATTGCGGCACTGGCTGTCGATCGTGTTATTGGTATG
+GAAAACGCTATGCCGTGGAATCTGCCGGCTGATCTGGCGTGGTTTAAACGTAACACTCTG
+GACAAGCCGGTCATTATGGGCCGCCATACGTGGGAAAGCATCGGTCGTCCGCTGCCGGGT
+CGCAAAAATATTATCCTGAGCAGCCAGCCGGGCACCGATGACCGTGTGACGTGGGTTAAG
+AGCGTCGATGAAGCAATTGCGGCGGCAGGCGACGTGCCGGAAATTATGGTTATCGGCGGT
+GGCCGCGTTTATGAACAGTTCCTGCCGAAAGCCCAAAAGCTGTACCTGACCCATATCGAT
+GCAGAAGTCGAAGGTGATACGCACTTTCCGGACTATGAACCGGATGACTGGGAAAGTGTG
+TTCTCCGAATTTCACGACGCCGACGCTCAGAACAGCCACTCATACTCATTCGAAATCCTG
+GAACGCCGTGGCAGCAGTACTCGAGCGAAAAAGAAGATTGCGgccGCCCTAAAACAGGGC
+AGCGCGTGGAGCCATCCGCAGTTTGAAAAATGATAA
+\end{verbatim}
+\end{minipage}
+%
+
+%
+\begin{minipage}[t]{3cm}
+\begin{verbatim}
+>DHFR4S (protein)
+MASAMISLIAALAVDRVIGM
+ENAMPWNLPADLAWFKRNTL
+DKPVIMGRHTWESIGRPLPG
+RKNIILSSQPGTDDRVTWVK
+SVDEAIAAAGDVPEIMVIGG
+GRVYEQFLPKAQKLYLTHID
+AEVEGDTHFPDYEPDDWESV
+FSEFHDADAQNSHSYSFEIL
+ERRGSSTRAKKKIAAALKQG
+SAWSHPQFEK**
+\end{verbatim}
+\end{minipage}
+\end{footnotesize}
+%
+
+\subsubsection{Construction of all other variants}
+
+The positions for introduction of negatively charged glutamate residues into \DHFR{4}{S} were chosen after
+multiple sequence alignment of \textit{E. coli} \gls{dhfr} (\pdbid{1RH3}, BLAST, 250 results) and
+identification of the residues that were located on the opposite end of the molecule than the 4+tag, and which
+during evolution had already converted to glutamate in some sequences. In all \DHFR{4}{S} variants described
+in this work two native residues of \DHFR{4}{S} were mutated, resulting in \gls{dhfr} constructs with two
+(\DHFR{4}{C}; A82E/A83E), (\DHFR{4}{I}; V88E/P89E), (\DHFR{4}{O1}; T68E/R71Q) or three (\DHFR{4}{O2};
+T68E/R71E) extra negative charges. To construct the \DHFR{4}{C}, \DHFR{4}{I} and \DHFR{4}{O2} mutants, the
+\DHFR{4}{S} gene was amplified using the \code{C-frwd}, \code{I-frwd} or \code{O2-frwd} primer, respectively,
+and the \code{T7 terminator} primer. The \gls{pcr} conditions and subsequent purification and cloning steps
+were as described above (\cref{sec:trapping_appendix:dhfr_cloning}). The \DHFR{4}{O1} mutant was constructed
+starting from the \DHFR{4}{O2} circular \gls{dna} template as described above, using \code{O1-frwd} and
+\code{T7 terminator} primers in the first \gls{pcr} amplification step. Following the same strategy,
+\DHFR{5}{O1/O2} mutants were constructed using the corresponding \DHFR{4}{O1/O2} circular \gls{dna} template,
+\code{6+ frwd} primer and \code{T7 terminator} primer. \DHFR{6}{O1/O2} and \DHFR{7}{O1/O2} mutants were
+constructed using the corresponding \DHFR{5}{O1/O2} circular \gls{dna} template, \code{6+ frwd} or \code{7+
+frwd} primer, respectively, and \code{T7 terminator} primer. \DHFR{8}{O1/O2} and \DHFR{9}{O1/O2} mutants were
+constructed using the corresponding \DHFR{7}{O1/O2} circular \gls{dna} template, \code{8+ frwd} or \code{9+
+frwd} primer, respectively, and \code{T7 terminator} primer. All primer sequences are shown in
+\cref{tab:primers}.
+
+
+\begin{table*}[!htb]
+  \footnotesize
+  \renewcommand{\arraystretch}{1.5}
+  \captionsetup{width=11cm}
+  \caption{\textbf{Mutagenesis DNA primer sequences.}}
+  \centering
+  \label{tab:primers}
+  \begin{tabularx}{11cm}{l X}
+    \toprule
+    Primer name  & Primer sequence   \\
+    \midrule
+    \code{175Ala frwd}
+      & GGCAGCAGTACTCGAGCGAAAAAGAAGATTG CGgccGCCCTAAAACAGGGCAGCGCGTGG \\
+    \code{T7 terminator}
+      & GCTAGTTATTGCTCAGCGG \\
+    \code{O2-frwd}
+      & CCTGAGCAGCCAGCCGGGCGAAGATGACGA AGTGACGTGGGTTAAGAGCGTCG \\
+    \code{I-frwd}
+      & GAGCGTCGATGAAGCAATTGAAGAAGCAGG CGACGTGCCGGAAATTATGGTTATCGGCGG \\
+    \code{C-frwd}
+      & GCAATTGCGGCGGCAGGCGACGAAGAGGAA ATTATGGTTATCGGCGGTGGCCGCG \\
+    \code{O1-frwd}
+      & CCTGAGCAGCCAGCCGGGCGAAGATGACCA GGTGACGTGGGTTAAGAGCGTCG \\
+    \code{5+ frwd}
+      & CTCGAGCGAAAAAGAAGATTGCGAAAGCCC TAAAACAGGGCAGCGCGTGGAGCCATCCGC \\
+    \code{6+ frwd}
+      & CGTGGCAGCAGTACTCGAGCGAAAAAGAAG ATTAAGAAAGCCCTAAAACAGGGCAGCGCG \\
+    \code{7+ frwd}
+      & CGTGGCAGCAGTACTCGAGCGAAAAAGAAG ATTAAGAAAAAGCTAAAACAGGGCAGCGCG \\
+    \code{8+ frwd}
+      & GGCAGCAGTACTCGAAAGAAAAAGAAGATT AAGAAAAAGCTAAAACAGGGCAGCGCGTGG \\
+    \code{9+ frwd}
+      & GGCAGCAGTACTCGAAAGAAAAAGAAGATT AAGAAAAAGAAGAAACAGGGCAGCGCGTGG \\
+    \bottomrule
+  \end{tabularx}
+\end{table*}
+
+\subsection{Protein overexpression and purification}
+%
+\label{sec:trapping_appendix:protein_overexpression}
+%
+
+\subsubsection{Strep-tagged {DHFR} mutants}
+%
+
+The pT7-SC1 plasmid containing the \gls{dhfr} gene and the sequence of the Strep-tag at its C-terminus was
+transformed into E. cloni\textsuperscript{\textregistered} EXPRESS BL21(DE3) cells (Lucigen, Middleton, USA),
+and transformants were selected on LB agar plates supplemented with \SI{100}{\micro\gram\per\milli\litre}
+ampicillin after overnight growth at \SI{37}{\celsius}. The resulting colonies were grown at \SI{37}{\celsius}
+in 2xYT medium supplemented with \SI{100}{\micro\gram\per\milli\litre} ampicillin until the O.D. at
+\SI{600}{\nano\meter} was \num{\approx 0.8} (\SI{200}{rpm} shaking). The \gls{dhfr} expression was
+subsequently induced by addition of \SI{0.5}{\mM} \ce{IPTG} (isopropyl \textbeta-D-1-thiogalactopyranoside),
+and the temperature was switched to \SI{25}{\celsius} for overnight growth (200~rpm shaking). The next day the
+bacteria were harvested by centrifugation at \SI{6000}{g} at \SI{4}{\celsius} for \SI{25}{\minute} and the
+resulting pellets were frozen at \SI{-80}{\celsius} until further use.
+
+Bacterial pellets originating from \SI{50}{\milli\litre} culture were resuspended in \SI{30}{\milli\litre}
+lysis buffer (\SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5}, \SI{1}{\mM} \ce{MgCl2},
+\SI{0.2}{units\per\milli\litre} DNase, \SI{10}{\micro\gram\per\milli\litre} lysozyme) and incubated at
+\SI{37}{\celsius} for \SI{20}{\minute}. After further disruption of the bacteria by probe sonication the crude
+lysate was clarified by centrifugation at \SI{6000}{g} at \SI{4}{\celsius} for \SI{30}{\minute}. The
+supernatant was allowed to bind to \SI{\approx 150}{\micro\litre} (bead volume) of
+Strep-Tactin\textsuperscript{\textregistered} Sepharose\textsuperscript{\textregistered} (IBA Lifesciences,
+Goettingen, Germany) pre-equilibrated with the wash buffer (\SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM}
+\ce{Tris-HCl} \pH{7.5}) \textit{via} `end over end' mixing. The resin was then loaded onto a column (Micro Bio
+Spin, Bio-Rad) and washed with \num{\approx 20} column volumes of the wash buffer. Elution of \gls{dhfr} from
+the column was achieved by addition of \SI{\approx 100}{\micro\litre} of elution buffer (\SI{150}{\mM}
+\ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5}, \SI{\approx 15}{\mM} D-Desthiobiotin (IBA)). Proteins were
+aliquoted and frozen at \SI{-20}{\celsius} until further use. New aliquots of \gls{dhfr} were thawed prior to
+every experiment.
+
+
+\subsubsection{His-tagged type {I} {ClyA-AS}}
+%
+
+E. cloni\textsuperscript{\textregistered} EXPRESS BL21 (DE3) cells were transformed with the {pT7-SC1} plasmid
+containing the \gls{clya-as} gene. \gls{clya-as} contains eight mutations relative to the \textit{S. Typhi}
+ClyA-WT: C87A, L99Q, E103G, F166Y, I203V, C285S, K294R and H307Y (the H307Y mutation is in the C-terminal
+hexahistidine-tag added for purification)~\cite{Soskine-2013}. Transformants were selected after overnight
+growth at \SI{37}{\celsius} on LB agar plates supplemented with \SI{100}{\micro\gram\per\milli\litre}
+ampicillin. The resulting colonies were grown at \SI{37}{\celsius} (\SI{200}{rpm} shaking) in 2xYT medium
+supplemented with \SI{100}{\micro\gram\per\milli\litre} ampicillin until the O.D. at \SI{600}{\nano\metre} was
+\num{\approx 0.8}. \gls{clya-as} expression was then induced by addition of \SI{0.5}{\mM} IPTG, and the
+temperature was switched to \SI{25}{\celsius} for overnight growth (\SI{200}{rpm} shaking). The next day the
+bacteria were harvested by centrifugation at \SI{6000}{g} for \SI{25}{\minute} at \SI{4}{\celsius} and the
+pellets were stored at \SI{-80}{\celsius}.
+
+Pellets containing monomeric \gls{clya-as} arising from \SI{50}{\milli\litre} culture were thawed and
+resuspended in \SI{20}{\milli\litre} of wash buffer (\SI{10}{\mM} imidazole, \SI{150}{\mM} \ce{NaCl},
+\SI{15}{\mM} \ce{Tris-HCl} \pH{7.5}), supplemented with \SI{1}{\mM} \ce{MgCl2} and
+\SI{0.05}{units\per\milli\litre} of DNaseI. After lysis of the bacteria by probe sonication, the crude lysates
+were clarified by centrifugation at \SI{6000}{g} for \SI{20}{\minute} at \SI{4}{\celsius} and the supernatant
+was mixed with \SI{200}{\micro\litre} of \ce{Ni-NTA} resin (Qiagen, Hilden, Germany) equilibrated in wash
+buffer. After \SI{60}{\minute}, the resin was loaded into a Micro Bio Spin column (Bio-Rad, Hercules, USA) and
+washed with \SI{\approx 5}{\milli\litre} of the wash buffer. \gls{clya-as} was eluted with approximately
+\SI{\approx0.5}{\milli\litre} of wash buffer containing \SI{300}{\mM} imidazole. \gls{clya-as} monomers were
+stored at \SI{4}{\celsius} until further use.
+
+\gls{clya-as} monomers were oligomerized by addition of \SI{0.5}{\percent} \textbeta-dodecylmaltoside (DDM,
+GLYCON Biochemicals GmbH, Luckenwalde, Germany) and incubation at \SI{37}{\celsius} for \SI{30}{\minute}.
+\gls{clya-as} oligomers were separated from monomers by blue native polyacrylamide gel electrophoresis
+(BN-PAGE, Bio-Rad, Hercules, USA) using \SIrange{4}{20}{\percent} polyacrylamide gels. The bands corresponding
+to Type I \gls{clya-as} were excised from the gel and placed in \SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM}
+\ce{Tris-HCl} \pH{7.5}, supplemented with \SI{0.2}{\percent} DDM and \SI{10}{\mM} \gls{edta} to allow
+diffusion of the proteins out of the gel.
+
+
+\subsection{Single nanopore experiments}
+%
+\label{sec:trapping_appendix:nanopore_experiments}
+%
+
+\subsubsection{Electrical recordings in planar lipid bilayers}
+%
+
+By convention, the applied potential refers to the potential of the trans electrode in the planar lipid
+bilayer set-up. \gls{clya-as} nanopores were inserted into lipid bilayers from the \cisi{} compartment, which
+is connected to the ground electrode. The \cisi{} and \transi{} compartments are separated by a
+\SI{25}{\micro\meter} thick polytetrafluoroethylene film (Goodfellow Cambridge Limited, Huntingdon, England)
+containing an orifice of \SI{\approx 100}{\micro\meter} in diameter. After pre-treatment of the aperture with
+\SI{\approx 5}{\micro\litre} of \SI{10}{\percent} hexadecane in pentane, a bilayer was formed by the addition
+of \SI{\approx 10}{\micro\litre} of 1,2-diphytanoyl-sn-glycero-3-phosphocholine (DPhPC) in pentane
+(\SI{10}{\milli\gram\per\milli\litre}) to both electrophysiology chambers. Typically, the addition of
+\SIrange{0.01}{0.1}{\nano\gram} of pre-oligomerised \gls{clya-as} to the \cisi{} compartment
+(\SI{0.5}{\milli\litre}) was sufficient to obtain a single channel. Since \gls{clya-as} nanopores displayed a
+higher open-pore current at positive than at negative applied potentials, the orientation of the pore could be
+easily assessed. All electrical recordings were carried out in \SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM}
+\ce{Tris-HCl} \pH{7.5}. The temperature of the recording chamber was maintained at \SI{28}{\celsius} by water
+circulating through a metal case in direct contact with the bottom and sides of the chamber.
+
+
+\subsubsection{Data recording and event analysis}
+%
+
+Electrical signals from planar lipid bilayer recordings were amplified using an Axopatch 200B patch clamp
+amplifier (Axon Instruments, San Jose, USA) and digitized with a Digidata 1440 A/D converter (Axon
+Instruments, San Jose, USA). Data were recorded using the Clampex 10.5 software (Molecular Devices, San Jose,
+USA) and the subsequent event analysis was carried out with the \code{Clampfit} software (Molecular Devices).
+Ionic currents were sampled at \SI{10}{\kilo\hertz} and filtered with a \SI{2}{\kilo\hertz} low-pass Bessel
+filter.
+
+Residual current values ($\iresp$) of the different \gls{dhfr} variants were calculated by $\iresp =
+\rm{I}_b/\rm{I}_o$, in which $\rm{I}_b$ and $\rm{I}_o$ represent the blocked an open-pore current values,
+respectively. $\rm{I}_b$ and $\rm{I}_o$ values were calculated from Gaussian fits to all point current
+histograms (\SI{0.1}{\pA} bin size) from at least 3 individual single channels each displaying at least 50
+current blockades. The average residence time of the \gls{dhfr} mutants was determined using the `single
+channel search' feature in \code{Clampfit}. The detection threshold was set to \SI{\approx 75}{\percent} of
+the open-pore current and events shorter than \SI{1}{\ms} were ignored for all mutants except for \DHFR{4}{S},
+\DHFR{4}{I} and \DHFR{4}{C}, as they exhibited very short dwell times inside \gls{clya-as}. The process of
+event collection was monitored manually.
+
+The average of the mean dwell times obtained from at least three single channels each displaying at least 100
+blockades was used to describe the average dwell time ($\dwelltime$) at every potential. For analysis of
+\gls{nadph} binding events to \DHFR{$\Ntag$}{O2}, traces were filtered digitally with a 8-pole low-pass Bessel
+filter with a \SI{500}{\hertz} cutoff. Current transitions from L1 to L1\textsubscript{NADPH} were analysed
+with the `single channel search' option in \code{Clampfit}. The detection threshold to collect the
+\gls{nadph}-induced events was set to \SI{2}{\pA} and events shorter than \SI{0.1}{\ms} were ignored. The
+process of event collection was monitored manually. The resulting event dwell times ($\tau_{\rm{off}}$) and
+the times between events ($\tau_{\rm{on}}$) were binned together as cumulative distributions and fitted to a
+single exponential to retrieve the \gls{nadph}-induced lifetimes ($\tau_{\rm{off}}$) and the
+\gls{nadph}-induced inter-event times ($\tau_{\rm{on}}$). The average amplitude of the events was derived from
+Gaussian fits to the conventional distributions of the events' amplitudes. Values for off and on rates were
+determined as $\rate_{\rm{off}} = 1/\tau_{\rm{off}}$ and $\rate_{\rm{off}} = \left(\tau_{\rm{on}} c
+\right)^{-1}$ with $c$ the concentration of \gls{nadph} added to the \transi{} solution. Final values for
+$\tau_{\rm{on}}$, $\tau_{\rm{off}}$, $\rate_{\rm{on}}$, $\rate_{\rm{off}}$ and event amplitudes are the
+averages derived from three single channel experiments, each analysing at least 100 binding events on more
+than five different \DHFR{$\Ntag$}{O2} blockades.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep the following \cleardoublepage at the end of this file, 
+% otherwise \includeonly includes empty pages.
+\cleardoublepage
+
+% vim: tw=70 nocindent expandtab foldmethod=marker foldmarker={{{}{,}{}}}
