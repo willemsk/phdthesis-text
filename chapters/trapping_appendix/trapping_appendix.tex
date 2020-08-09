@@ -1,7 +1,16 @@
-\chapter{Supplementary: Trapping of a single protein inside a nanopore}
+%
+\chapter[SI: Trapping of a single protein inside a nanopore]%
+        {Supplementary information: Trapping of a single protein inside a nanopore}
 %
 \label{ch:trapping_appendix}
 %
+
+\definecolor{shadecolor}{gray}{0.85}
+\begin{shaded}
+  \adapACS{Willems-Ruic-Biesemans-2019}
+\newpage
+\end{shaded}
+
 
 %
 \section{Escape rates over a potential barrier}
@@ -414,12 +423,16 @@ single barrier model.
 
 \end{tikzpicture}
 }{fig:single_barrier}{%
-    Molecule (blue circle) trapped in a potential well defined by a nanopore and trying to overcome the energy
-    barrier $\barrier^\cis$ by picking up the kinetic energy $\kinetic$ from its environment and then
-    propagating over the barrier with an instantaneous transition rate $\transition$. Overlaid are the linear
-    energy potentials from the electrophoretic force $\Eep$ and from the force of the electroosmotic flow
-    $\Eosm$.
-    %
+  Escape from a single barrier system.
+}{%
+  \textbf{Escape from a single barrier system.}
+  %
+  Molecule (blue circle) trapped in a potential well defined by a nanopore and trying to overcome the energy
+  barrier $\barrier^\cis$ by picking up the kinetic energy $\kinetic$ from its environment and then
+  propagating over the barrier with an instantaneous transition rate $\transition$. Overlaid are the linear
+  energy potentials from the electrophoretic force $\Eep$ and from the force of the electroosmotic flow
+  $\Eosm$.
+  %
 }{t}
 
 In order to overcome the barrier of \cref{fig:single_barrier}, the molecule has to pick up thermal energy
@@ -656,10 +669,14 @@ with the applied bias.  Data that exhibits a maximum as a function of $\vbias$, 
     \draw[->, thick, black] (-4,-1) --++ (1,0) node[anchor=north]{$x$};
 \end{tikzpicture}
 }{fig:second_barrier}{%
-    Molecule (blue ball) trapped in between two energy barriers $\barrier^\cis$
-    and $\barrier^\trans$. By picking up kinetic energy $\kinetic$ from its
-    environment it can transition through either barrier towards \cisi{} or
-    \transi{}.
+  Escape from a double barrier system.
+  }{%
+  \textbf{Escape from a double barrier system.}
+  %
+  Molecule (blue ball) trapped in between two energy barriers $\barrier^\cis$ and $\barrier^\trans$. By
+  picking up kinetic energy $\kinetic$ from its environment it can transition through either barrier towards
+  \cisi{} or \transi{}.
+  %
 }{b}
 
 \subsection{Escape from a double barrier system}
@@ -731,7 +748,8 @@ nanopore with a narrow \transi{} constriction as shown in the \cref{ch:trapping}
   \begin{threeparttable}
     \centering
     %
-    \caption[width=10cm]{$\iresp$ values of the different {DHFR} variants.}
+    \captionsetup{width=10cm}
+    \caption{$\iresp$ values of the different {DHFR} variants.}
     \label{tab:dhfr_iresp}
     %
     \renewcommand{\arraystretch}{1.0}
@@ -878,14 +896,18 @@ expectation value of the entire distribution (\cref{eq:tau_arithmetic_mean}).
   \centering
   %
   \begin{threeparttable}
+    \centering
+    %
+    \captionsetup{width=10cm}
+    \caption[NADPH binding/unbinding kinetics to trapped {DHFR} variants.]{%
+      \textbf{NADPH binding/unbinding kinetics to trapped {DHFR} variants.}\tnote{a}}%
+    \label{tab:nadph_rates}
+    %
     \footnotesize
     \renewcommand{\arraystretch}{1.2}
-    \captionsetup{width=10cm}
-    \caption[NADPH binding/unbinding kinetics to trapped DHFR variants.]{%
-      \textbf{NADPH binding/unbinding kinetics to trapped DHFR variants.}\tnote{a}}%
-      \label{tab:nadph_rates}
-    \centering
+    %
     \sisetup{table-format=2.4}
+    %
     \begin{tabularx}{10cm}{Xlll}
       \toprule
       DHFR variant
@@ -1048,14 +1070,22 @@ effectively modifying the net charge on the tag. In that case, we expect that ou
 \DHFR{$\Ntag$}{O2} data fails to \emph{predict} the dwell times as can be seen in
 \cref{fig:trapping_model_comparison_body_complex}.
 
+%
 \begin{threeparttable}[!b]
+  \centering
+
+  %
+  \captionsetup{width=11cm}
+  \caption[Fitting parameters for the simple double barrier model.]{%
+          \textbf{Fitting parameters for the simple double barrier model.}\tnote{a}}
+  \label{tab:fitting_parameters_simple}
+  %
+
+  %
   \footnotesize
   \renewcommand{\arraystretch}{1.2}
-  \captionsetup{width=11cm}
-  \caption{%
-    \textbf{Fitting parameters for the simple double barrier model.\tnote{a}}}
-  \centering
-  \label{tab:fitting_parameters_simple}
+  %
+  
   \begin{tabularx}{11cm}{
     >{\raggedright\hsize=2.5cm}X
     >{\hsize=1cm}l >{\hsize=1cm}l >{\hsize=1cm}l >{\hsize=1cm}l}
@@ -1078,12 +1108,14 @@ effectively modifying the net charge on the tag. In that case, we expect that ou
                   & \num{-5.54\pm1.43} & \num{1.31\pm0.34} \\
     \bottomrule
   \end{tabularx}
+  %
   \begin{tablenotes}
     \item[a] Fitting coefficients for \cref{eq:double_barrier_simple} of the \cref{ch:trapping}.
     \item[b] Errors represent one sigma confidence intervals.
   \end{tablenotes}
+  %
 \end{threeparttable}
-
+%
 
 \section{Extended materials and methods}
 %
@@ -1190,14 +1222,18 @@ constructed using the corresponding \DHFR{7}{O1/O2} circular \gls{dna} template,
 frwd} primer, respectively, and \code{T7 terminator} primer. All primer sequences are shown in
 \cref{tab:primers}.
 
-
+%
 \begin{table*}[!htb]
-  \footnotesize
-  \renewcommand{\arraystretch}{1.5}
-  \captionsetup{width=11cm}
-  \caption{\textbf{Mutagenesis DNA primer sequences.}}
   \centering
+
+  %
+  \captionsetup{width=11cm}
+  \caption{Mutagenesis {DNA} primer sequences.}
   \label{tab:primers}
+  %
+  \renewcommand{\arraystretch}{1.5}  
+  \footnotesize
+  %
   \begin{tabularx}{11cm}{l X}
     \toprule
     Primer name  & Primer sequence   \\
@@ -1227,6 +1263,8 @@ frwd} primer, respectively, and \code{T7 terminator} primer. All primer sequence
     \bottomrule
   \end{tabularx}
 \end{table*}
+%
+
 
 \subsection{Protein overexpression and purification}
 %

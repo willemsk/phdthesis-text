@@ -1,0 +1,229 @@
+%
+\chapter[SI: Modeling the transport of ions and water through {ClyA}]%
+        {Supplementary information: Modeling the transport of ions and water through {ClyA}}
+%
+\label{ch:transport_appendix}
+%
+
+\definecolor{shadecolor}{gray}{0.85}
+\begin{shaded}
+  \adapRSC{Willems-2020}
+\newpage
+\end{shaded}
+
+
+\section{Comparison of the {ClyA} \lumen{} diameters}
+%
+\label{sec:transport_appendix:radius_comparision}
+%
+
+A comparison of the \gls{clya} structures equilibrated with molecular dynamics with the crystal
+(\pdbid{2WCD}~\cite{Mueller-2009}) and \gls{cryo-em} (\pdbid{6MRT}~\cite{Peng-2019}) structures can be found
+in \cref{fig:transport_radius_comparison_surface}. The molecular surface was colored according to the internal
+radius $r_{\text{int}}$
+%
+\begin{align}\label{eq:internal_radius}
+  r_{\text{int},i} = \sqrt{(x_i^2 + y_i^2)} - r_{\text{vdW},i}
+\end{align}
+%
+with $x_i$, $y_i$ and $r_{\text{vdW},i}$ the $x$-coordinate, $y$-coordinate and van der Waals radius of atom
+$i$. All structure were aligned to minimize their RSMD to the initial structure, which has its center of mass
+at $(0,0,55)$.
+
+Our comparison shows that the \gls{md} structure does not deviate significantly from the crystal and
+\gls{cryo-em} structures in overal geometry. Moreover, the average nanopore diameter in the \cisi{} \lumen{}
+is closer to \SI{6}{\nm} than the \SI{5.5}{\nm} reported earlier~\cite{Willems-Ruic-Biesemans-2019} The value
+of \SI{5.5}{\nm} should be considered as a measure for the maximum size of a protein that can fit inside
+dodecameric \gls{clya} without it touching the walls. The \SI{6}{\nm} diameter value given is the average
+\lumen{} diameter, which is slightly larger than \SI{5.5}{\nm} given that it includes---rather than
+excludes---all corrugations. 
+
+%
+\begin{figure*}[t]
+  \centering
+  %
+  \includegraphics[scale=1]{transport_radius_comparison_surface}
+  %
+
+  \caption[\textit{Lumen} diameters of {ClyA}.]%
+  {%
+    %
+    \textbf{\textit{Lumen} diameters of {ClyA}.}
+    %
+    Side and top view of the molecular surface of the \gls{clya-as} equilibrated with \gls{md} (left), with
+    the crystal \pdbid{2WCD}~\cite{Mueller-2009} (middle) and \gls{cryo-em} \pdbid{6MRT}~\cite{Peng-2019}
+    (right) structures. Surfaces were colored according to $r_{\text{int}}$, the distance of each atom from
+    the central axis of the pore, reduced with its van der Waals radius (see~\cref{eq:internal_radius}). The
+    traditional diameter of \SI{5.5}{\nm} and the \SI{6.0}{\nm} are outlined in orange and pink respectively.
+    Images were rendered using \gls{vmd}~\cite{Humphrey-1996}.
+    %
+  }\label{fig:transport_radius_comparison_surface}
+\end{figure*}
+
+
+
+%
+\section{Tabulated ion selectivities}
+%
+\label{sec:transport_appendix:tab_ion_sel}
+%
+
+Tabulated data on the ion selectivity, in terms of cation transport number $\tna$ and cation permeability
+ratio $\pna$ for various salt concentrations and voltages can be found in \cref{tab:ion_selectivities}.
+
+%
+\begin{table*}[b]
+  \centering
+
+  %
+  \captionsetup{width=10cm}
+  \caption{Tabulated cation transport numbers and permeability ratios.}
+  \label{tab:ion_selectivities}
+  
+  %
+  \renewcommand{\arraystretch}{1.2}
+  \footnotesize
+  %
+
+  \begin{tabularx}{10cm}{XXXXXXX}
+    \toprule
+     & \multicolumn{6}{c}{$\vbias$ [\si{\mV}]} \\
+       \cmidrule{2-7}
+     & \multicolumn{2}{c}{$+150$} & \multicolumn{2}{c}{$+100$} & \multicolumn{2}{c}{$+50$} \\
+    %
+    \cmidrule(r){2-3} \cmidrule(r){4-5} \cmidrule(r){6-7}
+    %
+    $\cbulk$ [\si{\Molar}]
+     & $\tna$$^\text{\emph{a}}$ & $\pna$$^\text{\emph{b}}$
+     & $\tna$$^\text{\emph{a}}$ & $\pna$$^\text{\emph{b}}$
+     & $\tna$$^\text{\emph{a}}$ & $\pna$$^\text{\emph{b}}$ \\
+    %
+    \midrule
+    0.005 & 0.996 & 235 & 0.997 & 313 & 0.998 & 410 \\
+    0.050 & 0.906 & 9.62 & 0.925 & 12.3 & 0.941 & 16.0 \\
+    0.150 & 0.786 & 3.68 & 0.805 & 4.13 & 0.824 & 4.69 \\
+    0.500 & 0.642 & 1.79 & 0.649 & 1.85 & 0.657 & 1.91 \\
+    1.000 & 0.566 & 1.30 & 0.569 & 1.32 & 0.572 & 1.33 \\
+    2.000 & 0.502 & 1.00 & 0.503 & 1.01 & 0.503 & 1.01 \\
+    5.000 & 0.445 & 0.803 & 0.445 & 0.803 & 0.445 & 0.803 \\
+    \midrule
+    \midrule
+     & \multicolumn{6}{c}{$\vbias$ [\si{\mV}]} \\
+       \cmidrule{2-7}
+     & \multicolumn{2}{c}{$+150$} & \multicolumn{2}{c}{$+100$} & \multicolumn{2}{c}{$+50$} \\
+    %
+    \cmidrule(r){2-3} \cmidrule(r){4-5} \cmidrule(r){6-7}
+    %
+    $\cbulk$ [\si{\Molar}]
+      & $\tna$$^\text{\emph{a}}$ & $\pna$$^\text{\emph{b}}$
+      & $\tna$$^\text{\emph{a}}$ & $\pna$$^\text{\emph{b}}$
+      & $\tna$$^\text{\emph{a}}$ & $\pna$$^\text{\emph{b}}$ \\
+    %
+    \midrule
+    0.005 & 0.998 & 500 & 0.998 & 535 & 0.998 & 542 \\
+    0.050 & 0.967 & 29.6 & 0.966 & 28.2 & 0.962 & 25.1 \\
+    0.150 & 0.882 & 7.51 & 0.874 & 6.91 & 0.860 & 6.16 \\
+    0.500 & 0.687 & 2.20 & 0.680 & 2.12 & 0.672 & 2.05 \\
+    1.000 & 0.582 & 1.39 & 0.579 & 1.38 & 0.577 & 1.36 \\
+    2.000 & 0.505 & 1.02 & 0.505 & 1.02 & 0.504 & 1.02 \\
+    5.000 & 0.445 & 0.802 & 0.445 & 0.802 & 0.445 & 0.802 \\
+    %
+    \bottomrule
+  \end{tabularx}
+  \begin{flushleft}
+    $^\text{\emph{a}}$Cation transport number $\tna = \conductance_{\Na} / (\conductance_{\Na} + \conductance_{\Cl} )$;
+    %
+    $^\text{\emph{b}}$Cation permeability ratio $\pna = \conductance_{\Na} / (\conductance_{\Cl} )$.
+  \end{flushleft}
+\end{table*}
+%
+
+
+\section{Peak values of the radial potential profiles inside {ClyA-AS}}
+%
+
+The peak values of the radial electrostatic potential $\radpot$ at the \cisi{} entry, middle of the lumen and
+the \transi{} constriction for \SIlist{0.005;0.05;0.15;0.5;5}{\Molar} \ce{NaCl} are summarized in
+\cref{tab:radial_potential}.
+
+%
+\begin{table}[h]
+  \centering
+  
+  %
+  \captionsetup{width=8cm}
+  \caption{Peak radial potential.}
+  \label{tab:radial_potential}
+  %
+  \footnotesize
+  %
+  \begin{tabularx}{8cm}{SSSS}
+    \toprule
+    & \multicolumn{3}{c}{$\radpot$ [\si{\mV}]} \\
+    \cmidrule{2-4}
+    & {\cisi{}}      & {\lumen{}}    & {\transi{}}  \\
+    {$\cbulk$ [\si{\Molar})]}
+    & {$z\approx\mSI{10}{\nm}$} & {$z\approx\mSI{5}{\nm}$} & {$z\approx\mSI{0}{\nm}$} \\
+    \midrule
+    0.005          & -80         & -108       & -144   \\
+    0.05           & -34         &  -50       &  -86   \\
+    0.15           & -19         &  -29       &  -57   \\
+    0.5            &  -9.3       &  -14       &  -30   \\
+    5              &  -1.9       &   -1.7     &   -4.2 \\
+    \bottomrule
+  \end{tabularx}
+  %
+\end{table}
+
+
+\section{Surface integration to compute pore averaged values}
+%
+
+The average pore values for quantity of interest $X$ was computed by \cref{eq:pore_surface_integral}
+%
+\begin{align}\label{eq:pore_surface_integral}
+  \left< X \right>_{\alpha} =
+    \displaystyle\frac{\displaystyle\iint_{V_{\alpha}} \beta_{\alpha} X \,dr\,dz}
+                      {\displaystyle\iint_{V_{\alpha}} \beta_{\alpha} \,dr\,dz}
+  \text{ ,}
+\end{align}
+%
+where
+%
+\begin{equation}
+  \alpha=
+  \begin{cases}
+    \text{PT}, & d \ge 0  \text{~nm} \text{, average over the entire pore} \\
+    \text{PB}, & d > 0.5  \text{~nm} \text{, average over the pore `bulk' }  \\
+    \text{PS}, & d \le 0.5\text{~nm} \text{, average over the pore `surface' }
+  \end{cases}
+\end{equation}
+%
+and
+%
+\begin{align}
+  \beta_{\text{PT}} &=
+  \begin{cases}
+    1, & \text{if}\ -1.85\le z \le 12.25  \text{ and } r \le r_\text{p}(z) \\
+    0, & \text{otherwise}
+  \end{cases} \\
+  \beta_{\text{PB}} &=
+  \begin{cases}
+  1, & \text{if}\ -1.85\le z \le 12.25  \text{ and } r \le r_\text{p}(z) \text{ and } d > 0.5 \\
+  0, & \text{otherwise}
+  \end{cases} \\
+  \beta_{\text{PS}} &=
+  \begin{cases}
+  1, & \text{if}\ -1.85\le z \le 12.25  \text{ and } r \le r_\text{p}(z) \text{ and } d \le 0.5 \\
+  0, & \text{otherwise}
+  \end{cases}
+\end{align}
+%
+with $d$ the distance from the nanopore wall and $r_\text{p}(z)$ is the radius of the pore at height $z$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep the following \cleardoublepage at the end of this file, 
+% otherwise \includeonly includes empty pages.
+\cleardoublepage
+
+% vim: tw=70 nocindent expandtab foldmethod=marker foldmarker={{{}{,}{}}}

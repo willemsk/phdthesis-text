@@ -1,0 +1,297 @@
+%
+\chapter[SI: An improved PNP-NS framework]%
+        {Supplementary information: An improved PNP-NS framework}
+%
+\label{ch:epnpns_appendix}
+
+\definecolor{shadecolor}{gray}{0.85}
+\begin{shaded}
+  \adapRSC{Willems-2020}
+\newpage
+\end{shaded}
+
+
+\section{Weak forms of the {ePNP-NS} equations}
+%
+\label{sec:epnpns_appendix:weak_forms}
+%
+
+To solve partial differential equations with the finite element method, we must be derive their weak form.
+This is achieved through multiplication of the equation with an arbitrary test function and integration over
+their relevant domains and boundaries (\cref{fig:epnpns_model_boundaries}). The full computational domain of
+our model ($\Omega$) is subdivided into domains for the pore ($\Omega_p$), the lipid bilayer ($\Omega_m$) and
+the electrolyte reservoir ($\Omega_w$). The relevant boundaries of these domains are also indicated, i.e. the
+reservoir's exterior edges at the \cisi{} $\Gamma_{w,c}$) and \transi{} $\Gamma_{w,t}$) sides, the outer edge
+of the lipid bilayer ($\Gamma_{m}$) and the interface of the fluid with the nanopore and the bilayer
+($\Gamma_{p+m}$).
+
+The following paragraphs detail the weak forms of equations that were used in this
+\cref{ch:epnpns,ch:trapping}.
+
+%
+\begin{figure*}[t]
+  \centering
+  %
+  \includegraphics[scale=1]{epnpns_model_boundaries}
+  %
+  
+  \caption[Computational domains and boundaries.]%
+  {\textbf{Computational domains and boundaries.}
+    %
+    The full computational domain ($\Omega$) of the model is subdivided into various subdomains---comprising
+    the reservoir ($\Omega_w$), the lipid bilayer ($\Omega_m$) and the pore ($\Omega_p$)---and their limiting
+    boundaries---the exterior boundary at the \cisi{} ($\Gamma_{w,c}$) \transi{} and the \transi{}
+    ($\Gamma_{w,t}$) sides of the reservoir, the exterior boundary of the membrane ($\Gamma_m$) and the
+    interior boundary between the reservoir on the one hand, and the pore and membrane on the other
+    ($\Gamma_{p+m}$).
+    %
+  }\label{fig:epnpns_model_boundaries}
+\end{figure*}
+%
+
+
+\subsection{Poisson equation}
+%
+
+The global potential distribution is described by the Poisson equation (PE)~\cite{Lu-2012}
+%
+\begin{align}
+  \label{eq:epnpns_appendix:poisson}
+  \nabla \cdot \displacement = -\left( \scdpore + \scdion \right)
+  \text{\quad with \quad}
+  \displacement = \absperm \relperm \nabla \potential
+  \text{ ,}
+\end{align}
+%
+with $\displacement$ the electrical displacement field, $\potential$ the electric potential, $\absperm$ the
+vacuum permittivity (\SI{8.85419e-12}{\farad\per\meter}), and $\relperm$ the local relative permittivity
+of the medium. $\scdpore$ and $\scdion$ are the fixed (due to the pore) and mobile (due to the ions) charge
+distributions, respectively.
+
+Multiplication of~\cref{eq:epnpns_appendix:poisson} with the potential test function $\psi$ and integration
+over the entire model $\Omega=\Omega_w+\Omega_p+\Omega_m$ gives
+%
+\begin{align}
+  \displaystyle\int_{\Omega}
+  \left[
+    \nabla \cdot \displacement
+  \right]
+  \psi \,d\Omega
+  ={}&
+  - \displaystyle\int_{\Omega} \left[ \scdpore + \scdion \right] \psi \,d\Omega \text{ ,}
+\end{align}
+%
+which, after applying the Gauss divergence theorem, yields the final weak formulation
+%
+\begin{align}
+  \displaystyle\int_{\Omega}
+  \left[
+    \nabla \psi \cdot \displacement
+  \right]
+  \,d\Omega
+  & - \displaystyle\int_{\Gamma_\text{PE}}
+  \left[
+    \psi \displacement \cdot \vec{n}
+  \right]
+  \,d\Gamma_\text{PE} \notag \\
+  & =
+  \displaystyle\int_{\Omega} \left[ \psi \scdpore \right] \,d\Omega
+  +
+  \displaystyle\int_{\Omega} \left[ \psi \scdion \right] \,d\Omega
+  \text{ ,}
+\end{align}
+%
+with boundaries $\Gamma_\text{PE}=\Gamma_{w,c}+\Gamma_{w,t}+\Gamma_m$ and $\vec{n}$ their normal vector. The
+boundary integrals at $\Gamma_{w,c}$ and $\Gamma_{w,t}$ are evaluated using the Dirichlet \glspl{bc}
+$\potential=0$ and $\potential=\vbias$, respectively. A zero charge \gls{bc}, $\vec{n} \cdot \displacement =
+0$, is used for the integral at $\Gamma_{m}$.
+
+
+
+\subsection{Size-modified Nernst-Planck equation}
+%
+
+The total ionic flux $\flux_{i}$ of ion $i$ at steady-state is expressed by the \gls{smnpe}~\cite{Lu-2012}
+%
+\begin{equation}\label{eq:smnp}
+  \pd{\concentration_{i}}{t} = - \nabla\cdot\flux_{i} = - \nabla \cdot
+  \left(
+    \diffusion_{i}\nabla\concentration_{i}
+    + \chargen_{i}\mobility_{i}\concentration_{i}\nabla\potential
+    + \diffusion_{i} \vec{\beta_{i}} \concentration_{i}
+    - \velocity\concentration_{i}
+  \right)
+  \text{ ,}
+\end{equation}
+%
+where
+%
+\begin{equation}\label{eq:steric_vector}
+  \vec{\beta_{i}} =
+    \frac{\ionsize_{i}^3/\ionsize_{0}^3 \dsum_{j} \avogadro \ionsize_{j}^3 \nabla \concentration_{j}}
+        {1 - \dsum_{j} \avogadro \ionsize_{j}^3 \concentration_{j}}
+  \text{ ,}
+\end{equation}
+%
+and with ion diffusion coefficient $\diffusion_{i}$, concentration $\concentration_{i}$, charge number
+$\chargen_{i}$, mobility $\mobility_{i}$, electrostatic potential $\potential$, steric saturation factor
+$\beta_{i}$ and fluid velocity $\velocity$. $\avogadro$ is Avogadro's constant (\SI{6.022e23}{\per\mole}) and
+$\ionsize_{i}$ and $\ionsize_{0}$ are the limiting cubic diameters for ions and water, respectively. Using the
+ion concentration test function $d_i$, the weak form of \cref{eq:smnp} becomes
+%
+\begin{align}
+  % Raw integral
+  \displaystyle\int_{\Omega_w} \left[ \pd{\concentration_{i}}{t} \right] d_{i} \,d\Omega_w =
+  \displaystyle\int_{\Omega_w} \left[ - \nabla \cdot \flux_{i} \right] d_{i} \,d\Omega_w
+  \text{, }
+\end{align}
+%
+which can be split into the domain and boundary integrals
+%
+\begin{align}
+  % Gauss divergence theorem
+  \displaystyle\int_{\Omega_w} \left[ d_{i} \pd{\concentration_{i}}{t} \right] \,d\Omega_w ={}&
+  \displaystyle\int_{\Omega_w} \left[\nabla d_{i} \cdot \flux_{i} \right]\,d\Omega_w
+  - \displaystyle\int_{\Gamma_\text{NP}}
+  \left[ d_{i} \flux_{i} \cdot \vec{n} \right]\,d\Gamma_\text{NP} \\
+  % Fill in flux components
+  ={}&
+  % Domain
+  \displaystyle\int_{\Omega_w}
+  \left[
+    \nabla d_{i} \cdot
+    \left(
+      \diffusion_{i}\nabla\concentration_{i}
+      + \chargen_{i}\mobility_{i}\concentration_{i}\nabla\potential
+      + \diffusion_{i} \vec{\beta_{i}} \concentration_{i}
+      - \velocity \concentration_{i}
+    \right)
+  \right]
+  \,d\Omega_w \notag \\
+  % Boundary
+  & - \displaystyle\int_{\Gamma_\text{NP}}
+  \left[
+    d_{i}
+    \left(
+      \diffusion_{i} \nabla \concentration_{i}
+      + \chargen_{i} \mobility_{i} \concentration_{i} \nabla \potential
+      + \diffusion_{i} \vec{\beta_{i}} \concentration_{i}
+      - \velocity \concentration_{i}
+    \right)
+    \cdot \vec{n}
+  \right]
+  \,d\Gamma_\text{NP} \notag
+  \text{ .}
+\end{align}
+%
+The integrals on the boundaries $\Gamma_\text{NP} = \Gamma_{w,c}+\Gamma_{w,t}+\Gamma_{p+m}$ are evaluated
+using the Dirichlet \gls{bc} $\concentration_{i} = \cbulk$ for $\Gamma_{w,c}$ and $\Gamma_{w,t}$, and the no
+flux \gls{bc} $\vec{n} \cdot \flux_{i} = 0$ for $\Gamma_{p+m}$
+
+
+\subsection{Variable density and viscosity Navier-Stokes equation}
+%
+
+The steady-state, laminar fluid flow of an incompressible fluid with a variable density and viscosity is given
+by the system of equations~\cite{Axelsson-2015}
+%
+\begin{align}
+  \label{eq:ns_density_continuity}
+  \velocity \cdot \nabla \density ={}& 0 \\
+  \label{eq:ns_conservation}
+  \left( \velocity \cdot \nabla \right) \left( \density\velocity \right)
+  + \nabla \cdot \hydrostresstensor ={}& \volumeforce \text{\quad with }
+  \hydrostresstensor =
+    \pressure\identity - \viscosity\left[\nabla\velocity+\left(\nabla\velocity \right)^\mathsf{T}\right]
+  \\
+  \label{eq:ns_velocity_continuity}
+  \nabla \cdot \left( \density\velocity \right) - \velocity \cdot \nabla \density ={}& 0
+  \text { ,}
+\end{align}
+%
+with fluid velocity $\velocity$, density $\density$, hydrodynamic stress tensor $\hydrostresstensor$,
+viscosity $\viscosity$, pressure $\pressure$ and body force $\volumeforce$. The pressure test function $q$ is
+used to derive the weak forms of \cref{eq:ns_density_continuity}
+%
+\begin{align}
+  % Density continuity
+  \displaystyle\int_{\Omega_w} \left[ \velocity \cdot \nabla \density \right] q \,d\Omega_w ={}&
+  \displaystyle\int_{\Omega_w} \left[ q \velocity \cdot \nabla \density \right] \,d\Omega_w = 0 \text{ ,}
+\end{align}
+%
+and \cref{eq:ns_velocity_continuity}
+%
+\begin{align}
+  % Velocity continuity
+  \displaystyle\int_{\Omega_w}
+  &\left[\nabla \cdot \left( \density \velocity \right) - \velocity \cdot \nabla \density \right] q
+  \,d\Omega_w \\ & =
+  \displaystyle\int_{\Omega_w}
+  \left[\nabla \cdot \left( \density \velocity \right) \right] q \,d\Omega_w
+  -
+  \displaystyle\int_{\Omega_w} 
+  \left[ q \velocity \cdot \nabla \density \right] \,d\Omega_w \notag \\
+  & =
+  \displaystyle\int_{\Omega_w}
+  \left[\nabla q \cdot \left( \density \velocity \right) \right] \,d\Omega_w
+  -
+  \displaystyle\int_{\Gamma_\text{NS}}
+  \left[ q \left( \density \velocity \right) \cdot \vec{n} \right] \,d\Gamma_\text{NS}
+  -
+  \displaystyle\int_{\Omega_w}
+  \left[ q \velocity \cdot \nabla \density \right] \,d\Omega_w \notag
+  \text{ ,}
+\end{align}
+%
+while for \cref{eq:ns_conservation} we use the velocity test function $\vec{v}=\left[v_r, v_\phi, v_z\right]$
+%
+\begin{align}
+  \displaystyle\int_{\Omega_w}
+  \left[
+    \left( \velocity \cdot \nabla \right) \left( \density\velocity \right) + \nabla \cdot \hydrostresstensor
+  \right]
+  \cdot \vec{v} \,d\Omega_w
+  =
+  \displaystyle\int_{\Omega_w} \vec{\force} \cdot \vec{v} \,d\Omega_w 
+\end{align}
+%
+which can be split into the domain and boundary integrals
+%
+\begin{align}
+  % Conservation
+  \displaystyle\int_{\Omega_w} \vec{\force} \cdot \vec{v} \,d\Omega_w =
+  \displaystyle\int_{\Omega_w} &
+  \left[
+    \left( \velocity \cdot \nabla \right) \left( \density\velocity \right) \cdot\vec{v}
+  \right] 
+  \,d\Omega_w 
+  -
+  \displaystyle\int_{\Omega_w}
+  \left[
+  \hydrostresstensor \cdot \nabla\vec{v}
+  \right]
+  \,d\Omega_w \notag \\
+  & +
+  \displaystyle\int_{\Gamma_\text{NS}}
+  \left[
+  \vec{v} \cdot
+  \hydrostresstensor
+  \cdot\vec{n}
+  \right]
+  \,d\Gamma_\text{NS}
+  \text{ ,}
+\end{align}
+%
+with boundaries $\Gamma_\text{NS} = \Gamma_{w,c}+\Gamma_{w,t}+\Gamma_{p+m}$. The no-slip Dirichlet \gls{bc}
+$\velocity = 0$ is applied to $\Gamma_{p+m}$, and the no normal stress $\hydrostresstensor\vec{n}=0$ is used
+for $\Gamma_{w,c}$ and $\Gamma_{w,t}$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep the following \cleardoublepage at the end of this file, 
+% otherwise \includeonly includes empty pages.
+\cleardoublepage
+
+% vim: tw=70 nocindent expandtab foldmethod=marker foldmarker={{{}{,}{}}}

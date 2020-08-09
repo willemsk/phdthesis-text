@@ -77,10 +77,16 @@
   description={K channel of \textit{Streptomyces A}}
 }
 
+% Other nanopores
+\newacronym{ompf}{OmpF}{outer membrane porin F}
+\newacronym{ompg}{OmpG}{outer membrane porin G}
+
 % Nanopore terms
 
+\newacronym{iv}{IV}{current--voltage}
 \newacronym{eof}{EOF}{electro-osmotic flow}
-
+\newacronym{ghk}{GHK}{Goldman-Hodgkin-Katz}
+\newacronym{icr}{ICR}{ionic current rectification}
 
 % General molecules, proteins
 
@@ -94,18 +100,20 @@
 \newacronym{dsdna}{dsDNA}{double-stranded DNA}
 \newacronym{sph}{SPH}{sphingomyelin}
 \newacronym{dphpc}{DPhPC}{1,2-diphytanoyl-\textit{sn}-glycero-3-phosphocholine}
+\newacronym{mops}{MOPS}{4-morpholinepropanesulfonic acid}
 
 % Computational
 \newacronym{md}{MD}{molecular dynamics}
+\newacronym{bd}{MD}{Brownian dynamics}
 \newacronym{vmd}{VMD}{visual molecular dynamics}
 \newacronym{namd}{NAMD}{nanoscale molecular dynamics}
 \newacronym{apbs}{APBS}{adaptive Poisson-Boltzman solver}
 \newacronym{com}{COM}{center-of-mass}
 \newacronym{mdff}{MDFF}{molecular dynamics flexible fitting}
 \newacronym{tcl}{Tcl}{Tool Command Language}
+\newacronym{msd}{MSD}{mean-square displacement}
 \newacronym{rmsd}{RMSD}{root-mean-square deviation}
-
-\newacronym{pbe}{PBE}{Poisson-Boltzman equation}
+\newacronym{pme}{PME}{particle mesh Ewald}
 
 \newacronym{mdh}{\code{mdh}}{multiple Debye-H\"{u}ckel}
 
@@ -141,7 +149,7 @@
 \newacronym{page}{PAGE}{polyacrylamide gel electrophoresis}
 \newacronym{cryo-em}{cryo-EM}{cryogenic electron microscopy}
 \newacronym{cd}{CD}{circular dichroism}
-\newacronym{ddm}{DDM}{\textit{n}-dodecyl \textbeta-D-maltoside}
+\newacronym{ddm}{DDM}{\textit{n}-dodecyl \textbeta-\textsc{D}-maltoside}
 \newacronym{rbc}{RBC}{red blood cells}
 \newacronym{fret}{FRET}{F\"{o}rster resonance energy transfer}
 \newacronym{nmr}{NMR}{nuclear magnetic resonance}
@@ -150,12 +158,38 @@
 \newacronym{dhfr}{DHFR}{dihydrofolate reductase}
 \newacronym{bsa}{BSA}{bovine serum albumin}
 \newacronym{edta}{EDTA}{Ethylenediaminetetraacetic acid}
+\newacronym{iptg}{IPTG}{isopropyl \textbeta-\textsc{D}-1-thiogalactopyranoside}
+
 
 % DHFR trapping
 \newacronym{nadph}{NADPH}{nicotinamide adenine dinucleotide phosphate}
 \newacronym{abel}{ABEL}{anti-Brownian electrokinetic}
 \newacronym{nta}{NTA}{nitrilotriacetic acid}
 \newacronym{mtx}{MTX}{methotrexate}
+
+% ePNP-NS
+\newacronym{pbe}{PBE}{Poisson-Boltzman equation}
+\newacronym{pb}{PB}{Poisson-Boltzman}
+\newacronym{pnp}{PNP}{Poisson-Nernst-Planck}
+\newacronym{ns}{NS}{Navier-Stokes}
+\newacronym{pnp-ns}{PNP-NS}{Poisson-Nernst-Planck and Navier-Stokes}
+\newacronym{smnpe}{smNPE}{size-modified Nernst-Planck equation}
+\newacronym{epnp-ns}{ePNP-NS}{extended Poisson-Nernst-Planck and Navier-Stokes}
+\newacronym{fea}{FEA}{finite element analysis}
+\newacronym{bc}{BC}{boundary condition}
+
+% MD
+\newglossaryentry{nvt}{
+  name={NVT},
+  description={constant particle number, volume and temperature conditions}
+}
+
+\newglossaryentry{npt}{
+  name={NpT},
+  description={constant particle number, pressure and temperature conditions}
+}
+
+\newacronym{qcp}{QCP}{quaternion characteristic polynomial}
 
 % math
 \newacronym{ode}{ODE}{ordinary differential equation}

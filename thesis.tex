@@ -93,6 +93,9 @@
   hyperref=auto,
   mincrossrefs=999,
   backend=biber,
+  date=year,
+  url=false,
+  eprint=false,
   style=numeric
 ]{biblatex}
 \addbibresource{allpapers.bib}
@@ -138,7 +141,7 @@
 % captions
 \usepackage[font=scriptsize,labelfont=bf,labelsep=period]{caption}
   \captionsetup[table]{singlelinecheck=false}
-  \captionsetup[table]{font=scriptsize}
+  \captionsetup[table]{font=small}
   \captionsetup[table]{labelfont=bf}
 
 \usepackage[font=footnotesize,labelfont=bf,labelsep=period,margin=1mm]{subcaption}
@@ -147,8 +150,14 @@
   \captionsetup[subfigure]{labelformat=simple}
   \captionsetup[subfigure]{singlelinecheck=false}
 
+\DeclareCaptionLabelFormat{bold}{\textbf{#2}}
+  \captionsetup{subrefformat=bold}
+
 % epigraphs (quotes)
 \usepackage{epigraph}
+\newcommand{\epipos}{80}
+% \setlength{\epigraphwidth}{.382\textwidth}
+\setlength{\epigraphwidth}{.4\textwidth}
 
 % graphics
 \usepackage{tikz}
@@ -162,6 +171,9 @@
   language=bash,
   basicstyle=\ttfamily
 }
+
+% hyphenation
+\usepackage{hyphenat}
 
 
 \input{mycommands.tex}
@@ -226,8 +238,8 @@
 %
 \includechapter{electrostatics}
 \includechapter{trapping}
+\includechapter{epnpns}
 \includechapter{transport}
-\includechapter{dynamics}
 
 \part{Conclusions}
 %
@@ -240,6 +252,8 @@
 \part{Appendices}
 \appendix
 \includeappendix{trapping_appendix}
+\includeappendix{epnpns_appendix}
+\includeappendix{transport_appendix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
@@ -249,8 +263,8 @@
 %\bibliographystyle{acm}
 %\bibliography{allpapers}
 % BibLatex (comment lines above and comment out biblatex lines in preamble)
+\renewcommand*{\bibfont}{\small}
 \printbibliography[title=\bibname]
-\instructionsbibliography
 
 \includecv{curriculum}
 

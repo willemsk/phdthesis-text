@@ -4,9 +4,16 @@
 \label{ch:trapping}
 %
 %
-\epigraphhead[80]{\epigraph{``Magic is organizing chaos. And while oceans of mystery remain, we have deduced that this requires two things. Balance and control.''}{
-    \textit{`Tissaia De Vries'}
-  }
+\epigraphhead[\epipos]{%
+\epigraph{%
+%
+  ``Magic is organizing chaos. And while oceans of mystery remain, we have deduced that this requires two
+  things. Balance and control.''
+%
+}{%
+  \textit{`Tissaia De Vries'}
+%
+}
 }
 %
 %
@@ -17,15 +24,13 @@
 \begin{shaded}
 This chapter was published as:
 %
-% \begin{footnotesize}
 \begin{itemize}
   \item K. Willems*, D. Rui\'{c}*, A. Biesemans*, N. S. Galenkamp, P. Van Dorpe and G. Maglia.
         \textit{ACS Nano} \textbf{13 (9)}, 9980--9992 (2019) %\cite{Willems-Ruic-Biesemans-2019}
+        \\
+        *equal contributions
 \end{itemize}
-%
-*equal contributions
-%
-% \end{footnotesize}
+% 
 \newpage
 \end{shaded}
 %
@@ -43,14 +48,21 @@ tagged \gls{dhfr} molecule in \gls{clya}. \\
 %
 
 %
-The text and figures of this chapter represent entirely my own work. All experimental work was performed by
-Dr.~Annemie Biesemans, and the trapping model was derived by Dr.~rer.~nat.~Dino Rui\'{c}
-(see~\cref{sec:trapping_appendix:escape_rates}). To the extent possible, the main and supplementary texts and
-figures of the original manuscript were integrated into this chapter, and the remainder of the supplementary
-information can be found in \cref{ch:trapping_appendix}.
+To the extent possible, the main and supplementary texts and figures of the original manuscript were
+integrated into this chapter, and the remainder of the supplementary information can be found in
+\cref{ch:trapping_appendix}. The text and figures of this chapter represent entirely my own work. All
+experimental work was performed by Dr.~Annemie Biesemans, and the trapping model was derived by
+Dr.~rer.~nat.~Dino Rui\'{c} (see~\cref{sec:trapping_appendix:escape_rates}).
 %
+
 %
-\cleardoublepage
+\adapACS{Willems-Ruic-Biesemans-2019}
+%
+
+%
+Note that further permissions related to the material excerpted should be directed to the ACS
+%
+% \cleardoublepage
 %
 %
 
@@ -346,7 +358,7 @@ the tag, respectively.
   \caption[Energy landscape of \DHFR{4}{S} inside ClyA.]{%
     \textbf{Energy landscape of \DHFR{4}{S} inside ClyA.}
     %
-    (\textbf{\subref{fig:trapping_apbs_model}})
+    (\subref{fig:trapping_apbs_model})
     %
     Coarse-grained model of \DHFR{4}{S} used in the electrostatic energy calculations in \gls{apbs}\@. The
     body of \gls{dhfr} consists of seven negatively charged (\SI{-1.43}{\ec}) beads (\SI{1.6}{\nm} diameter)
@@ -354,7 +366,7 @@ the tag, respectively.
     of beads (\SI{1}{\nm} diameter, \SI{0.6}{\nm} spacing), each holding the net charge of three amino acids.
     %
     %
-    (\textbf{\subref{fig:trapping_apbs_energy}})
+    (\subref{fig:trapping_apbs_energy})
     %
     Electrostatic energy ($\energyelec$) resulting from a series of \gls{apbs} energy calculations where the
     coarse-grained \DHFR{4}{S} bead model is moved along the central axis of the pore. The distances $\dxcis$
@@ -363,14 +375,14 @@ the tag, respectively.
     \mSI{5.7}{\nm}$) and \transi{} ($z_{\rm{body}} = \mSI{-0.6}{\nm}$).
     %
     %
-    (\textbf{\subref{fig:trapping_apbs_barrier_body}})
+    (\subref{fig:trapping_apbs_barrier_body})
     %
     Although every additional negative charge to the body of \gls{dhfr} increases the \transi{} electrostatic
     barrier by \SI{1.46}{\kT}, it has virtually no effect on the \cisi{} barrier, which increases only by
     \SI{0.04}{\kT} per charge.
     %
     %
-    (\textbf{\subref{fig:trapping_apbs_barrier_tag}})
+    (\subref{fig:trapping_apbs_barrier_tag})
     %
     Addition of a single positive charge to \gls{dhfr}'s tag affects the height of the \transi{} and \cisi{}
     much more similarly, with increases of \SI{0.875}{\kT} and \SI{0.621}{\kT} per charge, respectively.
@@ -472,7 +484,8 @@ given by the arithmetic mean (see~\cref{eq:tau_arithmetic_mean}).
     \footnotesize
     
     %
-    \caption[width=12cm]{Mutations and charges of all {DHFR} variants.}
+    \captionsetup{width=12cm}
+    \caption{Mutations and charges of all {DHFR} variants.}
     \label{tab:dhfr_variants}
     %
   
@@ -582,7 +595,7 @@ of the entire protein-nanopore system to four parameters does not allow for thei
     represents the minimum and maximum values obtained from repeats at the same condition. All measurements
     were performed at \SI{\approx28}{\celsius} in aqueous buffer at \pH{7.5} containing \SI{150}{\mM}
     \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl}. Current traces were sampled at \SI{10}{\kilo\hertz} and filtered
-    using a low pass Bessel filter with a \SI{2}{\kilo\hertz} cutoff.
+    using a low-pass Bessel filter with a \SI{2}{\kilo\hertz} cutoff.
     %
   }\label{fig:trapping_dwell_times_body}
 \end{figure*}
@@ -817,7 +830,8 @@ interactions with the electric fields in the nanopore).
     \centering
   
     %
-    \caption[width=12cm]{Fitting parameters for \DHFR{$\Ntag$}{O2}.}
+    \captionsetup{width=12cm}
+    \caption{Fitting parameters for \DHFR{$\Ntag$}{O2}.}
     \label{tab:fitting_params_complex}
     %
   
@@ -969,7 +983,7 @@ essence of the trapping mechanism within our model.
   %
   \begin{subfigure}[t]{42.5mm}
 		\centering
-    \caption{}\vspace{-5mm}%
+    \caption{}\vspace{-3mm}%
     \label{fig:trapping_apbs_external_biased}
     \includegraphics[scale=1]{trapping_apbs_external_biased}
   \end{subfigure}
@@ -1091,10 +1105,12 @@ respectively the middle of the \lumen{} ($z \approx \mSI{5.7}{\nm}$) and the \ci
 %
 \begin{table}
   \centering
+  %
   \begin{threeparttable}[t]
     \centering
     %
-    \caption[width=12cm]{Summary of all estimated threshold voltages and their corresponding dwell times.}
+    \captionsetup{width=12cm}
+    \caption{Summary of all threshold voltages and their dwell times.}
     \label{tab:threshold_voltages_and_dwelltimes}
     %
     \renewcommand{\arraystretch}{1.2}

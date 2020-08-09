@@ -1,5 +1,8 @@
 % Markup
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\ta}{\textalpha}
+\newcommand{\tb}{\textbeta}
+\newcommand{\pdbid}[1]{PDBID:~\href{https://www.rcsb.org/structure/#1}{#1}}
 
 % Shorthands
 \newcommand{\todo}[1]{\textbf{\textcolor{orange}{#1}}}
@@ -31,6 +34,8 @@
 \newcommand{\pav}[2]{\left< #1 \right>_{\text{#2}}} % Pore average
 \newcommand{\vc}[2]{#1_{#2}}
 \newcommand{\pd}[2]{\displaystyle\frac{\partial #1}{\partial #2}}
+\newcommand{\hydrostresstensor}{\sigma_{ij}}
+\def\dsum{\displaystyle\sum}
 
 % Physical constants
 \newcommand{\boltzmann}{k_{\rm{B}}}
@@ -40,6 +45,7 @@
 \newcommand{\echarge}{e}
 
 % Field variables
+\newcommand{\timedim}{t}
 \newcommand{\vel}{u}                  % Fluid velocity
 \newcommand{\force}{\mathcal{F}}      % A force
 \newcommand{\potential}{\varphi}			% Electrostatic potential
@@ -101,13 +107,13 @@
 \newcommand{\Vt}{\frac{\kbt}{\ec}}
 \newcommand{\variance}{{\rm{Var}}}
 
-\newcommand{\onefiguresource}[4]
-{\begin{figure}[#4]
+\newcommand{\onefiguresource}[5]
+{\begin{figure}[#5]
    \centering
    \begin{minipage}{0.9\textwidth}
       \centering
       #1
-      \caption{#3}
+      \caption[#3]{#4}
       \label{#2}
    \end{minipage}
 \end{figure}
@@ -142,16 +148,17 @@
 \newcommand{\permittivity}{\varepsilon}
 \newcommand{\absperm}{\permittivity_0}				% Permittivity of vacuum
 \newcommand{\relperm}{\permittivity_r}				% Relative permittivity
-\newcommand{\dielectric}{\relperm}				    % Relative permittivity
+\newcommand{\dielectric}{\relperm}				   % Relative permittivity
 \newcommand{\diffusion}{\mathcal{D}}		     	% Diffusion coefficient
-\newcommand{\mobility}{\mu}				         		% Electrophoretic mobility
-\newcommand{\transportn}{t}				         		% Transport number
-\newcommand{\chargen}{z}				          		% Ion charge number
-\newcommand{\chargeq}{q}				          		% Charge
-\newcommand{\ionsize}{a}					           	% Ion size for smPNP
-\newcommand{\density}{\varrho}			     			% Fluid density
-\newcommand{\viscosity}{\eta}				         	% Fluid viscosity
-\newcommand{\length}{l}				         	% Length
+\newcommand{\mobility}{\mu}				         % Electrophoretic mobility
+\newcommand{\transportn}{t}				         % Transport number
+\newcommand{\chargen}{z}				          	% Ion charge number
+\newcommand{\chargeq}{q}				          	% Charge
+\newcommand{\ionsize}{a}					         % Ion size for smPNP
+\newcommand{\density}{\varrho}			     		% Fluid density
+\newcommand{\viscosity}{\eta}				         % Fluid viscosity
+\newcommand{\permeability}{P}                   % Ion permeability
+\newcommand{\length}{l}				         	   % Length
 
 \newcommand{\iondiffusion}[1]{\diffusion_{#1}}	        % Ion Diffusion coefficient
 \newcommand{\ionmobility}[1]{\mobility_{#1}}	          % Ion electrophoretic mobility
@@ -159,16 +166,19 @@
 \newcommand{\avionconc}{\langle\concentration\rangle}   % Average ion concentration
 
 \newcommand{\tna}{\transportn_{\ce{Na+}}}
+\newcommand{\gna}{\conductance_{\ce{Na+}}}
+\newcommand{\gcl}{\conductance_{\ce{Cl-}}}
+\newcommand{\pna}{\permeability_{\ce{Na+}}}
 
 \newcommand{\molarconductivity}{\Lambda}
 \newcommand{\specmolarconductivity}{\lambda}
 
 % Derived properties
-\newcommand{\scd}{\rho}							% Total charge density
-\newcommand{\scdpore}{\scd_{\text{pore}}^f}		% Fixed charge density
-\newcommand{\scdion}{\scd_{\text{ion}}}			% Ionic charge density
-\newcommand{\flux}{\vec{J}} 							% Ion flux
-\newcommand{\volumeforce}{\vec{\force}_{\rm ion}}	% Fluid volume force
+\newcommand{\scd}{\rho}							        % Total charge density
+\newcommand{\scdpore}{\scd_{\text{pore}}^f}		  % Fixed charge density
+\newcommand{\scdion}{\scd_{\text{ion}}}			  % Ionic charge density
+\newcommand{\flux}{\vec{J}} 							  % Ion flux
+\newcommand{\volumeforce}{\vec{\force}_{\rm ion}} % Fluid volume force
 
 \newcommand{\current}{I}
 \newcommand{\currentsim}{\current_{\rm sim}}
@@ -176,28 +186,46 @@
 \newcommand{\conductance}{G}
 \newcommand{\icr}{\alpha}
 
+\newcommand{\flowrate}{Q_{\text{eo}}}
+\newcommand{\flowcond}{\conductance_{\text{eo}}}
+\newcommand{\eor}{\alpha_{\text{eo}}}
+
 % Shorthands
 \newcommand{\ci}{\concentration_{i}}
 \newcommand{\Na}{\ce{Na+}}
 \newcommand{\Cl}{\ce{Cl-}}
+\newcommand{\cNa}{\concentration_{\Na}}
+\newcommand{\cCl}{\concentration_{\Cl}}
 \newcommand{\Qion}{Q_{\rm ion}}
 \newcommand{\radpot}{\left<\potential\right>_\text{rad}}
 \newcommand{\cylpot}{\left<\potential\right>_\text{cyl}}
+\newcommand{\eqpot}{\potential^{0}}
+\newcommand{\radeqpot}{\left<\eqpot\right>_\text{rad}}
 \newcommand{\radenergy}{\left< U_{\text{E},i} \right>_{\text{rad}}}
 \newcommand{\deltaEt}{\Delta E_{\text{B},i}}
 \newcommand{\pH}[1]{pH~\num{#1}}
 \newcommand{\pHrange}[2]{pH~\numrange{#1}{#2}}
 \newcommand{\pHlist}[1]{pH~\numlist{#1}}
 \newcommand{\pKa}{\text{p}K_{\mathrm{a}}}
+\newcommand{\revpot}{V_{\text{r}}}
+
+\newcommand{\pavi}{\pav{\ci/\cbulk}{PT}}
+\newcommand{\pavNa}{\pav{\cNa/\cbulk}{PT}}
+\newcommand{\pavCl}{\pav{\cCl/\cbulk}{PT}}
+
+
 % \newcommand{\kT}{\boltzmann\temperature}
 % \newcommand{\kTe}{\kT / \echarge}
-\newcommand{\ta}{\textalpha}
-\newcommand{\tb}{\textbeta}
-\newcommand{\pdbid}[1]{PDBID:~\href{https://www.rcsb.org/structure/#1}{#1}}
+
+
 
 % Atom properties
 \newcommand{\partialcharge}{\delta}
 \newcommand{\atomradius}{R}
+
+\newcommand{\bfactor}{\mathrm{B}}
+\newcommand{\msd}{\left< u_i^2 \right>}
+\newcommand{\rmsd}{\sqrt{\left< u_i^2 \right>}}
 
 
 % Electrostatic chapter
@@ -263,3 +291,14 @@
 \newcommand{\msi}[2]{\text{\si{#1}{#2}}}
 \newcommand{\mSIrange}[3]{\text{\SIrange{#1}{#2}{#3}}}
 \newcommand{\mSIlist}[2]{\text{\SIlist{#1}{#2}}}
+
+
+% Copyright 
+\newcommand{\reprRSC}[1]%
+   {Reproduced from Ref.~\cite{#1} with permission from The Royal Society of Chemistry.}
+\newcommand{\adapRSC}[1]%
+   {Adapted from Ref.~\cite{#1} with permission from The Royal Society of Chemistry.}
+\newcommand{\reprACS}[1]%
+   {Reproduced with permission from \fullcite{#1} Copyright~\citedate{#1} American Chemical Society.}
+\newcommand{\adapACS}[1]%
+   {Adapted with permission from \fullcite{#1} Copyright~\citedate{#1} American Chemical Society.}
