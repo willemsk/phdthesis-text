@@ -1,8 +1,110 @@
-\chapter{Objectives}\label{ch:objectives}
+%
+\chapter{Objectives}
+%
+\label{ch:objectives}
+%
 
-\ldots
+\glsreset{md}
+\glsreset{pb}
+\glsreset{epnp-ns}
+\glsreset{plyab}
+\glsreset{frac}
+\glsreset{clya}
+\glsreset{dhfr}
+
+Given their introduction in \cref{ch:nanopores}, it should stand without doubt that nanopores---and
+\emph{biological} ones in particular---have become powerful single-molecular sensing tools. Among the key
+strengths of nanopores are their ability to interrogate individual molecules label-free, at high sampling
+frequencies and with long observation times. Whereas over the past 25 years nanopore research was driven by
+genomics, researchers are now recognizing these advantages may be useful also in other fields, including
+proteomics, metabolomics, single-molecule enzymology~\cite{Willems-VanMeervelt-2017} and biosensing. This
+expanding application space also presents an increasing challenge: translating the `two-dimensional' nanopore
+current into a meaningful set of information. Even though complementary experimental techniques may alleviate
+the problem, it is here that modeling approaches---be it analytical or computational---can bestow researchers
+with a thorough understanding of the complete system itself, rather than its individual components.
+Specifically, by elucidating the physical mechanisms that govern the interactions between the nanopore and the
+analyte molecules, they may aid in the unambiguous interpretation of the current signals, provide insights
+into the prevailing conditions within the pore, and detail guidelines for tailoring the properties of
+nanopores. In this dissertation, the focus lies on the development of analytical and computational
+methodologies (\textbf{Objective~1}) that explain the physical mechanisms behind the experimentally observed
+behavior of nanopore-analyte systems (\textbf{Objectives~2 and 3}), or that can be used as a `computational
+microscope' to study \emph{all} the properties of the nanopore itself (\textbf{Objective~4}).
+
+\clearpage
+%
+\objective{Develop methodologies for accurate modeling of biological nanopores}
+%
+
+Due to their proteinaceous nature, the primary computational tool for studying biological nanopores are
+\gls{md} simulations, where every atom is modeled explicitly. Unfortunately, the wealth of information
+accessible through \gls{md} simulations comes at a heavy computational cost: often necessitating the use of
+months of supercomputer time. Even though we will still make use of \gls{md} to construct realistic and well
+equilibrated homology models of various biological nanopores, most simulations in this work will be based on
+\emph{continuum}, rather than discrete representations of the nanopore systems. In~\cref{ch:electrostatics} we
+will show how the \gls{pb} equation can be employed to quantify the equilibrium (\ie~without an external bias
+voltage) electrostatic interactions between a nanopore and the surrounding electrolyte on the one hand, and
+its analyte molecules on the other. Nanopores are governed by more than just electrostatics however, and thus
+in~\cref{ch:epnpns} we develop the \gls{epnp-ns} equations: a simulation framework that introduces several
+self-consistent corrections to the electrolyte properties in an attempt to mitigate the shortcomings of the
+classical {PNP-NS} equations at the nanoscale and beyond infinite dilution. Because the \gls{epnp-ns}
+equations can be solved for continuum systems, they aim to provide a fast yet accurate means to model the
+transport of ions and the flow of water through a nanopore. Besides computational approaches, an analytic
+model---which intrinsically necessitates the reduction of the model to its most essential components---will
+also be used in~\cref{ch:trapping} to gain valuable insights.
+
+%
+\objective{Investigate the electrostatics of biological nanopores}
+%
+
+The interior walls of most biological nanopores are typically lined with charged amino acids. Hence, it is
+unsurprising that electrostatic interactions often play a determining role in the overall behavior of a pore.
+In~\cref{ch:electrostatics}, we use the \gls{pb} equations to calculate the electrostatic potential within the
+several variants of the \gls{plyab}~\cite{Huang-2020}, \gls{frac}~\cite{Wloka-2016,Huang-2017} and
+\gls{clya}~\cite{Franceschini-2016} nanopores, and investigate the effect of ionic strength and pH on their
+emergent properties, such as the \gls{eof}. Additionally, we map out the electrostatic free energies
+associated with \gls{ssdna} and \gls{dsdna} translocation through variants of the \gls{frac} and \gls{clya}
+pores, respectively, and link the observed differences with published experimental findings. A similar
+methodology will be used in \cref{ch:trapping} for quantifying the electrostatics energy associated with the
+trapping of a protein within \gls{clya}~\cite{Soskine-Biesemans-2015}, which is the focus of
+\textbf{Objective~3}.
+
+\clearpage
+
+%
+\objective{Elucidate the trapping behavior of a protein inside a biological nanopore}
+%
+
+In their pioneering work with \gls{clya}, Soskine and Biesemans~\etal{} showed that the dwell time of the
+\gls{dhfr} enzyme (\SI{\approx19}{\kDa}) within \gls{clya} could be increased by orders of magnitude by (1)
+fusing a positively charged polypeptide tag to the C-terminus of the protein (`\DHFRt'), and (2) allowing it
+to bind to \gls{mtx}, a small negatively charged inhibitor (\SI{454}{\dalton})~\cite{Soskine-Biesemans-2015}.
+Moreover, the dwell time of \DHFRt was found to depend strongly and non-monotonously on the magnitude applied
+bias voltage~\cite{Biesemans-2015}. The physical mechanisms behind this behavior are elucidated
+in~\cref{ch:trapping}, using a combination of experiments, electrostatic energy calculations and an analytical
+`double energy barrier' model. The latter captures the essential physics governing the escape of \DHFRt{} from
+either the \cisi{} or \transi{} sides of \gls{clya}, and its fitting to an extensive set of experimental data
+will yield quantitative values for magnitude of the electrophoretic, electro-osmotic, electrostatic and steric
+forces acting on proteins captured by \gls{clya}.
 
 
+%
+\objective{Mapping the transport properties of a biological nanopore}
+%
+
+In their inspiring 2005 publication, Aksimentiev \etal{} made of use \SI{\approx100}{\ns} of all-atom \gls{md}
+simulations to map out the electrostatic potential, electro-osmotic flow and ionic concentrations within the
+\gls{ahl} nanopore~\cite{Aksimentiev-2005}. Even though the available computational power has increased
+\num{\approx1000}-fold over the past 15~years, \gls{md} simulations remain prohibitively expensive compared to
+continuum approaches, which are approximately 1000-fold faster at obtaining the same information. Moreover, to
+a large extent, they have benefited from the same advances in computational power and algorithms. Hence,
+in~\cref{ch:transport} we apply the \gls{epnp-ns} framework developed in~\cref{ch:epnpns} to a 2D-axisymmetric
+model of \gls{clya} nanopore to show that continuum simulation can provide the same or more information as
+\gls{md} simulations---at a fraction of the (computational) cost. By simulating the \gls{clya} over a wide
+range of ionic strengths (\SIrange{0.005}{5}{\Molar}~\ce{NaCl}) and bias voltages
+(\SIrange[retain-explicit-plus=true]{-200}{+200}{\mV}), we will be able to gauge the accuracy of the
+\gls{epnp-ns} equations for predicting nanoscale conductances. Furthermore, it will allow us to paint a
+quantitative picture of nanopore properties that are difficult to access experimentally, including ion
+selectivity, ion concentrations, (non)equilibrium electrostatic potentials and the electro-osmotic flow.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -765,101 +765,6 @@ intermediate concentration. Tabulated data of the ion selectivity for selected v
 be found in \cref{tab:ion_selectivities}.
 
 
-\subsubsection{Effect of individual corrections to the ionic and water conductance}
-%
-\label{sec:transport:comparison_corrections}
-%
-
-To estimate the influence to which each group of corrections (\ie~the wall distance, concentration and steric
-effects) on the conductance properties of \gls{clya-as}, we performed a set of simulations for the following
-conditions: {ePNP-NS} without wall distance corrections (`ePNP-NS no WDF'; $\diffusion_{i}^w=1$,
-$\mobility_{i}^w=1$, $\viscosity^w=1$), {ePNP-NS} without concentration-dependent corrections (`ePNP-NS no
-CDF'; $\permittivity_{r,\text{f}}^c=1$, $\diffusion_{i}^c=1$, $\mobility_{i}^c=1$, $\viscosity^c=1$,
-$\density^c=1$), {ePNP-NS} without steric effect (`ePNP-NS no SMP'; $\vec{\beta}=0$). For comparison, we
-plotted the ionic (\cref{fig:transport_comparison_ionic}) and water (\cref{fig:transport_comparison_water})
-conductances of these models, normalized over the values obtained with the full {ePNP-NS} equations.
-
-
-%
-\begin{figure*}[t]
-  \centering
-  %
-  \begin{subfigure}[t]{11.5cm}
-    \centering
-    \caption{}\vspace{0mm}\label{fig:transport_comparison_ionic}
-    \includegraphics[scale=1]{transport_comparison_ionic}
-  \end{subfigure}
-  %
-  \\
-  %
-  \begin{subfigure}[t]{11.5cm}
-    \centering
-    \caption{}\vspace{0mm}\label{fig:transport_comparison_water}
-    \includegraphics[scale=1]{transport_comparison_water}
-  \end{subfigure}
-  %
-
-  \caption[Effect of individual corrections on the simulated ionic and water conductance.]%
-  {%
-    %
-    \textbf{Effect of individual corrections on the simulated ionic and water conductance.}
-    %
-    (\subref{fig:transport_comparison_ionic})
-    %
-    The ionic conductance $\conductance = \current / \vbias$ and
-    %
-    (\subref{fig:transport_comparison_water})
-    %
-    the water conductance $\flowcond = \flowrate / \vbias$ of {ClyA-AS} at \SI{+150}{\mV} (left) and
-    \SI{-150}{\mV} (right), normalized over the values of the ePNP-NS equations. Comparison between the
-    experimental data (expt.), the simple resistor model (bulk, \cref{eq:bulk_nanopore_current}), classic
-    {PNP-NS} (sim. {PNP-NS}), {ePNP-NS} without wall distance corrections (sim. ePNP-NS no WDF:
-    $\diffusion_{i}^w=1$, $\mobility_{i}^w=1$, $\viscosity^w=1$), {ePNP-NS} without concentration-dependent
-    corrections (sim. {ePNP-NS} no CDF: $\permittivity_{r,\text{f}}^c=1$, $\diffusion_{i}^c=1$,
-    $\mobility_{i}^c=1$, $\viscosity^c=1$, $\density^c=1$), {ePNP-NS} without steric effect (sim. {ePNP-NS} no
-    SMP: $\vec{\beta}=0$) and full {ePNP-NS}.
-    %
-  }\label{fig:transport_comparison}
-\end{figure*}
-%
-
-%
-\subsubsection{Effect of disabling the wall distance corrections.}
-%
-Disabling the wall distance corrections yields a higher (\SI{\approx10}{\percent} increase) ionic conductance
-compared to the full {ePNP-NS} equations (\cref{fig:transport_comparison_ionic}, blue curve). In effect, the
-implementation of the wall distance corrections results in an smaller effective pore size.  The influence on
-the water flow is stronger, with the reduction of the viscosity near the wall giving rise to a
-\SIrange{25}{50}{\percent} increase in the water flow (\cref{fig:transport_comparison_water}, blue curve).
-
-%
-\subsubsection{Effect of disabling the concentration corrections.}
-%
-The removal of the concentration-dependent corrections has a large influence on the simulated results. The
-ionic conductance increases dramatically: from \SIlist{5;13;29;152}{\percent} at
-\SIlist{0.005;0.05;0.5;5}{\Molar}, respectively (\cref{fig:transport_comparison_ionic}, red curve). This is
-expected however, given that the large reduction of both diffusion coefficients and ionic mobilities with
-increasing salt concentrations is not taken into account. The influence on the water flow shows only a limited
-effect from \SI{0.005}{\Molar} (\SI{9}{\percent} decrease) to \SI{1}{\Molar} (\SI{2}{\percent} increase),
-followed by a rapid increase of \SI{82}{\percent} between \SIlist{1;5}{\Molar}
-(\cref{fig:transport_comparison_water}, red curve). This is a direct result of the \SI{15}{\percent} increase
-of the electrolyte viscosity between \SIrange{1}{5}{\Molar}, compared to the mere \SI{5}{\percent} increase
-between \SIrange{0}{1}{\Molar} (\cref{fig:epnpns_concentration_solv_eta}).
-
-%
-\subsubsection{Effect of disabling the steric corrections.}
-%
-The steric corrections appear to have little influence on the ionic conductance, with a maximum deviation of
-at most \SI{\pm3}{\percent} over the entire concentration range (\cref{fig:transport_comparison_ionic}, brown
-curve). The effect on the water flow is larger, with a decrease of \SI{10}{\percent} at \SI{0.5}{\Molar}
-(\cref{fig:transport_comparison_water}, brown curve). By placing an upper limit on the total ion concentration
-(\SI{\approx13.3}{\Molar} in our case), the steric corrections prevent excessive screening of fixed charges by
-unphysical ionic strengths (\ie~concentrations that would require fitting more ions into a given space than
-what is physically possible). This is an essential mechanic that allows one to realistically model the
-electrical double layer near surfaces with high charge densities---as is the case for most biological
-nanopores.
-
-
 \subsection{Ion concentration distribution}\label{sec:ionc}
 %
 
@@ -1484,7 +1389,7 @@ $\cbulk \approx \mSI{0.45}{\Molar}$. A minimum is then reached at \SI{\approx1}{
 approach towards unity at $\cbulk = \mSI{5}{\Molar}$.
 
 %
-\begin{figure*}[b]
+\begin{figure*}[t]
   \centering
   
   %
@@ -1538,6 +1443,103 @@ strongly influence the overall magnitude of the pressure spots. Hence, because s
 can  exert a significant amount of force on particles translocating through nanopores~\cite{Hoogerheide-2014},
 we expect them to play an important role in the detailed trapping dynamics of proteins inside
 \gls{clya}~\cite{Soskine-Biesemans-2015,Willems-Ruic-Biesemans-2019}.
+
+
+\subsection{Effect of the individual corrections on the ionic and water conductances}
+%
+\label{sec:transport:comparison_corrections}
+%
+
+To estimate the influence to which each group of corrections (\ie~the wall distance, concentration and steric
+effects) on the conductance properties of \gls{clya-as}, we performed a set of simulations for the following
+conditions: {ePNP-NS} without wall distance corrections (`ePNP-NS no WDF'; $\diffusion_{i}^w=1$,
+$\mobility_{i}^w=1$, $\viscosity^w=1$), {ePNP-NS} without concentration-dependent corrections (`ePNP-NS no
+CDF'; $\permittivity_{r,\text{f}}^c=1$, $\diffusion_{i}^c=1$, $\mobility_{i}^c=1$, $\viscosity^c=1$,
+$\density^c=1$), {ePNP-NS} without steric effect (`ePNP-NS no SMP'; $\vec{\beta}=0$). For comparison, we
+plotted the ionic (\cref{fig:transport_comparison_ionic}) and water (\cref{fig:transport_comparison_water})
+conductances of these models, normalized over the values obtained with the full {ePNP-NS} equations.
+
+%
+\begin{figure*}[p]
+  \centering
+  %
+  \begin{subfigure}[t]{11.5cm}
+    \centering
+    \caption{}\vspace{0mm}\label{fig:transport_comparison_ionic}
+    \includegraphics[scale=1]{transport_comparison_ionic}
+  \end{subfigure}
+  %
+  \\
+  %
+  \begin{subfigure}[t]{11.5cm}
+    \centering
+    \caption{}\vspace{0mm}\label{fig:transport_comparison_water}
+    \includegraphics[scale=1]{transport_comparison_water}
+  \end{subfigure}
+  %
+
+  \caption[Effect of individual corrections on the simulated ionic and water conductance.]%
+  {%
+    %
+    \textbf{Effect of individual corrections on the simulated ionic and water conductance.}
+    %
+    (\subref{fig:transport_comparison_ionic})
+    %
+    The ionic conductance $\conductance = \current / \vbias$ and
+    %
+    (\subref{fig:transport_comparison_water})
+    %
+    the water conductance $\flowcond = \flowrate / \vbias$ of {ClyA-AS} at \SI{+150}{\mV} (left) and
+    \SI{-150}{\mV} (right), normalized over the values of the \gls{epnp-ns} equations. Comparison between the
+    experimental data (expt.), the simple resistor model (bulk, \cref{eq:bulk_nanopore_current}), classic
+    {PNP-NS} ({sim. PNP-NS}), {ePNP-NS} without wall distance corrections ({sim. ePNP-NS no WDF}:
+    $\diffusion_{i}^w=1$, $\mobility_{i}^w=1$, $\viscosity^w=1$), {ePNP-NS} without concentration-dependent
+    corrections ({sim. ePNP-NS no CDF}: $\permittivity_{r,\text{f}}^c=1$, $\diffusion_{i}^c=1$,
+    $\mobility_{i}^c=1$, $\viscosity^c=1$, $\density^c=1$), {ePNP-NS} without steric effect ({sim. ePNP-NS no
+    SMP}: $\vec{\beta}=0$) and full with all corrections enabled ({ePNP-NS}).
+    %
+  }\label{fig:transport_comparison}
+\end{figure*}
+%
+
+%
+\subsubsection{Effect of disabling the wall distance corrections.}
+%
+
+Disabling the wall distance corrections yields a higher (\SI{\approx10}{\percent} increase) ionic conductance
+compared to the full {ePNP-NS} equations (\cref{fig:transport_comparison_ionic}, blue curve). In effect, the
+implementation of the wall distance corrections results in an smaller effective pore size.  The influence on
+the water flow is stronger, with the reduction of the viscosity near the wall giving rise to a
+\SIrange{25}{50}{\percent} increase in the water flow (\cref{fig:transport_comparison_water}, blue curve).
+
+%
+\subsubsection{Effect of disabling the concentration corrections.}
+%
+
+The removal of the concentration-dependent corrections has a large influence on the simulated results. The
+ionic conductance increases dramatically: from \SIlist{5;13;29;152}{\percent} at
+\SIlist{0.005;0.05;0.5;5}{\Molar}, respectively (\cref{fig:transport_comparison_ionic}, red curve). This is
+expected however, given that the large reduction of both diffusion coefficients and ionic mobilities with
+increasing salt concentrations is not taken into account. The influence on the water flow shows only a limited
+effect from \SI{0.005}{\Molar} (\SI{9}{\percent} decrease) to \SI{1}{\Molar} (\SI{2}{\percent} increase),
+followed by a rapid increase of \SI{82}{\percent} between \SIlist{1;5}{\Molar}
+(\cref{fig:transport_comparison_water}, red curve). This is a direct result of the \SI{15}{\percent} increase
+of the electrolyte viscosity between \SIrange{1}{5}{\Molar}, compared to the mere \SI{5}{\percent} increase
+between \SIrange{0}{1}{\Molar} (\cref{fig:epnpns_concentration_solv_eta}).
+
+%
+\subsubsection{Effect of disabling the steric corrections.}
+%
+The steric corrections appear to have little influence on the ionic conductance, with a maximum deviation of
+at most \SI{\pm3}{\percent} over the entire concentration range (\cref{fig:transport_comparison_ionic}, brown
+curve). The effect on the water flow is larger, with a decrease of \SI{10}{\percent} at \SI{0.5}{\Molar}
+(\cref{fig:transport_comparison_water}, brown curve). By placing an upper limit on the total ion concentration
+(\SI{\approx13.3}{\Molar} in our case), the steric corrections prevent excessive screening of fixed charges by
+unphysical ionic strengths (\ie~concentrations that would require fitting more ions into a given space than
+what is physically possible). This is an essential mechanic that allows one to realistically model the
+electrical double layer near surfaces with high charge densities---as is the case for most biological
+nanopores.
+
 
 \section{Conclusion}
 %

@@ -101,12 +101,19 @@
 \addbibresource{allpapers.bib}
 
 % Fonts
+
+% \usepackage[T1]{fontenc}
+% \usepackage{garamondx}
+% \usepackage[garamondx,cmbraces]{newtxmath}
+
 \usepackage{textcomp} % nice greek alphabet
 \usepackage{pifont}   % Dingbats
 \usepackage{booktabs, tabularx, multirow, threeparttable}
 \usepackage{amssymb,amsthm}
 \usepackage{amsmath}
 \usepackage{textgreek}
+
+
 
 % science packages
 \usepackage[version=4]{mhchem}
@@ -175,6 +182,30 @@
 % hyphenation
 \usepackage{hyphenat}
 
+% colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\definecolor{greyblue}{RGB}{201,215,222}
+
+%%%FIGURE SETUP - please do not change any commands within this section%%%
+\makeatletter 
+\newlength{\figrulesep} 
+\setlength{\figrulesep}{0.5\textfloatsep} 
+
+\newcommand{\topfigrule}{\vspace*{-1pt}% 
+\noindent{\color{greyblue}\rule[-\figrulesep]{\columnwidth}{1.5pt}} }
+
+\newcommand{\botfigrule}{\vspace*{-2pt}% 
+\noindent{\color{greyblue}\rule[\figrulesep]{\columnwidth}{1.5pt}} }
+
+\newcommand{\dblfigrule}{\vspace*{-1pt}% 
+\noindent{\color{greyblue}\rule[-\figrulesep]{\textwidth}{1.5pt}} }
+
+\makeatother
+
+
+
+% User commands
 
 \input{mycommands.tex}
 

@@ -302,3 +302,14 @@
    {Reproduced with permission from \fullcite{#1} Copyright~\citedate{#1} American Chemical Society.}
 \newcommand{\adapACS}[1]%
    {Adapted with permission from \fullcite{#1} Copyright~\citedate{#1} American Chemical Society.}
+
+
+% Objectives heading
+
+\newcounter{objective}
+\newcommand{\objective}[1]{%
+  \refstepcounter{objective}{%
+  \par\vspace{.5cm}\noindent \normalsize \bfseries%
+  Objective\hspace{1ex}\arabic{objective}\hspace{1em}\textbar}%
+  \hspace{1em}\textbf{#1}
+}
