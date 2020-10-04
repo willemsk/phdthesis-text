@@ -31,6 +31,7 @@ thesis.ps
 thesis.fdb_latexmk
 thesis.fls
 thesis.nlg
+thesis.acn
 cover.*
 s
 .force_rebuild

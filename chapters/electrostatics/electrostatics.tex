@@ -1,4 +1,4 @@
-%
+% !TeX root = ../../thesis.tex
 \chapter{The electrostatics of biological nanopores}
 %
 \label{ch:electrostatics}
@@ -172,6 +172,22 @@ translocation electrostatic energy calculations. Finally, we show that the stron
 negatively charged constriction and the \gls{dna} confines the latter to the center of the
 pore~\cite{Bayoumi-2020}.
 
+
+% Adjusting and finetuning the electrostatic interactions between the nanopore and Enhanced \gls{dna}
+% translocation by manipulation of charges\cite{Maglia-2008}
+
+% \cite{Mohammad-2008} Controlling a Single Protein in a Nanopore through Electrostatic Traps 
+
+% Tuning peptides capture dynamics by aHL by changing the electrostatics\cite{Asandei-2015b}
+
+% Enhancement of electro-osmotic flow by lowering pH \cite{Asandei-2016}
+
+% Electrostatic trap\cite{Buchsbaum-2013}
+
+% % at the direct interaction between the nanopore and analyte surface, induced by the electrostatic
+% attraction between the two molecules, is essential for protein isoform detection \cite{Fahie-2015b}
+
+
 %
 %
 \clearpage
@@ -198,7 +214,7 @@ pore~\cite{Bayoumi-2020}.
 %
 As described in \cref{sec:np:plyab}, the \Gls{plyab} nanopore consist of 39 individual protein chains (26
 \gls{plya} and 13 \gls{plyb} chains), arranged in an \ce{(BA2)13} configuration with a 13-fold symmetry
-(\cref{fig:plyab_pore_structure}). Even though a \gls{cryo-em} structure of the full pore complex is available
+(\cref{fig:nanopores_plyab}). Even though a \gls{cryo-em} structure of the full pore complex is available
 (\pdbid{4V2T}~\cite{Lukoyanova-Kondos-2015}), it only contains the C\ta{} atoms of the entire protein
 backbone. Fortunately, the same authors also released full-atom crystal structures of the \gls{plya}
 (\pdbid{4OEB}~\cite{Lukoyanova-Kondos-2015}) and \gls{plyab} (\pdbid{4OEJ}~\cite{Lukoyanova-Kondos-2015})
@@ -255,8 +271,8 @@ harmonic constraints on the C\ta{} atoms (force constant $k =
 %
 Next to the protein chains, the crystal structure of \gls{frac} (\pdbid{4TSY}~\cite{Tanaka-2015}) contains
 also several fragments of the lipid \gls{sph} that form structural part of the pore itself
-(\cref{sec:np:frac,fig:frac_pore_structure}). Given that their charged headgroups are positioned outside of
-the \lumen{} of the pore, we do not expect these lipids to contribute significantly to its electrostatics.
+(\cref{sec:np:frac,fig:nanopores_frac}). Given that their charged headgroups are positioned outside of the
+\lumen{} of the pore, we do not expect these lipids to contribute significantly to its electrostatics.
 Therefor, we opted not to include these in our homology models and simulations.
 
 \paragraph{Construction of the \gls{wtfrac} and \gls{refrac} mutants.}
@@ -278,8 +294,8 @@ The dodecameric \textit{E. coli} \gls{clya} crystal structure (\pdbid{2WCD}~\cit
 residues, aside from short fragments at the N- (residues \numrange{1}{7}) and C-termini (residues
 \numrange{293}{303}) of each chain. Those at the C-terminus are located outside of the \lumen{} of pore, and
 hence not expected to contribute significantly to the electrostatics. The missing residues at the N-terminus
-are more import however, given their location at the \transi{} entry (\cref{fig:clya_pore_structure}). Hence,
-we opted to add a single negatively charged amino acid  (Glu 7) in our models.
+are more import however, given their location at the \transi{} entry (\cref{fig:nanopores_clya}). Hence, we
+opted to add a single negatively charged amino acid (Glu 7) in our models.
 
 \paragraph{Construction of the \gls{clya-as} mutant.}
 %
@@ -414,20 +430,20 @@ pores isolated in individual files.
 
 \paragraph{The Poisson-Boltzmann equation.}
 %
-The electrostatic potential distribution of a protein dissolved in an electrolyte medium can be estimated by
-solving the \gls{pbe}~\cite{Baker-2001,Baker-2005}
+As described in \cref{sec:np:edl}, the electrostatic potential distribution of a protein dissolved in an
+electrolyte medium can be estimated by solving the \gls{pbe}~\cite{Baker-2001,Baker-2005}
 %
 \begin{equation}\label{eq:pbe}
-  - \nabla \cdot \left[ \permittivity (\vec{r}) \nabla \potential (\vec{r}) \right] = \scd_{\rm{c}} (\vec{r})
+  - \nabla \cdot \left[ \permittivity (\rpos) \nabla \potential (\rpos) \right] = \scd_{\rm{c}} (\rpos)
   \text{ ,}
 \end{equation}
 %
-with $\vec{r}$ the location vector, $\potential$ the electrostatic potential, $\permittivity$ the local
-permittivity, and $\scd_{\rm{c}}$ the charge density. For a molecular system in an electrolyte,
-$\scd_{\rm{c}}$ can be split into two parts
+with $\rpos$ the location vector, $\potential$ the electrostatic potential (normalized over the thermal
+voltage \si{\kbt\per\ec}), $\permittivity$ the local permittivity, and $\scd_{\rm{c}}$ the charge density. For
+a molecular system in an electrolyte, $\scd_{\rm{c}}$ can be split into two parts
 %
 \begin{equation}
-  \scd_{\rm{c}} (\vec{r}) = \scd^{\rm{f}}(\vec{r}) + \scd^{\rm{m}}(\vec{r})
+  \scd_{\rm{c}} (\rpos) = \scd^{\rm{f}}(\rpos) + \scd^{\rm{m}}(\rpos)
   \text{ ,}
 \end{equation}
 %
@@ -436,7 +452,7 @@ charges---and $\scd^{\rm{m}}$ the mobile part charge density---resulting from th
 in the electrolyte. For $M$ atomic partial charges $\scd^{\rm{f}}$ is given by~\cite{Baker-2001,Baker-2005}
 %
 \begin{equation}
-  \scd^{\rm{f}}(\vec{r}) = \dfrac{4\pi\ec^2}{\kbt} \sum_{i=1}^{M} Q_i \delta(\vec{r} - \vec{r_i})
+  \scd^{\rm{f}}(\rpos) = \dfrac{4\pi\ec^2}{\kbt} \sum_{i=1}^{M} Q_i \delta(\rpos - \vec{r_i})
 \end{equation}
 %
 with $\ec$ the elementary charge, $\kbt$ the thermal energy, $\delta$ the Dirac delta function. $Q_i$ and
@@ -444,17 +460,17 @@ $\vec{r_i}$ represent the atomic partial charge and the location of atom $i$, re
 due to $N$ mobile charge species can be expressed as~\cite{Baker-2001,Baker-2005}
 %
 \begin{equation}
-  \scd^{\rm{m}}(\vec{r}) =
+  \scd^{\rm{m}}(\rpos) =
     \dfrac{4\pi\ec^2}{\kbt}
       \sum_{j=1}^{N} c_j q_j
-      \exp{\left[- q_j \potential(\vec{r}) - V_j(\vec{r}) \right]}
+      \exp{\left[- q_j \potential(\rpos) - V_j(\rpos) \right]}
 \end{equation}
 %
-with $c_j$ the bulk concentration, $q_j$ the charge number and $V_j(\vec{r})$ the steric potential of ion
+with $c_j$ the bulk concentration, $q_j$ the charge number and $V_j(\rpos)$ the steric potential of ion
 species $j$. For a monovalent salt such as \ce{NaCl} this expression can be reduced to
 %
 \begin{equation}
-    \scd^{\rm{m}} (\vec{r}) = - \ionaccess^{-2} (\vec{r}) \sinh \left[ \potential (\vec{r}) \right]
+    \scd^{\rm{m}} (\rpos) = - \ionaccess^{-2} (\rpos) \sinh \left[ \potential (\rpos) \right]
 \end{equation}
 %
 with $\ionaccess$ a coefficient that includes both the ion accessibility and the bulk ion concentration.
@@ -718,7 +734,7 @@ by~\cite{Baker-2005}
 %
 \begin{equation}\label{eq:pbe_energy}
   \gibbs (\potential, \permittivity) = \int_\Omega \left[
-    \scd^{\rm{f}}(\vec{r}) \potential
+    \scd^{\rm{f}}(\rpos) \potential
     - \dfrac{\permittivity}{2}\left( \nabla \potential \right)^2
     - \ionaccess^{-2} \left( \cosh \potential - 1 \right)
   \right] \,dr
@@ -796,9 +812,9 @@ many eukaryotic proteins (average molecular weight of \SI{\approx50}{\kDa}~\cite
 nanopores is that, for more than two decades, nanopore research was focused primarily towards \gls{dna}
 analysis, resulting in a wide selection of biological nanopores with narrow diameters
 (\SIrange{\approx1}{2}{\nm}) entries. With a \lumen{} of \SI{\approx7.2}{\nm} in diameter, the \gls{plyab}
-nanopore (see \cref{sec:np:plyab,fig:plyab_pore_structure}) is the ideal candidate for analyzing larger
-globular proteins. Huang \etal. employed directed evolution to improve the electrophysiological stability of
-the wild-type pore, resulting in the variants \gls{plyab-e2} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, N107D,
+nanopore (see \cref{sec:np:plyab,fig:nanopores_plyab}) is the ideal candidate for analyzing larger globular
+proteins. Huang \etal. employed directed evolution to improve the electrophysiological stability of the
+wild-type pore, resulting in the variants \gls{plyab-e2} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, N107D,
 G218R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues}, middle) and \gls{plyab-r} (\gls{plya}: C62S,
 C94S; \gls{plyb} N26D, K255E, E260R, E270R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues},
 right)~\cite{Huang-2020}. Notably, \gls{plyab-r} showed significantly altered behavior w.r.t. capture of
@@ -1350,20 +1366,20 @@ for \gls{wtfrac}, which would reduce its ability to translocate \gls{ssdna} even
 %
 
 As indicated in \cref{sec:np:clya}, the interior walls of \gls{clya} are lined predominantly with negatively
-charged residues (cf.~\cref{fig:clya_pore_section}), which prevents the pore from translocating \gls{dna} at
-salt concentrations lower than \SI{\approx1}{\Molar}~\cite{Franceschini-2013,Franceschini-2016}. This
-concentration is far from the physiological ionic strengths (\ie~\SI{0.15}{\Molar}) required for the (optimal)
-functioning of many \gls{dna}-processing enzymes. In an extensive mutagenesis study by Franceschini \etal,
-more than 20 variants of \gls{clya-as} were tested for their ability to translocate \gls{dsdna} at an ionic
-strength of \SI{0.15}{\Molar}~\cite{Franceschini-2016}. These mutants introduced additional positive charges
-at key locations throughout the interior walls of the pore (either at the \cisi{} entry, \lumen{} or \transi{}
-constriction), typically by the mutagenesis of a neutral (\ie~net \SI{+1}{\ec}) or negatively charged (\ie~net
-\SI{+2}{\ec}) residue to arginine or lysine. Interestingly, only the S110R/D64R double mutant (\gls{clya-rr})
-was able to translocate \gls{dsdna}, and only from the \cisi{} side. Because analyzing all 20 variants would
-be too computationally intensive, we have limited our analysis here to several mutants representative for the
-observed electrostatic phenomena: \gls{clya-as}, \gls{clya-r} (S110R), \gls{clya-rr} (S110R/D64R),
-\gls{clya-rr56} (S110R/Q56R), and \gls{clya-rr56k} (S110R/Q56R/Q8K). The locations of their mutations are
-indicated in \cref{fig:clya_mutants_residues}.
+charged residues (cf.~\cref{fig:nanopores_clya_pore_section}), which prevents the pore from translocating
+\gls{dna} at salt concentrations lower than \SI{\approx1}{\Molar}~\cite{Franceschini-2013,Franceschini-2016}.
+This concentration is far from the physiological ionic strengths (\ie~\SI{0.15}{\Molar}) required for the
+(optimal) functioning of many \gls{dna}-processing enzymes. In an extensive mutagenesis study by Franceschini
+\etal, more than 20 variants of \gls{clya-as} were tested for their ability to translocate \gls{dsdna} at an
+ionic strength of \SI{0.15}{\Molar}~\cite{Franceschini-2016}. These mutants introduced additional positive
+charges at key locations throughout the interior walls of the pore (either at the \cisi{} entry, \lumen{} or
+\transi{} constriction), typically by the mutagenesis of a neutral (\ie~net \SI{+1}{\ec}) or negatively
+charged (\ie~net \SI{+2}{\ec}) residue to arginine or lysine. Interestingly, only the S110R/D64R double mutant
+(\gls{clya-rr}) was able to translocate \gls{dsdna}, and only from the \cisi{} side. Because analyzing all 20
+variants would be too computationally intensive, we have limited our analysis here to several mutants
+representative for the observed electrostatic phenomena: \gls{clya-as}, \gls{clya-r} (S110R), \gls{clya-rr}
+(S110R/D64R), \gls{clya-rr56} (S110R/Q56R), and \gls{clya-rr56k} (S110R/Q56R/Q8K). The locations of their
+mutations are indicated in \cref{fig:clya_mutants_residues}.
 
 %
 \begin{figure*}[p]
@@ -1759,11 +1775,11 @@ properly model the behavior of the \gls{ssdna}- and \gls{dsdna}-rotaxanes within
 
 The same piece of \SI{51}{\bp} \gls{dsdna} from previous sections was placed inside \gls{clya-as} at a fixed
 height ($\zdna = \mSI{60}{\angstrom}$). Next, the \gls{dna} was moved away from the center of the
-constriction ($x = 0$, $y = 0$), using cylindrical coordinates $\vec{r}_{\mathrm{DNA}} = (r, \phi)$ such that
+constriction ($x = 0$, $y = 0$), using cylindrical coordinates $\rpos_{\mathrm{DNA}} = (r, \phi)$ such that
 $x = r \cos{\phi}$ and $y = r \sin{\phi}$:
 %
 \begin{equation}
-  \vec{r}_{\mathrm{DNA}} = %
+  \rpos_{\mathrm{DNA}} = %
   \begin{cases}
     r: [0,5] \msi{\angstrom} &\mbox{with } \Delta r    = \mSI{0.5}{\angstrom} \\
     r: [0,360] \msi{\degree} &\mbox{with } \Delta \phi = \mSI{45}{\degree} \\

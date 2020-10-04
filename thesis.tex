@@ -1,4 +1,4 @@
-\documentclass[showinstructions,faculty=fw,department=che,phddegree=bct,10pt]{adsphd}
+\documentclass[showinstructions,faculty=fw,department=nat,phddegree=fys,10pt]{adsphd}
 %\documentclass[showinstructions,showlabels,coverfontpercent=100,faculty=firw,department=cws,phddegree=cws]{adsphd}
 %\documentclass[croppedpdf,showinstructions,faculty=firw,department=cws,phddegree=cws]{adsphd}
 %\documentclass[online,faculty=firw,department=cws,phddegree=cws]{adsphd}
@@ -15,18 +15,19 @@
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 %%% COVER: Settings %%%
-\title{Computional modelling of biological nanopores}
+\title{Computional modeling of biological nanopores}
 %\subtitle{Multiscale computing for Dummies}
 
 \author{Kherim}{Willems}
 
+\supervisor{Prof.~dr.~P.~Van~Dorpe}{}
 \supervisor{Prof.~dr.~G.~Maglia}{}
-\supervisor{Prof.~dr.~ir.~P.~Van~Dorpe}{}
-\supervisor{Prof.~dr.~ir.~J.~Hofkens}{}
-\president{Prof.~dr.~ir.~The~Chairman}{}
-\jurymember{Prof.~dr.~ir.~The~One}{}
-\jurymember{Prof.~dr.~ir.~The~Other}{}
-\externaljurymember{Prof.~dr.~External~Jurymember}{Far Away}
+\supervisor{Prof.~dr.~J.~Hofkens}{}
+\president{Prof.~dr.~E.~Carlon}{}
+\jurymember{Prof.~dr.~ir.~T.~Stakenborg}{}
+\jurymember{Prof.~dr.~ir.~M.~Roeffaers}{}
+\jurymember{Prof.~dr.~C.~Bartic}{}
+\externaljurymember{Prof.~dr.~rer.~nat.~U.~Keyser}{University of Cambridge, UK}
 
 % Your research group within the department
 % e.g. iMinds-DistriNet, Scientific Computing Group, ...
@@ -39,8 +40,8 @@
                               % that 'B-3001 Heverlee' is _incorrect_!!
                               % /[https://www.kuleuven.be/communicatie/marketing/intranet/huisstijl/taalgebruik.html]
 
-\date{March 2019}
-\copyyear{2019}
+\date{October 2020}
+\copyyear{2020}
 %\udc{XXX.XX}            % UDC, deposit number and ISBN are no longer necessary.
 %\depot{XXXX/XXXX/XX}    % Leave out the initial D/ (it is added
                          % automatically)
@@ -74,7 +75,7 @@
 \makenomenclature%
 
 % for the list of abbreviations (comment out if you do not use the glossaries package
-\usepackage{glossaries} % For list of abbreviations
+\usepackage[acronym]{glossaries} % For list of abbreviations
 \newcommand{\glossname}{List of Abbreviations}
 \newcommand{\myprintglossary}{%
   \renewcommand{\glossaryname}{\glossname}
@@ -84,6 +85,28 @@
   \addcontentsline{toc}{chapter}{\glossname} %% comment to exclude from TOC
 }
 \makeglossaries%
+
+% Additional document keys
+
+% Define "is" key:
+\glsaddkey*
+{is}% key
+{\glsentrytext{\glslabel}is}% default value
+{\glsentryis}% command analogous to \glsentrytext
+{\Glsentryis}% command analogous to \Glsentrytext
+{\glsis}% command analogous to \glstext
+{\Glsis}% command analogous to \Glstext
+{\GLSis}% command analogous to \GLStext
+
+% Define "ic" key:
+\glsaddkey*
+{ic}% key
+{\glsentrytext{\glslabel}ic}% default value
+{\glsentryic}% command analogous to \glsentrytext
+{\Glsentryic}% command analogous to \Glsentrytext
+{\glsic}% command analogous to \glstext
+{\Glsic}% command analogous to \Glstext
+{\GLSic}% command analogous to \GLStext
 
 
 % BibLaTeX
@@ -96,7 +119,8 @@
   date=year,
   url=false,
   eprint=false,
-  style=numeric
+  style=numeric,
+  sorting=none
 ]{biblatex}
 \addbibresource{allpapers.bib}
 
@@ -111,6 +135,9 @@
 \usepackage{booktabs, tabularx, multirow, threeparttable}
 \usepackage{amssymb,amsthm}
 \usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
 \usepackage{textgreek}
 
 
@@ -260,7 +287,6 @@
 \cleardoublepage
 %
 \includechapter{nanopores}
-\includechapter{modelling}
 \includechapter{aims}
 
 \part{Results}
@@ -277,7 +303,6 @@
 \cleardoublepage
 %
 \includechapter{conclusion}
-\includechapter{riskanalysis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{Appendices}

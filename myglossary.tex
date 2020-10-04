@@ -1,3 +1,22 @@
+% General intro
+\newacronym{lhc}{LHC}{large hadron collidor}
+
+\newacronym{ligo}{LIGO}{laser interferometer gravitational-wave observatory}
+
+\newacronym{elisa}{ELISA}{enzyme-linked immunosorbent assay}
+
+\newacronym{fet}{FET}{field effect transistor}
+
+\newacronym{zmw}{ZMW}{zero-mode waveguide}
+\newacronym{nsom}{NSOM}{near-field scanning optical microscope}
+
+\newacronym{afm}{AFM}{atomic force microscopy}
+\newacronym{stm}{STM}{scannning tunneling microscopy}
+
+\newacronym{ont}{ONT}{Oxford Nanopore Technologies}
+
+\newacronym{sam}{SAM}{self-assembled monolayer}
+
 % Nanopore
 \newacronym{pft}{PFT}{pore-forming toxin}
 \newacronym{bnp}{BNP}{biological nanopore}
@@ -39,6 +58,7 @@
 }
 
 \newacronym{mspa}{MspA}{\textit{Mycobacterium smegmatis} porin A}
+\newacronym{csgg}{CsgG}{curli specific gene G}
 
 \newacronym{frac}{FraC}{Fragaceatoxin C}
 
@@ -77,13 +97,43 @@
   description={K channel of \textit{Streptomyces A}}
 }
 
+\newglossaryentry{ael}{
+  name={AeL},
+  description={aerolysin}
+}
+
 % Other nanopores
+
+\newacronym{phi29p}{\textPhi29p}{\textPhi29 packaging motor}
 \newacronym{ompf}{OmpF}{outer membrane porin F}
 \newacronym{ompg}{OmpG}{outer membrane porin G}
+\newacronym{fhua}{FhuA}{ferric hydroxamate uptake protein component A}
+
 
 % Nanopore terms
 
 \newacronym{iv}{IV}{current--voltage}
+
+\newglossaryentry{ep}{
+  name={EP},
+  description={electrophoresis, electrophoretic}
+}
+
+\newglossaryentry{eo}{
+  name={EO},
+  description={electro-osmosis, electro-osmotic}
+}
+
+\newglossaryentry{dep}{
+  name={DEP},
+  description={dielectrophoresis, dielectrophoretic}
+}
+
+\newglossaryentry{es}{
+  name={ES},
+  description={electrostatic}
+}
+
 \newacronym{eof}{EOF}{electro-osmotic flow}
 \newacronym{ghk}{GHK}{Goldman-Hodgkin-Katz}
 \newacronym{icr}{ICR}{ionic current rectification}
@@ -105,6 +155,7 @@
 % Computational
 \newacronym{md}{MD}{molecular dynamics}
 \newacronym{bd}{BD}{Brownian dynamics}
+\newacronym{mc}{MC}{Monte Carlo}
 \newacronym{vmd}{VMD}{visual molecular dynamics}
 \newacronym{namd}{NAMD}{nanoscale molecular dynamics}
 \newacronym{apbs}{APBS}{adaptive Poisson-Boltzman solver}
@@ -114,6 +165,7 @@
 \newacronym{msd}{MSD}{mean-square displacement}
 \newacronym{rmsd}{RMSD}{root-mean-square deviation}
 \newacronym{pme}{PME}{particle mesh Ewald}
+\newacronym{lj}{LJ}{Lennard-Jones}
 
 \newacronym{mdh}{\code{mdh}}{multiple Debye-H\"{u}ckel}
 
@@ -145,6 +197,7 @@
 
 % Biochemistry
 \newacronym{pcr}{PCR}{polymerase chain reaction}
+\newacronym{qpcr}{qPCR}{quantitative polymerase chain reaction}
 \newacronym{dna}{DNA}{deoxyribonucleic acid}
 \newacronym{page}{PAGE}{polyacrylamide gel electrophoresis}
 \newacronym{cryo-em}{cryo-EM}{cryogenic electron microscopy}
@@ -168,28 +221,47 @@
 \newacronym{mtx}{MTX}{methotrexate}
 
 % ePNP-NS
-\newacronym{pbe}{PBE}{Poisson-Boltzman equation}
 \newacronym{pb}{PB}{Poisson-Boltzman}
-\newacronym{pnp}{PNP}{Poisson-Nernst-Planck}
+\newacronym{np}{NP}{Nernst-Planck}
 \newacronym{ns}{NS}{Navier-Stokes}
+\newacronym{pnp}{PNP}{Poisson-Nernst-Planck}
 \newacronym{pnp-ns}{PNP-NS}{Poisson-Nernst-Planck and Navier-Stokes}
-\newacronym{smnpe}{smNPE}{size-modified Nernst-Planck equation}
 \newacronym{epnp-ns}{ePNP-NS}{extended Poisson-Nernst-Planck and Navier-Stokes}
+
+\newacronym{pe}{PE}{Poisson's equation}
+\newacronym{pbe}{PBE}{Poisson-Boltzman equation}
+\newacronym{npe}{NPE}{Nernst-Planck equation}
+\newacronym{nse}{NSE}{Navier-Stokes equations}
+\newacronym{pnpe}{PNPE}{Poisson-Nernst-Planck equations}
+\newacronym{pnp-nse}{PNP-NSE}{Poisson-Nernst-Planck and Navier-Stokes equations}
+\newacronym{smnpe}{smNPE}{size-modified Nernst-Planck equation}
+
+
 \newacronym{fea}{FEA}{finite element analysis}
 \newacronym{bc}{BC}{boundary condition}
 
+\newacronym{fem}{FEM}{finite element method}
+\newacronym{fdm}{FDM}{finite difference method}
+\newacronym{fvm}{FVM}{finite volume method}
+
 % MD
+\newglossaryentry{nve}{
+  name={NVE},
+  description={microcanonical ensemble, constant particle number, volume and energy}
+}
+
 \newglossaryentry{nvt}{
   name={NVT},
-  description={constant particle number, volume and temperature conditions}
+  description={canonical ensemble, constant particle number, volume and temperature}
 }
 
 \newglossaryentry{npt}{
   name={NpT},
-  description={constant particle number, pressure and temperature conditions}
+  description={isothermal-isobaric ensemble, constant particle number, pressure and temperature}
 }
 
 \newacronym{qcp}{QCP}{quaternion characteristic polynomial}
 
 % math
 \newacronym{ode}{ODE}{ordinary differential equation}
+\newacronym{pde}{PDE}{partial differential equation}
