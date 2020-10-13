@@ -430,7 +430,7 @@ single barrier model.
   Molecule (blue circle) trapped in a potential well defined by a nanopore and trying to overcome the energy
   barrier $\barrier^\cis$ by picking up the kinetic energy $\kinetic$ from its environment and then
   propagating over the barrier with an instantaneous transition rate $\transition$. Overlaid are the linear
-  energy potentials from the electrophoretic force $\Eep$ and from the force of the electroosmotic flow
+  energy potentials from the electrophoretic force $\Eep$ and from the force of the electro-osmotic flow
   $\Eosm$.
   %
 }{t}
@@ -514,7 +514,7 @@ barrier height change due to a change in the tag charge number $\Ntag$. The elec
 contributions that are independent of $\Ntag$ are absorbed into the constant $\barrier^{\cis}_{\static,0}$.
 
 Moreover, $\barrier^\cis_\ext$ stems from the externally applied bias that results in an electrophoretic force
-and a force due to the electroosmotic flow and can therefore be split up as
+and a force due to the electro-osmotic flow and can therefore be split up as
 %
 \begin{align}\label{eq:barrier_ext}
     \barrier^\cis_\ext = \barrier^\cis_\ep + \barrier^\cis_\osm
@@ -532,7 +532,7 @@ express the potential energies due to the external forces as
 \end{align*}
 %
 where $\forceep$ is the constant electrophoretic force and $\forceosm$ is the constant force due to the
-electroosmotic force on the molecule. Note the sign in front of the force since the force points down the
+electro-osmotic force on the molecule. Note the sign in front of the force since the force points down the
 slope of the potential energy.
 
 Using the energy potentials we can compute the effect of the external fields on the energy barrier as
@@ -719,7 +719,7 @@ Then the dwell time is given by the inverse of the sum of rates over either barr
 \end{split}
 \end{align}
 %
-Again, the parameters $\rate^{\cis/\trans}_{\rm{eff}}$ are effective attemp rates related to the dwell time at
+Again, the parameters $\rate^{\cis/\trans}_{\rm{eff}}$ are effective attempt rates related to the dwell time at
 zero tag charge and vanishing applied bias.
 
 The translocation probability is given by the ratio of the \transi{} escape rate to the total escape rate:
@@ -830,8 +830,8 @@ nanopore with a narrow \transi{} constriction as shown in the \cref{ch:trapping}
 \end{figure*}
 %
 
-At \SI{-80}{\mV}, in \SI{150}{\mM} \ce{NaCl} \SI{15}{mM} \ce{Tris-HCl} \pH{7.5}, the current blockades induced
-by the \DHFR{4}{S} variants (\cref{fig:trapping_traces,tab:dhfr_iresp}) showed a main current level
+At \SI{-80}{\mV}, in \SI{150}{\mM} \ce{NaCl} \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5}, the current blockades
+induced by the \DHFR{4}{S} variants (\cref{fig:trapping_traces,tab:dhfr_iresp}) showed a main current level
 ($\ilevel{1}$) with relative residual current values ($\iresp$), expressed as a percentage of the open-pore
 current ($\iopen$), of \SI{67.4 \pm 2.1}{\percent}, \SI{71.3 \pm 0.6}{\percent}, \SI{72.8 \pm 1.0}{\percent},
 \SI{74.1 \pm 0.4}{\percent} and \SI{74.9 \pm 0.7}{\percent} for \DHFR{4}{S}, \DHFR{4}{I}, \DHFR{4}{C},
@@ -1200,6 +1200,7 @@ SAWSHPQFEK**
 \end{footnotesize}
 %
 
+
 \subsubsection{Construction of all other variants}
 
 The positions for introduction of negatively charged glutamate residues into \DHFR{4}{S} were chosen after
@@ -1288,8 +1289,8 @@ resulting pellets were frozen at \SI{-80}{\celsius} until further use.
 Bacterial pellets originating from \SI{50}{\milli\litre} culture were resuspended in \SI{30}{\milli\litre}
 lysis buffer (\SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM} \ce{Tris-HCl} \pH{7.5}, \SI{1}{\mM} \ce{MgCl2},
 \SI{0.2}{units\per\milli\litre} DNase, \SI{10}{\micro\gram\per\milli\litre} lysozyme) and incubated at
-\SI{37}{\celsius} for \SI{20}{\minute}. After further disruption of the bacteria by probe sonication the crude
-lysate was clarified by centrifugation at \SI{6000}{g} at \SI{4}{\celsius} for \SI{30}{\minute}. The
+\SI{37}{\celsius} for \SI{20}{\minute}. After further disruption of the bacteria by probe sonification the
+crude lysate was clarified by centrifugation at \SI{6000}{g} at \SI{4}{\celsius} for \SI{30}{\minute}. The
 supernatant was allowed to bind to \SI{\approx 150}{\micro\litre} (bead volume) of
 Strep-Tactin\textsuperscript{\textregistered} Sepharose\textsuperscript{\textregistered} (IBA Lifesciences,
 Goettingen, Germany) pre-equilibrated with the wash buffer (\SI{150}{\mM} \ce{NaCl}, \SI{15}{\mM}
@@ -1383,7 +1384,7 @@ event collection was monitored manually.
 The average of the mean dwell times obtained from at least three single channels each displaying at least 100
 blockades was used to describe the average dwell time ($\dwelltime$) at every potential. For analysis of
 \gls{nadph} binding events to \DHFR{$\Ntag$}{O2}, traces were filtered digitally with a 8-pole low-pass Bessel
-filter with a \SI{500}{\hertz} cutoff. Current transitions from L1 to L1\textsubscript{NADPH} were analysed
+filter with a \SI{500}{\hertz} cutoff. Current transitions from L1 to L1\textsubscript{NADPH} were analyzed
 with the `single channel search' option in \code{Clampfit}. The detection threshold to collect the
 \gls{nadph}-induced events was set to \SI{2}{\pA} and events shorter than \SI{0.1}{\ms} were ignored. The
 process of event collection was monitored manually. The resulting event dwell times ($\tau_{\rm{off}}$) and
@@ -1394,7 +1395,7 @@ Gaussian fits to the conventional distributions of the events' amplitudes. Value
 determined as $\rate_{\rm{off}} = 1/\tau_{\rm{off}}$ and $\rate_{\rm{off}} = \left(\tau_{\rm{on}} c
 \right)^{-1}$ with $c$ the concentration of \gls{nadph} added to the \transi{} solution. Final values for
 $\tau_{\rm{on}}$, $\tau_{\rm{off}}$, $\rate_{\rm{on}}$, $\rate_{\rm{off}}$ and event amplitudes are the
-averages derived from three single channel experiments, each analysing at least 100 binding events on more
+averages derived from three single channel experiments, each analyzing at least 100 binding events on more
 than five different \DHFR{$\Ntag$}{O2} blockades.
 
 

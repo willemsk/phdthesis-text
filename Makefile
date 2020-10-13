@@ -96,6 +96,12 @@ GNUDICTION = diction
 GNUSTYLE = style
 ASPELL = aspell --lang=en_US --add-tex-command="eqref p" \
 			--add-tex-command="psfrag pP" --add-tex-command="special p" \
+			--add-tex-command="cref p" --add-tex-command="Cref p" \
+			--add-tex-command="glsreset p" --add-tex-command="glspl p" \
+			--add-tex-command="gls p" --add-tex-command="definecolor ppp" \
+			--add-tex-command="pdbid p" \
+			--add-tex-command="subref p" \
+			--add-tex-command="ce p" \
 			--encoding=iso-8859-1 -t
 
 USETEXPACKAGENOMENCLATURE = 0

@@ -1,4 +1,4 @@
-\documentclass[showinstructions,faculty=fw,department=nat,phddegree=fys,10pt]{adsphd}
+\documentclass[faculty=fw,department=nat,phddegree=fys,10pt]{adsphd}
 %\documentclass[showinstructions,showlabels,coverfontpercent=100,faculty=firw,department=cws,phddegree=cws]{adsphd}
 %\documentclass[croppedpdf,showinstructions,faculty=firw,department=cws,phddegree=cws]{adsphd}
 %\documentclass[online,faculty=firw,department=cws,phddegree=cws]{adsphd}
@@ -75,15 +75,17 @@
 \makenomenclature%
 
 % for the list of abbreviations (comment out if you do not use the glossaries package
-\usepackage[acronym]{glossaries} % For list of abbreviations
+\usepackage[acronym, indexonlyfirst, nopostdot]{glossaries-extra} % For list of abbreviations
 \newcommand{\glossname}{List of Abbreviations}
 \newcommand{\myprintglossary}{%
   \renewcommand{\glossaryname}{\glossname}
   \cleardoublepage%
   \printglossary[title=\glossname]
   \chaptermark{\glossname}
-  \addcontentsline{toc}{chapter}{\glossname} %% comment to exclude from TOC
+  % \addcontentsline{toc}{chapter}{\glossname} %% comment to exclude from TOC
 }
+\renewcommand{\glossarypreamble}{\footnotesize}
+\setabbreviationstyle{long-short}%
 \makeglossaries%
 
 % Additional document keys
@@ -209,6 +211,9 @@
 % hyphenation
 \usepackage{hyphenat}
 
+% afterpage
+\usepackage{afterpage}
+
 % colors
 \usepackage[usenames,dvipsnames]{xcolor}
 
@@ -235,6 +240,10 @@
 % User commands
 
 \input{mycommands.tex}
+
+% Glossary and nomenclature files
+\input{myglossary.tex}
+\input{mynomenclature.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -279,8 +288,7 @@
 % Show instructions on a separate page
 \instructionschapters\cleardoublepage
 
-\input{myglossary.tex}
-\input{mynomenclature.tex}
+
 
 \part{Introduction}
 %

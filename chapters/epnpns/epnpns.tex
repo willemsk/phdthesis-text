@@ -34,21 +34,20 @@ This chapter was published as:
 %
 
 % Glossary reset
-\glsresetall
 %
 
-In this chapter we introduce the \gls{epnp-ns} equations, a continuum simulation framework aimed towards the
-accurate continuum simulation of ion and water transport through biological nanopores. The \gls{epnp-ns}
+In this chapter we introduce the \glsfirst{epnp-ns} equations, a continuum simulation framework aimed towards
+the accurate continuum simulation of ion and water transport through biological nanopores. The \gls{epnp-ns}
 equations improve upon the regular {PNP-NS} equations by inclusion of empirical corrections that account for
 the influence of the ionic strength and the proximity of protein walls on the properties of the electrolyte.
 %
 
 %
 To improve readability and to allow for a better integration of the supplementary information into the main
-chapter text, the orignal manuscript was split into \cref{ch:epnpns,ch:trapping}, detailing the theory of the
-framework and its application to the \gls{clya} nanopore, respectively. The remainder of the supplementary
-information can be found in \cref{ch:epnpns_appendix}. The text and figures of this chapter represent entirely
-my own work.
+chapter text, the original manuscript was split into \cref{ch:epnpns,ch:trapping}, detailing the theory of the
+framework and its application to the \glsfirst{clya} nanopore, respectively. The remainder of the
+supplementary information can be found in \cref{ch:epnpns_appendix}. The text and figures of this chapter
+represent entirely my own work.
 %
 
 %
@@ -68,9 +67,9 @@ nucleic acids at the single-molecule level, a fast simulation methodology to acc
 nanofluidic properties is currently unavailable. This limits the rational engineering of nanopore traits and
 makes the unambiguous interpretation of experimental results challenging. Here, we present a continuum
 approach that can faithfully reproduce the experimentally measured ionic conductance of the biological
-nanopore \gls{clya} over a wide range of ionic strengths and bias potentials. Our model consists of the
-\gls{epnp-ns} equations and a computationally efficient 2D-axisymmetric representation for the geometry and
-charge distribution of the nanopore. Importantly, the \gls{epnp-ns} equations achieve this accuracy by
+nanopore \glsfirst{clya} over a wide range of ionic strengths and bias potentials. Our model consists of the
+\glsfirst{epnp-ns} equations and a computationally efficient 2D-axisymmetric representation for the geometry
+and charge distribution of the nanopore. Importantly, the \gls{epnp-ns} equations achieve this accuracy by
 self-consistently considering the finite size of the ions and the influence of both the ionic strength and the
 nanoscopic scale of the pore on the local properties of the electrolyte. These comprise the mobility and
 diffusivity of the ions, and the density, viscosity and relative permittivity of the solvent. Crucially, by
@@ -119,7 +118,7 @@ speaking, for any given analyte molecule, the rate of these resistive pulses is 
 concentration in the reservoir, whereas their duration, magnitude and intra-pulse fluctuations contain a
 wealth of information on its physical properties (\eg~size, shape and
 charge)~\cite{Howorka-2009,Ying-2019,Lu-2020}. Hence, the unique `fingerprints' provided by the
-(sub-)nanometre-sized sensing volume of a nanopore can reveal information that is typically inaccessible to
+(sub-)nanometer-sized sensing volume of a nanopore can reveal information that is typically inaccessible to
 bulk measurements, such hidden intermediate states, dynamic noncovalent interactions and the presence of
 subpopulations~\cite{Ying-2019,Lu-2020}. Notably, nanopores have been used to create ultra-long reads of
 individual DNA strands~\cite{Jain-2018}, to determine the shape, volume and dipole moment of
@@ -127,8 +126,8 @@ proteins~\cite{Yusko-2017,Houghtaling-2019}, and to investigate the kinetics of 
 to~\cite{Derrington-2015,Harrington-2019} or trapped within~\cite{Li-2020,Galenkamp-2020} the pore. Because
 each current blockade is modulated by the complex interactions between the translocating molecule and the
 nanopore itself, they will depend on the properties of both. As a result, despite the successful applications
-mentioned above, the unambigous interpretion of the ionic current signal remains a notoriously difficult task
-if a full understanding of the nanofluidic phenomena that underlie them is not available.
+mentioned above, the unambiguous interpretation of the ionic current signal remains a notoriously difficult
+task if a full understanding of the nanofluidic phenomena that underlie them is not available.
 
 The computational approaches most widely used to study nanofluidic transport in ion channels or biological
 nanopores comprise \emph{discrete} methods such as \gls{md}~\cite{Lynden-Bell-1996,Allen-1999,
@@ -174,20 +173,21 @@ model was later extended by Lu \etal{}, who used it to probe the effect of finit
 coefficients of enzymes~\cite{Lu-2011}.
 
 The interaction of ions or small molecules such as water with the heavy atoms of proteins or DNA results in a
-strong reduction of their motility, as observed in MD simulations~\cite{Makarov-1998,Pronk-2014,Wilson-2019}.
-Since these effects happen only at distances \SI{\le1}{\nm}, they can usually be neglected for macroscopic
-simulations. However, in small nanopores (\SI{\le10}{\nm} radius), they comprise a significant fraction of the
-total nanopore radius and hence must be taken into account~\cite{Noskov-2004,Simakov-2010,Pederson-2015,
-McMullen-2017}. In continuum simulations, this can be achieved with the use of positional-dependent ion
-diffusion coefficients. An example implementation is the `soft-repulsion PNP' developed by Simakov and
-Kurnikova~\cite{Simakov-2010,Simakov-2018}, who used it to predict the ionic conductance of the
-\glsreset{ahl}\gls{ahl} nanopore. Similar reductions in ion diffusion coefficients have been proposed to
-improve PNP theory's estimations of the ionic conductance of ion channels~\cite{Furini-2006,Liu-2015,
-DeBiase-2015}. The motility of water molecules is expressed by the NS equations as the fluid's viscosity.
-Hence, as also observed in MD simulations for water molecules near proteins~\cite{Pronk-2014} and confined in
-hydrophilic nanopores~\cite{Qiao-Aluru-2003,Vo-2016,Hsu-2017}, the water-solid interaction leads to a
-viscosity several times higher compared to the bulk values. Note that this is valid for hydrophilic interfaces
-only, as the lack of interaction with hydrophobic interfaces, such as carbon nanotubes, leads to a lower
+strong reduction of their motility, as observed in \gls{md}
+simulations~\cite{Makarov-1998,Pronk-2014,Wilson-2019}. Since these effects happen only at distances
+\SI{\le1}{\nm}, they can usually be neglected for macroscopic simulations. However, in small nanopores
+(\SI{\le10}{\nm} radius), they comprise a significant fraction of the total nanopore radius and hence must be
+taken into account~\cite{Noskov-2004,Simakov-2010,Pederson-2015, McMullen-2017}. In continuum simulations,
+this can be achieved with the use of positional-dependent ion diffusion coefficients. An example
+implementation is the `soft-repulsion PNP' developed by Simakov and
+Kurnikova~\cite{Simakov-2010,Simakov-2018}, who used it to predict the ionic conductance of the \glsfirst{ahl}
+nanopore. Similar reductions in ion diffusion coefficients have been proposed to improve PNP theory's
+estimations of the ionic conductance of ion channels~\cite{Furini-2006,Liu-2015, DeBiase-2015}. The motility
+of water molecules is expressed by the NS equations as the fluid's viscosity. Hence, as also observed in
+\gls{md} simulations for water molecules near proteins~\cite{Pronk-2014} and confined in hydrophilic
+nanopores~\cite{Qiao-Aluru-2003,Vo-2016,Hsu-2017}, the water-solid interaction leads to a viscosity several
+times higher compared to the bulk values. Note that this is valid for hydrophilic interfaces only, as the lack
+of interaction with hydrophobic interfaces, such as carbon nanotubes, leads to a lower
 viscosity~\cite{Ye-2011}.
 
 It is well known that the self-diffusion coefficient $\diffusion_{i}$ and electrophoretic mobility
@@ -210,17 +210,17 @@ interactions in the form of a concentration-dependent relative permittivity and 
 interaction energy term.
 
 To the best of our knowledge, no attempt has been made to consolidate all of the corrections discussed above
-into a single framework. Hence, we propose an extended set of PNP-NS ({\gls{epnp-ns}}) equations, which
-improves the predictive power of the {PNP-NS} equations at the nanoscale and beyond infinite dilution. Our
-{\gls{epnp-ns}} framework takes into account the finite size of the ions using a size-modified PNP
+into a single framework. Hence, we propose the \glsfirst{epnp-ns} equations, which improve the predictive
+power of the traditional \gls{pnp-ns} equations at the nanoscale and beyond infinite dilution. Our
+\gls{epnp-ns} framework takes into account the finite size of the ions using a size-modified PNP
 theory~\cite{Borukhov-1997,Lu-2011}, and implements spatial-dependencies for the solvent
 viscosity~\cite{Pronk-2014,Vo-2016,Hsu-2017}, the ion diffusion coefficients and their
 mobilities~\cite{Makarov-1998,Noskov-2004,Pederson-2015}. It also includes self-consistent
 concentration-dependent properties---based on empirical fits to experimental data---for all ions in terms of
 diffusion coefficients and mobilities~\cite{Baldessari-2008-1,Mills-1989}, and for the solvent in terms of
 density, viscosity~\cite{Hai-Lang-1996} and relative permittivity~\cite{Gavish-2016}. In
-\cref{sec:epnp-ns:model} we detail the governing equations, followed by their parametrization with
-experimental data from literature in \cref{sec:epnp-ns:parametrization}.
+\cref{sec:epnp-ns:model} we detail the governing equations, followed by their parameterization with
+experimental data from literature in \cref{sec:epnp-ns:parameterization}.
 
 
 \section{Mathematical model}
@@ -500,7 +500,7 @@ from literature, as summarized in \cref{tab:corrections_equations,tab:correction
 
 \section{Empirical parametrization}
 %
-\label{sec:epnp-ns:parametrization}
+\label{sec:epnp-ns:parameterization}
 %
 
 The properties of the ions and water molecules in the electrolyte depend strongly on the salt concentration
@@ -553,7 +553,7 @@ fixed during fitting of parameters $P_1$, $P_2$, $P_3$ and $P_4$.
   \end{subfigure}
   %
 
-  \caption[Concentration dependency of ion self-diffusion coefficients in \ce{NaCl}.]%
+  \caption[Concentration depend. of ion self-diffusion coefficients in \ce{NaCl}]%
     {%
       \textbf{Concentration dependency of ion self-diffusion coefficients in \ce{NaCl}.}
       %
@@ -565,7 +565,7 @@ fixed during fitting of parameters $P_1$, $P_2$, $P_3$ and $P_4$.
       %
       \Cl{} self-diffusion coefficients~\cite{Mills-1989} as a function of the bulk \ce{NaCl} concentration
       (left) and the relative residuals after fitting (right) of \cref{eq:concentration_d_mu_tna}. Circles
-      represent the experimental data and solid lines the fitted equation with the grey shading as the
+      represent the experimental data and solid lines the fitted equation with the gray shading as the
       $3\sigma$ confidence interval.
       %
   }\label{fig:epnpns_concentration_d}
@@ -601,8 +601,7 @@ fixed during fitting of parameters $P_1$, $P_2$, $P_3$ and $P_4$.
   %
 
   \caption%
-    [Concentration dependency of the cation transport number and the ion electrophoretic mobilities in
-    \ce{NaCl}.]
+    [Concentration depend. of the \ce{Na+} transport nb. and the ion electroph. mob. in \ce{NaCl}]
     %
     {%
       \textbf{Concentration dependency of the cation transport number and the ion electrophoretic mobilities
@@ -622,7 +621,7 @@ fixed during fitting of parameters $P_1$, $P_2$, $P_3$ and $P_4$.
       \Cl{} electrophoretic mobilities~\cite{Bianchi-1989,Currie-1960,Goldsack-1976,DellaMonica-1979} as a
       function of the bulk \ce{NaCl} concentration (left) and the relative residuals after fitting (right) of
       \cref{eq:concentration_d_mu_tna}. Circles represent the experimental data and solid lines the fitted
-      equation with the grey shading as the $3\sigma$ confidence interval.
+      equation with the gray shading as the $3\sigma$ confidence interval.
       %
   }\label{fig:epnpns_concentration_mu}
 \end{figure*}
@@ -634,7 +633,7 @@ The data for the fitting of the self-diffusion coefficients of the \Na{} ($\diff
 \cref{fig:epnpns_concentration_d_sodium}) and \Cl{} ($\diffusion_{\Cl}^c (c)$,
 \cref{fig:epnpns_concentration_d_chloride}) ranged from \SIrange{0}{4}{\Molar} and was taken from the
 compilation of Mills~\cite{Mills-1989}. Fitting of \cref{eq:concentration_d_mu_tna} yielded relative residuals
-\SI{<\pm2}{\percent} (\cref{fig:epnpns_concentration_d}, left panels), indicating an excellent reprentation of
+\SI{<\pm2}{\percent} (\cref{fig:epnpns_concentration_d}, left panels), indicating an excellent representation of
 the data. Because no experimental data was available beyond \SI{4}{\Molar}, the diffusivities between
 \SIrange{4}{5.3}{\Molar} had to be extrapolated, whereas for simulated concentrations \SI{>5.3}{\Molar}, their
 respective values at \SI{5.3}{\Molar} were used (\ie~$\diffusion_{\Na} (c > \mSI{5.3}{\Molar}) =
@@ -644,16 +643,13 @@ respective values at \SI{5.3}{\Molar} were used (\ie~$\diffusion_{\Na} (c > \mSI
 \paragraph{Sodium transport number.}
 %
 The literature data for the concentration dependency of the \Na{} transport number ($\transportn_{\Na}^c (c)$,
-\cref{fig:epnpns_concentration_mu_tsodium}) was obtained from five seperate
+\cref{fig:epnpns_concentration_mu_tsodium}) was obtained from five separate
 sources~\cite{Esteso-1976,Haynes-2017,DellaMonica-1979,Panopoulos-1986,Schonert-2013} and spanned the entire
 experimentally accessible \ce{NaCl} concentration range (\SIrange{0}{5.3}{\Molar}). After fitting
 \cref{eq:concentration_d_mu_tna}, we found most relative fitting residuals to be \SI{<\pm1}{\percent}
 (\cref{fig:epnpns_concentration_mu_tsodium}, left panel).
 
-\paragraph{Ion electrophoretic mobilities.}
-%
-The individual data for concentration-dependent ionic mobilities of \Na{} ($\mobility^c_{\Na}$,
-\cref{fig:epnpns_concentration_mu_sodium}) and \Cl{} ($\mobility^c_{\Cl}$,
+\paragraph{Ion electrophoretic mobilities.}cation$\mobility^c_{\Cl}$,
 \cref{fig:epnpns_concentration_mu_chloride}) were calculated from literature
 values~\cite{Bianchi-1989,Currie-1960,Goldsack-1976,DellaMonica-1979} of the salt's molar conductivity
 $\molarconductivity$ (between~\SIrange{0}{5}{\Molar}) using~\cite{ContrerasAburto-2013-1}
@@ -694,7 +690,7 @@ The interpolation function representing the concentration-dependent electrolyte 
 \end{align}
 %
 with $P_0$ the value at infinite dilution (fixed during fitting), and $P_1$, $P_2$, $P_3$ and $P_4$ fitting
-parameters. Experimental data for parameterizing \cref{eq:epnpns_concentration_solv_eta} was taken from a
+parameters. Experimental data for parameterization of \cref{eq:epnpns_concentration_solv_eta} was taken from a
 single literature source~\cite{Hai-Lang-1996} and covers the entire concentration range
 (\SIrange{0}{5.3}{\Molar}). The resulting fit to this data, yielding $\viscosity^c (\concentration)$, is shown
 in~\cref{fig:epnpns_concentration_solv_eta}. Relative fitting residuals were found to be very low
@@ -729,8 +725,7 @@ parameters, viscosities for concentrations above saturated concentrations were c
   \end{subfigure}
   %
 
-  \caption[Concentration dependency of the electrolyte viscosity, density and relative permittivity in
-  \ce{NaCl}.]%
+  \caption[Concentration depend. of the electrolyte viscosity, density and rel. perm. in \ce{NaCl}.]%
     {%
       \textbf{Concentration dependency of the electrolyte viscosity, density and relative permittivity in
       \ce{NaCl}.}
@@ -748,7 +743,7 @@ parameters, viscosities for concentrations above saturated concentrations were c
       relative permittivity~\cite{Buchner-1999,Gavish-2016} as a function of the bulk \ce{NaCl} concentration
       (left) and the relative residuals after fitting (right) to
       \cref{eq:epnpns_concentration_solv_eta,,eq:epnpns_concentration_solv_rho,,eq:epnpns_concentration_solv_epsr},
-      respectively. Circles represent the experimental data and solid lines the fitted equation with the grey
+      respectively. Circles represent the experimental data and solid lines the fitted equation with the gray
       shading as the $3\sigma$ confidence interval.
       %
   }\label{fig:epnpns_concentration_solv}
@@ -827,7 +822,7 @@ $\mobility_{i}^w=1$, $\viscosity^w=1$).
 %
 
 %
-\subsection{Wall distance-dependent fitting to {MD} data}%
+\subsection[Wall distance-dependent fitting to {MD} data]%
            {Wall distance-dependent fitting to molecular dynamics data}
 %
 
@@ -844,9 +839,9 @@ from Makarov \etal{}~\cite{Makarov-1998}. The function is a sigmoidal given by
 with $X$ either $\diffusion$ (diffusion) or $\mobility$ (mobility) and $i$ either \Na{} or \Cl{} and $P_1$
 ($a$) and $P_2$ ($r_0$) the fitting parameters. For $P_1$, we used the value determined by Simakov \etal{}
 (\SI{6.2}{\per\nm}), but for $P_2$ we opted to use a value of \SI{0.01}{\nm} instead of \SI{0.22}{\nm}
-proposed by Simakov~\cite{Simakov-2010} and futher corroborated by Wilson \etal{}~\cite{Wilson-2019}. We chose
-this smaller offset because \cref{eq:epnpns_distance_d} quickly becomes negative beyond the offet $P_2$,
-resulting in unphysical values. Pederson \etal{} solved this by setting an arbitrary mininum positive value
+proposed by Simakov~\cite{Simakov-2010} and further corroborated by Wilson \etal{}~\cite{Wilson-2019}. We chose
+this smaller offset because \cref{eq:epnpns_distance_d} quickly becomes negative beyond the offset $P_2$,
+resulting in nonphysical values. Pederson \etal{} solved this by setting an arbitrary minimum positive value
 for the diffusion coefficient~\cite{Pederson-2015}, but this would result in a `dead' zone of nearly
 \SI{0.2}{\nm} from each wall with a very low diffusivity (\ie~several orders of magnitude below the bulk
 value). This would make the current of a pore with a diameter smaller than \SI{0.5}{\nm} effectively zero,
@@ -881,8 +876,7 @@ values reported by Wilson \etal{}~\cite{Wilson-2019}.
   \end{subfigure}
   %
 
-  \caption[Wall distance dependency of ion self-diffusion coefficients, mobilities and electrolyte
-  viscosity.]%
+  \caption[Wall distance depend. of ion self-diff. coeff., mobilities and electrolyte viscosity.]%
     {%
     \textbf{Wall distance dependency of ion self-diffusion coefficients, mobilities and electrolyte viscosity.}
       %
@@ -895,7 +889,7 @@ values reported by Wilson \etal{}~\cite{Wilson-2019}.
       %
       inverse relative viscosity~\cite{Pronk-2014} as a function of the distance from the protein wall (left)
       and the relative residuals after fitting (right) to \cref{eq:epnpns_distance_d,,eq:epnpns_distance_eta},
-      respectively. Circles represent the experimental data and solid lines the fitted equation with the grey
+      respectively. Circles represent the experimental data and solid lines the fitted equation with the gray
       shading as the $3\sigma$ confidence interval.
       %
   }\label{fig:epnpns_distance}
@@ -927,8 +921,7 @@ for $\walldistance \ge \mSI{0}{\nm}$ (the utilized portion of the function) are 
 \begin{landscape}
   \begin{threeparttable}[p]
     \centering
-    %
-    \captionsetup{width=18cm}
+       \captionsetup{width=18cm}
     \caption{Overview of the \ce{NaCl} fitting parameters used for interpolation.}
     \label{tab:corrections_parameters}
     %
@@ -998,13 +991,30 @@ for $\walldistance \ge \mSI{0}{\nm}$ (the utilized portion of the function) are 
 \label{sec:epnp-ns:conclusion}
 %
 
-We have developed an extended version of the Poison-Nernst-Planck-Navier-Stokes (ePNP-NS) equations that is
-capable of accurately modelling the transport of ions and water through biological nanopores, yielding a
-wealth of information that is both qualitatively and quantitatively accurate. Our {ePNP-NS} equations combine
-many of the improvements to the PNP-NS equations available in literature, in addition to several new
-corrections. These include the finite size of the ions, self-consistent concentration- and
-positional-dependent parametrization of the ionic transport coefficients (diffusion coefficient and mobility)
-and of the electrolyte properties (density, viscosity and relative permittivity).
+In this chapter, we have developed the \glsfirst{epnp-ns} equations, an improved version of the well-known
+transport equations that is geared towards the accurate modeling the transport of ions and water through
+biological nanopores. Our \gls{epnp-ns} equations combine many of the improvements already available in
+literature, in addition to several new corrections. These include the finite size of the ions (\ie~steric
+repulsion between ions), self-consistent concentration- and positional-dependent parametrization of the ionic
+transport coefficients (\ie~diffusion coefficient and mobility) and of the electrolyte properties
+(\ie~density, viscosity and relative permittivity).
+
+Most electrolyte properties depend on the salt concentration. Typically, ion self-diffusion coefficients,
+ionic conductivities, and relative permittivity decrease with concentrations, whereas den viscosity increase.
+Self-consistent parameterization of the concentration dependencies was based on interpolation functions,
+fitted to experimental electrolyte data obtained from literature sources. Note that, given that our parameters
+are derived from `bulk' electrolyte data, their accuracy with respect to non-electroneutral solutions (\eg~the
+\gls{edl} within a nanopore) is not known. Nevertheless, we expect them to yield significantly more physical
+results better compared to infinite dilution values. 
+
+At the nanoscale, the interactions between the nanopore walls on the one hand, and the ions and water
+molecules on the other, result in a short-ranged (\SI{<1}{\nm}) reduction of diffusivity and mobility of the
+ions~\cite{Makarov-1998}, and an increase of the water viscosity~\cite{Pronk-2014}. We approximated these
+distance-dependencies by fitting sigmoid functions to data from \gls{md} simulations, obtained from
+literature. While crude, we expect them to reproduce the physically observed effects adequately.
+
+In \cref{ch:transport}, we will apply our \gls{epnp-ns} framework to a 2D-axisymmetric model of a biological
+nanopore, yielding a wealth of information that is both qualitatively and quantitatively accurate. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

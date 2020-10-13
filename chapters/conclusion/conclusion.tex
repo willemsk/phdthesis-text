@@ -13,11 +13,317 @@
   \textit{`Ky' in `Use of Weapons' by Iain M. Banks}
 %
 }}
+%
+%
 
+
+In this dissertation, I have demonstrated that computational modeling---in combination with analytical
+physical models and systematic experiments---can be a powerful tool to shed light on (1) the physical
+mechanisms that drive molecular transport through (biological) nanopores, and (2) the diverse physical
+conditions that occur within them. In particular, this work shows that although a great deal of information
+can be obtained from \emph{equilibrium} electrostatic simulations, which effectively mimic the nanopore
+without an applied bias voltage, the transport of analyte molecules such as \gls{dna} or proteins is governed
+by a complex interplay of extrinsic (\ie~(di)electrophoretic and electro-osmotic) and intrinsic
+(\ie~electrostatic, steric, and entropic) forces. It is for this reason that a \emph{non-equilibrium}
+simulation framework was developed: the \glsfirst{epnp-ns} equations. This framework enables one to accurately
+predict the transport of ions, water molecules, and analyte molecules through biological nanopores, providing
+a means to paint a complete picture of the sensing process. The following sections summarize the key
+conclusions that can be drawn from this dissertation, followed by my perspective on the future of nanopore
+sensing, and the role of computational modeling therein.
+
+
+%
 \section{General conclusions}
-\ldots
+%
+\label{sec:con:conclusions}
+%
+
+% Develop methodologies for accurate modeling of biological nanopores
+% Investigate the electrostatics of biological nanopores
+% Elucidate the trapping behavior of a protein inside a biological nanopore
+% Mapping the transport properties of a biological nanopore
+
+
+\subsubsection{The electrostatics of biological nanopores influence all transport processes.}
+%
+
+The importance of electrostatics within biological nanopores cannot be understated. Electrostatic interactions
+have an influential hand in defining the nanofluidic properties of most biological nanopores. Not only do they
+determine conductance characteristics such as ion selectivity~\cite{Ramirez-2007} and current
+rectification~\cite{Wang-2014}, they are also the fundamental enabler of the
+\glsfirst{eof}~\cite{Bocquet-2010}, and finally, they strongly mediate the translocation process of analyte
+molecules \textit{via} long-range electrostatic forces~\cite{Maglia-2008,Asandei-2015b,Fahie-2015b}.
+
+In~\cref{ch:electrostatics}, we made use of \glsfirst{pb} theory to investigate the influence of charge
+reversal mutations, in combination with the ionic strength and pH of the electrolyte, on the equilibrium
+electrostatics (\ie~without an applied bias voltage) of the biological nanopores \glsfirst{plyab},
+\glsfirst{frac}, and \glsfirst{clya}. We found that introducing charge reversal mutations
+(negative-to-positive) within the constrictions of the \gls{plyab} (\gls{plyab-e2} \textit{versus}
+\gls{plyab-r}) and \gls{frac} (\gls{wtfrac} \textit{versus} \gls{refrac}) pores translated itself in the full
+reversal of the electrostatic potential at those locations, even at high ionic strengths (\SI{1}{\Molar}).
+Given the intimate link between the potential and the \gls{eof} (through the \gls{edl}), we hypothesized that
+this could have a profound effects on the magnitude of the \gls{eof} for \gls{plyab-r}~\cite{Huang-2020}, and
+would even change its directionality for \gls{refrac}~\cite{Huang-2017}, two claims supported by protein
+trapping experiments. Additionally, we show that, whereas the magnitude of the electrostatic potential within
+the negatively charged wild-type \gls{frac} (\gls{wtfrac}) is strongly reduced upon lowering the pH from
+\numrange{7.5}{4.5}, that of the positively charged \gls{refrac} is barely affected. This finding also
+confirms the experimental observations~\cite{Huang-2017}. In the case of \gls{clya}, we studied four different
+mutants of \gls{clya-as}~\cite{Soskine-2013}: \gls{clya-r} (S110R), \gls{clya-rr} (S110R/D64R),
+\gls{clya-rr56} (S110R/Q56R), and \gls{clya-rr56k} (S110R/Q56R/Q8K). Experiments have shown that while all
+variants are able to translocate \gls{dsdna} at high salt concentrations
+(\SI{>2}{\Molar})~\cite{Franceschini-2013}, only \gls{clya-rr} is able to do so at physiological ionic
+strengths (\SI{0.15}{\Molar})~\cite{Franceschini-2016}. This is of importance for applications were the
+electrostatic interactions should be as `natural' as possible, such as \gls{dna} mapping or sequencing with
+the help of a processive enzyme. We found the S110R mutation at the \cisi{} entry to effectively eliminate the
+negative electrostatic potential observed at the \cisi{} entrance of \gls{clya-as}, which in turn is likely to
+promote the entry of the \gls{dna} within the \lumen{}. Interestingly, the D64R mutation of \gls{clya-rr}
+(\SI{+2}{\ec} per subunit), but not the Q56R mutation of \gls{clya-rr56} (\SI{+1}{\ec} per subunit), resulted
+in a reversal the electrostatic potential in the middle of the \lumen{}, the consequences of which will be
+discussed in the next paragraph. Even though the Q8K mutation lowered the magnitude of the negative potential
+within the constriction of \gls{clya-rr56k}, it remained significantly higher compared to the rest of the
+pore. As expected, at high ionic strengths (\SI{2.5}{\Molar}), however, no differences between the mutants
+could be observed, in agreement with experiments~\cite{Franceschini-2013,Franceschini-2016}
+
+To gain a better understanding of the electrostatic \emph{energy} barriers that arise during the translocation
+of analyte molecules, we computed the electrostatic energy costs (or gains) that result from the movement of a
+\gls{dna} molecule (in~\cref{ch:electrostatics}) or a protein (in~\cref{ch:trapping}) along the length of the
+pore. In the case of \gls{ssdna} translocation through \gls{refrac}, we found that the D10R charge reversal
+lowered the energy barrier for entering the constriction of the pore from \SIrange{38}{14}{\kbt}.
+Back-of-the-envelope calculations show that even at moderate applied bias potentials (and even ignoring the
+\gls{eof}), the barrier in \gls{refrac} can be readily overcome, whereas the one in \gls{wtfrac} cannot. This
+is in agreement with the \gls{dna} translocation experiments~\cite{Wloka-2016}. The situation for \gls{dsdna}
+translocation through \gls{clya} (at \SI{0.15}{\Molar} ionic strength) is more complex, as the key
+charge-reversal mutation, D64R, is not located within the constriction of the pore, but rather in the middle
+of the large \cisi{} \lumen{}. We hypothesize that, just as the S110R mutation promotes the entry of the
+\gls{dna} from the \cisi{} side, so does the D64R mutation encourage the strand to penetrate deeper into the
+\lumen{} of the pore by \emph{lowering} rather than increasing the electrostatic energy. Under (positive)
+applied bias voltages, this would allow the \gls{dna} to accumulate sufficient force to overcome
+\SI{\approx40}{\kbt} energy barrier within the constriction. At high salt concentrations (\SI{2.5}{\Molar}),
+the energy landscape of all variants is similar, and the energy barrier is reduced to a mere \SI{10}{\kbt},
+which can be easily overcome by the electrophoretic force. Interestingly, the energy of the translocating
+\gls{dna} molecule appears to fluctuate every \SI{36}{\angstrom} with \SI{\approx2}{\kbt}, suggesting that it
+might rotate during translocation. Finally, the strong electrostatic repulsion results in the strong
+confinement of the \gls{dsdna} to the center of the pore, even at high salt concentrations.
+
+As an example for the role of electrostatics during protein translocation, we computed the electrostatic
+energy of \DHFRt{}, an engineered variant of the \textit{E. coli} \glsfirst{dhfr} enzyme containing a
+positively charged C-terminal fusion tag attached to its negative charged core~\cite{Soskine-Biesemans-2015},
+as it traverses the \gls{clya} nanopore. Rather than a single barrier at the constriction, the asymmetric
+charge distribution of \DHFRt{} gives rise to an energy landscape with an explicit energy minimum, whose depth
+is proportional to the number of positive charges in the fusion tag. Hence, this indicates that the protein is
+electrostatically trapped within the pore. However, superimposing the externally applied electric field upon
+the electrostatic energy of a translocating molecule will `tilt' the energy landscape. In the case of
+\DHFRt{}, this tilting caused the magnitude of the \transi{} barrier to decrease, whereas the smaller \cisi{}
+barrier was quickly erased and essentially moved to the \cisi{} entry of the pore.
+
+It is clear that the introduction of specific charges, at the right location, can significantly impact the
+transport of ions, water molecules, and analytes through biological nanopores. This can be effected either
+directly, through electrostatic interactions, or indirectly, through the \gls{eof}, both of which are mediated
+by the ionic strength and pH of the electrolyte. Nevertheless, even though equilibrium electrostatic
+calculations already provide a wealth of information, applying an external electric field `tilts' the energy
+landscape, causing seemingly impassable barriers (at equilibrium) to diminish or even disappear. Hence, a full
+understanding of molecular transport through nanopores necessitates the use of non-equilibrium simulations.
+
+
+\subsubsection{Accurate, non-equilibrium continuum modeling of biological nanopores requires extensive corrections.}
+%
+
+To gain even deeper insights into the nanoscale forces involved in nanopore-based sensing, it is necessary to
+go beyond equilibrium electrostatics and approximate analytical models, towards modeling the explicit dynamics
+of ion and water transport through nanopores. Whereas \gls{md} simulations are still superior in terms of
+accuracy~\cite{Aksimentiev-2005,DeBiase-2016,Basdevant-2019}, the heavy computational cost associated with
+simulating the motion of a million individual atoms in \SI{1}{\fs} time steps still limits its usefulness for
+high-throughput analysis of long-timescale (\ie~\SI{>1}{\us}) phenomena~\cite{Vendruscolo-2011,Phillips-2020}.
+Hence, a fair share of literature has been devoted to the development of continuum models, typically based on
+\gls{pnp-ns} theory, of
+solid-state~\cite{Daiguji-2004,Cervera-2005,White-2008,Lu-2012,Chaudhry-2014,Laohakunakorn-2015,Hulings-2018,Rigo-2019,Melnikov-2020}
+and
+biological~\cite{Noskov-2004,Cozmuta-2005,OKeeffe-2007,Simakov-2010,Pederson-2015,Simakov-2018,Aguilella-Arzo-2020}
+(\ie~mostly on \gls{ahl}) nanopores. Such models are orders of magnitude more efficient, both in terms of
+solution time and the ease of data analysis. However their applicability for nanoscale transport problems is
+often (rightly) questioned~\cite{Corry-2000,Collins-2012}, which has led to the development of modified
+continuum transport equations that attempt to compensate for some of the simplifications introduced by
+mean-field
+theory~\cite{Noskov-2004,Baldessari-2008-1,Daiguji-2010,Simakov-2010,Lu-2011,Burger-2012,Chen-2016,Liu-2020}.
+In~\cref{ch:epnpns}, we implemented a novel continuum framework geared specifically towards the modeling of
+biological nanopores: the \glsfirst{epnp-ns} equations. It takes into account steric ion-ion
+interactions~\cite{Daiguji-2010,Kilic-2007,Lu-2011,Liu-2020}, the influence of the nanopore walls on the local
+ion diffusivity/mobility~\cite{Makarov-1998,Noskov-2004,Pederson-2015,Hulings-2018,Wilson-2019} and the water
+viscosity~\cite{Pronk-2014,Vo-2016,Hsu-2017}, as well as the concentration dependencies of ion
+diffusivity/mobility~\cite{Baldessari-2008-1,Burger-2012}, and solvent relative permittivity~\cite{Chen-2016},
+viscosity and density~\cite{Hai-Lang-1996}. All these dependencies were robustly parameterized using empirical
+relations, fitted to experimental or \gls{md} data obtained from literature sources.
+
+Next, in~\cref{ch:transport}, we applied the \gls{epnp-ns} equations to a 2D-axisymmetric model of the
+\gls{clya-as} nanopore, whose geometry and charge distribution was derived from series of equilibrated atomic
+structures obtained from a \SI{30}{\ns}-long \gls{md} simulation of \gls{clya-as} homology model. The
+solutions of the \gls{epnp-ns} equations provided detailed descriptions of the ion concentrations, the
+electrostatic potential, the \gls{eof} velocity, and the pressure distributions within the pore, over wide
+range of ionic strengths (\SIrange{0.005}{5}{\Molar}) and applied bias voltages (\SIrange{-200}{+200}{\mV}).
+Integration of the cation and anion fluxes through the pore gave direct access to the total ionic current, but
+also the true ion selectivity, a property that is difficult to pin down experimentally. Notably, the ionic
+conductance of \gls{clya} predicted by the \gls{epnp-ns} equations matched closely with the values obtained
+from carefully calibrated single-channel recordings, in contrast to the classical \gls{pnp-ns} equations. The
+(cat)ion selectivity, although strongly dependent on the ionic strength and bias voltage, also corresponded to
+the permeability ratio derived from the reversal potential measurements. As with the transport of \gls{dna}
+(see~\cref{ch:electrostatics}) and proteins (see~\cref{ch:trapping}) through \gls{clya}, we found the
+transport of ions to subject to the electrostatic energy barriers present within the pore. These barriers did
+not only influence the conductive properties of the pore, but also profoundly impacted the availability of
+anions with \gls{clya}'s \lumen{}, particularly at negative bias voltages, a condition that may influence the
+structure and activity of enzymes trapped within \gls{clya}. Analysis of the \gls{eof} magnitude showed a
+non-monotonic dependence on the ionic strength, with a maximum at \SI{0.5}{\Molar} \ce{NaCl}. This knowledge
+may be exploited to fine-tune the force balance exerted on analyte molecules and improve their trapping
+efficiency. Interestingly, \gls{clya}'s complex charge distribution and the accompanying non-uniform
+\gls{edl}, resulted in confined (\SI{\approx1}{\cubic\nm}) zones of high pressure (\SIrange{5}{30}{\atm})
+localized at the \cisi{} entry, the middle of the \lumen{}, and within the \transi{} constriction. The
+pressure differences induced by these zones may contribute significantly to the net force exerted on
+translocating particles, confirming the importance of using the full hydrodynamic stress tensor to calculate
+the force, rather than just the Stokes' drag.
+
+The \gls{epnp-ns} equations, together with a suitable model of the pore, constitute a significant advance in
+the continuum simulation of biological nanopores, and the modeling of nanoscale transport phenomena in
+general. It is an important step towards building a tool that can help to move the field forward on various
+fronts, including elucidating the link between the observed variations in ionic current and the physical
+events that cause them, evaluating the transport properties of existing nanopores, and guiding the rational
+design of novel characteristics.
+
+
+\subsubsection{Trapping a protein within {ClyA} involves a complex interplay of forces.}
+%
+
+The ability to retain proteins, and particularly enzymes, for long periods of time within a nanopore is of
+crucial importance for applications such as single-molecule
+enzymology~\cite{Willems-VanMeervelt-2017,VanMeervelt-2014,Wloka-2017,Thakur-2019,Galenkamp-2020} and
+biomarker sensing~\cite{VanMeervelt-2017,Galenkamp-2018,Zernia-2020}. Previous experiments with \gls{clya}
+have shown that, whereas large(r) proteins (that can still enter the pore through the \cisi{} entry) can
+remain trapped for seconds to
+minutes~\cite{Soskine-2013,Soskine-2012,Soskine-Biesemans-2015,Biesemans-2015,VanMeervelt-2014,VanMeervelt-2017},
+smaller proteins (similar in diameter to the \transi{} constriction) translocate through the pore within
+milliseconds~\cite{Soskine-2012}. This is too quickly properly sample any conformational changes, enzymatic
+reactions or ligand binding. However, other studies revealed that the dwell time of
+peptides~\cite{Movileanu-2005,Asandei-2015,Asandei-2016} within biological nanopores could be lengthened by
+orders of magnitude by introduction of a large permanent dipole moment.
+
+In~\cref{ch:trapping}, a systematic set of experiments was performed with the \DHFRt{} enzyme. Previous
+experiments revealed that he binding of the negatively charged inhibitor molecule \glsfirst{mtx} to \DHFRt{}
+extended its peak mean dwell time within the pore from \SIrange{0.3}{9}{\second}, a 30-fold
+increase~\cite{Soskine-Biesemans-2015}. We successfully eliminated the need for \gls{mtx} (which would prevent
+a study of \gls{dhfr}'s enzymatic properties) by (1) introducing three additional negative charges near the
+\gls{mtx} binding site, and (2) by increasing the number of positively charged residues in the fusion tag from
+\numrange{+4}{+9}. The former raised the dwell time by an order of magnitude to \SI{2}{\second}, whereas the
+latter resulted in dwell times of \SI{4}{\second} (\num{+5}), \SI{8}{\second} (\num{+6}), \SI{14}{\second}
+(\num{+7}), \SI{25}{\second} (\num{+8}), and \SI{46}{\second} (\num{+9}). All variants were still able to bind
+to their cofactor, \ce{NADH}, indicating that neither our modifications, nor the confinement within the pore,
+caused structural disruption or unfolding. Notably, the \num{+7} \DHFRt{} variant recently enabled the
+real-time detection \gls{dhfr}'s conformational changes of during its enzymatic cycle~\cite{Galenkamp-2020}.
+
+The dwell times of all \DHFRt{} variants exhibited a biphasic relation with the applied bias voltage, where it
+first rose exponentially up until a certain threshold voltage, followed by an exponential
+decay~\cite{Biesemans-2015}, similar to the escape rate of an \ta-helical peptide trapped within
+\gls{ahl}~\cite{Movileanu-2005}. Such a complex behavior was explained by a shift in \gls{dhfr}'s preference
+to exit \gls{clya} from the \cisi{} entry at low voltages, to the \transi{} entry at high applied biases. To
+quantify this process, we developed a double energy barrier physical transport model (\ie~one barrier for each
+entry), containing steric, electrostatic, electrophoretic, and electro-osmotic energy components. By
+meticulously mapping out these voltage dependencies, together with an extensive set of equilibrium
+electrostatic energy calculations for all translocating \DHFRt{} variants, we successfully parameterized this
+double barrier model, yielding meaningful values for \gls{dhfr}'s intrinsic \cisi{} and \transi{}
+translocation probabilities, as well as an estimate of the force exerted by the \gls{eof} on the protein of
+\SI{0.178}{\pico\newton\per\milli\volt} (\eg~\SI{9}{\pN} at \SI{-50}{\mV}).
+
+Interestingly, the electrostatic energy barriers obtained from the electrostatic simulations matched closely
+with those obtained from the fitting of the double barrier model, indicating that the simulations closely
+represent the true physical situation. Moreover, the magnitude of \gls{eof} force on \gls{dhfr} is equivalent
+to a net charge of \SI{+15.5}{\ec}---a value significantly larger than that of the typical protein
+(\SI{99}{\percent} lies between \SI{\pm10}{\ec}~\cite{Requiao-2017}), \emph{quantitatively} confirming that
+the \gls{eof} is the dominating force in protein capture by \gls{clya}. Given the general nature of the double
+barrier model (\ie~it includes no explicit structural information of the trapped protein besides its charge),
+it may be applicable to other proteins and even other pores, providing a solid approach towards rationally
+engineering the dwell time of small proteins within nanopores.
+
+
+
+%
 \section{Future perspectives}
-\ldots
+%
+\label{sec:con:perspectives}
+%
+
+\subsubsection{Technical improvements to the {ePNP-NS} framework.}
+%
+
+Even though the \gls{epnp-ns} framework presented in this dissertation constitutes a solid step forwards for
+the accurate and efficient modeling of (biological) nanopores with continuum methods, it is still far from the
+being a `user-friendly' tool that can be utilized by nanopore researchers. Currently, the \gls{epnp-ns}
+equations have been implemented in the COMSOL Multiphysics software, a versatile, but \emph{commercial} finite
+element solver. In the spirit of \emph{open science}, the first (technical) improvement I would endeavor is
+porting the current implementation into a free (as in speech, not just beer) and open-source \gls{pde} solver
+framework, such as \code{FEniCS} (finite element) or \code{OpenFOAM} (finite volume). Besides making the full
+program available, free of charge, to anyone that wishes to use it, this would give full control of the code
+the users, enabling them to utilize, adapt, and contribute as they see fit. Additionally, this would provide
+clear, straightforward, and uniform paths towards a full integration both the upstream (molecular modeling and
+geometry generation) and downstream (data analysis and visualization) workflows. The next challenge to tackle
+would be to implement a true 3D model, rather than the 2D-axisymmetric representation. Even though this would
+likely result in a significant increase in computational time, the lack of axisymmetric averaging would remove
+a layer of abstraction from the simulation that poses an inherent limit on the accuracy of the results that
+can be obtained with them. Full 3D models could properly capture the complex, corrugated geometries present in
+even the most radially symmetric nanopores. As a result, this would also greatly improve the realism of the
+nanopore's fixed charge density, as it eliminates overlapping charges, and charges that fall within the
+electrolyte rather the solid dielectric of the pore. Note that the 2D-axisymmetric approach could still remain
+a valuable tool for situations were speed, rather than accuracy, is of the essence---as would be the case when
+screening many nanopore mutant or conditions. A final technical improvement would be to further automate the
+simulation pipeline, at the very least for specific and verified pores, with the goal of providing a
+user-friendly tool that is actually usable by less `technically inclined' users.\footnotemark%
+%
+\footnotetext{
+%
+Note that unlike me, these are usually the scientists that perform useful experiments and breakthroughs with
+actual real-world applications. 
+%
+}
+%
+Perhaps this last enhancement is the most important of all, given that any piece of software can only useful
+only if it is actually being used.
+
+
+\subsubsection{Scientific improvements to the {ePNP-NS} framework.}
+%
+
+Also from a scientific point-of-view several advances as possible. First, the empirical parameterization that
+powers the material properties in the \gls{epnp-ns} should be replaced by a first principles approach that
+truly captures the underlying physics, rather mimicking its phenomenological results. In other words, rather
+than forcing the approximated physics to be more accurate, it is better to improve or remove the
+approximations themselves. To date, perhaps the most powerful example of such a first principles methodology
+is the Poisson-Nernst-Planck-Bikerman model developed by Liu and Eisenberg~\cite{Liu-2020}, which, in their
+own words ``describes the size, correlation, dielectric, and polarization effects of ions and water in aqueous
+electrolytes at equilibrium or nonequilibrium all within a unified framework.'' Nevertheless, despite its
+phenomenological approach, the existing \gls{epnp-ns} parameterization remains quantitatively useful, and may
+serve as a barometer for which approximations one should address first. On the short term, a more attainable
+goal is the explicit implementation of the electrolyte pH, through the inclusion of \ce{H+} and \ce{OH-} ions,
+in combination with the water equilibrium reaction and buffer molecules. Besides improving the general realism
+of the framework, it would enable the self-consistent modeling of the nanopore's fixed charge distribution
+\textit{via} the effective $\pKa$ of all ionizable groups. This is not only relevant for biological nanopores,
+but prove even more instrumental for accurately simulating the solid-liquid interfaces present in solid-state
+devices.
+
+
+\subsubsection{Potential applications of the {ePNP-NS} framework.}
+%
+
+On the application side, there are several low hanging fruits: (1) simulating nanopore mutants, and (2)
+computing the net force exerted on translocating analyte molecules. Recently, we applied our \gls{epnp-ns}
+approach to the \gls{plyab-e2} and \gls{plyab-r} pores described in \cref{ch:electrostatics}, and found that
+it was indeed able to capture the experimentally observed differences in the \gls{eof} between these two
+mutants~\cite{Huang-2020}. The current framework could be applied to numerous other pores and mutants thereof,
+to help explain and perhaps even guide experiments. Even more exciting is the self-consistent simulation of
+translocating particles of various sizes and charges under \emph{nonequilibrium} conditions. In addition to
+the electrostatic force, these computations would yield the full electrophoretic and hydrodynamic force
+landscape, together with the residual current values for each individual particle position. By subsequently
+feeding these data into a Brownian dynamics simulator, which adds an additional stochastic force to mimic
+thermal motion, it would allow one to mimic the actual nanopore sensing process
+itself~\cite{Pederson-2015,Hulings-2018}. Effectively, such a system would correlate the dynamics of the
+analyte molecule within the pore with the experimentally observed ionic current signal---providing a direct
+connection between the experimentalist and the simulant.
+
 
 \instructionsconclusions
 
