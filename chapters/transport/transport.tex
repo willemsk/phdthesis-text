@@ -124,7 +124,7 @@ impact in \emph{\cref{sec:transport:conclusion}}.
     modeling from the \textit{E. coli} \gls{clya} crystal structure (\pdbid{2WCD}~\cite{Mueller-2009}).
     Measurements indicate the average `cylindrical' sizes of the \cisi{} \lumen{} (\SI{6}{\nm} in diameter,
     \SI{10}{\nm} in height) and the \transi{} constriction (\SI{3.3}{\nm} in diameter, \SI{4}{\nm} in height).
-    Images were rendered with \acrshort{vmd}~\cite{Humphrey-1996,Stone-1998}.
+    Images were rendered with \glsxtrshort{vmd}~\cite{Humphrey-1996,Stone-1998}.
   %
   }\label{fig:transport_clya}
 \end{figure*}
@@ -360,7 +360,7 @@ resolution grid using the Gaussian function~\cite{Li-2013}
 \begin{align}\label{eq:denspore}
   \rho_\text{mol} = 1 - \displaystyle\prod_{i} \left[ 1 - 
     \exp{\left(-\dfrac{d_i^2}{(\stdev\atomradius_{i})^2}\right)} \right]
-    \text{\,,}
+    \text{ ,}
 \end{align}
 %
 with
@@ -390,11 +390,10 @@ model. This effectively spreads the charge over all angles to achieve axial symm
 distribution of the space charge density of each atom $i$ around its respective 2D-axisymmetric coordinates
 $(r_i,z_i)$ such that
 %
-\begin{align}
-\label{eq:scdpore}
+\begin{align}\label{eq:scdpore}
   \scdpore(r,z) = \dsum_{i} \dfrac{\echarge\partialcharge_{i}}{\pi(\stdev\atomradius_{i})^2}
             \exp{\left(-\dfrac{(r-r_i)^2 + (z-z_i)^2}{(\stdev\atomradius_{i})^2}\right)}
-  \text{\,,}
+  \text{ ,}
 \end{align}
 %
 where $\atomradius_{i}$ is the atom radius, $\sigma = 0.5$ is the sharpness factor and $\echarge$ is the
@@ -493,7 +492,7 @@ ionic current $\currentsim$ at steady-state was computed by
 %
 \begin{align}\label{eq:currentsim}
   \currentsim = \faraday\int_{S}\left(\dsum_{i}\chargen_{i}\normvec\cdot\vec{\flux}_{i}\right)dS
-  \text{\,,}
+  \text{ ,}
 \end{align}
 %
 with $\chargen_{i}$ the charge number and $\vec{\flux}_{i}$ the total flux of each ion $i$ across \cisi{}
@@ -599,7 +598,8 @@ $d_{\text{trans}}=\text{\SI{3.3}{\nm}}$, respectively~\cite{Soskine-2013}.
     (\subref{fig:transport_ioncurrent_icr_heatmap})
     %
     Contour plot of the ionic current rectification $\icr = \conductance(+\vbias)/\conductance (-\vbias)$,
-    computed from the ionic conductances in the {ePNP-NS} simulation, as a function of $\vbias$ and $\cbulk$.
+    computed from the ionic conductances in the \gls{epnp-ns} simulation, as a function of $\vbias$ and
+    $\cbulk$.
     %
     (\subref{fig:transport_ioncurrent_icr_concentration})
     %
@@ -628,9 +628,9 @@ Whereas the classical \gls{pnp-ns} equations consistently overestimated the ioni
 high salt concentrations, the predictions of the \gls{epnp-ns} equations corresponded closely to the measured
 values, \emph{especially} at high ionic strengths ($\cbulk > \mSI{0.5}{\Molar}$). The inability of the
 classical \gls{pnp-ns} equations to correctly estimate the current is expected however, as in this regime the
-model parameters (\eg~diffusivity, mobility and viscosity, ...) already deviate significantly from their
-`infinite dilution' values (see~\cref{sec:epnp-ns:parametrization},
-\cref{fig:epnpns_concentration_d,fig:epnpns_concentration_mu,fig:epnpns_concentration_solv,fig:epnpns_distance}).q
+model parameters (\eg~diffusivity, mobility and viscosity, \ldots) already deviate significantly from their
+`infinite dilution' values (see~\cref{sec:epnp-ns:parameterization},
+\cref{fig:epnpns_concentration_d,fig:epnpns_concentration_mu,fig:epnpns_concentration_solv,fig:epnpns_distance}).
 At $\cbulk < \mSI{0.15}{\Molar}$ the \gls{epnp-ns} equations tended to minorly overestimate the ionic current,
 but the discrepancies were much smaller than those observed for \gls{pnp-ns}. Further, these ionic strengths
 are not usually tested experimentally. Finally, the bulk model managed to capture the currents surprisingly
@@ -732,7 +732,7 @@ by the fraction of the total current that is carried by \Na{} ions: the apparent
 %
 \begin{align}\label{eq:tna}
   \tna = \dfrac{\pna}{\pna + 1} = \dfrac{\gna}{\gna + \gcl}
-  \text{\,\, ,}
+  \text{ \, ,}
 \end{align}
 %
 with $\pna$ the cation permeability ratio, and $\gna$ and $\gcl$ the cation and anion contributions to the
@@ -1068,10 +1068,10 @@ electric screening by the mobile charge carriers in the electrolyte, however, th
 strongly depends on the bulk ionic strength. The contour plot cross-sections of $\eqpot$ for $\cbulk =
 \mSIlist{0.05;0.15;0.5;5}{\Molar}$ (\cref{fig:transport_potential_contours}) and their corresponding radial
 averages (\cref{fig:transport_potential_profiles}) demonstrate this effect aptly. The radial average
-($\radeqpot$) represents the mean value along the longitudinal axis of the pore and can be computed using
+($\radpot$) represents the mean value along the longitudinal axis of the pore and can be computed using
 %
-\begin{align}
-  \radpot=\dfrac{1}{\pi R(z)^2}\int_{0}^{R(z)}\potential(r,z) \;2 \pi r \; dr \text{\,,}
+\begin{align}\label{eq:epnp-ns_radpot}
+  \radpot = \dfrac{1}{\pi R(z)^2}\int_{0}^{R(z)}\potential(r,z) \;2 \pi r \; dr \text{ ,}
 \end{align}
 %
 where $R(z)$ is taken as the \gls{clya}'s radius inside the pore ($-1.85 \le z \le \mSI{12.25}{\nm}$), and as
@@ -1150,9 +1150,14 @@ the constriction. A summary of the most salient $\radeqpot$ values can be found 
 \subsubsection{Non-equilibrium electrostatic energy at $\mathbf{\pm150}$~mV.}
 %
 
-To link back the observed ionic conductance properties to the electrostatic potential, we computed the
-radially averaged electrostatic energy for a monovalent ion, $\radenergy = \chargen_{i} \echarge \radpot$, at
-$\vbias = \mSI{\pm150}{\mV}$ for the entire range of simulated ionic strengths
+To link back the observed ionic conductance properties to the electrostatic potential, we computed
+$\radenergy$, the radially averaged electrostatic energy for a monovalent ion
+%
+\begin{equation}\label{eq:epnp-ns_radenergy}
+  \radenergy = \chargen_{i} \echarge \radpot
+\end{equation}
+%
+at $\vbias = \mSI{\pm150}{\mV}$ for the entire range of simulated ionic strengths
 (\cref{fig:transport_energy_profiles}). The resulting plot represents the energy landscape---filled with
 barriers (hills) or traps (valleys)---that a positive or negative ion must traverse in order to contribute
 positively to (\ie~increase) the ionic current.
@@ -1367,7 +1372,7 @@ velocity across the reservoir boundary $S$
 %
 \begin{align}\label{eq:flowrate}
   \flowrate = \int_{S}\left(\normvec\cdot\vec{\velocity}\right)dS
-  \text{\,.}
+  \text{ .}
 \end{align}
 %
 The strength of the \gls{eof} depends strongly and non-monotonically on the bulk ionic strength: $\flowcond$
@@ -1450,12 +1455,12 @@ we expect them to play an important role in the detailed trapping dynamics of pr
 
 To estimate the influence to which each group of corrections (\ie~the wall distance, concentration and steric
 effects) on the conductance properties of \gls{clya-as}, we performed a set of simulations for the following
-conditions: {ePNP-NS} without wall distance corrections (`ePNP-NS no WDF'; $\diffusion_{i}^w=1$,
-$\mobility_{i}^w=1$, $\viscosity^w=1$), {ePNP-NS} without concentration-dependent corrections (`ePNP-NS no
+conditions: \gls{epnp-ns} without wall distance corrections (`ePNP-NS no WDF'; $\diffusion_{i}^w=1$,
+$\mobility_{i}^w=1$, $\viscosity^w=1$), \gls{epnp-ns} without concentration-dependent corrections (`ePNP-NS no
 CDF'; $\permittivity_{r,\text{f}}^c=1$, $\diffusion_{i}^c=1$, $\mobility_{i}^c=1$, $\viscosity^c=1$,
-$\density^c=1$), {ePNP-NS} without steric effect (`ePNP-NS no SMP'; $\vec{\beta}=0$). For comparison, we
+$\density^c=1$), \gls{epnp-ns} without steric effect (`ePNP-NS no SMP'; $\vec{\beta}=0$). For comparison, we
 plotted the ionic (\cref{fig:transport_comparison_ionic}) and water (\cref{fig:transport_comparison_water})
-conductances of these models, normalized over the values obtained with the full {ePNP-NS} equations.
+conductances of these models, normalized over the values obtained with the full \gls{epnp-ns} equations.
 
 %
 \begin{figure*}[p]
@@ -1490,11 +1495,11 @@ conductances of these models, normalized over the values obtained with the full 
     the water conductance $\flowcond = \flowrate / \vbias$ of {ClyA-AS} at \SI{+150}{\mV} (left) and
     \SI{-150}{\mV} (right), normalized over the values of the \gls{epnp-ns} equations. Comparison between the
     experimental data (expt.), the simple resistor model (bulk, \cref{eq:bulk_nanopore_current}), classic
-    {PNP-NS} ({sim. PNP-NS}), {ePNP-NS} without wall distance corrections ({sim. ePNP-NS no WDF}:
-    $\diffusion_{i}^w=1$, $\mobility_{i}^w=1$, $\viscosity^w=1$), {ePNP-NS} without concentration-dependent
-    corrections ({sim. ePNP-NS no CDF}: $\permittivity_{r,\text{f}}^c=1$, $\diffusion_{i}^c=1$,
-    $\mobility_{i}^c=1$, $\viscosity^c=1$, $\density^c=1$), {ePNP-NS} without steric effect ({sim. ePNP-NS no
-    SMP}: $\vec{\beta}=0$) and full with all corrections enabled ({ePNP-NS}).
+    {PNP-NS} ({sim. PNP-NS}), \gls{epnp-ns} without wall distance corrections ({sim. ePNP-NS no WDF}:
+    $\diffusion_{i}^w=1$, $\mobility_{i}^w=1$, $\viscosity^w=1$), \gls{epnp-ns} without
+    concentration-dependent corrections ({sim. ePNP-NS no CDF}: $\permittivity_{r,\text{f}}^c=1$,
+    $\diffusion_{i}^c=1$, $\mobility_{i}^c=1$, $\viscosity^c=1$, $\density^c=1$), \gls{epnp-ns} without steric
+    effect ({sim. ePNP-NS no SMP}: $\vec{\beta}=0$) and full with all corrections enabled (\ie~\gls{epnp-ns}).
     %
   }\label{fig:transport_comparison}
 \end{figure*}
@@ -1505,9 +1510,9 @@ conductances of these models, normalized over the values obtained with the full 
 %
 
 Disabling the wall distance corrections yields a higher (\SI{\approx10}{\percent} increase) ionic conductance
-compared to the full {ePNP-NS} equations (\cref{fig:transport_comparison_ionic}, blue curve). In effect, the
-implementation of the wall distance corrections results in an smaller effective pore size.  The influence on
-the water flow is stronger, with the reduction of the viscosity near the wall giving rise to a
+compared to the full \gls{epnp-ns} equations (\cref{fig:transport_comparison_ionic}, blue curve). In effect,
+the implementation of the wall distance corrections results in an smaller effective pore size.  The influence
+on the water flow is stronger, with the reduction of the viscosity near the wall giving rise to a
 \SIrange{25}{50}{\percent} increase in the water flow (\cref{fig:transport_comparison_water}, blue curve).
 
 %

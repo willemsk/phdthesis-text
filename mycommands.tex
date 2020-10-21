@@ -33,13 +33,13 @@
 % DHFR tag
 \newcommand{\DHFRt}{DHFR\textsubscript{tag}}
 % Residual current
-\newcommand{\ires}{\rm{I}_{\rm{res}}}
+\newcommand{\ires}{\current_{\rm{res}}}
 % Percentage residual current
 \newcommand{\iresp}{\ires\%}
 % Open pore current
-\newcommand{\iopen}{\rm{I}_0}
+\newcommand{\iopen}{\current_0}
 % Blocked pore current
-\newcommand{\iblock}{\rm{I}_b}
+\newcommand{\iblock}{\current_b}
 % Blocked pore level
 \newcommand{\ilevel}[1]{\rm{L}_{#1}}
 
@@ -146,7 +146,7 @@
 % Electrical displacement field vector
 \newcommand\displacement{\vec{D}}
 % Wall distance
-\newcommand\walldistance{d}
+\newcommand\walldistance{d_{\rm{w}}}
 % Dipole moment
 \newcommand\dipolemoment{\vec{m}}
 
@@ -367,7 +367,9 @@
 % Chloride conductance
 \newcommand{\gcl}{\conductance_{\ce{Cl-}}}
 % Sodium permeability ratio
-\newcommand{\pna}{\permeability_{\ce{Na+}}}
+\newcommand{\pna}{\permeability_{\ce{Na+} / \ce{Cl-}}}
+% Chloride permeability ratio
+\newcommand{\pcl}{\permeability_{\ce{Cl-} / \ce{Na+}}}
 % Molar conductivity
 \newcommand{\molarconductivity}{\Lambda}
 % Specific molar conductivity
@@ -376,17 +378,19 @@
 % Space charge density
 \newcommand\scd{\rho}
 % Fixed space charge density
-\newcommand\scdpore{\scd_{\text{pore}}^f}
-% Fixed space charge density
-\newcommand\scdfix{\scd_{\text{fix}}}
+\newcommand\scdpore{\scd_{\text{pore}}}
 % Ionic space charge density
 \newcommand\scdion{\scd_{\text{ion}}}
+% Fixed space charge density
+\newcommand\scdfix{\scd^{\rm{f}}}
+% Mobile space charge density
+\newcommand\scdmob{\scd^{\rm{m}}}
 % Ionic flux
 \newcommand\flux{\vec{J}}
 % Electro-osmotic water flux
 \newcommand\fluxeo{\flux_{\eo}}
  % Fluid volume force
-\newcommand\volumeforce{\vec{\force}_{\rm ion}}
+\newcommand\volumeforce{\forcedens_{\rm ion}}
 % Surface charge density
 \newcommand\surfcd{\sigma_s}
 % Current
@@ -407,7 +411,7 @@
 \newcommand\eor{\alpha_{\text{eo}}}
 
 % Ionic strength
-\newcommand\ionstr{I}
+\newcommand\ionstr{\mathcal{I}}
 % Ion concentration
 \newcommand\ci{\concentration_{i}}
 % Cation concentration
@@ -464,7 +468,9 @@
 \newcommand\potdiff{\Delta V}
 
 % Atomic partial charge
-\newcommand\partialcharge{\delta}
+% \newcommand\partialcharge{\delta}
+\newcommand\partialcharge{Q}
+
 % Atomic radius
 \newcommand\atomradius{R}
 
@@ -522,12 +528,12 @@
 \newcommand\zdnat{z_{\mathrm{DNA}}^{\text{\transi}}}
 
 % Probalility
-\newcommand\probability{p}
+\newcommand\probability{\mathcal{P}}
 % Translocation probalility
 \newcommand\probtrans{\probability_{\rm{transl}}}
 
 % Permeability ratio
-\newcommand{\permeabilityratio}[2]{ P_{#1} / P_{#2} }
+\newcommand{\permeabilityratio}[2]{ \permeability_{#1} / \permeability_{#2} }
 
 % Drawings
 \newcommand{\sliceline}{\tikz \draw [>-<,>={Straight Barb},>={Straight Barb}] (0,.5) -- (0.5,.5);}

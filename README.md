@@ -1,23 +1,22 @@
-# Computional modelling and optical parallelization of biological nanopores
+# Computional modeling of biological nanopores
 
-PhD dissertation, Kherim Willems, November 2019. Defended ?.
+PhD dissertation, Kherim Willems, October 2020. Defended ?.
 
-This is the home of my PhD thesis, which revolves around the modelling of biological nanopores and fabrication of optical hybrid nanopores.
+This is the home of my PhD thesis, which revolves around the modeling of biological nanopores.
 
 
 ## Thesis outline
 
 ###### Part I. Literature and Objectives
-* Chapter 1. Three decades of experimental and theoretical work on nanopores
+* Chapter 1. Biological nanopores
 * Chapter 2. Aims
 ###### Part II. Results
-* Chapter 3. Modelling the electrostatics of biological nanopores
-* Chapter 4. Trapping behavior of a protein dipole inside ClyA
-* Chapter 5. Continuum modelling of ion and water transport through ClyA
-* Chapter 6. Electro-hydrodynamics of particle trapping inside ClyA
-###### Part III. Conclusions and Perspectives
-* Chapter 7. Conclusion and Outlook
-* Chapter 8. Risk Analysis
+* Chapter 3. Equilibirum electrostatics of biological nanopores
+* Chapter 4. Trapping of a single protein inside a nanopore
+* Chapter 5. An improved PNP-NS framework
+* Chapter 6. Modeling the transport of ions and water through ClyA
+###### Part III. Conclusions
+* Chapter 7. Conclusions and perspectives
 ###### Part IV. Appendices
-* Appendix A. ?
-* Appendix B. ?
+* Appendix A. Supplementary information: Trapping of a single protein inside a nanopore
+* Appendix B. Supplementary information: Modeling the transport of ions and water through ClyA

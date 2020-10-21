@@ -282,6 +282,8 @@ other proteins, which we believe has significant value for single-molecule sensi
 
 \subsection{Phenomenology of {DHFR} trapped inside {ClyA}}
 %
+\label{sec:trapping:phenomenology}
+%
 
 To effectively study the enzymes at the single-molecular level, one must be able to collect a statistically
 significant (\ie~typically hundreds) of catalytic cycles from the same enzyme. In the case of the
@@ -409,10 +411,10 @@ through the pore (\cref{fig:trapping_apbs_model,fig:trapping_apbs_energy}), simi
 \gls{clya}, respectively. The tagged \gls{dhfr} molecule was reduced to a coarse-grained `bead' model
 (\cref{fig:trapping_apbs_model}), where the bulk of the protein (body) was defined by seven negatively charged
 beads ($r = \SI{0.8}{\nm}$, $Q_i = \SI{-1.7143}{\ec}$) in a spherical configuration (\SI{0.8}{\nm} spacing);
-and the C-terminal fusion tag (tail) was represented by nine smaller beads ($r = \SI{0.5}{\nm}$, $Q_i =
-\num{-3}$ to \SI{+3}{\ec} depending on the amount of charges in their corresponding amino acids) each
-representing three amino acids in an alpha-helix (\SI{0.6}{\nm}   spacing). Our reasons for this
-simplification were two-fold: (1) the high degree of axial symmetry in the bead model resulted in a free
+and the C-terminal fusion tag (tail) was represented by nine smaller beads ($r = \SI{0.5}{\nm}$,
+$\partialcharge{}_i = \num{-3}$ to \SI{+3}{\ec} depending on the amount of charges in their corresponding
+amino acids) each representing three amino acids in an alpha-helix (\SI{0.6}{\nm}   spacing). Our reasons for
+this simplification were two-fold: (1) the high degree of axial symmetry in the bead model resulted in a free
 energy that was independent of the precise orientation of \gls{dhfr}, significantly reducing the number of
 required computations; and (2) the reduced body size of the coarse-grained model compared to the full atom
 model allowed for the placement of \gls{dhfr} along the entire length of the pore without nonphysical overlaps
@@ -547,6 +549,7 @@ bias voltage, $\vbias$, can be expressed as the inverse of the sum of two escape
 	\dfrac{1}{\dwelltime} = \rate = \rate^\cis + \rate^\trans	=
     \rate^\cis_0 \exp \left( -\dfrac{\alpha^\cis \ec \vbias}{\kbt} \right) +
     \rate^\trans_0 \exp \left( \dfrac{\alpha^\trans \ec \vbias}{\kbt} \right)
+  \text{ ,}
 \end{align}
 %
 where $\rate^{\cis/\trans}$ are the molecule's escape rates toward \cisi{} and \transi{}, respectively. These
@@ -775,7 +778,8 @@ terms of energy barriers:
 \begin{align}\label{eq:double_barrier}
     \frac{1}{\dwelltime} = \rate =
         \rate_0 \exp \left( - \dfrac{\barrier^{\cis}}{\kbt} \right)
-        + \rate_0 \exp \left( - \dfrac{\barrier^{\trans}}{\kbt} \right),
+        + \rate_0 \exp \left( - \dfrac{\barrier^{\trans}}{\kbt} \right)
+    \text{ ,}
 \end{align}
 %
 where $\rate_0$ is the attempt rate and $\barrier^{\cis/\trans}$ are the energy barriers the molecule has to
@@ -791,7 +795,8 @@ overcome in order to escape toward \cisi{} and \transi{}, respectively. These ca
   \barrier^{\trans} ={}&
     \barrier^{\trans}_{\steric,0}
     + \barrier^{\trans}_\static
-    + \barrier^{\trans}_\ext.
+    + \barrier^{\trans}_\ext
+  \text{ .}
 \end{align}
 \end{subequations}
 %
@@ -810,7 +815,8 @@ electrostatic components $\barrier^{\cis/\trans}_{\static}$ can be further decom
 			+ \Ntag \ec \potbar_{\rm{tag}}^{\cis},\\
 	\barrier^{\trans}_\static ={}&
 			\barrier^{\trans}_{\static,0}
-			+ \Ntag \ec \potbar_{\rm{tag}}^{\trans},
+      + \Ntag \ec \potbar_{\rm{tag}}^{\trans}
+  \text{ ,}
 \end{align}
 \end{subequations}
 %
@@ -1093,10 +1099,10 @@ respectively the middle of the \lumen{} ($z \approx \mSI{5.7}{\nm}$) and the \ci
     %
     (\subref{fig:trapping_translocation_probability})
     %
-    Translocation probability voltage $\vbias^{P_{\rm{transl}}}$ plotted against tag charge for
-    $P_{\rm{transl}} = \mSIlist{0.1;5;50;95;99.9}{\percent}$, shows that variants with high tag charge
-    require less bias voltage to fully translocate the pore. Values were obtained through interpolation from
-    \cref{eq:ptrans}, using the parameters in \cref{tab:fitting_params_complex}.
+    Translocation probability voltage $\vbias^{\probability_{\rm{transl}}}$ plotted against tag charge for
+    $\probability_{\rm{transl}} = \mSIlist{0.1;5;50;95;99.9}{\percent}$, shows that variants with high tag
+    charge require less bias voltage to fully translocate the pore. Values were obtained through interpolation
+    from \cref{eq:ptrans}, using the parameters in \cref{tab:fitting_params_complex}.
     %
   }\label{fig:trapping_translocation}
 \end{figure*}

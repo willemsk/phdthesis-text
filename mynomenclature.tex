@@ -1,4 +1,237 @@
-\nomenclature{$\vec{\vel}$}{fluid velocity field}
-\nomenclature{$\efield$}{electrical field}
-\nomenclature{$\potential$}{electrostatic potential}
-\nomenclature{$\partialcharge$}{partial charge}
+
+% Math
+\nomenclature[I1]{$\bessel{1}$}{first order modified Bessel function}
+\nomenclature[I2]{$\bessel{2}$}{second order modified Bessel function}
+\nomenclature[rpos]{$\vec{r}$}{position vector}
+\nomenclature[identity]{$\identity$}{identity matrix}
+\nomenclature[r]{$r$}{position between two atoms, see~\cref{eq:nanopores_LJ_force}}
+
+\nomenclature[zdna]{$\zdna$}{z-position of the {DNA} strand's center-of-mass}
+
+% Physical constants
+\nomenclature[kb]{$\boltzmann$}{Boltzmann constant}
+\nomenclature[ec]{$\ec$}{elementary charge}
+\nomenclature[NA]{$\avogadro$}{Avogadro's constant}
+\nomenclature[faraday]{$\faraday$}{Faraday constant}
+\nomenclature[epsilon0]{$\absperm$}{permittivity of free space}
+
+
+\nomenclature[epsilon]{$\permittivity$}{permittivity}
+\nomenclature[epsilonr]{$\relperm$}{relative permittivity}
+\nomenclature[epsilonrf]{$\permittivity_{r,\text{f}}(\avionconc)$}{concentration dependent relative permittivity of the electroolyte, see~\cref{eq:epnp-ns_relperm_concentration}}
+\nomenclature[epsilonrf0]{$\permittivity_{r,\text{f}}^0$}{relative permittivity of the electrolyte at infinite dilution, see~\cref{eq:epnp-ns_relperm_concentration}}
+\nomenclature[epsilonrfc]{$\permittivity_{r,\text{f}}^c(\avionconc)$}{concentration dependent empirical scaling fuction of the electrolyte relative permittivity, see~\cref{eq:epnp-ns_relperm_concentration,eq:epnpns_concentration_solv_epsr}}
+
+
+
+\nomenclature[T]{$\temperature$}{temperature}
+
+\nomenclature[beta]{$\beta$}{inverse thermal energy, see~\cref{eq:nanopores_electrostatic_energy}}
+
+\nomenclature[Vi]{$V_i$}{repulsive potential, see~\cref{eq:nanopores_electrostatic_energy}}
+
+% Fields, vectors and field
+\nomenclature[u]{$\vec{\vel}$}{fluid velocity field}
+\nomenclature[E]{$\efield$}{electric field}
+\nomenclature[Ez]{$\electricfield_z$}{z-component of the electric field}
+
+
+% Scalar fields and scalars
+\nomenclature[phi]{$\potential$}{electric potential}
+\nomenclature[phicis]{$\potcis$}{electric potential at the \cisi{} entry of the nanopore, see~\cref{eq:nanopores_potcis}}
+\nomenclature[phitrans]{$\pottrans$}{electric potential at the \transi{} entry of the nanopore, see~\cref{eq:nanopores_pottrans}}
+
+
+\nomenclature[phicyl]{$\cylpot$}{cylindrically averaged electrostatic potential}
+\nomenclature[phirad]{$\radpot$}{radially averaged electrostatic potential, see~\cref{eq:epnp-ns_radpot}}
+\nomenclature[Urad]{$\radenergy$}{radially averaged electrostatic energy for a monovalent ion, see~\cref{eq:epnp-ns_radenergy}}
+
+\nomenclature[Qeo]{$\flowrate$}{volumetric flowrate, see~\cref{eq:nanopores_eof_rate,eq:flowrate}}
+\nomenclature[Geo]{$\flowcond$}{electro-osmotic conductance, see~\cref{sec:eof}}
+\nomenclature[alphaeo]{$\eor$}{electro-osmotic conductance rectification, see~\cref{sec:eof}}
+
+\nomenclature[eta]{$\viscosity$}{fluid dynamic viscosity}
+\nomenclature[etacd]{$\viscosity(\avionconc,\walldistance)$}{concentration and wall distance dependent dynamic viscosity of the electrolyte, see~\cref{eq:epnp-ns_viscosity_density}}
+\nomenclature[eta0]{$\viscosity^0$}{electrolyte dynamic viscosity at infinite dilution, see~\cref{eq:epnp-ns_viscosity_density}}
+\nomenclature[etac]{$\viscosity^c(\avionconc)$}{concentration dependent empirical scaling fuction of the electrolyte dynamic viscosity, see~\cref{eq:epnp-ns_viscosity_density,eq:epnpns_concentration_solv_eta}}
+\nomenclature[etad]{$\viscosity^w(\walldistance)$}{wall distance dependent empirical scaling fuction of the electrolyte dynamic viscosity, see~\cref{eq:epnp-ns_viscosity_density,eq:epnpns_distance_eta}}
+
+\nomenclature[rhodens]{$\density$}{fluid density}
+\nomenclature[rhodensc]{$\density(\avionconc)$}{concentration dependent electrolyte density, see~\cref{eq:epnp-ns_viscosity_density}}
+\nomenclature[rhodens0]{$\density^0$}{electrolyte density at infinite dilution, see~\cref{eq:epnp-ns_viscosity_density}}
+\nomenclature[rhodenscf]{$\density^c(\avionconc)$}{oncentration dependent empirical scaling fuction of the electrolyte density, see~\cref{eq:epnp-ns_viscosity_density,eq:epnpns_concentration_solv_rho}}
+
+\nomenclature[pressure]{$\pressure$}{pressure}
+
+
+\nomenclature[mdip]{$\dipolemoment$}{dipole moment, see~\cref{eq:nanopores_dep_force}}
+
+% Forces, force densities, stress tensors
+\nomenclature[forcedens]{$\forcedens$}{force density}
+\nomenclature[forcedensedl]{$\forcedensedl$}{force density on the electrical double layer, see~\cref{eq:nanopores_edl_force}}
+\nomenclature[forcedensvol]{$\forcedensvol$}{volume force density, see~\cref{eq:nanopores_navier_stokes}}
+\nomenclature[forcedension]{$\volumeforce$}{volume force density on the electrical double layer, same as $\forcedensedl$, see~\cref{eq:ion_force_density}}
+
+\nomenclature[force]{$\force$}{force vector}
+\nomenclature[forceep]{$\forceep$}{electrophoretic (Lorentz) force, see~\cref{eq:nanopores_lorentz_force}}
+\nomenclature[forcedep]{$\forcedep$}{dielectrophoretic force, see~\cref{eq:nanopores_dep_force}}
+\nomenclature[forceE]{$\forceele$}{electric force, see~\cref{eq:nanopores_electric_force}}
+\nomenclature[forced]{$\forcedrag$}{drag force, see~\cref{eq:nanopores_drag_force}}
+\nomenclature[forceH]{$\forcehyd$}{hydrodynamic force, see~\cref{eq:nanopores_hydrodynamic_force}}
+\nomenclature[forceesm]{$\force_{\es,m}$}{electrostatic force on atom $m$, see~\cref{eq:nanopores_electrostatic_force}}
+\nomenclature[forceLJ]{$\forcelj$}{Lennard-Jones force, see~\cref{eq:nanopores_LJ_force}}
+\nomenclature[forceDeltaS]{$\forceentr$}{entropic force, see~\cref{eq:nanopore_entropic_force}}
+
+
+\nomenclature[sigmae]{$\maxwellstresstensorvec$}{Maxwell stress tensor, see~\cref{eq:nanopores_maxwell_stresstensor}}
+\nomenclature[sigmah]{$\hydrostresstensorvec$}{hydrodynamic stress tensor, see~\cref{eq:nanopores_hydrodynamic_stresstensor}}
+
+
+% Energies
+\nomenclature[DeltaGelec]{$\energyelec$}{electrostatic energy, see~\cref{eq:nanopores_electrostatic_energy}}
+
+\nomenclature[ULJ]{$\potLJ$}{Lennard-Jones potential, see~\cref{eq:nanopores_electrostatic_energy}}
+\nomenclature[epsilonLJ]{$\welldepthLJ$}{well depth of the Lennard-Jones potential, see~\cref{eq:nanopores_LJ_force}}
+\nomenclature[rmin]{$\dminLJ$}{position of energy minimum in the Lennard-Jones potential, see~\cref{eq:nanopores_LJ_force}}
+
+\nomenclature[S]{$\entropy$}{entropy, see~\cref{eq:nanopores_entropy}}
+\nomenclature[Omega]{$\microstates$}{number of available microstates, see~\cref{eq:nanopores_entropy}}
+
+\nomenclature[DeltaS]{$\Delta \entropy$}{entropy difference, see~\cref{eq:nanopore_entropic_energy}}
+
+\nomenclature[U]{$\energymd$}{interaction potential, see~\cref{eq:nanopores_md_force,eq:nanopores_md_energy}}
+\nomenclature[Ub]{$\energymd_{\text{b}}$}{bonded energy term of $\energymd$}
+\nomenclature[Unb]{$\energymd_{\text{nb}}$}{non-bonded energy term of $\energymd$}
+
+% Atomic and chemical properties
+\nomenclature[Q]{$\partialcharge$}{atomic partial charge, see~\cref{eq:pka_partial_charge}}
+\nomenclature[Qi]{$\partialcharge_i$}{partial charge of atom $i$, see~\cref{eq:electrostatics_scdf}}
+\nomenclature[q]{$\chargeq$}{charge}
+
+\nomenclature[lb]{$\bjl$}{Bjerrum length, see~\cref{eq:nanopores_bjerrum_length}}
+\nomenclature[lambda]{$\dbl$}{Debye length, see~\cref{eq:nanopores_debye_length}}
+\nomenclature[kappa]{$\invdbl$}{inverse Debye length, see~\cref{eq:nanopores_pbe_linear}}
+
+\nomenclature[concentration]{$\concentration$}{chemical concentration}
+\nomenclature[concentrations]{$\cbulk$}{bulk salt concentration}
+\nomenclature[concentrationi]{$\ci$}{concentration of ion species $i$}
+\nomenclature[concentrationi0]{$\ci^0$}{bulk concentration of ion species $i$}
+\nomenclature[concentrationav]{$\avionconc$}{average ion concentration, see~\cref{sec:epnp-ns:electrostatic_field}}
+
+\nomenclature[zn]{$\chargen$}{charge number}
+\nomenclature[zni]{$\chargeni$}{charge number of ion species $i$}
+
+\nomenclature[fHA]{$\protfrac_{\mathrm{HA}}$}{protonated fraction, see~\cref{eq:pka_protonation}}
+
+% PNP
+
+\nomenclature[t]{$\timedim$}{time}
+\nomenclature[J]{$\flux$}{chemical species flux, see~\cref{eq:nanopores_nernst_planck}}
+
+\nomenclature[Diffusion]{$\diffusion$}{diffusion coefficient, see~\cref{eq:nanopores_nernst_planck}}
+\nomenclature[Diffusioni]{$\diffusion_{i}(\avionconc,\walldistance)$}{concentration and wall distance dependent diffusion coefficient of ion $i$, see~\cref{eq:epnp-ns_diffusion_and_mobility}}
+\nomenclature[Diffusioni0]{$\diffusion_{i}^0$}{diffusion coefficient of ion $i$ at infinite dilution, see~\cref{eq:epnp-ns_diffusion_and_mobility}}
+\nomenclature[Diffusionic]{$\diffusion_{i}^c(\avionconc)$}{concentration dependent empirical scaling fuction of the diffusion coefficient of ion $i$, see~\cref{eq:epnp-ns_diffusion_and_mobility,eq:concentration_d_mu_tna}}
+\nomenclature[Diffusionid]{$\diffusion_{i}^w(\walldistance)$}{wall distance dependent empirical scaling fuction of the diffusion coefficient of ion $i$, see~\cref{eq:epnp-ns_diffusion_and_mobility,eq:epnpns_distance_d}}
+
+\nomenclature[mu]{$\mobility$}{electrophoretic mobility, see~\cref{eq:nanopores_nernst_planck}}
+\nomenclature[mui]{$\mobility_{i}(\avionconc,\walldistance)$}{concentration and wall distance dependent electrophoretic mobility of ion $i$, see~\cref{eq:epnp-ns_diffusion_and_mobility}}
+\nomenclature[mui0]{$\mobility_{i}^0$}{electrophoretic mobility of ion $i$ at infinite dilution, see~\cref{eq:epnp-ns_diffusion_and_mobility}}
+\nomenclature[muic]{$\mobility_{i}^c(\avionconc)$}{concentration dependent empirical scaling fuction of the electrophoretic mobility of ion $i$, see~\cref{eq:epnp-ns_diffusion_and_mobility,eq:concentration_d_mu_tna}}
+\nomenclature[muid]{$\mobility_{i}^w(\walldistance)$}{wall distance dependent empirical scaling fuction of the electrophoretic mobility of ion $i$, see~\cref{eq:epnp-ns_diffusion_and_mobility,eq:epnpns_distance_d}}
+
+
+
+\nomenclature[betai]{$\vec{\beta_{i}}$}{steric flux vector of ion $i$, see~\cref{eq:sm-nernst-planck,eq:epnp-ns_steric_flux_vector}}
+
+\nomenclature[ai]{$\ionsize_{i}$}{steric size of ion $i$, \cref{eq:epnp-ns_steric_flux_vector}}
+\nomenclature[a0]{$\ionsize_{0}$}{steric size of a water molecule, \cref{eq:epnp-ns_steric_flux_vector}}
+
+\nomenclature[Jw]{$\flux_{w}$}{water flux through a nanopore, see~\cref{eq:water_flux_permeability}}
+\nomenclature[Nw]{$N_{w}$}{number of water molecules per ion, see~\cref{eq:water_flux_permeability}}
+
+% Nanopore properties
+\nomenclature[Rpore]{$\Rpore$}{ionic resistance of the nanopore, see~\cref{sec:np:potential}}
+\nomenclature[Raccess]{$\Raccess$}{ionic access resistance of the nanopore, see~\cref{sec:np:potential}}
+
+\nomenclature[length]{$\length$}{pore length}
+\nomenclature[diameter]{$\diameter$}{pore diameter}
+\nomenclature[dchar]{$\dchar$}{characteristic length of the nanopore system, see~\cref{eq:nanopores_characteristic_length}}
+
+\nomenclature[a]{$\radiusa$}{nanopore radius}
+\nomenclature[ap]{$\particleradius$}{particle radius}
+
+\nomenclature[I]{$\ionstr$}{ionic strength}
+\nomenclature[rhocharge]{$\scd$}{space charge density, see~\cref{eq:electrostatics_scd}}
+\nomenclature[rhochargeion]{$\scdion$}{ion space charge density, see~\cref{eq:nanopores_ion_scd,eq:scdion}}
+\nomenclature[rhochargepore]{$\scdpore$}{space charge density of the nanopore, typically the same as $\scdfix$, see~\cref{eq:scdpore}}
+\nomenclature[rhochargemob]{$\scdmob$}{mobile space charge density, typically the same as $\scdion$, see~\cref{eq:electrostatics_scdm,eq:electrostatics_scdm_salt}}
+\nomenclature[rhochargefix]{$\scdfix$}{fixed space charge density, see~\cref{eq:electrostatics_scdf}}
+
+
+
+
+\nomenclature[Vdelta]{$\potdiff$}{electric potential difference, see~\cref{sec:np:potential}}
+\nomenclature[Vbias]{$\vbias$}{applied bias potential, typically the same as $\potdiff$}
+
+\nomenclature[sigma]{$\sigma$}{electrolyte conductivity, see~\cref{eq:nanopores_ohms_law}}
+
+\nomenclature[I]{$\current$}{ionic current through the nanopore, see~\cref{eq:nanopores_ohms_law}}
+\nomenclature[Sz]{$S(z)$}{cross-sectional area of the nanopore as a function of the axial coordinate $z$,
+see~\cref{eq:nanopores_current_cross_section}}
+
+\nomenclature[zeta]{$\ionaccess$}{ion accessibility coefficient, see~\cref{eq:electrostatics_scdm_salt}}
+
+
+\nomenclature[PermNa]{$\pna$}{sodium permeability ratio}
+\nomenclature[PermCl]{$\pcl$}{chloride permeability ratio}
+\nomenclature[transpNa]{$\tna$}{sodium transport number, see~\cref{eq:tna}}
+
+\nomenclature[Vw]{$V_{w}$}{volume of a single water molecule, see~\cref{eq:water_flux_to_velocity}}
+
+\nomenclature[prob]{$\probability$}{probability, see~\cref{eq:electrostatics_probability}}
+\nomenclature[probtrans]{$\probtrans$}{translocation probability, see~\cref{eq:ptrans}}
+
+\nomenclature[Vthresh]{$\vthresh$}{threshold voltage, see~\cref{eq:threshold_voltage_simple,eq:threshold_voltage_complex}}
+
+% DHFR trapping
+
+\nomenclature[Nbody]{$\Nbody$}{number of elementary charges in the body of \DHFRt, see~\cref{sec:trapping:phenomenology}}
+\nomenclature[Ntag]{$\Ntag$}{number of elementary charges in the tag of \DHFRt, see~\cref{sec:trapping:phenomenology}}
+\nomenclature[Nnet]{$\Nnet$}{number of elementary charges in \DHFRt, see~\cref{sec:trapping:phenomenology}}
+\nomenclature[Neo]{$\Neo$}{equivalent electro-osmotic charge number, see~\cref{eq:external-barrier}}
+
+\nomenclature[forceepbody]{$\forceep^{\rm{body}}$}{electrophoretic force on the body of \DHFRt, see~\cref{sec:trapping:phenomenology}}
+\nomenclature[forceeptag]{$\forceep^{\rm{tag}}$}{electrophoretic force on the tag of \DHFRt, see~\cref{sec:trapping:phenomenology}}
+\nomenclature[forceeo]{$\forceeo$}{electro-osmotic force on \DHFRt, see~\cref{sec:trapping:phenomenology}}
+\nomenclature[forcest]{$\forcest$}{steric force on \DHFRt, see~\cref{sec:trapping:phenomenology}}
+
+\nomenclature[DeltaE]{$\barrier$}{energy barrier}
+\nomenclature[DeltaEes]{$\barrier_{\rm{es}}$}{electrostatic energy barrier, see~\cref{eq:decomposition}}
+\nomenclature[DeltaEst]{$\barrier_{\steric}$}{steric energy barrier, see~\cref{eq:decomposition}}
+\nomenclature[DeltaEex]{$\barrier_{\ext}$}{external energy barrier, see~\cref{eq:decomposition}}
+\nomenclature[DeltaEstat]{$\barrier_\static$}{static energy barrier, see~\cref{eq:static-barrier}}
+
+\nomenclature[Deltax]{$\Delta x$}{barrier distance, see~\cref{eq:external-barrier}}
+
+\nomenclature[DeltaVtag]{$\potbar_{\rm{tag}}$}{electrostatic potential at the tag of \DHFRt, see~\cref{eq:static-barrier}}
+
+\nomenclature[k]{$\rate$}{observed escape rate, see~\cref{eq:double_barrier}}
+
+\nomenclature[taud]{$\dwelltime$}{dwelltime, see~\cref{eq:double_barrier_simple,eq:double_barrier}}
+
+\nomenclature[Iopen]{$\iopen$}{open pore ionic current}
+\nomenclature[Iblock]{$\iblock$}{blocked pore ionic current}
+\nomenclature[Isim]{$\currentsim$}{simulated ionic current, see~\cref{eq:currentsim}}
+
+\nomenclature[Bi]{$\bfactor_i$}{temperature factor of atom $i$, see~\cref{eq:bfactor}}
+
+\nomenclature[rhomol]{$\rho_\text{mol}$}{molecular density, see~\cref{eq:denspore}}
+
+\nomenclature[G]{$\conductance$}{nanopore ionic conductance}
+\nomenclature[GNa]{$\gna$}{nanopore conductance carries by sodium ion}
+\nomenclature[GCl]{$\gcl$}{nanopore conductance carries by chloride ion}
+
+\nomenclature[alphaicr]{$\icr$}{ionic current rectification, see~\cref{eq:icr}}
+
+\nomenclature[dw]{$\walldistance$}{distance from the nanopore wall}

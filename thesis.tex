@@ -64,7 +64,7 @@
 \pdfsuppresswarningpagegroup=1
 
 % for the nomenclature (comment out if you do not use the nomencl package
-\usepackage{nomencl}   % For nomenclature
+\usepackage[cfg=thesis.cfg]{nomencl}   % For nomenclature
 \renewcommand{\nomname}{List of Symbols}
 \newcommand{\myprintnomenclature}{%
   \cleardoublepage%
@@ -72,6 +72,7 @@
   \chaptermark{\nomname}
   \addcontentsline{toc}{chapter}{\nomname} %% comment to exclude from TOC
 }
+\setlength{\nomitemsep}{-0.75\parsep}
 \makenomenclature%
 
 % for the list of abbreviations (comment out if you do not use the glossaries package
@@ -290,30 +291,30 @@
 
 
 
-\part{Introduction}
-%
-\cleardoublepage
-%
+% \part{Introduction}
+% %
+% \cleardoublepage
+% %
 \includechapter{nanopores}
 \includechapter{aims}
 
-\part{Results}
-%
-\cleardoublepage
-%
+% \part{Results}
+% %
+% \cleardoublepage
+% %
 \includechapter{electrostatics}
 \includechapter{trapping}
 \includechapter{epnpns}
 \includechapter{transport}
 
-\part{Conclusions}
-%
-\cleardoublepage
-%
+% \part{Conclusions}
+% %
+% \cleardoublepage
+% %
 \includechapter{conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Appendices}
+% \part{Appendices}
 \appendix
 \includeappendix{trapping_appendix}
 \includeappendix{epnpns_appendix}

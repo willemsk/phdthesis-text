@@ -202,6 +202,34 @@ pore~\cite{Bayoumi-2020}.
 \label{sec:elec:methods}
 %
 
+A schematic overview of all the computational methods, and how they are linked together, can be found in
+~\cref{fig:electrostatics_overview_diagram}.
+
+%
+\begin{figure*}[b]
+  \centering
+  
+  %
+  \includegraphics[scale=1]{electrostatics_overview_diagram}
+  %
+
+\caption[Diagram of the electrostatic simulation methodology]{%
+  \textbf{Diagram of the electrostatic simulation methodology.}
+  %
+  Overview of the molecular modeling, electrostatic simulation, and data analysis steps performed within this
+  chapter.
+  %
+  }\label{fig:electrostatics_overview_diagram}
+\end{figure*}
+%
+
+%
+%
+\clearpage
+%
+%
+
+
 \subsection{Molecular modeling}
 %
 \label{sec:elec:methods:molec}
@@ -391,9 +419,9 @@ pores isolated in individual files.
     \end{subfigure}
   \end{minipage}
 
-\caption[APBS simulation setup]{%
-  \textbf{APBS simulation setup.}
-  Top-side views of the PQR files of  
+\caption[{APBS} simulation setup]{%
+  \textbf{{APBS} simulation setup.}
+  Top-side views of the {PQR} files of  
   %
   (\subref{fig:apbs_focussing_plyab_pqr})
   %
@@ -434,43 +462,44 @@ As described in \cref{sec:np:edl}, the electrostatic potential distribution of a
 electrolyte medium can be estimated by solving the \glsfirst{pbe}~\cite{Baker-2001,Baker-2005}
 %
 \begin{equation}\label{eq:pbe}
-  - \nabla \cdot \left[ \permittivity (\rpos) \nabla \potential (\rpos) \right] = \scd_{\rm{c}} (\rpos)
+  - \nabla \cdot \left[ \permittivity (\rpos) \nabla \potential (\rpos) \right] = \scd (\rpos)
   \text{ ,}
 \end{equation}
 %
 with $\rpos$ the location vector, $\potential$ the electrostatic potential (normalized over the thermal
-voltage \si{\kbt\per\ec}), $\permittivity$ the local permittivity, and $\scd_{\rm{c}}$ the charge density. For
-a molecular system in an electrolyte, $\scd_{\rm{c}}$ can be split into two parts
+voltage \si{\kbt\per\ec}), $\permittivity$ the local permittivity, and $\scd$ the charge density. For a
+molecular system in an electrolyte, $\scd$ can be split into two parts
 %
-\begin{equation}
-  \scd_{\rm{c}} (\rpos) = \scd^{\rm{f}}(\rpos) + \scd^{\rm{m}}(\rpos)
+\begin{equation}\label{eq:electrostatics_scd}
+  \scd (\rpos) = \scdfix(\rpos) + \scdmob(\rpos)
   \text{ ,}
 \end{equation}
 %
-with $\scd^{\rm{f}}$ the fixed charge density---resulting from the distribution of to the atomic partial
-charges---and $\scd^{\rm{m}}$ the mobile part charge density---resulting from the distribution of charged ions
-in the electrolyte. For $M$ atomic partial charges $\scd^{\rm{f}}$ is given by~\cite{Baker-2001,Baker-2005}
+with $\scdfix$ the fixed charge density---resulting from the distribution of to the atomic partial
+charges---and $\scdmob$ the mobile part charge density---resulting from the distribution of charged ions in
+the electrolyte. For $M$ atomic partial charges $\scdfix$ is given by~\cite{Baker-2001,Baker-2005}
 %
-\begin{equation}
-  \scd^{\rm{f}} (\rpos) = \dfrac{4\pi\ec^2}{\kbt} \sum_{i=1}^{M} Q_i \delta(\rpos - \vec{r_i})
+\begin{equation}\label{eq:electrostatics_scdf}
+  \scdfix (\rpos) = \dfrac{4\pi\ec^2}{\kbt} \sum_{i=1}^{M} \partialcharge_i \delta(\rpos - \vec{r_i})
 \end{equation}
 %
-with $\ec$ the elementary charge, $\kbt$ the thermal energy, $\delta$ the Dirac delta function. $Q_i$ and
-$\vec{r_i}$ represent the atomic partial charge and the location of atom $i$, respectively. The charge density
-due to $N$ mobile charge species can be expressed as~\cite{Baker-2001,Baker-2005}
+with $\ec$ the elementary charge, $\kbt$ the thermal energy, $\delta$ the Dirac delta function.
+$partialcharge_i$ and $\vec{r_i}$ represent the atomic partial charge and the location of atom $i$,
+respectively. The charge density due to $N$ mobile charge species can be expressed
+as~\cite{Baker-2001,Baker-2005}
 %
-\begin{equation}
-  \scd^{\rm{m}}(\rpos) =
+\begin{equation}\label{eq:electrostatics_scdm}
+  \scdmob(\rpos) =
     \dfrac{4\pi\ec^2}{\kbt}
-      \sum_{j=1}^{N} c_j q_j
-      \exp{\left[- q_j \potential(\rpos) - V_j(\rpos) \right]}
+      \sum_{i=1}^{N} \ci \chargeni
+      \exp{\left[- \chargeni \potential(\rpos) - V_i(\rpos) \right]}
 \end{equation}
 %
-with $c_j$ the bulk concentration, $q_j$ the charge number and $V_j(\rpos)$ the steric potential of ion
-species $j$. For a monovalent salt such as \ce{NaCl} this expression can be reduced to
+with $\ci$ the bulk concentration, $\chargeni$ the charge number and $V_i(\rpos)$ the steric potential of ion
+species $i$. For a monovalent salt such as \ce{NaCl} this expression can be reduced to
 %
-\begin{equation}
-    \scd^{\rm{m}} (\rpos) = - \ionaccess^{-2} (\rpos) \sinh \left[ \potential (\rpos) \right]
+\begin{equation}\label{eq:electrostatics_scdm_salt}
+    \scdmob (\rpos) = - \ionaccess^{-2} (\rpos) \sinh \left[ \potential (\rpos) \right]
 \end{equation}
 %
 with $\ionaccess$ a coefficient that includes both the ion accessibility and the bulk ion concentration.
@@ -759,7 +788,7 @@ by~\cite{Baker-2005}
 %
 \begin{equation}\label{eq:pbe_energy}
   \gibbs (\potential, \permittivity) = \int_\Omega \left[
-    \scd^{\rm{f}}(\rpos) \potential
+    \scdfix(\rpos) \potential
     - \dfrac{\permittivity}{2}\left( \nabla \potential \right)^2
     - \ionaccess^{-2} \left( \cosh \potential - 1 \right)
   \right] \,dr
@@ -834,7 +863,7 @@ bias voltages) side. In the following section we will describe the electrostatic
 variants, discuss the implications of their differences, and finally link them to the experimentally observed
 differences.
 
-\subsubsection{Charge reversals induce\ldots potential reversals.}
+\subsubsection{Charge reversals induce \ldots potential reversals.}
 %
 
 The interior of \gls{plyab-wt} is dominated by negatively charged residues along the entire length of the
@@ -960,11 +989,10 @@ and \SI{1}{\Molar} \ce{NaCl}~\cite{Wloka-2016}) and a reversed ion selectivity
 \pH{7.5}~\cite{Huang-2017}). In addition, counter to its wild-type counterpart, \gls{refrac} was able to
 induce \gls{dna} translocation, allowing it to differentiate between homopolymeric stretches of A, C and T
 polynucleotides~\cite{Wloka-2016}. Finally, in a subsequent study it was shown that \gls{wtfrac}, but not
-\gls{refrac}, exhibited different peptide capture dynamics at low pH values~\cite{Huang-2017}.
-
-In this section we aim to rationalize these findings, using electrostatic simulations as a guide. First, the
-difference in electrostatic potential between these two variants is investigated when changing the electrolyte
-pH from \numrange{7.5}{4.5}. Second, we look into their ability to translocate \gls{dna} by computing the
+\gls{refrac}, exhibited different peptide capture dynamics at low pH values~\cite{Huang-2017}. In this section
+we aim to rationalize these findings, using electrostatic simulations as a guide. First, the difference in
+electrostatic potential between these two variants is investigated when changing the electrolyte pH from
+\numrange{7.5}{4.5}. Second, we look into their ability to translocate \gls{dna} by computing the
 electrostatic energy landscape of a translocating piece of \gls{ssdna}. For reference, a detailed discussion
 of the structure and general properties of \gls{frac} can be found in \cref{sec:np:frac}.
 
@@ -1343,7 +1371,9 @@ applied potential $\vbias$ along the length of pore ($\length$), $\efield$ can b
   \text{ .}
 \end{equation}
 %
-Additionally, $\chargeq (z)$ can be approximated by the linear function
+Note that even though \cref{eq:linear_efield} does not take into account the non-uniform geometry of the pore,
+nor its access resistance (cf.~\cref{sec:np:potential,eq:nanopores_potential_profile}), it should be adequate
+for our back-of-the-envelope calculations. Using a linear function, $\chargeq (z)$ can be approximated by
 %
 \begin{equation}\label{eq:ssdna_charge_in_pore}
   \chargeq (z) = 
@@ -1832,7 +1862,7 @@ calculations (coarse grid: \apbsgrid{500}{500}{700}{\angstrom} size with
 \apbsgrid{0.50}{0.50}{0.50}{\angstrom} spacing). The energy cost (or gain) for moving the \gls{dna} away from
 the center of the pore ($r = 0$) was then calculated using
 %
-\begin{align}
+\begin{align}\label{eq:electrostatics_deltadelta_energy}
   \Delta \energyelec_{r=0} (r, \phi) = \energyelec (r, \phi) - \energyelec (0,0)
   \text{  .}
 \end{align}
@@ -1865,7 +1895,7 @@ rise to increases of \SI{1}{\kT} and \SI{3}{\kT}, respectively. Assuming Boltzma
 $\probability$ of the \gls{dna} to be present at a certain offset from the center of the pore
 (\cref{fig:clya_dsdna_constriction_energy_averaged}) is given by 
 %
-\begin{align}
+\begin{align}\label{eq:electrostatics_probability}
   \probability = \exp{
     \left( \dfrac{\langle \Delta \energyelec_{r=0} \rangle_{\phi}}{\boltzmann\temperature} \right)
     }
