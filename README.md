@@ -1,4 +1,4 @@
-# Computional modeling of biological nanopores
+# Computational modeling of biological nanopores
 
 PhD dissertation, Kherim Willems, October 2020. Defended ?.
 
