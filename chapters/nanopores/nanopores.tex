@@ -39,7 +39,7 @@ Parts of this chapter were adapted from:
 This chapter serves as a comprehensive introduction to the primary concepts required to understand the
 objectives and relevance of the work performed in this dissertation. In particular, the reader will be
 familiarized with biological nanopores as single-molecular sensors, the physical mechanisms that govern
-nanopore sensing, and the current state of nanopore modeling.
+nanopore sensing, and the current approaches for the modeling of nanopores.
 %
 
 %
@@ -47,7 +47,7 @@ The text and figures of this introductory chapter were entirely written and crea
 %
 The section
 %
-``On the confinement of proteins within biological nanopores''
+``Confining proteins within biological nanopores''
 %
 was adapted from ref.~\cite{Willems-VanMeervelt-2017}.
 
@@ -62,14 +62,13 @@ was adapted from ref.~\cite{Willems-VanMeervelt-2017}.
 
 Some 5 million years ago, our evolutionary ancestors became bipedal in order to better observe and understand
 the world around them. Up until the \textit{Homo habilis} introduced the \emph{use of tools}, these ancients
-depended solely on their senses to provide them with information and their hands to shape their environment.
+depended solely on their senses to provide them with information, and their hands to shape their environment.
 Arguably, this extensive tool usage also set in motion a process of rapid encephalization (\ie~increase of the
 brain-to-body mass ratio), further improving the human clade's capability to process, interpret and
-communicate information. Even though many other species are active tool-users, to date only the \textit{Homo}
+communicate information. Even though many other species are active tool-users, to date, only the \textit{Homo}
 genus appears to employ tools to fabricate more complex ones. This behavior has been observed as far back as
 2.6~million years, but the advances brought forth by scientific and industrial revolutions truly ushered in a
-new era of complexity, which was topped only by the invention of the modern computer and internet, leading us
-into the present day's information age.
+new era of complexity, which was topped only by the invention of the modern computer and the internet, which have led us into the present day's information age.
 
 Just as we shaped our tools, so have they shaped us. They have impacted virtually all aspects of our society,
 and are still doing so at an increasing rate. This is particularly true in the sciences, which, in their quest
@@ -100,11 +99,13 @@ smaller than the width of a human hair: \emph{nanopores}.
 \section{Sensing at the single-molecule level}
 %
 
-Before delving into the what, how and why of nanopores, let us take a step back and put them into a broader
+Before delving into the what, how, and why of nanopores, let us take a step back and put them into a broader
 context. Nanopores, and in particular \emph{biological} ones, belong to the class of single-molecule
-biosensors. Here the `bio' reflects that one or more biological components comprise an integral part of the
+biosensors. Here, the `bio' reflects that one or more biological components comprise an integral part of the
 sensing process, usually as the transducing element for the property of interest. These transducers can either
-be tissues or cells, or be parts thereof, such as organelles, enzymes, antibodies or \gls{dna} molecules.
+be tissues or cells, or be parts thereof, such as organelles, enzymes, antibodies, or \gls{dna} molecules. In
+this section we will introduce the concept of single-molecular sensing, together with the most prominent
+techniques.
 
 \subsection{From bulk to single-molecule}
 
@@ -114,7 +115,7 @@ For many applications, such as the \gls{elisa} or the \gls{qpcr}, this informati
 sufficient. However, considering that there are many ways to obtain the same average value, the very nature of
 the ensemble-average also hides the property of interest's true distribution, and may obscure rare or
 transient events. For example, when measuring the activity of an enzyme in bulk, does the signal stem from a
-single, `average' sub-population, or are there multiple sub-populations active at the same time, some working
+single, `average' sub-population, or are there multiple sub-populations active at the same time---some working
 slowly and others faster, balancing each other to yield the observed ensemble-average? One way to answer this
 question is to interrogate the \emph{individual} enzymes themselves, at the so-called `single-molecule' level.
 Whereas bulk experiments can be considered deterministic and continuous due to the shear number of molecules
@@ -122,7 +123,7 @@ involved in every measurement, the process of single-molecule sensing is inheren
 nature, meaning that a property can only be quantified by `sampling' it multiple times, up until a given
 statistically relevance is reached and the true distribution is revealed. Besides the study of enzyme
 kinetics, single-molecule measurements empower several super-resolution imaging techniques---for which the
-2014 Nobel Prize in Chemistry was awarded~\cite{Weiss-2014}---and they lie at the heart of the
+2014 Nobel Prize in Chemistry was awarded~\cite{Weiss-2014}---and they lie at the heart of the \gls{dna}
 third-generation sequencing technologies, enabling faster and longer reads, direct detection of epigenetic
 markers, improved portability, and lower cost~\cite{Schadt-2010}.
 
@@ -130,31 +131,32 @@ Regardless of its precise application or mode-of-action, any single-molecule tec
 challenges compared to bulk sensors: (1) the amplification of a signal emanating from a single molecule to a
 macroscopically measurable signal, and (2) the reduction of the sensing volume such that it contains only a
 single analyte molecule. Given that the majority of molecules are intrinsically nanoscopic (\ie~with
-characteristic length scales between \SIrange[range-phrase= and ]{1}{10}{\nm}), it follows that, without some
-means of amplification, the signal it generates is equally small and hence demanding to detect reliably. The
-second challenge, on the other hand, is not related to the size of the analyte molecule, but rather its
-concentration. The reason being that, for the duration of at least a single measurement, the detection volume
-may contain only a single molecule (and the same one at that), which is difficult to achieve for
-physiologically relevant concentrations (\si{\uM} to \si{\mM})~\cite{Zhu-2012}. For example, the
+characteristic length scales between \SIrange[range-phrase={ and }]{1}{10}{\nm}), it follows that, without
+some means of amplification, the signal it generates is equally small, and hence demanding to detect reliably.
+The second challenge, on the other hand, is not related to the size of the analyte molecule \textit{per se},
+but rather to its concentration. The reason being that, for the duration of at least a single measurement, the
+detection volume may contain only a single molecule (and the same one at that). For example, the
 inter-molecular distances inside solutions with analyte concentrations of \SI{1}{\nM}, \SI{1}{\uM}, and
-\SI{1}{\mM} are, on average, \SIlist{1500;150;15}{\nm}, respectively.
+\SI{1}{\mM} are, on average, \SIlist{1500;150;15}{\nm}, respectively. Hence, achieving the small sensing
+volumes required for physiologically relevant concentrations (\si{\uM} to \si{\mM}) may be difficult to
+achieve~\cite{Zhu-2012}. 
 
 
 \subsection{Fluorescence spectroscopy}
 %
 
 One phenomenon that lends itself particularly well for single-molecule techniques is fluorescence: the
-emission of light by a substance (the fluorophore) after absorbing energy from an external electro-magnetic
-radiation source. Because some energy is lost to the environment during the fluorescence process the emitted
+emission of light by a molecule (\ie~fluorophore) after absorbing energy from an external electro-magnetic
+radiation source. Because some energy is lost to the environment during the fluorescence process, the emitted
 light is often redshifted compared to its absorbed counterpart, allowing the two to be easily separated from
 one-another. Moreover, considering that a single fluorophore is able to emit \numrange{1}{100}~\emph{million}
-photons every second, they are intrinsic signal amplifiers. Because the diffraction of light poses a physical
-lower limit on how strongly it can be confined, the reduction of the sensing volume is not so easily solved,
-however. For state-of-the-art confocal microscopes, this limit is equal to roughly half the wavelength of the
-light used (\ie~\SIrange{\approx150}{350}{\nm} for visible light), which mandates to the use of very low
-analyte concentrations (\SI{\le1}{\nM}). Luckily, several solution to this problem have been developed over
-the years, notably those based on the \emph{near-field} techniques. For example, the exponentially decaying
-(`evanescent') near-fields inside nanoscale metal apertures called
+photons every second, they have intrinsically high signal-to-noise ratios. However, because the diffraction
+poses a physical lower limit on how strongly light can be confined, the reduction of the sensing volume is not
+so easily solved. For state-of-the-art confocal microscopes, this limit is equal to roughly half the
+wavelength of the light used (\ie~\SIrange{\approx150}{350}{\nm} for visible light), which mandates to the use
+of very low analyte concentrations (\SI{\le1}{\nM}). Luckily, several solutions to this problem have been
+developed over the years, notably those based on the \emph{near-field} techniques. For example, the
+exponentially decaying (`evanescent') near-fields inside nanoscale metal apertures called
 \glspl{zmw}~\cite{Levene-2003,Eid-2009,Zhu-2012}, or protruding from the tip of a
 \gls{nsom}~\cite{Ambrose-1994,Hosaka-2001}, allow the confinement of light to volumes of
 $50\times50\times50$~\si{\cubic\nm}. Even stronger confinement, down to a few \si{\cubic\nm}, can be achieved
@@ -176,7 +178,7 @@ under some form of mechanical strain~\cite{Neuman-2008}. The type of probe depen
 question. In \gls{afm}, it consists of a very sharp tip that is either scanned across a surface to determine
 its topology (hence the term microscopy), or attached (non)-covalently to the molecule of interest such that
 it can exert a precise pulling force on it. In optical and magnetic tweezers, analyte molecules are attached
-to respectively dielectric and magnetic probe particles and trapped within optical or magnetic field
+to respectively dielectric and magnetic probe particles, and trapped within optical or magnetic field
 gradients. Because the displacement of the particle correlates with the exerted force, the latter can be
 easily deduced by monitoring the particle's position over time. Hence, these techniques transduce nanoscale
 motions and forces by means of much larger probes, and reduce the sensing volume \textit{via} covalent
@@ -213,17 +215,20 @@ limited throughput (all), the complexity of the instrumentation (all), and the h
   %
   (Middle panel)
   %
-  Entry of analyte 1 molecule (purple) into the water-filled channel of the pore from the \cisi{}-side
-  transiently blocks the ionic current, until the molecule exits into the \transi{} reservoir (\ie~it
-  `translocates'). This gives rise to the $\ilevel{1}$ current level, which has a characteristic `dwell time'
-  $t_{\rm{d,1}}$.
+  After a given time, $\Delta t_{\rm{d,1}}$, the entry of analyte 1 molecule (purple) into the water-filled
+  channel of the pore from the \cisi{}-side transiently blocks the ionic current, until the molecule exits
+  into the \transi{} reservoir (\ie~it `translocates'). This gives rise to the $\ilevel{1}$ current level,
+  which has a characteristic `dwell time' $t_{\rm{d,1}}$.
   %
   (Right panel)
   %
-  Similarly, entry of the larger analyte 2 molecule (green) into pore from the \cisi{} side leads to the
-  deeper current blockade level $\ilevel{2}$ with a dwell time $t_{\rm{d,2}}$. Because of its size however, it
-  cannot pass through the narrowest point of the channel and hence will eventually either remain trapped
-  inside the pore, or eventually exit back into the \cisi{} reservoir.
+  Similarly, entry of the larger analyte 2 molecule (green) into pore from the \cisi{} side, after inter-event
+  time $\Delta t_{\rm{d,2}}$, leads to the deeper current blockade level $\ilevel{2}$ with a dwell time
+  $t_{\rm{d,2}}$. Because of its size however, it cannot pass through the narrowest point of the channel and
+  hence will either remain trapped inside the pore, or eventually exit back into the \cisi{} reservoir.
+  %
+  Whereas the duration and depth of the block yield information on the properties of the molecule, the
+  inter-event time correlates with its concentration.
   %
   }\label{fig:nanopores_concept}
 \end{figure*}
@@ -231,13 +236,13 @@ limited throughput (all), the complexity of the instrumentation (all), and the h
 
 
 This (finally) brings us to back to the technique at hand, nanopore-based
-sensing~\cite{Howorka-2009,Wang-2018}. Conceptually, single-molecule nanopore measurements are perhaps the
-easiest to understand of all the techniques discussed in this section (\cref{fig:nanopores_concept}). A
-nanopore experiment consists of a nanoscopic aperture (\SIrange{1}{100}{\nm} in diameter) in an otherwise
-impermeable membrane (\ie~the nanopore). This opening serves as the sole liquid connection between two
-reservoirs filled with a saline solution (\ie~the electrolyte). When an electrical potential difference is
-applied between the two reservoirs (\ie~the \cisi{} and \transi{} sides), a strong directional electric field
-is formed within the nanopore that sets into motion the charged ions contained within. This opposing stream of
+sensing~\cite{Howorka-2009,Wang-2018}. Conceptually, single-molecule nanopore measurements
+(\cref{fig:nanopores_concept}) are perhaps the easiest to understand of all the techniques discussed in this
+section. A nanopore device consists of a nanoscopic aperture (\SIrange{1}{100}{\nm} in diameter) in an
+otherwise impermeable membrane. This opening serves as the sole liquid connection between two reservoirs
+filled with a saline solution (\ie~the electrolyte). When an electrical potential difference is applied
+between the two reservoirs (\ie~the \cisi{} and \transi{} sides), a strong directional electric field is
+formed within the nanopore that sets into motion the charged ions contained within. This opposing stream of
 cations and anions towards their respective electrode polarities results in a steady-state ionic current. For
 example, a bias voltage of \SI{0.1}{\volt} applied across a nanopore with a typical conductivity of
 \SI{1}{\nS} yields a current of \SI{100}{\pA}, which is equivalent to the passage of \num{600} \emph{million}
@@ -245,8 +250,10 @@ ions through the pore every second. Hence, the large number of ions enable the r
 ionic current at high sampling frequencies up to \SI{1}{\mega\hertz}~\cite{Rosenstein-2012}. If the
 characteristic diameter of the nanopore is comparable to that of the molecule of interest, its entry into the
 pore will temporarily and significantly disrupt the regular `open pore' ionic current, resulting in a
-so-called `blocked-pore' signal. Moreover, because the interior of the pore is so small, typically only a
-single molecule can fit inside, making nanopores intrinsically well-suited as single-molecule sensors.
+so-called `blocked-pore' signal. Here, the depth of the current blockade and its duration yield information on
+the properties of the molecule, whereas the inter-event time correlates with its concentration. Finally,
+because the interior of the pore is so small, typically only a single molecule can fit inside, making
+nanopores intrinsically well-suited as single-molecule sensors.
 
 Over the past 24 years, the primary driving force behind the development of nanopores has been, and perhaps
 still is, single-molecule \gls{dna} sequencing~\cite{Deamer-2016}. This application has now been successfully
@@ -262,13 +269,13 @@ sequencing~\cite{Restrepo-Perez-2018,Huang-2019}, to single-molecule
 enzymology~\cite{Willems-VanMeervelt-2017,Ho-2015,Wloka-2017,Harrington-2019,Galenkamp-2020} and
 metabolomics~\cite{VanMeervelt-2017,Zernia-2020}.
 
-Nanopores are not only extremely versatile, their inherently small size and relative simple read-out mechanism
-(\ie~a current amplifier) makes them amenable to both miniaturization and parallelization. Both of which are
-exemplified by \gls{ont}'s \code{MinION} device, a handheld third generation sequencer powered by \num{512}
-\emph{individual} nanopores---that is capable of providing \SI{30}{\giga\bp} of real-time sequencing
-data~\cite{ONT-2020}. Next to these advantages, nanopores are also readily combined with the other
-single-molecule techniques discussed above, providing both complementary of confirmatory information. Examples
-from literature include \gls{afm}~\cite{Aramesh-2019}, optical
+Nanopores are not only extremely versatile, but their inherently small size and relative simple read-out
+mechanism (\ie~a current amplifier) makes them amenable to both miniaturization and parallelization. Both of
+which are exemplified by \gls{ont}'s \code{MinION} device, a handheld third generation sequencer powered by
+\num{512} \emph{individual} nanopores---that is capable of providing \SI{30}{\giga\bp} (10 times the human
+genome) of real-time sequencing data~\cite{ONT-2020}. Next to these advantages, nanopores are also readily
+combined with the other single-molecule techniques discussed above, providing both complementary of
+confirmatory information. Examples from literature include \gls{afm}~\cite{Aramesh-2019}, optical
 tweezers~\cite{Keyser-2006,vanDorp-2009,Hall-2009,Galla-2014}, magnetic tweezers~\cite{Peng-2009},
 fluorescence microscopy~\cite{McNally-2010,Anderson-2014,Assad-2014,Huang-2015},
 \glspl{zmw}~\cite{Auger-2014,Larkin-2017,Spitzberg-2019}, and plasmonic
@@ -282,7 +289,7 @@ structures~\cite{Im-2010,Chen-2018,Verschueren-2018,Garoli-2019}.
 \label{sec:np:types}
 %
 
-Depending on their constituent material, nanopores are often classified into two distinct groups: the
+Depending on their constituent material, nanopores are typically classified into two distinct groups: the
 protein-based \glspl{bnp}~\cite{Willems-VanMeervelt-2017} (\cref{fig:nanopores_types_biological}), and the
 semiconductor-based \glspl{ssnp}~\cite{Dekker-2007} (\cref{fig:nanopores_types_solidstate}). This division
 runs deeper than just the material however: whereas \glspl{bnp} are formed through \emph{bottom-up}
@@ -356,17 +363,17 @@ fragacea}~\cite{Tanaka-2015} are the most well-studied nanopores from this class
 \tb-\glspl{pft} consists of a amphiphatic \tb-barrel fold, which is typically a perfect cylinder. The most
 well-known \tb-\gls{pft} that are also used as nanopores are \gls{ahl} from \textit{Staphylococcus
 aureus}~\cite{Song-1996}, aerolysin from \textit{Aeromonas hydrophila}~\cite{Iacovache-2016}, and the recently
-characterized \gls{plyab} from \textit{}~\cite{Lukoyanova-Kondos-2015}. Notable non-toxin membrane channels
-with a \tb-barrel fold include \gls{mspa} outer-membrane protein~\cite{Faller-2004} and the \gls{csgg} amyloid
-secretion channel from \textit{E. coli}~\cite{Goyal-2014}, both of which have been successfully employed for
-nanopore \gls{dna} sequencing~\cite{Manrao-2012,Brown-2016}, and \gls{fhua}~\cite{Locher-1998},
-\gls{ompf}~\cite{Yamashita-2008} and \gls{ompg}~\cite{Subbarao-2006} proteins from \textit{E. coli}. Besides
-native membrane proteins, also other channel-like proteins have been engineered to behave like nanopores. For
-example, the \gls{phi29p}~\cite{Xu-2019}, an essential component of the \gls{dna} packaging mechanism of the
-\textphi29 phage, was modified to insert (reversibly) into lipid bilayers and shown to translocate
-\gls{dsdna}~\cite{Wendell-2009}. Not all membrane-inserting nanopores are protein-based though, as researchers
-employed \gls{dna} origami~\cite{Rothemund-2006} to design and create nanopores---from scratch---using nucleic
-acids as the primary building
+characterized \gls{plyab} from \textit{Pleurotus ostreatus}~\cite{Lukoyanova-Kondos-2015}. Notable non-toxin
+membrane channels with a \tb-barrel fold include \gls{mspa} outer-membrane protein~\cite{Faller-2004} and the
+\gls{csgg} amyloid secretion channel from \textit{E. coli}~\cite{Goyal-2014}---both of which have been
+successfully employed for nanopore \gls{dna} sequencing~\cite{Manrao-2012,Brown-2016}---and
+\gls{fhua}~\cite{Locher-1998}, \gls{ompf}~\cite{Yamashita-2008} and \gls{ompg}~\cite{Subbarao-2006} proteins
+from \textit{E. coli}. Besides native membrane proteins, also other channel-like proteins have been engineered
+to behave like nanopores. For example, the \gls{phi29p}~\cite{Xu-2019}, an essential component of the
+\gls{dna} packaging mechanism of the \textphi29 phage, was modified to insert (reversibly) into lipid bilayers
+and shown to translocate \gls{dsdna}~\cite{Wendell-2009}. Not all membrane-inserting nanopores are
+protein-based though, as researchers employed \gls{dna} origami~\cite{Rothemund-2006} to design and create
+nanopores---from scratch---using nucleic acids as the primary building
 block~\cite{Bell-2011,Langecker-2012,Burns-2013,Bell-2014,Gopfrich-2016,Gopfrich-2019}.
 
 
@@ -374,15 +381,15 @@ block~\cite{Bell-2011,Langecker-2012,Burns-2013,Bell-2014,Gopfrich-2016,Gopfrich
 %
 
 The techniques used for the fabrication of \glspl{ssnp} are derived from techniques used in the semiconductor
-industry to create the nanometer-scale transistors found in virtually any contemporary electronic
-device.Generally, the fabrication of a \gls{ssnp} starts with the deposition of a thin dielectric layer
-(typically \SIrange{5}{50}{\nm}) on top of a flat silicon substrate. Because this layer will form both the
-membrane and the nanopore, it must have both a high mechanical strength and a high chemical resistance. Hence,
-suitable materials include \ce{Si3N4}~\cite{Li-2001,Storm-2003}, \ce{SiO2}~\cite{Storm-2005},
+industry to create the nanometer-scale transistors found in virtually any contemporary electronic device.
+Generally, the fabrication of a \gls{ssnp} starts with the deposition of a thin dielectric layer (typically
+\SIrange{5}{50}{\nm}) on top of a flat silicon substrate. Because this layer will form both the membrane and
+the nanopore, it must have both a high mechanical strength and a high chemical resistance. Hence, suitable
+materials include \ce{Si3N4}~\cite{Li-2001,Storm-2003}, \ce{SiO2}~\cite{Storm-2005},
 \ce{Al2O3}~\cite{Venkatesan-2009}, \ce{HfO2}~\cite{Larkin-2013} or even \ce{Si}
 itself~\cite{Malachowski-2013}. Next, a part of the silicon at the backside of the substrate is removed using
 wet or dry etching, leaving small window that contains the so-called `free-standing membrane'. The \gls{ssnp}
-is then formed by creating an aperture into this membrane, which can be achieved by either \textit{ex-situ}
+is then formed by creating an aperture into this membrane, which can be achieved by either \textit{ex situ}
 drilling with a focused ion~\cite{Li-2001} or electron~\cite{Storm-2003} beams, or by electron-beam
 lithography patterning in combination with wet/dry etching~\cite{Nam-2009}. With controlled dielectric
 breakdown, \glspl{ssnp} can also be fabricated \textit{in situ}, where an intact membrane is mounted into the
@@ -416,12 +423,14 @@ bilayer can be easily controlled, making experiments often exceedingly tedious. 
 with \glspl{ssnp}, on the other hand, provides significantly more flexibility regarding the nanopore's size
 and material properties. Additionally, their solid-state nature makes them both physically and chemically
 robust, resisting even harsh processes such as Piranha cleaning. However, the expertise and equipment required
-to fabricate \glspl{ssnp} (\ie~a cleanroom with micromachining tools) can be exceedingly expensive. Without a
-proper protective layer, such as \ce{HfO2}, the size of a \ce{Si3N4} pore is known to `drift' due slow
-chemical etching, either during measurements or when improperly stored~\cite{Chou-2020}. Finally, without an
-appropriate bio-compatible coating, the intrinsic `stickiness' of their surfaces leads to the physisorption of
-most biomolecules~\cite{Eggenberger-2019,Awasthi-2020}. In turn, this results into the denaturing of analytes
-of interest at best, and the rapid clogging of the pore at worst~\cite{Yusko-2011}. At this moment, the
+to fabricate \glspl{ssnp} (\ie~a cleanroom with micromachining tools) can be prohibitively expensive. Without
+a proper protective layer, such as \ce{HfO2}, the size of a \ce{Si3N4} pore is known to `drift' due slow
+chemical etching, either during measurements or when improperly stored~\cite{Chou-2020}. Additionally, the
+stochastic nature of the fabrication process makes precise control of the pore's shape hard to
+achieve~\cite{vandenHout-2010}. Finally, without an appropriate, bio-compatible coating, the intrinsic
+`stickiness' of their surfaces leads to the physisorption of most
+biomolecules~\cite{Eggenberger-2019,Awasthi-2020}. In turn, this results into the denaturing of analytes of
+interest at best, and the rapid clogging of the pore at worst~\cite{Yusko-2011}. At this moment, the
 biological pores still trump their artificial counterparts both in terms of performance and applications.
 However, the field is rapidly working to close this gap, and the intrinsic scalability (\eg~parallelization),
 the possibilities of integration with other devices (\eg~transistors), and the mass-manufacturability of
@@ -440,7 +449,7 @@ structural characteristics and pore formation mechanism. Nevertheless, we will l
 that are directly relevant to this dissertation. We will start with \glsfirst{ahl}, the first nanopore used
 for the detection of biomolecules, and hence also the one with the largest body of experimental, theoretical
 and computational work. Next, we will discuss \glsfirst{clya}, \glsfirst{frac} and \glsfirst{plyab}, the three
-nanopores that will be the subject of interest within the results section of this thesis.
+nanopores that will be the subject of interest within the results chapters.
 
 
 \subsection[Alpha-Hemolysin (aHL)]{\ta-Hemolysin (\ta{}HL)}
@@ -502,15 +511,15 @@ nanopores that will be the subject of interest within the results section of thi
   (\subref{fig:nanopores_ahl_pore_top})
   %
   top view of the heptameric \glsfirst{ahl} nanopore (\pdbid{7AHL}~\cite{Song-1996}), with a single subunit
-  (protomer) highlighted in orange. The location of the lipid bilayer indicated in blue together with the
+  (protomer) highlighted in orange. The location of the lipid bilayer is indicated in blue, together with the
   \cisi{}  (`extracellular') and \transi{} (`intracellular') sides of the membrane. The pore is shaped as
   \SI{11}{\nm}-tall mushroom shaped with a cap (\ie the extracellular part) and stem (\ie the transmembrane
   \tb-barrel) widths of \SI{10}{\nm} and \SI{4}{\nm}, respectively.
   %
   (\subref{fig:nanopores_ahl_pore_section})
   %
-  Electrostatically colored cross-section of the interior molecular surface of \gls{ahl}. The potential was
-  calculated using \gls{apbs} for physiological conditions~\cite{Baker-2001,Baker-2005}. Indicated are the
+  Electrostatically colored cross-section of the interior molecular surface of \gls{ahl}. The potential at
+  physiological conditions was calculated using \gls{apbs}~\cite{Baker-2001,Baker-2005}. Indicated are the
   sizes of the \cisi{} vestibule, the transmembrane stem domain and the \SI{1.6}{\nm} wide central
   constriction.
   %
@@ -531,8 +540,8 @@ nanopores that will be the subject of interest within the results section of thi
 \end{figure*}
 %
 
-The \glsfirst{ahl} protein (\cref{fig:nanopores_ahl}) is a \tb-\gls{pft} secreted by \textit{Staphylococcus
-aureus} in its post-exponential and stationary growth phases~\cite{Bhakdi-1991}. It shows a high affinity for
+The \gls{ahl} protein (\cref{fig:nanopores_ahl}) is a \tb-\gls{pft} secreted by \textit{Staphylococcus aureus}
+in its post-exponential and stationary growth phases~\cite{Bhakdi-1991}. It shows a high affinity for
 sphingomyelin-cholesterol microdomains~\cite{Menestrina-2001,Valeva-2006}, but also readily binds
 non-specifically to other membranes at higher concentrations~\cite{Hildebrand-1991}. Its high chemical and
 structural stability (\eg~temperature, pH, urea, mutations), together with the early availability of its
@@ -543,28 +552,28 @@ for many years.
 \subsubsection{Pore structure, shape and charge distribution.}
 %
 
-The \gls{ahl} pore (\pdbid{7AHL}~\cite{Song-1996}) comprises of seven identical subunits of 293~amino acids
-each, that form a \SI{232}{\kDa} mushroom-shaped protein complex with a height of \SI{11}{\nm} and a width of
-\SI{10}{\nm} (\cref{fig:nanopores_ahl_pore_side,fig:nanopores_ahl_pore_top}). Its secondary structure elements
-are predominantly \tb-sheets (\SI{\approx50}{\percent}), exemplified by the \SI{4}{\nm}-wide \tb-barrel
-transmembrane region (the `stem') and the \tb-sandwich folds of its extracellular domains (the `cap' and
-`rim'), supplemented with \SI{\approx35}{\percent} of non-conventional structure~\cite{Song-1996}. The
-interior of the \gls{ahl} (\cref{fig:nanopores_ahl_pore_section}) consists of a vestibule compartment at the
-\cisi{} side, with an entry diameter of \SI{3.5}{\nm} and a height of \SI{5}{\nm}, followed by
+The \gls{ahl} pore (\pdbid{7AHL}~\cite{Song-1996}) is composed out of seven identical subunits of 293~amino
+acids each, that form a \SI{232}{\kDa} mushroom-shaped protein complex with a height of \SI{11}{\nm} and a
+width of \SI{10}{\nm} (\cref{fig:nanopores_ahl_pore_side,fig:nanopores_ahl_pore_top}). Its secondary structure
+elements are predominantly \tb-sheets (\SI{\approx50}{\percent}), exemplified by the \SI{4}{\nm}-wide
+\tb-barrel transmembrane region (the `stem') and the \tb-sandwich folds of its extracellular domains (the
+`cap' and `rim'), supplemented with \SI{\approx35}{\percent} of non-conventional structure~\cite{Song-1996}.
+The interior of \gls{ahl} (\cref{fig:nanopores_ahl_pore_section}) consists of a vestibule compartment at the
+\cisi{} side, with an entry diameter of \SI{3.5}{\nm} and a height of \SI{5}{\nm}, followed by a
 \SI{6}{\nm}-long, \SI{2}{\nm}-wide cylindrical channel. Separating both compartments is a narrow constriction
 \SI{1.6}{\nm} in diameter, formed by residues Glu111 and Lys147. The electrostatic surface potential
 (see~coloring of \cref{fig:nanopores_ahl_pore_section}) reveals that \gls{ahl}'s internal surface charge
 distribution is fairly balanced, with neither positive nor negative charges dominating. However, due to the
 slight excess of positive charges at the \cisi{} entry and the constriction, wild-type \gls{ahl} pores are
-found to be somewhat anion selectivity~\cite{Menestrina-1986}.
+found to be somewhat anion selective~\cite{Menestrina-1986}.
 
 
 \subsubsection{Oligomerization stoichiometry.}
 %
 
 Up until the release of the crystal structure, it was believed that the \gls{ahl} pore complex was a 6-mer
-(\ie~hexameric), instead the now wide accepted 7-mer (\ie~heptameric) state~\cite{Song-1996}. Even though it
-is likely that \gls{ahl} also forms hexamers, the majority of pores (\SI{>90}{\percent}) formed under typical
+(\ie~hexameric), instead the now widely accepted 7-mer (\ie~heptameric)~\cite{Song-1996}. Even though it is
+likely that \gls{ahl} also forms hexamers, the majority of pores (\SI{>90}{\percent}) formed under typical
 conditions are heptameric~\cite{Menestrina-1986}, as supported by scientific evidence from a wide variety of
 techniques such as crystallography~\cite{Song-1996,Galdiero-2004}, single-molecule fluorescence
 photobleaching~\cite{Das-2007} and particle tracking~\cite{Thompson-2011}, and \gls{md}
@@ -596,11 +605,11 @@ microdomains~\cite{Valeva-2006}. Once bound, the monomers will collide and rever
 self-assembling into a heptameric `prepore' that finally transitions (quasi-irreversibly) into the final pore
 by inserting its stem domains into the lipid bilayer. Single-molecule fluorescence particle tracking
 experiments have revealed this process to be extremely rapid, with single monomers transitioning into
-heptameric pores typically within \SI{5}{\ms} and seemingly without formation of intermediate
+heptameric pores typically within \SI{5}{\ms}, and seemingly without formation of intermediate
 states~\cite{Thompson-2011}. The ability of \gls{ahl} (and other \glspl{pft}) to keep the concentration of
-intermediates low is thought to limit assembly errors~\cite{Lee-2016b} by preventing the formation of higher
-order oligomers. At best, these may form pores with sub-optimal stoichiometries, at worst they may lead to
-non-functional aggregates, both outcomes that reduce the efficacy of the
+intermediates low is thought to limit assembly errors~\cite{Lee-2016b}, mainly by preventing the formation of
+higher order oligomers. At best, these may form pores with sub-optimal stoichiometries, at worst, they may
+lead to non-functional aggregates, both of which are outcomes that reduce the efficacy of the
 toxin~\cite{Fahie-2013,Subburaj-2015}. Energetically speaking, oligomerization is stabilized by both entropic
 and enthalpic means, as in the final heptameric pore each protomer buries approximately \SI{33}{\percent} of
 its solvent-accessible area, establishes 850 van der Waals contacts, and forms 120 salt bridges and hydrogen
@@ -658,8 +667,8 @@ formed, followed by the transmembrane section~\cite{Sugawara-2015}.
       \includegraphics[scale=1]{nanopores_clya_protomer}
     \end{subfigure}
   \end{minipage}
-\caption[Structure of the Cytolysin A (ClyA) porin]{%
-  \textbf{Structure of the Cytolysin A (ClyA) porin.}
+\caption[Structure of the cytolysin A (ClyA) porin]{%
+  \textbf{Structure of the cytolysin A (ClyA) porin.}
   %
   (\subref{fig:nanopores_clya_pore_side})
   %
@@ -694,19 +703,20 @@ formed, followed by the transmembrane section~\cite{Sugawara-2015}.
   }\label{fig:nanopores_clya}
 \end{figure*}
 
-In 2009, Mueller \etal{} revealed the crystal structure of \glsfirst{clya},
-\cref{fig:nanopores_clya})~\cite{Mueller-2009}, a large \ta-\gls{pft} secreted by various \textit{S. enterica}
-and \textit{E. coli} strains with a high affinity for mammalian cell membranes. The large size of its
-\lumen---compared to \gls{ahl} and \gls{mspa}, the most commonly used protein nanopores at the time---makes
-\gls{clya} particularly well equipped to fully capture and study larger biopolymers, such as proteins, in
-their native three-dimensional configuration (\ie~folded)~\cite{Soskine-2013,Soskine-Biesemans-2015}.
+In 2009, Mueller \etal{} resolved the crystal structure of \gls{clya}
+(\cref{fig:nanopores_clya})~\cite{Mueller-2009}, a large \ta-\gls{pft}, secreted by various \textit{S.
+enterica} and \textit{E. coli} strains, with a high affinity for mammalian cell membranes. The large size of
+its \lumen---compared to \gls{ahl} and \gls{mspa}, the most commonly used protein nanopores at the
+time---makes \gls{clya} particularly well equipped to fully capture and study larger biopolymers, such as
+proteins, in their native three-dimensional configuration
+(\ie~folded)~\cite{Soskine-2013,Soskine-Biesemans-2015}.
 
 
 \subsubsection{Pore structure, shape and charge distribution.}
 %
 
 The \SI{408}{\kDa} \gls{clya} pore (\pdbid{6MRT}~\cite{Peng-2019}) consists of 12 identical subunits
-(protomers), arranged in a ring like quaternary structure to form a cylindrical structure roughly \SI{14}{\nm}
+(protomers), arranged in a ring like quaternary structure to form a cylindrical complex roughly \SI{14}{\nm}
 in height and \SI{11}{\nm} in diameter (\cref{fig:nanopores_clya_pore_side,fig:nanopores_clya_pore_top}). The
 pore walls in contact with the solvent are formed by a core bundle of four tightly packed \ta-helices per
 protomer, and the transmembrane region is formed by the iris-like arrangement of the amphiphatic N-terminal
@@ -743,8 +753,8 @@ hydrophobic \tb-hairpin motif flanked by to short \ta-helices (\ta D and \ta
 E)~\cite{Wallace-2000,Mueller-2009}. Comparing this structure to that of the protomer
 (\cref{fig:nanopores_clya_protomer}), reveals that while three of the core helices are merely straightened and
 elongated (at the expense of the \tb-hairpin and the \ta A2, \ta D and \ta E helices), the \ta A1 helix must
-move to the opposite side of the monomer, a distance of \SI{\approx14}{\nm} (!). The mechanism that enables
-these large conformational changes is similar to that of a spring-loaded lock, which is opened upon membrane
+move to the opposite side of the monomer, a distance of \SI{\approx14}{\nm}! The mechanism that enables these
+large conformational changes is similar to that of a spring-loaded lock, which is opened upon membrane
 binding.
 
 \subsubsection{Mechanism of pore formation.}
@@ -757,26 +767,26 @@ which removes a stabilizing aromatic residue (Phe190) from its hydrophobic pocke
 spring-loaded mechanism. This results in 1) the straightening and extension of three of the core helices (\ta
 B, \ta C and \ta F), and 2) a \SI{180}{\degree} swinging of the \ta A helix (relative to \ta B, \ta C and \ta
 F). The amphiphatic \ta-A1 helix, which will form the \gls{tmd}, now rests on top of the membrane and is
-connected to the rest of the protein via a \gls{hth} motif, with Pro36 acting as a hinge. The subsequent
-oligomerization of the membrane-bound monomers further packs and buckles the \ta A1 helices, effectively
-pushing them downwards and allowing them to `wedge' a hole into the lipid bilayer. In contrast with
-\gls{ahl}, \gls{clya} pore formation takes place on a timescale of minutes rather than
+connected to the rest of the protein \textit{via} a \gls{hth} motif, with Pro36 acting as a hinge. The
+subsequent oligomerization of the membrane-bound monomers further packs and buckles the \ta A1 helices,
+effectively pushing them downwards and allowing them to `wedge' a hole into the lipid bilayer. In contrast
+with \gls{ahl}, \gls{clya} pore formation takes place on a timescale of minutes rather than
 milliseconds~\cite{Benke-2015}. Initial far-UV \gls{cd} measurements of the \gls{clya} oligomerization process
 in the presence of the mild, non-ionic detergent \gls{ddm} suggested a two-step process, in which the soluble
-monomers (\ce{M}) undergo a rapid transition ($t_{1/2} \approx \SI{80}{\second}$) to molten globule-like
+monomers (\ce{M}) undergo a rapid transition ($t_{1/2} \approx \SI{80}{\second}$) to a molten globule-like
 intermediate (\ce{I}), followed by a slow assembly  ($t_{1/2} \approx \SI{1000}{\second}$) of the
-membrane-bound protomers (\ce{P})into the full dodecameric pore (\ce{P_12})~\cite{Eifler-2006}. However,
-subsequent investigation of the oligomerization kinetics \textit{via} \gls{rbc} hemolysis
+membrane-bound protomers (\ce{P}) into the full dodecameric pore (\ce{P_12})~\cite{Eifler-2006}. However,
+subsequent investigation of the oligomerization kinetics using \gls{rbc} hemolysis
 assays~\cite{Vaidyanathan-2014} and single-molecule \gls{fret}~\cite{Benke-2015} revealed that the
 intermediate state is actually an off-pathway by-product that slows down the pore
-formation~\cite{Roderer-2017}. Nevertheless, on the long term, however, most of the monomers will convert to
-protomers rather than the molten globule intermediate, and intermolecular collisions between protomers results
-in the formation of linear mixtures of oligomers (`protomer elongation'~\cite{Roderer-2017}). Because
-virtually all linear oligomer species contribute to this process, the effective protomer concentration does
-not decrease, making it both rapid and efficient. Formation of the full pore then occurs rapidly \textit{via}
-ring closure when a pair of oligomers---with a total protomer count of 12---collide and associate. Even though
-all linear oligomer species contribute to the formation of the docecameric pore, the relatively high abundance
-of the 5-, 6- and 7-mers dictate that \SI{>50}{\percent} of all full pores are formed by these
+formation~\cite{Roderer-2017}. Nevertheless, on the long term, most of the monomers will convert to protomers
+rather than the molten globule intermediate, and intermolecular collisions between protomers results in the
+formation of linear mixtures of oligomers (`protomer elongation'~\cite{Roderer-2017}). Because virtually all
+linear oligomer species contribute to this process, the effective protomer concentration does not decrease,
+making it both rapid and efficient. Formation of the full pore then occurs rapidly \textit{via} ring closure
+when a pair of oligomers---with a total protomer count of 12---collide and associate. Even though all linear
+oligomer species contribute to the formation of the docecameric pore, the relatively high abundance of the 5-,
+6- and 7-mers dictate that \SI{>50}{\percent} of all full pores are formed by these
 oligomers~\cite{Benke-2015}.
 
 
@@ -826,8 +836,8 @@ oligomers~\cite{Benke-2015}.
       \includegraphics[scale=1]{nanopores_frac_protomer}
     \end{subfigure}
   \end{minipage}
-\caption[Structure of the Fragaceatoxin C (FraC) porin]{%
-  \textbf{Structure of the Fragaceatoxin C (FraC) porin.}
+\caption[Structure of the fragaceatoxin C (FraC) porin]{%
+  \textbf{Structure of the fragaceatoxin C (FraC) porin.}
   %
   (\subref{fig:nanopores_frac_pore_side})
   %
@@ -836,7 +846,7 @@ oligomers~\cite{Benke-2015}.
   (\subref{fig:nanopores_frac_pore_top})
   %
   top views of the octameric \SI{176}{\kDa} \gls{frac} porin crystal structure
-  (\pdbid{4TSY}~\cite{Tanaka-2015}) with single protein subunit highlighted in color and the co-crystallized
+  (\pdbid{4TSY}~\cite{Tanaka-2015}) with a single protein subunit highlighted in color and the co-crystallized
   sphingomyelin lipids indicated in yellow. The overall shape is that of a funnel with a height of
   \SI{7}{\nm}, and top and bottom diameters of \SIlist{11;3.5}{\nm}, respectively.
   %
@@ -851,8 +861,8 @@ oligomers~\cite{Benke-2015}.
   (\subref{fig:nanopores_frac_monomer})
   %
   The crystal structure of the \SI{20}{\kDa} \gls{frac} monomer (\pdbid{3VWI}~\cite{Tanaka-2015}) shows that
-  in its water-soluble form the N-terminal \gls{tmd} (blue) is packed tightly against the \tb-sheet rich core
-  domain (orange). Displacement of Phe16 (mauve) from its hydrophobic pocket by Val60 (gray) trigger pore
+  in its water-soluble form, the N-terminal \gls{tmd} (blue) is packed tightly against the \tb-sheet rich core
+  domain (orange). Displacement of Phe16 (mauve) from its hydrophobic pocket by Val60 (gray) triggers pore
   formation.
   %
   (\subref{fig:nanopores_frac_protomer})
@@ -867,17 +877,16 @@ oligomers~\cite{Benke-2015}.
   }\label{fig:nanopores_frac}
 \end{figure*}
 
-\Glsfirst{frac}, \cref{fig:nanopores_frac}) is an \ta-\gls{pft} belonging to the family of the actinoporins,
-and is produced by the sea anemone \textit{Actinia fragacea}. Its X-ray structure was resolved in 2015 by
-Tanaka \etal{}~\cite{Tanaka-2015}, and surprisingly contained several co-crystallized sphingomyelin (\gls{sm})
-lipids per subunit. This indicates that \gls{frac} does not merely exhibit a high degree of specificity
-towards \gls{sm}-containing membranes, these lipids comprise an essential structural element of the pore
-itself. Over the past 4 years, \gls{frac} has become a popular nanopore for the analysis of
-peptides~\cite{Huang-2017,Huang-2019} and amino acid~\cite{Restrepo-Perez-2019a}, making it an interesting
-candidate for protein sequencing applications~\cite{Restrepo-Perez-2018}.
+\Gls{frac}, \cref{fig:nanopores_frac}) is an \ta-\gls{pft} belonging to the family of the actinoporins, and is
+produced by the sea anemone \textit{Actinia fragacea}. Its X-ray structure was resolved in 2015 by Tanaka
+\etal{}~\cite{Tanaka-2015}, and surprisingly contained several co-crystallized \gls{sm} lipids per subunit.
+This indicates that \gls{frac} does not merely exhibit a high degree of specificity towards
+\gls{sm}-containing membranes, but that these lipids comprise an essential structural element of the pore
+itself. Recently, \gls{frac} has become a popular for the analysis of peptides~\cite{Huang-2017,Huang-2019}
+and amino acids~\cite{Restrepo-Perez-2019a}, making it an promising candidate for protein sequencing
+applications~\cite{Restrepo-Perez-2018}.
 
 \subsubsection{Pore structure, shape and charge distribution.}
-%
 
 The full \SI{176}{\kDa} \Gls{frac} porin (\pdbid{4TSY}~\cite{Tanaka-2015}) consists of eight identical protein
 subunits and three \gls{sm} lipids per protomer, bound at highly specific locations
@@ -885,73 +894,83 @@ subunits and three \gls{sm} lipids per protomer, bound at highly specific locati
 \SI{7}{\nm} and \cisi{} and \transi{} outer diameters of \SIlist{11;3.5}{\nm}, respectively. The extracellular
 (\cisi) part of the pore comprises the bulk of each protomer and is rich in \tb-sheets (\tb-core). The
 \gls{tmd} is formed by the iris-like arrangement of the N-terminal \ta-helices of each subunit, which are long
-enough (\SI{3.5}{\nm}) to span the entire lipid bilayer. The protomer-protomer interface buries a surface area
-of \SI{777}{\square\angstrom}, to which both the \tb-core and the \gls{tmd} \ta-helices contribute, and is
-further stabilized by protein-lipid H-bonding~\cite{Tanaka-2015}. Close inspection of the pore walls reveal
-the presence of eight lateral fenestrations, one between each protomer, that expose the hydrophobic core of
-the membrane to the aqueous solvent (\cref{fig:nanopores_frac_pore_section}). These openings are at least
-partially occluded by the co-crystallized \gls{sm} lipids, which as such contribute \emph{structurally} to the
-pore. Even though the precise biological function of these fenestrations remains unclear, it is likely that
-they contribute significantly to the toxicity of sea anemone venom by 1) facilitating the diffusion of its
-small hydrophobic components directly into the core of the lipid bilayer, and 2) disrupting the leaflet
-composition of the membrane by catalyzing the flip-flip movement of lipids~\cite{Tanaka-2015}. The interior of
-\gls{frac} is also funnel-shaped, with a \cisi{} diameter of \SI{6}{\nm} and a \trans{} diameter, which is
-also the pore's narrowest constriction, of only \SI{1.6}{\nm}. Consistent with the observation of its cation
+enough (\SI{3.5}{\nm}) to span the entire lipid bilayer (\SI{\approx2.8}{\nm}). The protomer-protomer
+interface buries a surface area of \SI{777}{\square\angstrom}, to which both the \tb-core and the \gls{tmd}
+\ta-helices contribute, and is further stabilized by protein-lipid H-bonding~\cite{Tanaka-2015}. Close
+inspection of the pore walls reveals the presence of eight lateral fenestrations, one between each protomer,
+that expose the hydrophobic core of the membrane to the aqueous solvent
+(\cref{fig:nanopores_frac_pore_section}). These openings are at least partially occluded by the
+co-crystallized \gls{sm} lipids, which, as such, contribute \emph{structurally} to the pore. Even though the
+precise biological function of these fenestrations remains unclear, it is likely that they contribute
+significantly to the toxicity of sea anemone venom by 1) facilitating the diffusion of its small hydrophobic
+components directly into the core of the lipid bilayer, and 2) disrupting the leaflet composition of the
+membrane by catalyzing the flip-flop movement of lipids~\cite{Tanaka-2015}. The interior of \gls{frac} is
+funnel-shaped, with a \cisi{} diameter of \SI{6}{\nm} and a \trans{} diameter of only \SI{1.6}{\nm}, the
+latter also being the pore's narrowest location. Consistent with the observation of its cation
 selectivity~\cite{Garcia-Ortega-2011,Wloka-2016}, the interior walls of the pore are predominantly negatively
 charged, particularly at the \transi{} constriction (\cref{fig:nanopores_frac_pore_section}). The
 extracellular regions of the pore near the lipid headgroups exhibit a strong positive potential however, which
 likely aides in the initial adhesion of \gls{frac} to the membrane~\cite{Tanaka-2015}.
 
-
+%
+\vspace{-0.5em}
+%
 \subsubsection{Oligomerization stoichiometry.}
 %
+\vspace{-0.5em}
+%
 
-The a lytically active \gls{frac} pore can be obtained as an 8-mer (octamer, `Type I'), 7-mer (heptamer `Type
-II') and 6-mer (hexamer, `Type III')~\cite{Huang-2019}, with constriction diameters of
+The lytically active \gls{frac} pore can be obtained as an 8-mer (octamer, `Type~I'), 7-mer (heptamer
+`Type~II') and 6-mer (hexamer, `Type~III')~\cite{Huang-2019}, with constriction diameters of
 \SIlist{1.6;1.1;0.84}{\nm}, respectively. A non-lytic 9-mer (nonamer) has also been crystallized
 (\pdbid{3LIM}~\cite{Mechaly-2011}), and lower oligomeric states also appear to be capable of forming
 pores~\cite{Rojko-2016}.
 
-
+%
+\vspace{-0.5em}
+%
 \subsubsection{Monomer \textit{versus} protomer.}
+%
+\vspace{-0.5em}
 %
 
 In the water-soluble monomer of the \gls{frac} pore (\pdbid{3VWI}~\cite{Tanaka-2015}), the N-terminal region
-(residues 1--29; contains a short \tb-sheet, a 3$_10$ helix and an \ta-helix) is packed closely against the
+(residues 1--29; contains a short \tb-sheet, a $3_{10}$ helix and an \ta-helix) is packed closely against the
 C-terminal \tb-core (residues 30--179; contains 11 \tb-sheets in a \tb-sandwich fold and one \ta-helix) and
 held in place by the interaction between Phe16 and a hydrophobic cavity in the \tb-core
 (\cref{fig:nanopores_frac_monomer}). The \tb-core remains virtually unchanged in the protomer structure
 (\pdbid{4TSY}~\cite{Tanaka-2015}), while the N-terminal domain forms a much longer \ta-helix that spans the
-entire lipid bilayer (\cref{fig:nanopores_frac_protomer}). In addition, three lipids (`L1', `L2' and `L3') are
-bound at specific locations to the \tb-core. Of these, the L1 position can be considered to be of high
-affinity and specific only to \gls{sm}, whereas L2 and L3 are of lower affinity and hence more
+entire lipid bilayer (\cref{fig:nanopores_frac_protomer}). Out of the three lipids (`L1', `L2' and `L3') that
+are bound at specific locations to the \tb-core, only the L1 position can be considered to be of high affinity
+and specific only to \gls{sm}, whereas L2 and L3 are of lower affinity and hence more
 promiscuous~\cite{Tanaka-2015}. 
 
-
+%
+\vspace{-0.5em}
+%
 \subsubsection{Mechanism of pore formation.}
 %
-
-Even though the precise mechanisms with which actinoporins---including \gls{frac}---form pores is still under
-debate, several experiments have already provided significant insight. Upon initial attachment of the monomer
-to the membrane, the binding of a single \gls{sm} lipid to the L1 pocket induces
-dimerization~\cite{Tanaka-2015}. The resulting small conformational change (at residues 14--17) displaces
-Phe16 from its hydrophobic pocket in favor of Val60 and partially unfolds the N-terminal domain. Because
-dimerization is only possible in the presence of \gls{sm}, this lipid acts as both a receptor and an assembly
-co-factor that contributes to the final structure of the pore. Sequential addition of other dimeric units
-\textit{via} random collisions---which can occur frequently in the small \gls{sm} lipid raft domains---give
-rise to higher oligomeric complexes that further destabilize the N-terminal region. Given the limited space
-available in the lumen of the final pore (\SI{\approx2}{\nm} diameter), it is likely that the insertion of the
-N-terminal \ta-helix occurs in a non-concerted manner prior to full ring closure~\cite{Cosentino-2016}. It is
-also possible that a pre-pore structure is formed, similar to the non-lytic \gls{frac}
-nonamer~\cite{Mechaly-2011}, with the amphiphatic N-termini pushing through the membrane in a concerted
-fashion~\cite{Tanaka-2015,Rojko-2016} much like the \gls{clya} porin. Evidence favors the first mechanism
-however, given that a sole N-terminal helix of many actinoporins can exist at the lipid-water interface in a
-so-called `protein-lipid pore'~\cite{Cosentino-2016}.
-
-%
-\clearpage
+\vspace{-0.5em}
 %
 
+Even though the precise mechanisms with which actinoporins form pores is still under debate, several
+experiments have already provided significant insight. Upon initial attachment of the monomer to the membrane,
+the binding of a single \gls{sm} lipid to the L1 pocket induces dimerization~\cite{Tanaka-2015}. The resulting
+small conformational change (at residues 14--17) displaces Phe16 from its hydrophobic pocket in favor of
+Val60, and partially unfolds the N-terminal domain. Because dimerization is only possible in the presence of
+\gls{sm}, this lipid acts as both a receptor and an assembly co-factor that contributes to the final structure
+of the pore. Sequential addition of other dimeric units \textit{via} random collisions, which can occur
+frequently in the small \gls{sm} lipid raft domains, give rise to higher oligomeric complexes that further
+destabilize the N-terminal region. Given the limited space available in the \lumen{} of the final pore
+(\SI{\approx2}{\nm} diameter), it is likely that the insertion of the N-terminal \ta-helix occurs in a
+non-concerted manner prior to full ring closure~\cite{Cosentino-2016}. It is also possible that a pre-pore
+structure is formed, similar to the non-lytic \gls{frac} nonamer~\cite{Mechaly-2011}, with the amphiphatic
+N-termini pushing through the membrane in a concerted fashion~\cite{Tanaka-2015,Rojko-2016} much like the
+\gls{clya} porin. Evidence favors the first mechanism, however, given that a sole N-terminal helix of many
+actinoporins can exist at the lipid-water interface in a so-called `protein-lipid pore'~\cite{Cosentino-2016}.
+
+
+%
 \subsection{Pleurotolysin AB (PlyAB)}
 %
 \label{sec:np:plyab}
@@ -997,8 +1016,8 @@ so-called `protein-lipid pore'~\cite{Cosentino-2016}.
       \includegraphics[scale=1]{nanopores_plyab_protomer}
     \end{subfigure}
   \end{minipage}
-\caption[Structure of the Pleurotolysin AB (PlyAB) porin]{%
-  \textbf{Structure of the Pleurotolysin AB (PlyAB) porin.}
+\caption[Structure of the pleurotolysin AB (PlyAB) porin]{%
+  \textbf{Structure of the pleurotolysin AB (PlyAB) porin.}
   %
   (\subref{fig:nanopores_plyab_pore_side})
   %
@@ -1008,14 +1027,14 @@ so-called `protein-lipid pore'~\cite{Cosentino-2016}.
   %
   top view of the \SI{1067}{\kDa} \gls{plyab} \tb-\gls{pft} porin
   (\pdbid{4V2T}~\cite{Lukoyanova-Kondos-2015}), formed by 13 identical subunits which are each composed of two
-  \gls{plya} (pink) one \gls{plyb} (green) protein chains. The full pore is \SI{13}{\nm} high with external
-  diameters of \SI{22}{\nm} and \SI{9}{\nm} at the \cisi{} and \transi{} sides of the  membrane. 
+  \gls{plya} (pink) and one \gls{plyb} (green) protein chains. The full pore is \SI{13}{\nm} high with
+  external diameters of \SI{22}{\nm} and \SI{9}{\nm} at the \cisi{} and \transi{} sides of the  membrane. 
   %
   (\subref{fig:nanopores_plyab_pore_section})
   %
   The cross-section of \gls{plyab}'s molecular surface, colored according to the local electrostatic potential
   at physiological salt concentration (\gls{apbs}~\cite{Baker-2001,Baker-2005}), shows that the interior of
-  the pore is predominantly negative. The lumen of the pore is divided by a \SI{5.5}{\nm} wide constriction
+  the pore is predominantly negative. The \lumen{} of the pore is divided by a \SI{5.5}{\nm} wide constriction
   into a conical \cisi{} chamber of \SI{3}{\nm} height and \SI{10.5}{\nm} diameter, and a cylindrical
   \transi{} chamber of \SI{10}{\nm} height and \SI{7.2}{\nm} diameter. 
   %
@@ -1036,11 +1055,11 @@ so-called `protein-lipid pore'~\cite{Cosentino-2016}.
   }\label{fig:nanopores_plyab}
 \end{figure*}
 
-\Glsfirst{plyab}, \cref{fig:nanopores_plyab}) is a \tb-\gls{pft}, secreted by the fungus \textit{Pleurotus
-ostreatus}, that belongs to the family of membrane attack complex/perforin-like (\gls{macpf}) proteins.
-Lukoyanova and Kondos \etal{} proposed a plausible pore structure based on the \gls{cryo-em} image analysis
-and molecular modeling with a molecular weight in excess of \SI{1000}{\kDa}~\cite{Lukoyanova-Kondos-2015},
-making it one of the largest \glspl{pft} with a known structure to date.
+\Gls{plyab}, \cref{fig:nanopores_plyab}) is a \tb-\gls{pft}, secreted by the fungus \textit{Pleurotus
+ostreatus}, that belongs to the family of \gls{macpf} proteins. Lukoyanova and Kondos \etal{} proposed a
+plausible pore structure based on the \gls{cryo-em} image analysis and molecular modeling with a molecular
+weight in excess of \SI{1000}{\kDa}~\cite{Lukoyanova-Kondos-2015}, making it one of the largest \glspl{pft}
+with a known structure to date.
 
 
 \subsubsection{Pore structure, shape and charge distribution.}
@@ -1116,7 +1135,7 @@ The apparent simplicity of the principles behind nanopore sensing, together with
 sensitivity towards even the smallest of changes within them, have made nanopores into one the most successful
 and broadly applied single-molecule sensors. Nanopores have been used as detectors for small molecules, down
 to individual ions, as well as biological polymers or particles, such as \gls{dna}, peptides, proteins and
-virions. Equally broad is the number of strategies that have been deployed to improve the selectivity and
+virions. Equally broad are the number of strategies that have been deployed to improve the selectivity and
 sensitivity of nanopores: from the conjugation of binding sites, peptides, aptamers, or even entire proteins,
 within the pore or to one of its entries, to the modification of the analyte molecules themselves. An in-depth
 overview of the literature describing these strategies can be found in the Ph.D. dissertation of Veerle Van
@@ -1186,31 +1205,33 @@ Virtually all intermolecular interactions are either directly (\eg~charge-charge
 analyte molecules, contain ionizable groups that become charged when brought into contact with an aqueous
 solution. Hence, it is instrumental to reflect on both their magnitude and the length-scales at which they
 exert their influence. At the level of interactions between two individual charges, a first characteristic
-length scale for electrostatics is the Bjerrum length, $\bjl$, which corresponds to the distance at which
-energy the electrostatic interaction between two charged species, $\energyelec (\bjl)$ becomes similar to
-their thermal energy, $\boltzmann \temperature$. In other words, it represents the distance below which the
-electrostatic interactions start to dominate over thermal effects. For electrolyte solution containing two ion
-species, $\bjl$ can be expressed as~\cite{Bocquet-2010}
+length scale for electrostatics is the Bjerrum length, $\bjl$, which corresponds to the distance at which the
+electrostatic interaction energy between two charged species, $\energyelec (\bjl)$, becomes similar to their
+thermal energy, $\boltzmann \temperature$. In other words, it represents the distance below which the
+electrostatic interactions start to dominate over thermal effects. For electrolyte solutions containing two
+ion species, it can be expressed as~\cite{Bocquet-2010}
 %
 \begin{equation}\label{eq:nanopores_bjerrum_length}
   \bjl = \dfrac{\ec^2}{4 \pi \absperm \relperm \boltzmann \temperature}
+  \text{ ,}
 \end{equation}
 %
-with $\ec$ the elementary charge, $\absperm$ the vacuum permittivity, and $\relperm$ the relative permittivity
-of the solution. For a typical monovalent salt at room temperature $\bjl = \mSI{0.7}{\nm}$, a value that comes
-close to the radius of many (biological) nanopores. Hence, it is evident that the transport of ions and other
-charged molecules through nanopores will be influenced by electrostatic interactions. However, the typical
-electrolyte contains many highly mobile ions in close proximity to each other: for an electrolyte with a
-physiological salt concentration (\eg~\SI{0.15}{\Molar}), a volume of \grid{10}{10}{10}{\cubic\nm} contains
-180~ions, which corresponds to a mean ion-ion spacing of only \SI{\approx1.8}{\nm}. As a consequence, even
-though thermal effects dominate at distances $>\bjl$ for \emph{individual} ions, the extent with which local
-perturbations can propagate to longer length scales will depend on the density of all ions in solution. This
+with $\ec$ the elementary charge, $\absperm$ the vacuum permittivity, $\relperm$ the relative permittivity of
+the solution, $\boltzmann$ the Boltzmann constant, and $\temperature$ the temperature. For a typical
+monovalent salt at room temperature $\bjl = \mSI{0.7}{\nm}$, a value that comes close to the radius of many
+(biological) nanopores. Hence, it is evident that the transport of ions and other charged molecules through
+nanopores will be influenced by electrostatic interactions. However, the typical electrolyte contains many
+highly mobile ions in close proximity to each other: for an electrolyte with a physiological salt
+concentration (\eg~\SI{0.15}{\Molar}), a volume of \grid{10}{10}{10}{\cubic\nm} contains 180~ions, which
+corresponds to a mean ion-ion spacing of only \SI{\approx1.8}{\nm}. As a consequence, even though thermal
+effects dominate at distances $>\bjl$ for \emph{individual} ions, the extent with which local perturbations
+can propagate to longer length scales will depend on the (local) density of all ions the in solution. This
 phenomenon leads to the formation of the \glsfirst{edl} (\cref{fig:nanopores_edl_overview}), which describes
 the rearrangement of the ion density in response to a fixed surface charge density or potential. The \gls{edl}
 is a diffuse layer that contains an excess of counter-ions (\ie~opposing the wall charge) and a depletion of
 co-ions (\ie~same as the wall charge), whose width is inversely proportional to both $\bjl$ and the ionic
 strength of the electrolyte, $\ionstr$. A characteristic value is given by the so-called Debye length, $\dbl$,
-which, for an electrolyte with $N$ ion species $i$, is given by~\cite{Bocquet-2010}
+which, for an electrolyte with $N$ ion species, is given by~\cite{Bocquet-2010}
 %
 \begin{equation}\label{eq:nanopores_debye_length}
   \dbl = \left(
@@ -1248,6 +1269,7 @@ solution---expressed through Boltzmann statistics---and reads~\cite{Gouy-1910,Ch
   \sum_i \left[ \avogadro \ci^0 \chargen_i \ec
          \exp \left( \dfrac{-\chargen_i \ec \potential(\vec{r}) }{\kbt} \right)
         \right]
+  \text{ ,}
 \end{equation}
 %
 where $\potential(\vec{r})$ is the electrostatic potential at position $\vec{r}$ and $\scd(\vec{r})$ is the
@@ -1259,6 +1281,7 @@ charge density. Linearizing the exponential term in \cref{eq:nanopores_pbe} with
   = \dfrac{\ec^2}{\absperm \relperm \kbt} \sum_i \left[ \avogadro \ci^0 \chargeni \right]
       \potential(\vec{r})
   = \invdbl^2 \potential(\vec{r})
+  \text{ ,}
 \end{equation}
 %
 where $\invdbl = \dbl^{-1}$ provides a clear connection to the Debye length described above. Because it
@@ -1283,9 +1306,9 @@ The overall profile of the electric potential---and by extension the electric fi
 the help of an equivalent circuit model~\cite{Wanunu-2009,Grosberg-2010,Kowalczyk-2011}, where the pore is
 represented by a resistor ($\Rpore$), and is surrounded by an access resistance ($\Raccess$) on either side
 (\cref{fig:nanopores_efield_circuit,fig:nanopores_efield_cartoon}). $\Raccess$ represents the transition from
-the bulk electrolyte to the confinement of the pore. Note that while such a model does not take into account
-the electrostatics due to the pore's fixed charge distribution, it has proven to be instrumental in the
-development of analytically tractable models for describing the capture dynamics of \gls{dna} in both
+the bulk electrolyte to the confinement of the pore. Note that even though such a model does not take into
+account the electrostatics due to the pore's fixed charge distribution, it has proven to be instrumental in
+the development of analytically tractable models for describing the capture dynamics of \gls{dna} in both
 solid-state~\cite{Wanunu-2009,Grosberg-2010,Muthukumar-2010} and biological
 nanopores~\cite{Chinappi-2015,Nomidis-2018}, or for estimating the conductance of nanopores with complex
 shapes~\cite{Wanunu-2009,Kowalczyk-2011}.
@@ -1471,12 +1494,14 @@ density (\cref{fig:nanopores_eof_principle})
 %
 \begin{equation}\label{eq:nanopores_edl_force}
   \forcedensedl = \scdion \efield
+  \text{ ,}
 \end{equation}
 %
 where
 %
 \begin{equation}\label{eq:nanopores_ion_scd}
   \scdion = \faraday \dsum_i^N \chargeni \ci
+  \text{ ,}
 \end{equation}
 %
 with $\faraday = \ec \avogadro$ the Faraday constant, and $\ci$ the \emph{local} concentration of ion $i$.
@@ -1541,7 +1566,7 @@ or not, giving rise to a unidirectional fluid flow---the \glsfirst{eof}~\cite{Bo
 \end{figure*}
 %
 
-As with the electrical field, tractable analytical formula's that accurately describe the \gls{eof} generated
+As with the electrical field, tractable analytical formulas that accurately describe the \gls{eof} generated
 by (biological) nanopores are not possible due to their complex geometries and charge distributions.
 Nevertheless, considerable insights can be gained by by simplifying the pore geometry and its surface charge
 density. For low surface charge potentials (\ie~$\left| \echarge \potential\right| / (\kbt) \le 1$), the
@@ -1616,24 +1641,6 @@ $\infty$~\cite{Bocquet-2010,Manghi-2018}.
 \subsection{External forces: (di)electrophoresis and electro-osmosis}
 %
 
-The externally applied bias voltage creates a strong electric field that field that will result in several
-distinct forces that influence the movement of analyte molecules far away from, and particularly within, the
-pore (\cref{fig:nanopores_forces_ext}): the \glsdisp{ep}{electrophoretic~(EP)},
-\glsdisp{eo}{electro-osmotic~(EO)} and \glsdisp{dep}{dielectrophoretic~(DEP)} forces. The former two are the
-strongest, and hence also the most well-known. Besides attracting analytes and inducing their translocation,
-external forces may also impact the structure of the molecules themselves. Electric field-induced forces
-within solid-state nanopores have been shown to stretch~\cite{Freedman-2013} or even
-unfold~\cite{Freedman-2011} proteins, allowing one to probe their mechanical properties during
-translocation~\cite{Waduge-2017,Zhou-2020b}. Whereas the \gls{ep} force is dominant for molecules with high
-charge densities (such as \gls{dna})~\cite{vanDorp-2009}, the force balance for other biomolecules
-(\eg~proteins) is often more evenly matched, or even in favor of the \gls{eo}
-force~\cite{Soskine-2013,Zhang-2020}. The \gls{dep} force is often much weaker, given that it acts on the
-(induced) dipole moment of a particle and is active only places with a strong electric field gradient
-(\ie~around the pore entries or near a constriction within the pore). Hence, while dielectrophoresis can often
-be ignored without repercussions, in specific cases it plays an important role in the capture and
-translocation processes of analyte molecules~\cite{Freedman-2016,Asandei-2016}, and hence its existence should
-be acknowledged.
-
 %
 \begin{figure*}[b]
   \centering
@@ -1666,7 +1673,7 @@ be acknowledged.
   %
   (\subref{fig:nanopores_forces_ext_dep})
   %
-  At locations where the electric field in not uniform (\ie~$\nabla \efield \neq 0$), such as near the pore
+  At locations where the electric field is not uniform (\ie~$\nabla \efield \neq 0$), such as near the pore
   entries or near a constriction within the pore, dielectric particles with a permanent or induced dipole
   moment will be subjected to a \emph{dielectrophoretic} force, which pushes them towards increasing electric
   field magnitudes.
@@ -1674,6 +1681,24 @@ be acknowledged.
   }\label{fig:nanopores_forces_ext}
 \end{figure*}
 %
+
+The externally applied bias voltage creates a strong electric field that field that will result in several
+distinct forces that influence the movement of analyte molecules far away from, and particularly within, the
+pore (\cref{fig:nanopores_forces_ext}): the \glsdisp{ep}{electrophoretic~(EP)},
+\glsdisp{eo}{electro-osmotic~(EO)} and \glsdisp{dep}{dielectrophoretic~(DEP)} forces. The former two are the
+strongest, and hence also the most well-known. Besides attracting analytes and inducing their translocation,
+external forces may also impact the structure of the molecules themselves. Electric field-induced forces
+within solid-state nanopores have been shown to stretch~\cite{Freedman-2013} or even
+unfold~\cite{Freedman-2011} proteins, allowing one to probe their mechanical properties during
+translocation~\cite{Waduge-2017,Zhou-2020b}. Whereas the \gls{ep} force is dominant for molecules with high
+charge densities (such as \gls{dna})~\cite{vanDorp-2009}, the force balance for other biomolecules
+(\eg~proteins) is often more evenly matched, or even in favor of the \gls{eo}
+force~\cite{Soskine-2013,Zhang-2020}. The \gls{dep} force is often much weaker, given that it acts on the
+(induced) dipole moment of a particle and is active only places with a strong electric field gradient
+(\ie~around the pore entries or near a constriction within the pore). Hence, while dielectrophoresis can often
+be ignored without repercussions, in specific cases it plays an important role in the capture and
+translocation processes of analyte molecules~\cite{Freedman-2016,Asandei-2016}, and hence its existence should
+be acknowledged.
 
 
 \subsubsection{Electrophoretic and dielectrophoretic forces: sailing the field lines.}
@@ -1683,19 +1708,21 @@ For a charged particle in an electric field, the \gls{ep} force, $\forceep$ is g
 of the Lorentz force (\ie~Coulomb's law)~\cite{Lu-2012}
 %
 \begin{equation}\label{eq:nanopores_lorentz_force}
-  \forceep = \oint_{V} \scd \efield dV = \chargeq \efield 
+  \forceep = \oint_{V} \scd \efield dV = \chargeq \efield
+  \text{ ,}
 \end{equation}
 %
 with $\scd$ the charge density, $V$ the volume, and $\chargeq$ the net charge of the particle. In principle,
 the integral form of \cref{eq:nanopores_lorentz_force} allows one the evaluate $\forceep$ for any dielectric
 particle within arbitrary electric field distributions. The integrated form, on the other hand, is technically
-only valid for a charged particle in a homogeneous electric field (\ie~far away from the pore), but, as we
-shall see in \cref{ch:trapping}, can be a reasonable approximation even for more complex systems (\eg~within
-the pore). The \gls{dep} force, $\forcedep$, is proportional to the spatial change of the electric field and
-the dipole moment of the particle~\cite{Hoelzel-2020}
+only valid for a charged particle in a homogeneous electric field (\ie~far away from the pore). But, as we
+shall see in \cref{ch:trapping}, it can be a reasonable approximation even for more complex systems
+(\eg~within the pore). The \gls{dep} force, $\forcedep$, is proportional to the spatial change of the electric
+field and the dipole moment of the particle~\cite{Hoelzel-2020}
 %
 \begin{equation}\label{eq:nanopores_dep_force}
-  \forcedep = \left( \dipolemoment \cdot \nabla \right) \efield 
+  \forcedep = \left( \dipolemoment \cdot \nabla \right) \efield
+  \text{ ,}
 \end{equation}
 %
 with $\dipolemoment$ the dipole moment of the particle. Note that the $\dipolemoment$ contains both a
@@ -1713,6 +1740,7 @@ over the surface ($\Gamma$) of the particle~\cite{Ai-2011}
 %
 \begin{equation}\label{eq:nanopores_electric_force}
   \forceele = \oint_{\Gamma} \left( \maxwellstresstensorvec \cdot \normvec \right) d\Gamma
+  \text{ ,}
 \end{equation}
 %
 where
@@ -1720,6 +1748,7 @@ where
 \begin{equation}\label{eq:nanopores_maxwell_stresstensor}
   \maxwellstresstensorvec = \permittivity \efield \efield
                             - \dfrac{1}{2} \permittivity \left( \efield \cdot \efield \right) \identity
+  \text{ ,}
 \end{equation}
 %
 with $\permittivity$ the permittivity, $\efield$ the electric field vector, $\normvec$ the normal vector of
@@ -1738,6 +1767,7 @@ In first order, the \gls{eo} force acting on particle can be calculated using th
 %
 \begin{equation}\label{eq:nanopores_drag_force}
   \forcedrag = - 6 \pi \viscosity \particleradius \velocity
+  \text{ ,}
 \end{equation}
 %
 where $\forcedrag$ is the drag force on the particle with radius $\particleradius$, $\viscosity$ the
@@ -1760,15 +1790,16 @@ and viscosity, respectively. For example, for a nanopore with $\diameter = \mSI{
 %
 }%
 %
-(2) the particle is spherical with a perfectly smooth surface, (3) the surrounding environment (\ie~density
-and viscosity) is homogeneous, and (4) the particle does not perturb the flow itself. Evidently, most
-biomolecules are not smooth spheres, this is often compensated for by using a so-called Stokes radius (or
-hydrodynamic radius), rather than true particle radius~\cite{Ortega-2011}. This makes $\forcedrag$ a good
-first order approximation for computing the electro-osmotic force, particularly outside of the pore. Within
-the pore, however, its validity is less clear given that the size of the particle is often similar to the pore
-diameter and hence its presence is expected to influence the flow itself. Moreover, as we shall discuss in
-\cref{ch:epnpns}, the electrolyte properties within the pore are not uniform, particularly in proximity to the
-nanopore~\cite{Qiao-Aluru-2003,Vo-2016,Hsu-2017,Ye-2011} and particle~\cite{Pronk-2014,Makarov-1998} surfaces.
+ (2) the particle is spherical with a perfectly smooth surface, (3) the surrounding environment (\ie~density
+and viscosity) is homogeneous, and (4) the particle does not perturb the flow itself. Evidently, given that
+most biomolecules are not smooth spheres, this is often compensated for by using a so-called Stokes radius (or
+hydrodynamic radius), rather than true particle radius~\cite{Ortega-2011}. This makes $\forcedrag$ useful as a
+good first order approximation for computing the electro-osmotic force, particularly outside of the pore.
+Within the pore, however, its validity is less clear given that the size of the particle is often similar to
+the pore diameter and hence its presence is expected to influence the flow itself. Moreover, as we shall
+discuss in \cref{ch:epnpns}, the electrolyte properties within the pore are not uniform, particularly in
+proximity to the nanopore~\cite{Qiao-Aluru-2003,Vo-2016,Hsu-2017,Ye-2011} and
+particle~\cite{Pronk-2014,Makarov-1998} surfaces, leading to further deviations.
 
 As with the (di)electrophoretic force, a more general framework involves the integration of a stress
 tensor---in this case the \emph{hydrodynamic} stress tensor, $\hydrostresstensorvec$---across the entire
@@ -1804,8 +1835,8 @@ Next to the forces originating from the externally applied electric field, there
 stem from the \emph{intrinsic} interactions between the analyte molecules and the pore itself
 (\cref{fig:nanopores_forces_int}). The nature of these forces can either be enthalpic (\ie~due to
 intermolecular forces such as ion-ion interactions, hydrogen bonding, \gls{vdw} forces, etc.), or entropic
-(\ie~due to a decrease or increase in the microscopic degrees of freedom during the translocation process). To
-facilitate the discussion, we will (roughly) subdivide the enthalpic forces into an electrostatic
+(\ie~due to a change in the microscopic degrees of freedom during the translocation process). To facilitate
+the discussion, we will roughly subdivide the enthalpic forces into an electrostatic
 (\cref{fig:nanopores_forces_int_es}) and a steric (\cref{fig:nanopores_forces_int_steric_entropic}, yellow
 glow) component, with the latter being a `clumped' term that encompassing all intermolecular forces besides
 electrostatics. For the entropic forces (\cref{fig:nanopores_forces_int_steric_entropic}, orange glow), we
@@ -1857,15 +1888,15 @@ will limit ourselves to a qualitative description of its impact on unfolded poly
 \subsubsection{Electrostatic forces: ionically mediated love and hate.}
 %
 
-Electrostatic forces arises when two charged atoms interact with one another, either in a repulsive (like-like
-charges) or attractive (like-unlike charges) manner (\cref{fig:nanopores_forces_int_es}). For a static charge
-distribution in a pure dielectric environment, Coulomb's law provides an excellent estimation for these
-forces. However, in an electrolyte the situation is significantly more complex due to the presence of
-\emph{mobile} charges (\ie~ions) that form an \gls{edl}, minimizing the overall energy of the system and
+Electrostatic forces arise when two charged atoms interact with one another, either in a repulsive (for
+like-like charges) or attractive (for like-unlike charges) manner (\cref{fig:nanopores_forces_int_es}). For a
+static charge distribution in a pure dielectric environment, Coulomb's law provides an excellent estimation
+for these forces. However, in an electrolyte, the situation is significantly more complex due to the presence
+of \emph{mobile} charges (\ie~ions) that form an \gls{edl}, minimizing the overall energy of the system and
 strongly mediating the distance at which \emph{fixed} charges can still influence one another. By providing a
 proper description of the \gls{edl}, the \gls{pb} theory discussed in~\cref{sec:np:edl} also provides us with
-a method to calculate the total electrostatic energy, $\energyelec$. For a solvated molecular system with a
-volume $\Omega$, $\energyelec$ amounts to~\cite{Gilson-1993,Im-1998,Baker-2005}
+a method to calculate the total electrostatic energy, $\energyelec$, which for a solvated molecular system
+with a volume $\Omega$, amounts to~\cite{Gilson-1993,Im-1998,Baker-2005}
 %
 \begin{align}\label{eq:nanopores_electrostatic_energy}
   \energyelec = 
@@ -1897,19 +1928,20 @@ respect to the atomic coordinates, $\rpos_m$, yielding~\cite{Gilson-1993,Im-1998
           \ci \pd{ e^{- \beta V_i} }{\rpos_m}
           \left( e^{ - \beta \chargen_i \ec \potential } - 1 \right) }_{ \text{IB} }
           \bigg] \, d\rpos
+  \text{ .}
 \end{align}
 %
 As indicated, the components of the integral in \cref{eq:nanopores_electrostatic_force} can be split into
-three distinct contributions. (1)~The `RF' or `reaction field' term expresses the response of the potential to
-the spatial variations of the fixed charge density. It is mathematically equivalent to Coulomb's law
+three distinct contributions. The `RF' or `reaction field' term expresses the response of the potential to the
+spatial variations of the fixed charge density. It is mathematically equivalent to Coulomb's law
 (\cref{eq:nanopores_lorentz_force})~\cite{Im-1998}, and hence yields the \emph{bare} (\ie~free-space) force
-between charges. (2)~The `DB' or `dielectric boundary' term arises from spatial variations of the permittivity
+between charges. The `DB' or `dielectric boundary' term arises from spatial variations of the permittivity
 between the solute ($\relperm \approx \text{\numrange{2}{20}}$~\cite{Li-2013}) and the solvent ($\relperm
 \approx 80$) in a charged, non-uniform environment. In essence, these differences of polarizability
 \emph{induce} a net surface charge at the interface, onto which the electric field will exert a non-negligible
 force. The DB force is particularly important when moving charges into a confined environment, such as ion
-channels~\cite{Nadler-2003}. (3)~The `IB' or `ionic boundary' term is proportional to the ionic concentration
-and accounts for the contribution of the \gls{edl} to the force. Note that the ionic boundary term will always
+channels~\cite{Nadler-2003}. The `IB' or `ionic boundary' term is proportional to the ionic concentration and
+accounts for the contribution of the \gls{edl} to the force. Note that the ionic boundary term will always
 diminish the contributions of the RF force, whether those are positive or negative. This can intuitively be
 understood as the screening effect of the \gls{edl}: higher ionic strengths lead to more screening and hence
 lower energetic contributions between fixed charges.
@@ -1949,19 +1981,19 @@ potential, $\potLJ$, is perhaps the most famous approach that captures the essen
   \text{ ,}
 \end{equation}
 % 
-with $r$ between the two atoms, $\welldepthLJ$ the depth of potential well, located at distance $\dminLJ$. The
-repulsive (`12') term ensure that $\potLJ$ becomes highly repulsive at very short distances. Even though the
-mathematical form has no physical meaning, it adequately reproduces the repulsive force caused by the
-overlapping of electron orbitals (\ie~Pauli repulsion). The minus sign in front of the second (`6') term
-indicates that is attractive, and its mathematical form can be related back to the underlying physics. Because
-the attractive term acts at longer distances, the resulting energy landscape contains an energy minimum,
-$\welldepthLJ$, when the atoms are at $r = \dminLJ$. In other words, $\dminLJ$ represents the tipping point
-after which the interatomic force becomes repulsive rather than attractive. Looking at the {CHARMM36} force
-field parameters~\cite{Huang-2016}, typical \gls{lj} values for $\dminLJ$ and $\welldepthLJ$ within proteins
-are \SI{4.1}{\angstrom} and \SI{-0.11}{\kbt} (carbon), \SI{3.6}{\angstrom} and \SI{-0.31}{\kbt} (nitrogen),
-\SI{3.5}{\angstrom} and \SI{-0.22}{\kbt} (oxygen) and \SI{2.3}{\angstrom} and \SI{-0.06}{\kbt} (hydrogen). Do
-note that the \gls{lj} potential is merely an approximation (\eg~no directionality) and exact solutions
-require expensive quantum mechanical calculations~\cite{Paquet-2015}.
+with $r$ the distance between the two atoms, $\welldepthLJ$ the depth of potential well, located at distance
+$\dminLJ$. The repulsive (`12') term ensure that $\potLJ$ becomes highly repulsive at very short distances.
+Even though the mathematical form has no physical meaning, it adequately reproduces the repulsive force caused
+by the overlapping of electron orbitals (\ie~Pauli repulsion). The minus sign in front of the second (`6')
+term indicates that is attractive, and its mathematical form can be related back to the underlying physics.
+Because the attractive term acts at longer distances, the resulting energy landscape contains an energy
+minimum, $\welldepthLJ$, when the atoms are at $r = \dminLJ$. In other words, $\dminLJ$ represents the tipping
+point after which the interatomic force becomes repulsive rather than attractive. Looking at the {CHARMM36}
+force field parameters~\cite{Huang-2016}, typical \gls{lj} values for $\dminLJ$ and $\welldepthLJ$ within
+proteins are \SI{4.1}{\angstrom} and \SI{-0.11}{\kbt} (carbon), \SI{3.6}{\angstrom} and \SI{-0.31}{\kbt}
+(nitrogen), \SI{3.5}{\angstrom} and \SI{-0.22}{\kbt} (oxygen) and \SI{2.3}{\angstrom} and \SI{-0.06}{\kbt}
+(hydrogen). Do note that the \gls{lj} potential is merely an approximation (\eg~ it is not directional) and
+exact solutions require expensive quantum mechanical calculations~\cite{Paquet-2015}.
 
 Given their weak nature and limited range, the \gls{vdw} forces acting on individual atoms are easily overcome
 by thermal energy. However, the simultaneous close contact of \emph{hundreds} of atoms---which could occur for
@@ -1997,7 +2029,7 @@ is given by
 %
 \begin{equation}\label{eq:nanopore_entropic_energy}
   - \temperature \Delta \entropy = - \temperature \left( \entropy_1 - \entropy_0\right)
-  = \boltzmann \temperature \nabla \cdot \ln \dfrac{\microstates_1}{\microstates_0}
+  = - \boltzmann \temperature \ln \dfrac{\microstates_1}{\microstates_0}
   \text{ ,}
 \end{equation}
 %
@@ -2016,7 +2048,8 @@ Note that, as before, we can define an entropic force as the gradient of the ent
 energy~\cite{Neumann-1980}
 %
 \begin{equation}\label{eq:nanopore_entropic_force}
-  \forceentr = \boltzmann \temperature \nabla \ln \dfrac{\microstates_1}{\microstates_0}
+  \forceentr = - \nabla \cdot (- \temperature \Delta \entropy )  
+             = \boltzmann \temperature \nabla \ln \dfrac{\microstates_1}{\microstates_0}
   \text{ .}
 \end{equation}
 %
@@ -2032,8 +2065,32 @@ simulations~\cite{Tian-2003,Matysiak-2006,Vaitheeswaran-2014,Luo-2017}.
 \subsection{Analyte capture}
 %
 
+The capture process of a polymer molecule by a nanopore is outlined in~\cref{fig:nanopores_capture}. It is
+important to note that while the magnitude of the electric field inside the exterior reservoirs is negligible
+compared to the one within nanopore, is \emph{not} equal to zero. This is means that charged molecules in the
+reservoir are subject to both diffusion and electrophoretic drift
+(\cref{fig:nanopores_capture_overview})~\cite{Muthukumar-2010}. Given that the electric field is inversely
+proportional to square of the distance from the pore
+(see~\cref{eq:nanopores_efield_profile})~\cite{Grosberg-2010}, it becomes particularly relevant in close
+proximity to the entries of the pore, where the electric field can become significantly stronger than the
+thermal energy. Similarly, the \gls{eof} is non-negligible outside of the nanopore~\cite{Wong-2007}, and
+contributes significantly to the attraction or repulsion of \gls{dna}~\cite{Firnkes-2010} and
+proteins~\cite{Soskine-2012,Soskine-2013} towards the pore. Finally, if a polymer requires a specific
+configuration in order to translocate (\ie~unfold)---as is typically the case for the analysis of
+\gls{dna}~\cite{Muthukumar-2010}, but not folded proteins~\cite{Yusko-2011,Soskine-2012,Plesa-2013}---it must
+also overcome a significant entropic energy barrier before it can commence the translocation process
+(\cref{fig:nanopores_capture_energy})~\cite{Muthukumar-2010}.
+
+However, because the focus of this dissertation lies with the transport of molecules through (biological)
+nanopores \emph{after} they are captured, the interested reader is referred to the seminal papers on polymer
+capture by nanopores by Wong and Muthukumar (electro-osmotic flow)~\cite{Wong-2007}, Grosberg and Rabin
+(electrophoresis)~\cite{Grosberg-2010}, and Muthukumar (entropic energy barrier)~\cite{Muthukumar-2010}. Of
+note as well is the work of Nomidis~\etal~\cite{Nomidis-2018}, whose theoretical and experimental analysis
+found that the capture rate of both \gls{ssdna} and \gls{dsdna} by \gls{clya} was limited by the entropic
+barrier at the entry of the pore, rather than their arrival due to drift and diffusion.
+
 %
-\begin{figure*}[bt]
+\begin{figure*}[p]
   \centering
 
   %
@@ -2077,31 +2134,9 @@ simulations~\cite{Tian-2003,Matysiak-2006,Vaitheeswaran-2014,Luo-2017}.
 \end{figure*}
 %
 
-The capture process of a polymer molecule by a nanopore is outlined in~\cref{fig:nanopores_capture}. It is
-important to note that while the magnitude of the electric field inside the exterior reservoirs is negligible
-compared to the one within nanopore, is \emph{not} equal to zero. This is means that charged molecules in the
-reservoir are subject to both diffusion and electrophoretic drift
-(\cref{fig:nanopores_capture_overview})~\cite{Muthukumar-2010}. Given that the electric field is inversely
-proportional to square of the distance from the pore~\cite{Grosberg-2010}, it becomes particularly relevant in
-close proximity to the entries of the pore, where the electric field can become significantly stronger than
-the thermal energy. Similarly, the \gls{eof} is non-negligible outside of the nanopore~\cite{Wong-2007}, and
-contributes significantly to the attraction or repulsion of \gls{dna}~\cite{Firnkes-2010} and
-proteins~\cite{Soskine-2012,Soskine-2013} towards the pore. Finally, if a polymer requires a specific
-configuration in order to translocate (\ie~unfold)---as is typically the case for the analysis of
-\gls{dna}~\cite{Muthukumar-2010}, but not folded proteins~\cite{Yusko-2011,Soskine-2012,Plesa-2013}----it must
-also overcome a significant entropic energy barrier before it can commence the translocation process
-(\cref{fig:nanopores_capture_energy})~\cite{Muthukumar-2010}.
-
-However, because the focus of this dissertation lies with the transport of molecules through (biological)
-nanopores \emph{after} they are captured, the interested reader is referred to the seminal papers on polymer
-capture by nanopores by Wong and Muthukumar (electro-osmotic flow)~\cite{Wong-2007}, Grosberg and Rabin
-(electrophoresis)~\cite{Grosberg-2010}, and Muthukumar (entropic energy barrier)~\cite{Muthukumar-2010}. Of
-note as well is the work of Nomidis~\etal~\cite{Nomidis-2018}, whose theoretical and experimental analysis
-found that the capture rate of both \gls{ssdna} and \gls{dsdna} by \gls{clya} was limited by the entropic
-barrier at the entry of the pore, rather than their arrival due to drift and diffusion.
 
 
-\subsection{On the confinement of proteins within biological nanopores}
+\subsection{Confining proteins within biological nanopores}
 %
 \label{sec:np:confinement}
 %
@@ -2141,16 +2176,16 @@ been shown before to partially unfold or deform proteins by \gls{afm}~\cite{Best
 group showed that within the \SIrange{50}{250}{\mV} voltage range, the fractional residual current (defined as
 the blocked pore current divided by the open pore current) of maltose binding protein translocating through a
 solid-state nanopore remains constant, as expected for a protein that remains folded~\cite{Talaga-2009}. Using
-\gls{clya} and sampling several proteins (human thrombin, {AlkB} and \gls{dhfr}), we did not observe a change
-in fractional residual current up to \SI{-200}{\mV}, confirming that the protein normally should not unfold
+\gls{clya} and sampling several proteins (human thrombin, {AlkB} and \gls{dhfr}), no changes in fractional
+residual current up to \SI{-200}{\mV} were observed, confirming that the protein normally should not unfold
 under moderate applied potentials~\cite{Soskine-2013}. However, the net force experienced by a protein
 immobilized inside a nanopore will also depend on the magnitude and direction of the electro-osmotic flow. The
 negative charges lining the interior walls of \gls{clya} make the pore highly cation-selective and induce a
 strong electro-osmotic flow~\cite{Franceschini-2016}, enabling the capture of proteins even against the
-electrical field~\cite{Soskine-2012}, and will be quantified in \cref{ch:trapping,ch:transport}. While the
-precise magnitude of the water velocity inside \gls{clya} is currently unknown, experimental data using
-\gls{ahl} nanopores~\cite{Paula-1999} and simulations performed with solid-state~\cite{vanDorp-2009,Luan-2008}
-and \gls{ahl}~\cite{Aksimentiev-2005,Pederson-2015} nanopores, revealed velocities in the order of
+electrical field~\cite{Soskine-2012} (see~\cref{ch:trapping,ch:transport}). While the precise magnitude of the
+water velocity inside \gls{clya} is currently unknown, experimental data using \gls{ahl}
+nanopores~\cite{Paula-1999} and simulations performed with solid-state~\cite{vanDorp-2009,Luan-2008} and
+\gls{ahl}~\cite{Aksimentiev-2005,Pederson-2015} nanopores, revealed velocities in the order of
 \SI{100}{\mmps}. Assuming a similar water velocity inside our \gls{bnp} and applying Stokes' law
 (\cref{eq:nanopores_drag_force}), a static and uncharged sphere of \SI{5}{\nm} in diameter would endure a
 force of approximately \SI{4}{\pN}. Thus, under negatively applied potentials (\transi{}) the electrophoretic
@@ -2163,12 +2198,11 @@ stress on the captured protein.
 %
 
 Another important consideration to take into account when confining proteins in nanopores, for example when
-measuring enzymatic reactions, is the role of the nanopore walls and the relatively strong electrostatic and
-electrophoretic forces inside the nanopore. As described in \cref{sec:np:clya}, the \gls{clya} protein
-contains a plethora of negatively charged residues lining its interior walls
-(\cref{fig:nanopores_clya_pore_section}). Such a negatively charged nanocavity is reminiscent of the
-well-studied \textit{E. coli} {GroEL/GroES} chaperone~\cite{Xu-1997}. Although the precise mechanism by which
-{GroEL} aids protein refolding remains
+measuring enzymatic reactions, is the role of the nanopore walls and the relatively strong electrostatic
+forces inside the nanopore. As described in \cref{sec:np:clya}, the \gls{clya} protein contains a plethora of
+negatively charged residues lining its interior walls (\cref{fig:nanopores_clya_pore_section}). Such a
+negatively charged nanocavity is reminiscent of the well-studied \textit{E. coli} {GroEL/GroES}
+chaperone~\cite{Xu-1997}. Although the precise mechanism by which {GroEL} aids protein refolding remains
 controversial~\cite{England-2008,England-2008b,Motojima-2012,Weber-2013}, it is likely that the confinement
 prevents misfolded proteins from aggregating. Another explanation could be that the rich electrostatic
 environment inside the {GroEL} cavity increases the water density and hence enhances folding due to an
@@ -2198,10 +2232,11 @@ detrimental effects on the conformation of proteins trapped inside \gls{clya} ar
 Barring the use of excessive simplifications, our ability to describe the behavior of any arrangement of atoms
 and molecules with tractable analytical approaches quickly disappears with increasing system complexity. It is
 for this reason that scientists resort to simulations, where the equations that describe underlying the
-physical phenomena are solved numerically to a certain accuracy and typically with a computer, rather than
-analytically, for an appropriate, \emph{unsimplified} model of the molecular system. In this, final, section
-of this chapter, we aim to familiarize the reader with the most commonly used computational approaches for
-modeling complex molecular problems, together with some examples thereof within the nanopore field.
+physical phenomena are solved numerically, to a certain accuracy and typically with a computer, rather than
+analytically, for an appropriate, \emph{unsimplified} model of the molecular system. In the final section of
+this chapter, we aim to familiarize the reader with some of the most commonly used computational approaches
+for modeling complex molecular problems---starting from their basic underlying principles, highlighting their
+strengths and weaknesses, and concluding with some examples from within the nanopore field.
 
 %
 \begin{figure*}[b]
@@ -2243,27 +2278,13 @@ properties for a given conformational state of a molecular assembly, \gls{md} ca
 time-evolution of this system from one state to the next. In stochastic dynamics, the realism of the
 (intrinsically approximate) interaction potential is improved \textit{via} the explicit inclusion a friction
 term (to account for solvent viscosity) and an additional random energy term (to account the occasional
-perturbation by a high velocity collision). In the context of a molecular systems, these inclusions lead to
+perturbation by a high velocity collision). In the context of a molecular system, these inclusions lead to
 the well-known Langevin dynamics, which, in the overdamped-regime (\ie~no inertia) it is known as
 \glsfirst{bd}. Because we will only discuss \gls{md} in detail, the interested reader is referred to the
 comprehensive comparison compiled by Paquet and Viktor in Ref.~\cite{Paquet-2015}.
 
 \subsubsection{Molecular dynamics: atoms pushing atoms.}
 %
-
-% what is MD?
-%  - solve equations of motion for a complex, atomic system
-%     - bonded + non-bonded forces
-%     - algoritms
-%  - force fields
-% advantages
-%  - typically considered to be the most realistic approach for simulating molecular systems
-%  - limited set of assumptions needed
-%  - observe dynamic changes of molecular system
-% disadvantates
-%  - very computationally expensive
-%  - prone to artifacts (water, protein unfolding)
-%  - data analysis
 
 In \gls{md}, Newton's equations of motion are solved numerically for every atom as a function of time,
 yielding a so-called `trajectory' that contains the time-dependent positions and velocities for every atom
@@ -2284,9 +2305,9 @@ duration of the typical doctoral program), using current algorithms and supercom
 }
 %
 The net force on every atom, $\force$, is computed from the gradient of the potential energy functional
-(\ie~the interaction potential $\energymd$), which consists of a summation of `bonded' (\ie~between atoms
-sharing a covalent bond: bond length, angle and dihedral) and `non-bonded' (\ie~between all atoms: \gls{vdw}
-and electrostatics) interactions. Hence,
+(\ie~the interaction potential), which consists of a summation of `bonded' (\ie~between atoms sharing a
+covalent bond: bond length, angle and dihedral) and `non-bonded' (\ie~between all atoms: \gls{vdw} and
+electrostatics) interactions. Hence,
 %
 \begin{equation}\label{eq:nanopores_md_force}
   \force (\rpos) = - \nabla \energymd (\rpos)
@@ -2317,10 +2338,10 @@ involving proteins, nucleic acids and ions, the {AMBER}~\cite{Ponder-2003}, {CHA
 Depending on whether one chooses to keep constant the total energy or the temperature of the system, the
 time-average of the \gls{md} trajectory will correspond to respectively the canonical (\gls{nvt}: number,
 volume and temperature), or microcanonical (\gls{nve}: number, volume and energy) ensemble. The
-velocity-Verlet algorithm is one of the most well-known approaches for \gls{nve} \gls{md} simulations, since
-it conserves the total energy of the system with a high degree of accuracy~\cite{Swope-1982}. In contrast,
-\gls{nvt} simulations mandate the addition or removal of energy from the system to keep a fixed temperature.
-This can be achieved by adjusting the velocities of atoms an additional `thermostat' algorithm such as
+velocity-Verlet algorithm is one of the most well-known approaches for \gls{nve} \gls{md} simulations, as it
+conserves the total energy of the system with a high degree of accuracy~\cite{Swope-1982}. In contrast,
+\gls{nvt} simulations mandate the addition or removal of energy from the system to keep the temperature fixed.
+This can be achieved by adjusting the velocities of atoms with an additional `thermostat' algorithm such as
 Langevin dynamics~\cite{Bussi-2008}, or the velocity-rescaling~\cite{Heyes-1983},
 Nos\'{e}-Hoover~\cite{Nose-1984,Hoover-1985}, or Andersen~\cite{Andersen-1980} thermostats.
 
@@ -2382,7 +2403,7 @@ nanopores~\cite{Zhou-2020}.
 %  \cite{Pederson-2015}
 
 
-\subsection{Continuum, mean-field modeling}
+\subsection{Continuum, `mean-field' modeling}
 %
 
 \subsubsection{The mean-field approximation: averaging the interaction potential.}
@@ -2394,20 +2415,20 @@ computational burden can be reduced by `coarse-graining' (\ie~combining multiple
 pseudoatom with pseudo interaction potentials), the fundamental scaling problem remains unaltered.
 Fortunately, the stochasticity of individual atoms tends to rapidly average out in groups of atoms in a
 predictable manner, allowing their behavior to be condensed into a single material property that replaces the
-unique interaction potentials of every atom with a single effective interaction potential in a structureless
-medium or \emph{continuum} (\cref{fig:nanopores_simulations_types}, right). From an energetic point-of-view,
-this is the equivalent of finding the best approximation for the total energy of a system of interacting
-particles that does not include any interactions, also known as the \emph{mean-field approximation}.
-Importantly, the mean-field approximation reduces the many-body problem presented by explicit molecular
-simulations to a much more scalable one-body problem. Well-known examples of material properties include the
-relative permittivity, the viscosity of a liquid, or the diffusion coefficient of an ion. Even though
-mean-field theories excel at upward scaling (\ie~macroscopic system sizes and timescales), they must be used
-with caution when scaling downwards (\ie~microscopic system sizes and timescales), as the averaged property
-will no longer adequately represent the true physical behavior. For the case of electrostatics, the review by
-Collins provides an exhaustive set of reasons why continuum methods are unrealistic at the nanoscale, with the
-lack of explicit ion-water interactions being the main culprit~\cite{Collins-2012}. Nevertheless, the
-mean-field approximation has been used extensively, and successfully, for the (qualitative) simulation of ion
-channels~\cite{Im-2002,Furini-2006,Liu-2015},
+unique interaction potentials of a group of atoms with a single effective interaction potential, described by
+a structureless medium or \emph{continuum} (\cref{fig:nanopores_simulations_types}, right). From an energetic
+point-of-view, this is equivalent to finding the best approximation for the total energy of a system of
+interacting particles that does not include any explicit interactions terms, also known as the
+\emph{mean-field approximation}. Importantly, the mean-field approximation reduces the many-body problem
+presented by explicit molecular simulations to a much more scalable one-body problem. Well-known examples of
+material properties include the relative permittivity, the viscosity of a liquid, or the diffusion coefficient
+of an ion. Even though mean-field theories excel at upward scaling (\ie~macroscopic system sizes and
+timescales), they must be used with caution when scaling downwards (\ie~microscopic system sizes and
+timescales), as the averaged property will no longer adequately represent the true physical behavior. For the
+case of electrostatics, the review by Collins provides an exhaustive set of reasons why continuum methods are
+unrealistic at the nanoscale, with the lack of explicit ion-water interactions being the main
+culprit~\cite{Collins-2012}. Nevertheless, the mean-field approximation has been used extensively, and
+successfully, for the (qualitative) simulation of ion channels~\cite{Im-2002,Furini-2006,Liu-2015},
 \glspl{bnp}~\cite{Simakov-2010,Pederson-2015,Aguilella-Arzo-2017,Simakov-2018} and
 \glspl{ssnp}~\cite{Cervera-2005,White-2008,Chaudhry-2014,Laohakunakorn-2015}, providing meaningful physical
 insights at a fraction of the computational cost of a \gls{md} simulation.
@@ -2477,13 +2498,13 @@ As with the \gls{pbe}, the spatial distribution of $\potential$ can be obtained 
   \text{ ,}
 \end{equation}
 %
-where $\scd$ is the charge distribution within the systems. In the case of a charged analyte molecule within a
+where $\scd$ is the charge distribution within the system. In the case of a charged analyte molecule within a
 nanopore, $\scd = \scdfix + \scdion$, with the first term representing the \emph{fixed} ionized groups on the
 pore and the analyte, and $\scdion$ the ionic charge imbalance within the \gls{edl}
 (see~\cref{eq:nanopores_ion_scd}). In essence, \cref{eq:nanopores_poisson} states that, within a system with a
 given permittivity distribution, the electric field must adapt itself, spatially, in such a way (\ie~the field
-divergence), as to perfectly cancel out the imposed charge distribution(s). The inclusion of $\scdion$ in
-\cref{eq:nanopores_poisson} couples it back to the \gls{npe}.
+divergence), as to perfectly cancel out the imposed charge distribution(s). Note that the inclusion of
+$\scdion$ in \cref{eq:nanopores_poisson} couples it back to the \gls{npe}.
 
 In continuum mechanics, the velocity of a viscous fluid (\eg~water) can be described using the famous
 \gls{nse}, which comprise a mathematical representation for the conservation of mass and momentum. For an
@@ -2521,7 +2542,7 @@ follows: if the fluid velocities at two neighboring location differ, the viscous
 result in a transfer of the momentum from the high to low velocity location, analogous to the diffusion of a
 chemical species from high to low concentration. The internal source term stems from the pressure differences
 within a volume of fluid, causing it to flow from high to low pressures. Finally, the last term represents all
-forces that acts upon the fluid from external forces, such as gravity or an electric field
+forces that act upon the fluid from external forces, such as gravity or an electric field
 (\ie~$\forcedensedl$, see~\cref{eq:nanopores_edl_force}), providing a way to couple the \gls{nse} back to both
 the \gls{npe} and the \gls{pe}.
 
@@ -2551,14 +2572,14 @@ though its use in the \gls{ssnp} field is significantly more
 prevalent~\cite{Daiguji-2004,Cervera-2005,White-2008,Lu-2012,Chaudhry-2014,Laohakunakorn-2015,Hulings-2018,Rigo-2019,Melnikov-2020}.
 However, despite the wide-spread use of continuum transport models, their ability to quantitatively predict
 ionic currents---in their unmodified form---is typically poor~\cite{Corry-2000,Collins-2012}. To remedy this,
-researchers have sought for ways to mitigate the shortcomings of \gls{pnp}(-\gls{ns}) theory by including
-steric ion-ion interactions~\cite{Kilic-2007,Lu-2011,Liu-2020}, (2) the non-uniform
-diffusivities~\cite{Cozmuta-2005,Furini-2006,Simakov-2010,}, (3) the concentration dependencies of electrolyte
+researchers have sought for ways to mitigate the shortcomings of {PNP}(-{NS}) theory by including steric
+ion-ion interactions~\cite{Kilic-2007,Lu-2011,Liu-2020}, the non-uniform spatial distribution of the
+diffusivities~\cite{Cozmuta-2005,Furini-2006,Simakov-2010,}, and the concentration dependencies of electrolyte
 properties~\cite{Baldessari-2008-1,Burger-2012,Chen-2016}. Such corrections can be based on theory,
 experiment, or extracted from other simulations (\eg~\gls{md}). Conversely, the field distributions (electric
 field and electro-osmotic flow) can also be used as input for \gls{bd} simulations as to stochastically map
-the capture dynamics of individual particular~\cite{Pederson-2015,Hulings-2018}. Given that \cref{ch:epnpns}
-of this dissertation is devoted to building an improved \gls{pnp-ns} framework for the predictive modeling of
+the capture dynamics of individual particles~\cite{Pederson-2015,Hulings-2018}. Given that \cref{ch:epnpns} of
+this dissertation is devoted to building an improved \gls{pnp-ns} framework for the predictive modeling of
 biological nanopores, a more detailed discussion of this topic can be found there. Additionally,
 in~\cref{ch:transport} we have applied this improved framework to the \gls{bnp} \gls{clya}, in an extensive
 study of its nanofluidic properties.
@@ -2587,13 +2608,13 @@ C~\cite{Huang-2017,Restrepo-Perez-2019a}. Likewise, their solid-state counterpar
 significantly, from quasi-2D pores in graphene~\cite{Fischbein-2008} or \ce{MoS2}~\cite{Feng-2015b} for
 ultimate constriction sensitivity, to the integration of field-effect transistors~\cite{Ren-2020} that provide
 a new mode of sensing, to sub-\AA{}ngstrom pores that provide novel insights into confined molecular
-transport~\cite{Rigo-2019}. However, as this arsenal of available nanopores types, and the complexity of their
+transport~\cite{Rigo-2019}. However, as the arsenal of available nanopores types and the complexity of their
 applications, has grown, so has the need to better understand their physical working principles. Even though a
 plethora of mathematical frameworks and simulation methodologies currently exist~\cite{Maffeo-2012}, most
 notably molecular dynamics and Poisson-Nernst-Planck theory, the intricate physics of nanoscale transport
-within nanopores is pushing their capabilities to the limit and testing the boundaries of their
-validity~\cite{Collins-2012}. Nevertheless, it is here that modeling approaches, by providing physical
-understandings of existing phenomena and a guiding hand for novel experiments, can help to drive the nanopore
+within nanopores is pushing their capabilities to the limit and is testing the boundaries of their
+validity~\cite{Collins-2012}. Nevertheless, it is here that modeling approaches, by providing a physical
+understanding of existing phenomena and a guiding hand for novel experiments, can help to drive the nanopore
 field forward.
 
 

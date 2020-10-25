@@ -4,15 +4,29 @@
 \label{ch:transport}
 %
 
+% \epigraphhead[\epipos]{%
+% \epigraph{%
+% %
+%   ``Not the possession of truth but the effort in struggling to attain to it brings joy to the researcher.''
+% %
+% }{%
+%   \textit{Gotthold Ephraim Lessing}
+% %
+% }}
+
 \epigraphhead[\epipos]{%
 \epigraph{%
 %
-  ``Not the possession of truth but the effort in struggling to attain to it brings joy to the researcher.''
+  ``That was one of the odd, persistent defects of simulations: no matter how precise they became, the
+  participant remained aware that they were not reality.''
 %
 }{%
-  \textit{Gotthold Ephraim Lessing}
+  \textit{`Sylveste' in `Revelation Space' by Alastair Reynolds}
 %
 }}
+
+
+
 
 %
 %
@@ -34,7 +48,7 @@ This chapter was published as:
 %
 
 In this chapter we apply the \glsfirst{epnp-ns} equations introduced in \cref{ch:epnpns} to the biological
-nanopore \glsfirst{clya}. To this end we set-up a 2D-axisymmetric representation of the geometry and charge
+nanopore \glsfirst{clya}. To this end, we set-up a 2D-axisymmetric representation of the geometry and charge
 distribution of the pore, and numerically solved the \gls{epnp-ns} equations using \glsfirst{fea} for a wide
 range of bias voltages and ionic strengths. This allowed us to validate our model against experimental data,
 and investigate \gls{clya}'s transport properties in detail.
@@ -61,6 +75,9 @@ my own work. All experimental work was performed by Florian L. R. Lucas.
 \label{sec:transport:intro}
 %
 
+
+
+
 To validate our new \gls{epnp-ns} framework, we applied it to a 2D-axisymmetric model of
 \gls{clya}~\cite{Mueller-2009}, a large protein nanopore~\cite{Soskine-2012} that typically contains 12 or
 more identical subunits~\cite{Soskine-2013,Peng-2019}. We choose to model the \gls{clya-as} type I, a
@@ -73,26 +90,9 @@ immunotoxin~\cite{Mutter-2018}. This allowed us to gauge the qualitative and qua
 \gls{epnp-ns} equations and simultaneously elucidate previously inaccessible details about the environment
 inside the pore.
 
-\Gls{clya} is a relatively large protein nanopore that self-assembles on lipid bilayers to form \SI{14}{\nm}
-long hydrophilic channels (\cref{fig:transport_clya_side}). The interior of the pore can be divided into
-roughly two cylindrical compartments: the \cisi{} \lumen{} (\SI{\approx6}{\nm} diameter, \SI{\approx10}{\nm}
-height), and the \transi{} constriction (\SI{\approx3.3}{\nm} diameter, \SI{\approx4}{\nm} height). Because
-\gls{clya} consists of 12 identical subunits (\cref{fig:transport_clya_top}), it exhibits a high degree of
-radial symmetry, a geometrical feature that can be exploited to obtain meaningful results at a much lower
-computational cost~\cite{Cervera-2005,Lu-2012,Pederson-2015}. However, this requires the reduction of the full
-3D atomic structure and charge distribution to a realistic 2D-axisymmetric model.
-
-We will start this chapter by describing the process of creating such a 2D-axisymmetric model of a nanopore
-from a 3D full atom homology model (\cref{sec:transport:model}). This followed by the validation of the model
-by means of direct comparison of simulated and experimentally measured ionic conductances
-(\cref{sec:transport:results}). We then proceed to characterize the influence of the bulk ionic strength and
-the applied bias voltage on cation and anion concentrations inside the pore, the electrostatic potential
-distribution and magnitude of the electro-osmotic flow. Finally, we touch upon our key findings and their
-impact in \emph{\cref{sec:transport:conclusion}}.
-
 
 %
-\begin{figure*}[t]
+\begin{figure*}[b]
   \centering
   %
   \begin{subfigure}[t]{5.5cm}
@@ -129,6 +129,24 @@ impact in \emph{\cref{sec:transport:conclusion}}.
   }\label{fig:transport_clya}
 \end{figure*}
 %
+
+
+\Gls{clya} is a relatively large protein nanopore that self-assembles on lipid bilayers to form \SI{14}{\nm}
+long hydrophilic channels (\cref{fig:transport_clya_side}). The interior of the pore can be divided into
+roughly two cylindrical compartments: the \cisi{} \lumen{} (\SI{\approx6}{\nm} diameter, \SI{\approx10}{\nm}
+height), and the \transi{} constriction (\SI{\approx3.3}{\nm} diameter, \SI{\approx4}{\nm} height). Because
+\gls{clya} consists of 12 identical subunits (\cref{fig:transport_clya_top}), it exhibits a high degree of
+radial symmetry, a geometrical feature that can be exploited to obtain meaningful results at a much lower
+computational cost~\cite{Cervera-2005,Lu-2012,Pederson-2015}. However, this requires the reduction of the full
+3D atomic structure and charge distribution to a realistic 2D-axisymmetric model.
+
+We will start this chapter by describing the process of creating such a 2D-axisymmetric model of a nanopore
+from a 3D full atom homology model (\cref{sec:transport:model}). This followed by the validation of the model
+by means of direct comparison of simulated and experimentally measured ionic conductances, and a thorough
+characterization of the influence of the bulk ionic strength and the applied bias voltage on cation and anion
+concentrations inside the pore, the electrostatic potential distribution and magnitude of the electro-osmotic
+flow (\cref{sec:transport:results}). Finally, we touch upon our key findings and their impact
+(\cref{sec:transport:conclusion}).
 
 
 %
@@ -253,14 +271,14 @@ To sample the conformational space off the flexible side-chains of the nanopore,
 equilibrate the full-atom homology model of \gls{clya-as} type I~\cite{Soskine-2013} from
 \cref{ch:electrostatics} (see~\cref{sec:elec:methods:molec}) for \SI{30}{\ns} in an explicit solvent with
 harmonic constraints on the protein backbone atoms. The \SI{30}{\ns} production run was performed using a
-\gls{nvt} ensemble at \SI{298.15}{\kelvin} and the atomic coordinates saved every \SI{5}{\ps}. Whereas
-accidental structural deterioration of the pore was prevented by harmonically restraining (with spring
-constant of \SI{695}{\pN\per\nm}~\cite{Bhattacharya-2011}) the its C\ta{} atoms to their original positions in
-the crystal structure during the entire \gls{md} runs, all other atoms were allowed to move freely. This
-allowed us to sample the conformational landscape of all the \gls{clya} side chains without disrupting the
-overall structure of the pore and to generate a well-averaged geometry and charge distribution. The analysis
-in the next sections were performed with 50 sets of atomic coordinates---extracted from the final \SI{5}{\ns}
-of the coordinates of the \gls{md} production run (\ie~every \SI{100}{\fs})---and aligned by minimizing the
+\gls{nvt} ensemble at \SI{298.15}{\kelvin} and the atomic coordinates saved every \SI{5}{\ps}. Accidental
+structural deterioration of the pore was prevented by harmonically restraining (with spring constant of
+\SI{695}{\pN\per\nm}~\cite{Bhattacharya-2011}) the its C\ta{} atoms to their original positions in the crystal
+structure during the entire \gls{md} run. All other atoms were allowed to move freely. This allowed us to
+sample the conformational landscape of all the \gls{clya} side chains without disrupting the overall structure
+of the pore and to generate a well-averaged geometry and charge distribution. The analysis in the next
+sections were performed with 50 sets of atomic coordinates---extracted from the final \SI{5}{\ns} of the
+coordinates of the \gls{md} production run (\ie~every \SI{100}{\fs})---and aligned by minimizing the
 \gls{rmsd} between their backbone atoms (\gls{vmd}'s \code{RMSD tool}~\cite{Humphrey-1996}).
 
 \subsubsection{Side-chain B-factors.}
@@ -281,16 +299,16 @@ package~\cite{MichaudAgrawal-2011}. A heatmap of the resulting B-factors for eac
 frame-averaged B-factor (\cref{fig:transport_bfactor_scatter}), allowing us to compare the flexibility
 observed in the \gls{md} trajectory with the B-factors given by the dodecamer \gls{clya} crystal
 (\pdbid{2WCD}~\cite{Mueller-2009}) and \gls{cryo-em} (\pdbid{6MRT}~\cite{Peng-2019}) structures.
-Interestingly, $\bfactor_i$ of our \gls{md} simulation does not show much agreement with the original
+Interestingly, the $\bfactor_i$ of our \gls{md} simulation does not show much agreement with the original
 \pdbid{2WCD} crystal structure, but it reproduces the more flexible regions observed in the (newer)
 \pdbid{6MRT} \gls{cryo-em} structure (\ie~residue numbers \numrange{7}{20}, \numrange{95}{105},
 \numrange{180}{200} and \numrange{260}{280}). Peng and coworkers also started from the \pdbid{2WCD} crystal
 structure to generate their refined \gls{clya} model, albeit using a high resolution \gls{cryo-em} map as a
 restraint. Hence, the similarities in flexibility between our model and \pdbid{6MRT} are encouraging that the
-\gls{md} relaxes the structure properly. Finally, we also visualized the  \gls{md} $\bfactor_i$ on the
-interior and exterior molecular surface of \gls{clya-as} (\cref{fig:transport_bfactor_surface}). This shows
-that the most flexible regions are the \cisi{} and \transi{} entries of the pore. A cross-section of the final
-\gls{md} structure, in comparison with the \gls{clya} dodecamer crystal \pdbid{2WCD}~\cite{Mueller-2009} and
+\gls{md} relaxes the structure properly. Finally, we also visualized the \gls{md} $\bfactor_i$ on the interior
+and exterior molecular surface of \gls{clya-as} (\cref{fig:transport_bfactor_surface}). This shows that the
+most flexible regions are the \cisi{} and \transi{} entries of the pore. A cross-section of the final \gls{md}
+structure, in comparison with the \gls{clya} dodecamer crystal \pdbid{2WCD}~\cite{Mueller-2009} and
 \gls{cryo-em} \pdbid{6MRT}~\cite{Peng-2019} structures can be found
 in~\cref{sec:transport_appendix:radius_comparision} (\cref{fig:transport_radius_comparison_surface}).
 
@@ -367,6 +385,7 @@ with
 %
 \begin{align}
   d_i = \sqrt{(x-x_i)^2 + (y-y_i)^2 + (z-z_i)^2}
+  \text{ ,}
 \end{align}
 %
 where for each atom $i$, $R_i$ is its Van der Waals radius, $d_i$ is the distance of grid coordinates $(x, y,
@@ -428,8 +447,8 @@ Describing a methodology for setting up a 3D model is beyond of the scope of thi
 follow along the same lines as the approach outlined above, with the exception that the actual molecular
 surface and charge distribution of the pore (see the methodology used by the
 \gls{apbs}~\cite{Baker-2001,Jurrus-2018} for a potential approach) could be used instead of a radially
-averaged one. The \gls{epnp-ns} equations themselves would require discretization in Cartesian ($x$, $y$, $z$)
-rather than cylindrical ($r$, $\phi$, $z$) coordinates, but can otherwise remain unchanged.
+averaged one. The \gls{epnp-ns} equations themselves would require discretization in Cartesian ($x$,~$y$,~$z$)
+rather than cylindrical ($r$,~$\phi$,~$z$) coordinates, but can otherwise remain unchanged.
 
 
 \section{Results and discussion}
@@ -592,7 +611,7 @@ $d_{\text{trans}}=\text{\SI{3.3}{\nm}}$, respectively~\cite{Soskine-2013}.
     %
     Log-log plots of $\conductance$ as a function of $\cbulk$ at \SI{+150}{\mV} (top) and \SI{-150}{\mV}
     (bottom)---comparing results obtained through experiments, \gls{pnp-ns} and \gls{epnp-ns} simulations, and
-    the simple resistor pore model. The grey envelopes represent the experimental errors (standard deviation,
+    the simple resistor pore model. The gray envelopes represent the experimental errors (standard deviation,
     $n=3$).
     %
     (\subref{fig:transport_ioncurrent_icr_heatmap})
@@ -732,7 +751,7 @@ by the fraction of the total current that is carried by \Na{} ions: the apparent
 %
 \begin{align}\label{eq:tna}
   \tna = \dfrac{\pna}{\pna + 1} = \dfrac{\gna}{\gna + \gcl}
-  \text{ \, ,}
+  \text{ ,}
 \end{align}
 %
 with $\pna$ the cation permeability ratio, and $\gna$ and $\gcl$ the cation and anion contributions to the
@@ -1071,7 +1090,8 @@ averages (\cref{fig:transport_potential_profiles}) demonstrate this effect aptly
 ($\radpot$) represents the mean value along the longitudinal axis of the pore and can be computed using
 %
 \begin{align}\label{eq:epnp-ns_radpot}
-  \radpot = \dfrac{1}{\pi R(z)^2}\int_{0}^{R(z)}\potential(r,z) \;2 \pi r \; dr \text{ ,}
+  \radpot = \dfrac{1}{\pi R(z)^2}\int_{0}^{R(z)}\potential(r,z) \;2 \pi r \; dr
+  \text{ ,}
 \end{align}
 %
 where $R(z)$ is taken as the \gls{clya}'s radius inside the pore ($-1.85 \le z \le \mSI{12.25}{\nm}$), and as
@@ -1155,6 +1175,7 @@ $\radenergy$, the radially averaged electrostatic energy for a monovalent ion
 %
 \begin{equation}\label{eq:epnp-ns_radenergy}
   \radenergy = \chargen_{i} \echarge \radpot
+  \text{ ,}
 \end{equation}
 %
 at $\vbias = \mSI{\pm150}{\mV}$ for the entire range of simulated ionic strengths
@@ -1618,6 +1639,8 @@ Germany).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Keep the following % otherwise \includeonly includes empty pages.
+% Keep the following \cleardoublepage at the end of this file,
+% otherwise \includeonly includes empty pages.
+\cleardoublepage
 
 % vim: tw=70 nocindent expandtab foldmethod=marker foldmarker={{{}{,}{}}}

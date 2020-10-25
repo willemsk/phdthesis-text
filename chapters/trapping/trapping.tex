@@ -59,7 +59,7 @@ Dr.~rer.~nat.~Dino Rui\'{c} (see~\cref{sec:trapping_appendix:escape_rates}).
 %
 
 %
-Note that further permissions related to the material excerpted should be directed to the ACS
+Note that further permissions related to the material excerpted should be directed to the ACS.
 %
 % \cleardoublepage
 %
@@ -101,7 +101,7 @@ Sensors capable of the label-free interrogation of proteins at the single-molecu
 biosensing, biophysics, and enzymology~\cite{Gooding-2016,Xie-2001,Willems-VanMeervelt-2017}. In particular,
 the ability to observe the behavior of individual proteins allows one to directly retrieve the rates of
 kinetic processes and provides a wealth of mechanistic, energetic and structural information,which are not
-readily obtained from statistically averaged ensemble (bulk) measurements~\cite{Goodinng-2016}. To achieve
+readily obtained from statistically averaged ensemble (bulk) measurements~\cite{Gooding-2016}. To achieve
 single-molecular sensitivity at high signal-to-noise ratios, the observational volume of the sensor should be
 similar in size to the object of interest (\ie~zeptoliter-range for a protein with a radius of \SI{2.5}{\nm}).
 Moreover, many kinetic processes have relatively long time scales (\eg~\SIrange{e-3}{e0}{\second}) which in
@@ -463,7 +463,7 @@ electro-osmosis outweighs electrophoresis and the energy landscape will be shift
 %
 
 The entry of a single protein into \gls{clya} results in a temporary reduction of the ionic current from the
-`open pore' ($\iopen$) to a characteristic `blocked pore' ($\iblock$) level. Previously we revealed that the
+`open pore' ($\iopen$) to a characteristic `blocked pore' ($\iblock$) level. Previously, we revealed that the
 \gls{dhfr} protein shows a main current blockade with $\iresp = \iblock / \iopen \approx \SI{70}{\percent}$
 (see~\cref{fig:trapping_traces}). However, occasionally deeper blocks are observed which most likely represent
 the transient visit of \gls{dhfr} to multiple locations inside the nanopore. Here we assume that the dwell
@@ -546,7 +546,8 @@ into multiple final states, such as an escape to either \cisi{} or \transi{}
 bias voltage, $\vbias$, can be expressed as the inverse of the sum of two escape rates~\cite{Movileanu-2005}
 %
 \begin{align}\label{eq:double_barrier_simple}
-	\dfrac{1}{\dwelltime} = \rate = \rate^\cis + \rate^\trans	=
+  \dfrac{1}{\dwelltime} = \rate ={}& \rate^\cis + \rate^\trans \\
+    ={}&
     \rate^\cis_0 \exp \left( -\dfrac{\alpha^\cis \ec \vbias}{\kbt} \right) +
     \rate^\trans_0 \exp \left( \dfrac{\alpha^\trans \ec \vbias}{\kbt} \right)
   \text{ ,}
@@ -604,18 +605,19 @@ of the entire protein-nanopore system to four parameters does not allow for thei
 %
 
 
-\subsection{Engineering {DHFR}'s dwell time by manipulation of its charge}
+\subsection[Engineering {DHFR}'s dwell time by manip. of its charge]%
+           {Engineering {DHFR}'s dwell time by manipulation of its charge}
 %
 
 The results from the \gls{apbs} simulations, together with the previous work with \DHFRt{} and
 \gls{mtx}~\cite{Soskine-Biesemans-2015}, suggest that the dwell time of \gls{dhfr} in \gls{clya} can be
 increased by the manipulation of its charge distribution. To achieve the increase in dwell time without the
-need for MTX, several non-conserved amino acids on the surface of \DHFR{4}{S} were identified and mutated to
-negatively charged glutamate residues, resulting in the molecules \DHFR{4}{I}, \DHFR{4}{C}, \DHFR{4}{O1}, and
-\DHFR{4}{O2} (\cref{tab:dhfr_variants} and \cref{fig:trapping_dwell_times_body_model}). These mutations modify
-the number of charges in the body compared to \DHFR{4}{S} and their charges are also in different locations.
-For convenience, this series of mutations will be referred to as the \emph{body charge variations} from here
-on out.
+need for \gls{mtx}, several non-conserved amino acids on the surface of \DHFR{4}{S} were identified and
+mutated to negatively charged glutamate residues, resulting in the molecules \DHFR{4}{I}, \DHFR{4}{C},
+\DHFR{4}{O1}, and \DHFR{4}{O2} (\cref{tab:dhfr_variants} and \cref{fig:trapping_dwell_times_body_model}).
+These mutations modify the number of charges in the body compared to \DHFR{4}{S} and their charges are also in
+different locations. For convenience, this series of mutations will be referred to as the \emph{body charge
+variations} from here on out.
 
 We performed ionic current measurements for all body charge variations for a wide range of bias voltages
 (\SIrange{-40}{-120}{\mV}, see~\cref{fig:trapping_traces,fig:trapping_blockades}) and extracted the dwell
@@ -791,7 +793,7 @@ overcome in order to escape toward \cisi{} and \transi{}, respectively. These ca
   \barrier^{\cis} ={}&
     \barrier^{\cis}_{\steric,0}
     + \barrier^{\cis}_\static
-    + \barrier^{\cis}_\ext, \\
+    + \barrier^{\cis}_\ext \text{ , and,} \\
   \barrier^{\trans} ={}&
     \barrier^{\trans}_{\steric,0}
     + \barrier^{\trans}_\static
@@ -909,10 +911,11 @@ by (see~\cref{sec:trapping_appendix:escape_rates})
 \begin{align}
   \barrier^{\cis}_\ext ={}&
     \barrier^{\cis}_\ep + \barrier^{\cis}_\eo =
-    -(\Nnet + \Neo) \ec \dfrac{\dxcis}{L} \vbias,\\
+    -(\Nnet + \Neo) \ec \dfrac{\dxcis}{L} \vbias \text{ , and,}\\
   \barrier^{\trans}_\ext ={}&
     \barrier^{\trans}_\ep + \barrier^{\trans}_\eo =
-    +(\Nnet + \Neo) \ec \dfrac{\dxtrans}{L} \vbias,
+    +(\Nnet + \Neo) \ec \dfrac{\dxtrans}{L} \vbias
+    \text{ ,}
 \end{align}
 \end{subequations}
 %
@@ -955,7 +958,8 @@ the final dwell time model:
 				\Ntag \ec \potbar_{\rm{tag}}^{\trans}
 				+ (\Nnet + \Neo) \ec \dfrac{\dxtrans}{L} \vbias}{\kbt}
 		\right)
-		},
+    }
+    \text{ ,}
 	\end{split}
 \end{equation}
 %
@@ -1040,6 +1044,7 @@ some barriers and enhancing others. The biased energy $\energyelec_{\vbias}$ is 
 %
 \begin{align}\label{eq:external_energy}
   \energyelec_{\vbias} =  \energyelec + \Eext
+  \text{ ,}
 \end{align}
 %
 where $\Eext$ is the energy of the \gls{dhfr} molecule due to the external bias voltage. Assuming the bias
@@ -1049,9 +1054,9 @@ voltage changes linearly from \cisi{} to \transi{}, $\Eext$ can be approximated 
   \Eext =
   \begin{cases}
       \Ntot \dfrac{\vbias}{\SI{14}{\nm}} (z - \SI{11}{\nm})
-              & \text{for}\; -3 < z < \SI{11}{\nm},\\
-      0,      & \text{for}\;  z >= \SI{11}{\nm},\\
-      \Ntot \vbias, & \text{for}\;  z <  \SI{-3}{\nm}
+              & \text{for}\; -3 < z < \SI{11}{\nm} \text{ ,} \\
+      0,      & \text{for}\;  z >= \SI{11}{\nm} \text{ ,}\\
+      \Ntot \vbias, & \text{for}\;  z <  \SI{-3}{\nm} \text{ ,}
   \end{cases}
 \end{align}
 %
@@ -1190,7 +1195,7 @@ for the capture of the molecule~\cite{Soskine-2012,Soskine-Biesemans-2015}. At a
 %
 \begin{equation}
   \forceeo = \ec \Neo \frac{\vbias}{L} \approx \SI{9}{\pN}
-  \qquad\text{.}
+  \text{ .}
 \end{equation}
 %
 The magnitude of this force is in line with those found experimentally for
@@ -1215,7 +1220,8 @@ anchor which is located in the electrostatic minimum created by the \transi{} co
 We can also determine the probability of a full translocation of \gls{dhfr} using
 %
 \begin{align}\label{eq:ptrans}
-  \probtrans = \rate^{\trans} / \left( \rate^{\cis} + \rate^{\trans} \right),
+  \probtrans = \dfrac{\rate^{\trans}}{\rate^{\cis} + \rate^{\trans}}
+  \text{ ,}
 \end{align}
 %
 where $k^\cis$ and $k^\trans$ can be computed using the individual components given by
