@@ -77,6 +77,7 @@
 \definecolor{kultertiaryaccent10}{cmyk/RGB/rgb}{.10,.50,.10,.05/199,147,174/.780,.576,.682}
 \definecolor{kultertiaryaccent11}{cmyk/RGB/rgb}{.25,0,.90,0/212,216,66/.831,.847,.259}
 \definecolor{kultertiaryaccent12}{cmyk/RGB/rgb}{.03,.60,.80,.15/186,113,60/.729,.443,.235}
+\definecolor{kuldarkblue}{cmyk/RGB/rgb}{.85,.50,0,.55/17,58,115/.067,.227,.451}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1737,6 +1738,20 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
 \thispagestyle{empty}
 \mbox{}
 \vfill
+
+{\scriptsize\sffamily\textbf{Front and back cover}: artistic impression of a nanopore (credit: Yasmine
+Willems)} \\
+
+\bigskip
+{\scriptsize\sffamily\textbf{Acknowledgements}:
+This research was funded by the Agency for Innovation by Science and Technology (IWT) Flanders under contract
+131655, by the Fund for Scientific Research (FWO) under project grant G068315N, and by the European Research
+Council (ERC) under starting grant 260884 (SMEN) and consolidator grant 726151 (DeE-Nano). The computational
+resources and services used in this work were provided by the VSC (Flemish Supercomputer Center), funded by
+the Research Foundation---Flanders (FWO) and the Flemish Government, department EWI.
+} \\
+
+\bigskip
 {\scriptsize\sffamily{\setlength{\parindent}{0ex}\copyright{}~\@copyyear~KU Leuven -- \@faculty \\
 Uitgegeven in eigen beheer, \@authorf~\@authorl, \@address, \@addresspc{} (Belgium)}
 
@@ -1836,6 +1851,13 @@ without written permission from the publisher.
   }{}
   \thispagestyle{empty}
 
+  % Cover image
+  \begin{textblock*}{120mm}(0mm+#1,0mm)
+    \textblockcolour{}
+    \includegraphics*{image/cover_back}
+  \end{textblock*}
+  %
+
   % Blue lines in right corner
   %
   \begin{textblock*}{55mm}(#1+97.5mm,20mm)
@@ -1856,6 +1878,7 @@ without written permission from the publisher.
   %\parbox[c][20mm]{151.2mm+\rbleed}{
   \flushright
   %\vspace{-3mm}
+  \color{white}{
   {\scriptsize {\sffamily\MakeUppercase\@faculty}}\\[-1mm]
   {\scriptsize {\sffamily\MakeUppercase\@department}}\\[-1mm]
   \ifdefempty{\@researchgroup}{}{{\scriptsize {\sffamily\MakeUppercase\@researchgroup}}\\[-1mm]}
@@ -1863,6 +1886,7 @@ without written permission from the publisher.
   {\scriptsize {\sffamily{}\@addresspc}}\\[-1mm]
   \ifdefempty{\@email}{}{{\scriptsize {\sffamily{}\@email}}\\[-1mm]}
   \ifdefempty{\@website}{}{{\scriptsize {\sffamily{}\@website}}}
+  }
   %}
   \end{textblock*}
   %

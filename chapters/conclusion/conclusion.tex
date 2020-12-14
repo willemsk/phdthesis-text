@@ -21,15 +21,15 @@ In this dissertation, I have demonstrated that computational modeling---in combi
 physical models and systematic experiments---can be a powerful tool to shed light on (1) the physical
 mechanisms that drive molecular transport through (biological) nanopores, and (2) the diverse physical
 conditions that occur within them. In particular, this work shows that although a great deal of information
-can be obtained from \emph{equilibrium} electrostatic simulations, which effectively mimic the nanopore
-without an applied bias voltage, the transport of analyte molecules such as \gls{dna} or proteins is governed
-by a complex interplay of extrinsic (\ie~(di)electrophoretic and electro-osmotic) and intrinsic
-(\ie~electrostatic, steric, and entropic) forces. It is for this reason that a \emph{nonequilibrium}
-simulation framework was developed: the \glsfirst{epnp-ns} equations. This framework enables one to accurately
-predict the transport of ions, water molecules, and analyte molecules through biological nanopores, providing
-a means to paint a complete picture of the sensing process. The following sections summarize the key
-conclusions that can be drawn from this dissertation, followed by my perspective on the future of nanopore
-sensing, and the role of computational modeling therein.
+can be obtained from equilibrium electrostatic simulations, which effectively mimic the nanopore without an
+applied bias voltage, the transport of analyte molecules such as \gls{dna} or proteins is governed by a
+complex interplay of extrinsic (\ie~(di)electrophoretic and electro-osmotic) and intrinsic (\ie~electrostatic,
+steric, and entropic) forces. It is for this reason that a nonequilibrium simulation framework was developed:
+the \glsfirst{epnp-ns} equations. This framework enables one to accurately predict the transport of ions,
+water molecules, and analyte molecules through biological nanopores, providing a means to paint a complete
+picture of the sensing process. The following sections summarize the key conclusions that can be drawn from
+this dissertation, followed by my perspective on the future of nanopore sensing, and the role of computational
+modeling therein.
 
 
 %
@@ -84,8 +84,8 @@ within the constriction of \gls{clya-rr56k}, it remained significantly higher co
 pore. As expected, at high ionic strengths (\SI{2.5}{\Molar}), however, no differences between the mutants
 could be observed, in agreement with experiments~\cite{Franceschini-2013,Franceschini-2016}
 
-To gain a better understanding of the electrostatic \emph{energy} barriers that arise during the translocation
-of analyte molecules, we computed the electrostatic energy costs (or gains) that result from the movement of a
+To gain a better understanding of the electrostatic energy barriers that arise during the translocation of
+analyte molecules, we computed the electrostatic energy costs (or gains) that result from the movement of a
 \gls{dna} molecule (in~\cref{ch:electrostatics}) or a protein (in~\cref{ch:trapping}) along the length of the
 pore. In the case of \gls{ssdna} translocation through \gls{refrac}, we found that the D10R charge reversal
 lowered the energy barrier for entering the constriction of the pore from \SIrange{38}{14}{\kbt}.
@@ -96,14 +96,14 @@ translocation through \gls{clya} (at \SI{0.15}{\Molar} ionic strength) is more c
 charge-reversal mutation, D64R, is not located within the constriction of the pore, but rather in the middle
 of the large \cisi{} \lumen{}. We hypothesize that, just as the S110R mutation promotes the entry of the
 \gls{dna} from the \cisi{} side, so does the D64R mutation encourage the strand to penetrate deeper into the
-\lumen{} of the pore by \emph{lowering} rather than increasing the electrostatic energy. Under (positive)
-applied bias voltages, this would allow the \gls{dna} to accumulate sufficient force to overcome
-\SI{\approx40}{\kbt} energy barrier within the constriction. At high salt concentrations (\SI{2.5}{\Molar}),
-the energy landscape of all variants is similar, and the energy barrier is reduced to a mere \SI{10}{\kbt},
-which can be easily overcome by the electrophoretic force. Interestingly, the energy of the translocating
-\gls{dna} molecule appears to fluctuate every \SI{36}{\angstrom} with \SI{\approx2}{\kbt}, suggesting that it
-might rotate during translocation. Finally, the strong electrostatic repulsion results in the strong
-confinement of the \gls{dsdna} to the center of the pore, even at high salt concentrations.
+\lumen{} of the pore by lowering rather than increasing the electrostatic energy. Under (positive) applied
+bias voltages, this would allow the \gls{dna} to accumulate sufficient force to overcome \SI{\approx40}{\kbt}
+energy barrier within the constriction. At high salt concentrations (\SI{2.5}{\Molar}), the energy landscape
+of all variants is similar, and the energy barrier is reduced to a mere \SI{10}{\kbt}, which can be easily
+overcome by the electrophoretic force. Interestingly, the energy of the translocating \gls{dna} molecule
+appears to fluctuate every \SI{36}{\angstrom} with \SI{\approx2}{\kbt}, suggesting that it might rotate during
+translocation. Finally, the strong electrostatic repulsion results in the strong confinement of the
+\gls{dsdna} to the center of the pore, even at high salt concentrations.
 
 As an example for the role of electrostatics during protein translocation, we computed the electrostatic
 energy of \DHFRt{}, an engineered variant of the \textit{E. coli} \glsfirst{dhfr} enzyme containing a
@@ -122,10 +122,10 @@ directly, through electrostatic interactions, or indirectly, through the \gls{eo
 by the ionic strength and pH of the electrolyte. Nevertheless, even though equilibrium electrostatic
 calculations already provide a wealth of information, applying an external electric field `tilts' the energy
 landscape, causing seemingly impassable barriers (at equilibrium) to diminish or even disappear. Hence, a full
-understanding of molecular transport through nanopores necessitates the use of non-equilibrium simulations.
+understanding of molecular transport through nanopores necessitates the use of nonequilibrium simulations.
 
 
-\subsubsection{Accurate, non-equilibrium continuum modeling of biological nanopores requires extensive corrections.}
+\subsubsection{Accurate, nonequilibrium continuum modeling of biological nanopores requires extensive corrections.}
 %
 
 To gain even deeper insights into the nanoscale forces involved in nanopore-based sensing, it is necessary to
@@ -254,9 +254,9 @@ engineering the dwell time of small proteins within nanopores.
 Even though the \gls{epnp-ns} framework presented in this dissertation constitutes a solid step forwards for
 the accurate and efficient modeling of (biological) nanopores with continuum methods, it is still far from the
 being a `user-friendly' tool that can be utilized by nanopore researchers. Currently, the \gls{epnp-ns}
-equations have been implemented in the COMSOL Multiphysics software, a versatile, but \emph{commercial} finite
-element solver. In the spirit of \emph{open science}, the first (technical) improvement I would endeavor is
-porting the current implementation into a free (as in speech, not just beer) and open-source \gls{pde} solver
+equations have been implemented in the COMSOL Multiphysics software, a versatile, but commercial finite
+element solver. In the spirit of `open science', the first (technical) improvement I would endeavor is porting
+the current implementation into a free (as in speech, not just beer) and open-source \gls{pde} solver
 framework, such as \code{FEniCS} (finite element) or \code{OpenFOAM} (finite volume). Besides making the full
 program available, free of charge, to anyone that wishes to use it, this would give full control of the code
 the users, enabling them to utilize, adapt, and contribute as they see fit. Additionally, this would provide
@@ -269,9 +269,9 @@ can be obtained with them. Full 3D models could properly capture the complex, co
 even the most radially symmetric nanopores. As a result, this would also greatly improve the realism of the
 nanopore's fixed charge density, as it eliminates overlapping charges, and charges that fall within the
 electrolyte rather the solid dielectric of the pore. Note that the 2D-axisymmetric approach could still remain
-a valuable tool for situations were speed, rather than accuracy, is of the essence---as would be the case when
-screening many nanopore mutant or conditions. A final technical improvement would be to further automate the
-simulation pipeline, at the very least for specific and verified pores, with the goal of providing a
+a valuable tool for situations where speed, rather than accuracy, is of the essence---as would be the case
+when screening many nanopore mutant or conditions. A final technical improvement would be to further automate
+the simulation pipeline, at the very least for specific and verified pores, with the goal of providing a
 user-friendly tool that is actually usable by less `technically inclined' users.\footnotemark%
 %
 \footnotetext{
@@ -315,29 +315,28 @@ approach to the \gls{plyab-e2} and \gls{plyab-r} pores described in \cref{ch:ele
 it was indeed able to capture the experimentally observed differences in the \gls{eof} between these two
 mutants~\cite{Huang-2020}. The current framework could be applied to numerous other pores and mutants thereof,
 to help explain and perhaps even guide experiments. Even more exciting is the self-consistent simulation of
-translocating particles of various sizes and charges under \emph{nonequilibrium} conditions. In addition to
-the electrostatic force, these computations would yield the full electrophoretic and hydrodynamic force
-landscape, together with the residual current values for each individual particle position. By subsequently
-feeding these data into a Brownian dynamics simulator, which adds an additional stochastic force to mimic
-thermal motion, it would allow one to mimic the actual nanopore sensing process
-itself~\cite{Pederson-2015,Hulings-2018}. For example, when using \gls{clya} quantify small molecules
-(\eg~metabolites) \textit{via} their binding to an ``adaptor protein'' trapped within the
-nanopore~\cite{Zernia-2020}, the precise origin of the minor current fluctuations (or lack thereof) is still
-unclear. By providing a detailed trace of the positional dynamics of the adaptor protein---with and without
-its bound ligand---together with the simulated ionic current, our computational model could significantly
-better our understanding of such systems. Taking it even further, a 3D solver could be used to automatically
-screen the all adaptor proteins available in the \gls{pdb}, assessing their expected signal strength and
-yielding a shortlist of candidates to test experimentally. Similarly, the framework could be employed for the
-analysis of the proteins \emph{themselves} (\ie~proteomics). By predicting the expected residual ionic
-currents and the dynamics of relevant proteins, simulations can aid with their identification and
-classification. Finally, also in the fields of \gls{dna} or protein sequencing the \gls{epnp-ns} framework
-could be of great value. It could be used to optimize the signals of a specific pore by performing a (semi)
-automatic screening of mutations within the base-sensing region of the nanopore. Additionally, simulations of
-existing \gls{dna} sequencing systems may contribute to the unambiguous interpretation of the measured
-signals, which typically requires complex algorithms or specifically trained neural networks~\cite{Wick-2019}.
-In short, by providing a mutualistic connection between the experimentalist and the simulant, the ability to
-correlate the detailed dynamics of an analyte molecule with the experimentally observed ionic current signal
-is a key ingredient for advancing the nanopore field.
+translocating particles of various sizes and charges under nonequilibrium conditions. In addition to the
+electrostatic force, these computations would yield the full electrophoretic and hydrodynamic force landscape,
+together with the residual current values for each individual particle position. By subsequently feeding these
+data into a Brownian dynamics simulator, which adds an additional stochastic force to mimic thermal motion, it
+would allow one to mimic the actual nanopore sensing process itself~\cite{Pederson-2015,Hulings-2018}. For
+example, when using \gls{clya} quantify small molecules (\eg~metabolites) \textit{via} their binding to an
+``adaptor protein'' trapped within the nanopore~\cite{Zernia-2020}, the precise origin of the minor current
+fluctuations (or lack thereof) is still unclear. By providing a detailed trace of the positional dynamics of
+the adaptor protein---with and without its bound ligand---together with the simulated ionic current, our
+computational model could significantly better our understanding of such systems. Taking it even further, a 3D
+solver could be used to automatically screen the all adaptor proteins available in the \gls{pdb}, assessing
+their expected signal strength and yielding a shortlist of candidates to test experimentally. Similarly, the
+framework could be employed for the analysis of the proteins themselves (\ie~proteomics). By predicting the
+expected residual ionic currents and the dynamics of relevant proteins, simulations can aid with their
+identification and classification. Finally, also in the fields of \gls{dna} or protein sequencing the
+\gls{epnp-ns} framework could be of great value. It could be used to optimize the signals of a specific pore
+by performing a (semi) automatic screening of mutations within the base-sensing region of the nanopore.
+Additionally, simulations of existing \gls{dna} sequencing systems may contribute to the unambiguous
+interpretation of the measured signals, which typically requires complex algorithms or specifically trained
+neural networks~\cite{Wick-2019}. In short, by providing a mutualistic connection between the experimentalist
+and the simulant, the ability to correlate the detailed dynamics of an analyte molecule with the
+experimentally observed ionic current signal is a key ingredient for advancing the nanopore field.
 
 
 

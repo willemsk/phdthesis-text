@@ -372,7 +372,7 @@ the tag, respectively.
     coarse-grained \DHFR{4}{S} bead model is moved along the central axis of the pore. The distances $\dxcis$
     and $\dxtrans$ refer to the distances between the energy minimum near the bottom of the \lumen{}
     ($z_{\rm{body}} = \mSI{3}{\nm}$) and the maximum at, respectively, \cisi{} ($z_{\rm{body}} =
-    \mSI{5.7}{\nm}$) and \transi{} ($z_{\rm{body}} = \mSI{-0.6}{\nm}$).
+    \mSI{5.7}{\nm}$) and \transi{} ($z_{\rm{body}} = \mSI{-0.6}{\nm}$)
     %
     %
     (\subref{fig:trapping_apbs_barrier_body})
@@ -430,7 +430,9 @@ moves through the constriction of the pore. Moreover, we observed a second small
 $\barrier^{\cis}_{\rm{es}}$, toward the \cisi{} side so that an energetic minimum exists inside \gls{clya} in
 which the molecule can reside. The size difference between these two barriers clearly suggests that in the
 absence of an external force (\ie~at \SI{0}{\mV} bias) the molecule will exit toward \cisi{} with overwhelming
-probability.
+probability. Nevertheless, the multiple distinct blockade current levels observed experimentally
+(see~\cref{fig:trapping_traces}) suggest the presence of multiple energy minima within the pore, of which the
+equilibrium energy landscape might provide a potential physical location.
 
 To estimate how the charges on \gls{dhfr} impact its dwell time, we modified the number of charges in the body
 from \SIrange{-10}{-13}{\ec} and recomputed the energy landscape using \gls{apbs}
@@ -967,7 +969,7 @@ where the static terms are absorbed into the prefactor to form the effective \ci
 attempt rates $\rate_{\rm{eff}}^{\cis/\trans}$. The formulation of \cref{eq:double_barrier_complex} offers a
 compact description of the most salient features of the molecule-nanopore system, and it enables us to
 describe the dwell time of \gls{dhfr} inside \gls{clya} quantitatively as a function of the physical
-properties of the system. Fitting this model to all \DHFR{$\Ntag$}{O2} data \emph{simultaneously}---with both
+properties of the system. Fitting this model to all \DHFR{$\Ntag$}{O2} data simultaneously---with both
 $\vbias$ and $\Ntag$ as independent variables---leads to the fitting values in
 \cref{tab:fitting_params_complex} and the plots in \cref{fig:trapping_dwell_times_tag_data}, which show
 excellent accuracy considering the simplicity of our model. This is a strong indication that we captured the
@@ -998,9 +1000,9 @@ essence of the trapping mechanism within our model.
     \includegraphics[scale=1]{trapping_apbs_external_biased}
   \end{subfigure}
   %
-  \caption[Electrostatic landscape of a {DHFR} bead model in {ClyA-AS}]%
+  \caption[Electrostatic landscape of a \DHFRt{} bead model in {ClyA-AS}]%
     {%
-      \textbf{Electrostatic landscape of a {DHFR} bead model in {ClyA-AS}.}
+      \textbf{Electrostatic landscape of a \DHFRt{} bead model in {ClyA-AS}.}
       %
       (\subref{fig:trapping_apbs_external_model})
       %
@@ -1213,8 +1215,8 @@ Another important finding of our model is that the \gls{dhfr} variations are ess
 electrostatic forces of the pore on the tag. This can be seen from the direct exponential dependence of the
 electrostatics on the tag charge as shown in \cref{eq:static-barrier}. If the molecule was trapped as a whole
 between two barriers, we would rather see a dependence on the net charge on the molecule. Indeed, we verified
-that such a net charge dependence \emph{cannot} be fitted to the data. This suggest that the tag acts as an
-anchor which is located in the electrostatic minimum created by the \transi{} constriction
+that such a net charge dependence cannot be fitted to the data. This suggest that the tag acts as an anchor
+which is located in the electrostatic minimum created by the \transi{} constriction
 (\cref{fig:trapping_apbs_energy}).
 
 We can also determine the probability of a full translocation of \gls{dhfr} using
@@ -1272,8 +1274,13 @@ translocation probabilities, as well as an estimate of the force exerted by the 
 protein of \SI{0.178}{\pico\newton\per\milli\volt} (\eg~\SI{9}{\pN} at \SI{-50}{\mV},
 \cref{tab:fitting_params_complex}). We also showed that the \gls{apbs} simulation results of a simple bead
 model for the molecule are directly related to the independently fitted parameters of the double barrier
-model. In conclusion, this means that it should be possible to \emph{predict} the dwell times of similar
-experiments by obtaining parameters directly from these types of \gls{apbs} simulations.
+model. In conclusion, this means that it should be possible to predict the dwell times of similar experiments
+by obtaining parameters directly from these types of \gls{apbs} simulations. Interestingly, some \DHFRt{}
+variants showed several well-defined current blockade levels, indicating the presence of several stable energy
+minima within the pore. Even though we did not investigate this phenomena in detail, we did observe the
+presence multiple minima in the electrostatic energy landscape of \DHFRt{}. These findings suggest that the
+distinct current blockades observed experimentally might correspond to different physical locations of the
+protein along the length of \gls{clya}.
 
 The double barrier model of \cref{eq:double_barrier_complex} in its current form does not adequately describe
 mutations that modify the body charge distribution of \gls{dhfr}\@. This is most likely because body charge
@@ -1282,14 +1289,6 @@ than modifications on the far end of the tag. Although a model accounting for th
 would also make the double barrier model significantly more complex without providing any significant
 advantages over a more comprehensive atomistic simulation. A more detailed discussion can be found in
 \cref{sec:trapping_appendix:body_charge_variations}.
-
-We showed previously that neutral or weakly charged proteins larger than the \transi{} constriction
-(\SI{>3.3}{\nm}) of \gls{clya} can be trapped inside the nanopore for a relatively long duration (seconds to
-minutes) and that their behavior can be sampled by ionic current
-recordings~\cite{Soskine-2013,Soskine-2012,Soskine-Biesemans-2015,Biesemans-2015,VanMeervelt-2014}. In
-contrast, small proteins rapidly translocate through the nanopore due to the strong electro-osmotic flow and
-highly negatively charged proteins remain inside \gls{clya} only briefly or they do not enter at
-all~\cite{Soskine-2012}.
 
 Inside the \lumen{} of \gls{clya}, proteins are able to bind to their specific substrates at all applied
 potentials tested (up to \SI{-100}{\mV}), indicating that the electrostatic potential inside the nanopore and

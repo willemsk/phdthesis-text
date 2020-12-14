@@ -10,7 +10,7 @@ large, such as the merging of two black holes at a distance of \num{1.3}~billion
 the very small, such as the identification of individual viral particles from a complex mixture. This
 dissertation is devoted to studying the physical mechanisms that govern a tiny, yet highly versatile sensor:
 the biological nanopore. Biological nanopores are protein molecules that form nanometer-sized apertures in
-lipid membranes. When an individual molecule passes through this aperture (\ie~`it `translocates''), the
+lipid membranes. When an individual molecule passes through this aperture (\ie~it ``translocates''), the
 temporary disturbance of the ionic current caused by its passage reveals valuable information on its identity
 and properties. Despite this seemingly straightforward sensing principle, the complexity of the interactions
 between the nanopore and the translocating molecule implies that it is often very challenging to unambiguously
@@ -18,7 +18,8 @@ link the changes in the ionic current with the precise physical phenomena that c
 the computational methods employed in this dissertation have the potential to shine, as they are capable of
 modeling nearly all aspects of the sensing process with near atomistic precision.
 
-The primary goals of this dissertation are fourfold:
+Beyond familiarizing the reader with the concepts and state-of-the-art of the nanopore field
+(\cref{ch:nanopores}), the primary goals of this dissertation are fourfold:
 %
 \begin{enumerate}
   \item Develop methodologies for accurate modeling of biological nanopores;
@@ -28,10 +29,10 @@ The primary goals of this dissertation are fourfold:
 \end{enumerate}
 %
 
-In the first part of this thesis (\cref{ch:electrostatics}), we used 3D equilibrium simulations, based on
-numerical solutions of the Poisson-Boltzmann equation, to investigate the electrostatic properties of the
+In the first results part of this thesis (\cref{ch:electrostatics}), we used 3D equilibrium simulations, based
+on numerical solutions of the Poisson-Boltzmann equation, to investigate the electrostatic properties of the
 pleurotolysin~AB (PlyAB), cytolysin~A (ClyA), and fragaceatoxin~C (FraC) nanopores. In particular, we showed
-that a few, or even a single, charge reversal mutations can have a high electrostatic impact, resulting a
+that a few, or even a single, charge reversal mutations can have a high electrostatic impact, resulting in a
 strongly reduced or even reversed electro-osmotic flow. Additionally, our simulations indicated that lowering
 the electrolyte pH significantly reduced the influence of negatively charged amino acids, whilst leaving that
 of the positively charged groups untouched. To elucidate the propensity of the FraC and ClyA pores to
@@ -45,20 +46,20 @@ addition of nonequilibrium forces.
 
 The next chapter (\cref{ch:trapping}) revolves around the immobilization (\ie~`trapping') of a single protein
 molecule within a nanopore, which is of importance for applications such as single-molecule enzymology. To
-this end, we studied the average dwell time \DHFRt{}, a small protein modified with a positively charged
-polypeptide at its C-terminus, within ClyA. Concretely, by manipulating its charge distribution, we succeeded
-in increasing its average dwell time by several orders of magnitude. Further, we derived an analytical
-transport model for the escape of \DHFRt{} from the pore, based on the crossing of the steric, electrostatic,
-electrophoretic, and electro-osmotic energy barriers located at either side of pore. A systematic study of the
-dwell times as a function of voltage and tag charge, together with extensive equilibrium electrostatic
-simulations, allowed us to parameterize this double barrier model, revealing properties that are difficult to
-determine experimentally, such as the translocation probabilities and the force exerted by ClyA's
-electro-osmotic flow on the protein (\SI{\approx9}{\pN} at \SI{-50}{\mV}). The relative simplicity of the
-double barrier model, and the fact that it contains no explicit geometric parameters of \DHFRt{}, suggested
-that our approach may be generalizable to other small proteins.
+this end, we studied the average dwell time of tagged dihydrofolate reductase (\DHFRt{}), a small protein
+modified with a positively charged polypeptide at its C-terminus, within ClyA. Concretely, by manipulating its
+charge distribution, we succeeded in increasing its average dwell time by several orders of magnitude.
+Further, we derived an analytical transport model for the escape of \DHFRt{} from the pore, based on the
+crossing of the steric, electrostatic, electrophoretic, and electro-osmotic energy barriers located at either
+side of pore. A systematic study of the dwell times as a function of voltage and tag charge, together with
+extensive equilibrium electrostatic simulations, allowed us to parameterize this double barrier model,
+revealing properties that are difficult to determine experimentally, such as the translocation probabilities
+and the force exerted by ClyA's electro-osmotic flow on the protein (\SI{\approx9}{\pN} at \SI{-50}{\mV}). The
+relative simplicity of the double barrier model, and the fact that it contains no explicit geometric
+parameters of \DHFRt{}, suggested that our approach may be generalizable to other small proteins.
 
 In the final chapters, we developed a novel continuum framework for modeling biological nanopores under
-\emph{nonequilibrium} conditions (\cref{ch:epnpns}) and subsequently applied it to the ClyA nanopore
+nonequilibrium conditions (\cref{ch:epnpns}) and subsequently applied it to the ClyA nanopore
 (\cref{ch:transport}). Even though they are often qualitatively useful, the ability of continuum methods to
 solve nanoscale transport problems in a quantitative manner is typically poor. To this end, we developed the
 extended Poisson-Nernst-Planck-Navier-Stokes ({ePNP-NS}) equations, which self-consistently consider the
@@ -73,14 +74,14 @@ electro-osmotic flow field, and the internal pressure distribution. As such, the
 means to obtain fundamental new insights into the nanofluidic properties of biological nanopores and paves the
 way towards their rational engineering.
 
-In this dissertation, we showed that simulations, in combination with systematic experiments, can used as
+In this dissertation, we showed that simulations, in combination with systematic experiments, can be used as
 computational `microscopes' to reveal the physical phenomena that underlie nanopore-based sensing. Whereas
 simple equilibrium electrostatics are already highly instructive, it is clear that the complex interplay
 between the nanopore and the translocating analyte molecule mandates a nonequilibrium approach that is both
 rigorous and self-consistent, such as the {ePNP-NS} equations. Further improvements could elevate this
-framework from an after-the-fact \emph{analysis} method to a powerful \emph{design} tool for nanopore
-researchers, providing a means to automatically screen the properties of novel nanopores, or to predict the
-ionic current signal produced by arbitrary molecules.
+framework from an after-the-fact analysis method to a powerful design tool for nanopore researchers, providing
+a means to automatically screen the properties of novel nanopores, or to predict the ionic current signal
+produced by arbitrary molecules.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

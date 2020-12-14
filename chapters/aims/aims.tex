@@ -16,23 +16,23 @@
 }}
 
 
-Given their introduction in \cref{ch:nanopores}, it should stand without doubt that nanopores---and
-\emph{biological} ones in particular---have become powerful single-molecular sensing tools. Among the key
-strengths of nanopores are their ability to interrogate individual molecules label-free, at high sampling
-frequencies and with long observation times. Whereas over the past 25 years nanopore research was driven by
-genomics, researchers are now recognizing these advantages may be useful also in other fields, including
-proteomics, metabolomics, single-molecule enzymology~\cite{Willems-VanMeervelt-2017} and biosensing. This
-expanding application space also presents an increasing challenge: translating the `two-dimensional' nanopore
-current into a meaningful set of information. Even though complementary experimental techniques may alleviate
-the problem, it is here that modeling approaches---be it analytical or computational---can bestow researchers
-with a thorough understanding of the complete system itself, rather than its individual components.
-Specifically, by elucidating the physical mechanisms that govern the interactions between the nanopore and the
-analyte molecules, they may aid in the unambiguous interpretation of the current signals, provide insights
-into the prevailing conditions within the pore, and detail guidelines for tailoring the properties of
-nanopores. In this dissertation, the focus lies on the development of analytical and computational
-methodologies (\textbf{Objective~1}) that explain the physical mechanisms behind the experimentally observed
-behavior of nanopore-analyte systems (\textbf{Objectives~2 and 3}), or that can be used as a `computational
-microscope' to study \emph{all} the properties of the nanopore itself (\textbf{Objective~4}).
+Given their introduction in \cref{ch:nanopores}, it should stand without doubt that nanopores---and biological
+ones in particular---have become powerful single-molecular sensing tools. Among the key strengths of nanopores
+are their ability to interrogate individual molecules label-free, at high sampling frequencies and with long
+observation times. Whereas over the past 25 years nanopore research was driven by genomics, researchers are
+now recognizing these advantages may be useful also in other fields, including proteomics, metabolomics,
+single-molecule enzymology~\cite{Willems-VanMeervelt-2017} and biosensing. This expanding application space
+also presents an increasing challenge: translating the `two-dimensional' nanopore current into a meaningful
+set of information. Even though complementary experimental techniques may alleviate the problem, it is here
+that modeling approaches---be it analytical or computational---can bestow researchers with a thorough
+understanding of the complete system itself, rather than its individual components. Specifically, by
+elucidating the physical mechanisms that govern the interactions between the nanopore and the analyte
+molecules, they may aid in the unambiguous interpretation of the current signals, provide insights into the
+prevailing conditions within the pore, and detail guidelines for tailoring the properties of nanopores. In
+this dissertation, the focus lies on the development of analytical and computational methodologies
+(\textbf{Objective~1}) that explain the physical mechanisms behind the experimentally observed behavior of
+nanopore-analyte systems (\textbf{Objectives~2 and 3}), or that can be used as a `computational microscope' to
+study all the properties of the nanopore itself (\textbf{Objective~4}).
 
 \clearpage
 %
@@ -44,13 +44,13 @@ Due to their proteinaceous nature, the primary computational tool for studying b
 accessible through \gls{md} simulations comes at a heavy computational cost: often necessitating the use of
 months of supercomputer time. Even though we will still make use of \gls{md} to construct realistic and well
 equilibrated homology models of various biological nanopores, most simulations in this work will be based on
-\emph{continuum}, rather than discrete representations of the nanopore systems. In~\cref{ch:electrostatics} we
-will show how the \glsfirst{pb} equation can be employed to quantify the equilibrium (\ie~without an external
-bias voltage) electrostatic interactions between a nanopore and the surrounding electrolyte on the one hand,
-and its analyte molecules on the other. Nanopores are governed by more than just electrostatics however, and
-thus in~\cref{ch:epnpns} we develop the \glsfirst{epnp-ns} equations: a simulation framework that introduces
-several self-consistent corrections to the electrolyte properties in an attempt to mitigate the shortcomings
-of the classical {PNP-NS} equations at the nanoscale and beyond infinite dilution. Because the \gls{epnp-ns}
+continuum, rather than discrete representations of the nanopore systems. In~\cref{ch:electrostatics} we will
+show how the \glsfirst{pb} equation can be employed to quantify the equilibrium (\ie~without an external bias
+voltage) electrostatic interactions between a nanopore and the surrounding electrolyte on the one hand, and
+its analyte molecules on the other. Nanopores are governed by more than just electrostatics however, and thus
+in~\cref{ch:epnpns} we develop the \gls{epnp-ns} equations: a simulation framework that introduces several
+self-consistent corrections to the electrolyte properties in an attempt to mitigate the shortcomings of the
+classical {PNP-NS} equations at the nanoscale and beyond infinite dilution. Because the \gls{epnp-ns}
 equations can be solved for continuum systems, they aim to provide a fast yet accurate means to model the
 transport of ions and the flow of water through a nanopore. In~\cref{ch:trapping} we will also use an analytic
 model---which intrinsically necessitates a reduction to the most essential components---to gain valuable

@@ -25,7 +25,7 @@ This chapter was published as:
 %
 \begin{itemize}
   \item K. Willems*, D. Rui\'{c}, F. L. R. Lucas, U. Barman, N. Verellen, G. Maglia and P. Van Dorpe.
-        \textit{Nanoscale} \textbf{XX (X)}, XX--XX (2020) %\cite{Willems-2020}
+        \textit{Nanoscale} \textbf{12}, 16775--16795 (2020) %\cite{Willems-2020}
 \end{itemize}
 %
 \newpage
@@ -42,8 +42,8 @@ the influence of the ionic strength and the proximity of protein walls on the pr
 
 %
 To improve readability and to allow for a better integration of the supplementary information into the main
-chapter text, the original manuscript was split into \cref{ch:epnpns,ch:trapping}, detailing the theory of the
-framework and its application to the \glsfirst{clya} nanopore, respectively. The remainder of the
+chapter text, the original manuscript was split into \cref{ch:epnpns,ch:transport}, detailing the theory of
+the framework and its application to the \glsfirst{clya} nanopore, respectively. The remainder of the
 supplementary information can be found in \cref{ch:epnpns_appendix}. The text and figures of this chapter
 represent entirely my own work.
 %
@@ -111,7 +111,7 @@ ions (\ie~the `open-pore' conductance) and water molecules (\ie~the electro-osmo
 pore~\cite{Wong-2007,Mao-2014,Haywood-2014,Laohakunakorn-2015}. Similarly, analyte molecules such as DNA and
 proteins are subject to the same Coulombic (electrophoretic) and hydrodynamic (electro-osmotic)
 forces~\cite{Wong-2007,Grosberg-2010,Muthukumar-2010,Muthukumar-2014}. This guides them towards---and often
-\emph{through}---the nanopore, resulting in a temporary disruption of the baseline ionic conductance. Naively
+through---the nanopore, resulting in a temporary disruption of the baseline ionic conductance. Naively
 speaking, for any given analyte molecule, the rate of these resistive pulses is proportional to its
 concentration in the reservoir, whereas their duration, magnitude and intra-pulse fluctuations contain a
 wealth of information on its physical properties (\eg~size, shape and
@@ -128,32 +128,31 @@ mentioned above, the unambiguous interpretation of the ionic current signal rema
 task if a full understanding of the nanofluidic phenomena that underlie them is not available.
 
 The computational approaches most widely used to study nanofluidic transport in ion channels or biological
-nanopores comprise \emph{discrete} methods such as \gls{md}~\cite{Lynden-Bell-1996,Allen-1999,
+nanopores comprise discrete methods such as \gls{md}~\cite{Lynden-Bell-1996,Allen-1999,
 Aksimentiev-2005,Luan-2008,Bhattacharya-2011,Zhang-2014,DiMarino-2015,Belkin-2016,Basdevant-2019,Cao-2019} and
 \gls{bd}~\cite{Schirmer-1999,Im-2002,Noskov-2004,Millar-2008,Egwolf-2010,DeBiase-2015,Pederson-2015}, and
-\emph{mean-field} (continuum) methods based on solving the \gls{pb}~\cite{Grochowski-2008, Baldessari-2008-1}
-and \gls{pnp}~\cite{Eisenberg-1996,Gillespie-2002,Simakov-2010} equations. The latter two can be coupled with
-the \gls{ns} equation to include electro-osmotically or pressure driven fluid
-flow~\cite{Lu-2012,Pederson-2015}. Due to their explicit atomic or particle nature, \gls{md} and \gls{bd}
-simulations are considered to yield the most accurate results. However, the large computational cost of
-simulating a complete biological nanopore system (100K--1M atoms) for hundreds of nanoseconds still
-necessitates the use of supercomputers~\cite{Aksimentiev-2005,Bhattacharya-2011,Wilson-2019,Cao-2019}. The
-PNP(-NS) equations, on the other hand, are of particular interest due to their low computational demands and
-analytical tractability. In a continuum approach, the simulated system is subdivided in several
-`structureless' domains, the behavior of which is parameterized by material properties such as the relative
-permittivity, diffusion coefficient, electrophoretic mobility, viscosity or density. Because these properties
-can only emerge from the collective behavior or interactions between small groups of atoms (\ie~the mean-field
-approximation), great care must be taken when using them to compute fluxes and fields at the nanoscale, where
-computational elements may only contain a few molecules~\cite{Corry-2000,Collins-2012}. Nevertheless, even
-though the PNP equations have been used extensively for the qualitative simulation of ion
-channels~\cite{Im-2002,Furini-2006,Liu-2015}, biological nanopores~\cite{Simakov-2010,Pederson-2015,
-Aguilella-Arzo-2017,Simakov-2018} and their solid-state counterparts~\cite{Cervera-2005,White-2008,
-Chaudhry-2014,Laohakunakorn-2015}, the extent to which they are quantitatively accurate is often
-challenged~\cite{Corry-2000,Collins-2012,Maffeo-2012,Thomas-2014,Kim-2015}. To remedy the shortcomings of PNP
-and NS theory, a number of modifications have been proposed over the years. These include, among others, (1)
-steric ion-ion interactions, (2) the effect of protein-ion/water interactions on their `motility'
-(\ie~diffusivity and electrophoretic mobility), (3) the concentration dependencies of ion motility, and
-solvent relative permittivity, viscosity and density.
+mean-field (continuum) methods based on solving the \gls{pb}~\cite{Grochowski-2008, Baldessari-2008-1} and
+\gls{pnp}~\cite{Eisenberg-1996,Gillespie-2002,Simakov-2010} equations. The latter two can be coupled with the
+\gls{ns} equation to include electro-osmotically or pressure driven fluid flow~\cite{Lu-2012,Pederson-2015}.
+Due to their explicit atomic or particle nature, \gls{md} and \gls{bd} simulations are considered to yield the
+most accurate results. However, the large computational cost of simulating a complete biological nanopore
+system (100K--1M atoms) for hundreds of nanoseconds still necessitates the use of
+supercomputers~\cite{Aksimentiev-2005,Bhattacharya-2011,Wilson-2019,Cao-2019}. The PNP(-NS) equations, on the
+other hand, are of particular interest due to their low computational demands and analytical tractability. In
+a continuum approach, the simulated system is subdivided in several `structureless' domains, the behavior of
+which is parameterized by material properties such as the relative permittivity, diffusion coefficient,
+electrophoretic mobility, viscosity or density. Because these properties can only emerge from the collective
+behavior or interactions between small groups of atoms (\ie~the mean-field approximation), great care must be
+taken when using them to compute fluxes and fields at the nanoscale, where computational elements may only
+contain a few molecules~\cite{Corry-2000,Collins-2012}. Nevertheless, even though the PNP equations have been
+used extensively for the qualitative simulation of ion channels~\cite{Im-2002,Furini-2006,Liu-2015},
+biological nanopores~\cite{Simakov-2010,Pederson-2015, Aguilella-Arzo-2017,Simakov-2018} and their solid-state
+counterparts~\cite{Cervera-2005,White-2008, Chaudhry-2014,Laohakunakorn-2015}, the extent to which they are
+quantitatively accurate is often challenged~\cite{Corry-2000,Collins-2012,Maffeo-2012,Thomas-2014,Kim-2015}.
+To remedy the shortcomings of PNP and NS theory, a number of modifications have been proposed over the years.
+These include, among others, (1) steric ion-ion interactions, (2) the effect of protein-ion/water interactions
+on their `motility' (\ie~diffusivity and electrophoretic mobility), (3) the concentration dependencies of ion
+motility, and solvent relative permittivity, viscosity and density.
 
 The steric ion-ion interactions can be accounted for by computing the excess in chemical potential
 ($\mu_{i}^\text{ex}$) resulting from the finite size of the ions~\cite{Eisenberg-1996,Bazant-2009,
@@ -191,8 +190,8 @@ viscosity~\cite{Ye-2011}.
 It is well known that the self-diffusion coefficient $\diffusion_{i}$ and electrophoretic mobility
 $\mobility_{i}$ of an ion $i$ depends on the local concentrations of all the ions in the
 electrolyte~\cite{ContrerasAburto-2013-1}. Their values typically decrease with increasing salt concentration,
-and should not be treated as constants. Moreover, even though the Nernst-Einstein (NE) relation
-($\mobility_{i}=\diffusion_{i}/\kbt$ is strictly speaking only valid at infinite dilution and a good
+and should not be treated as constants. Moreover, even though the Nernst-Einstein relation
+($\mobility_{i}=\diffusion_{i}/\kbt$) is strictly speaking only valid at infinite dilution and a good
 approximation at low concentrations (\SI{<10}{\mM}), it significantly overestimates the ionic mobility at
 higher salt concentrations~\cite{Mills-1989,Panopoulos-1986,ContrerasAburto-2013-1,ContrerasAburto-2013-2}. In
 an empirical approach, Baldessari and Santiago formulated an ionic-strength dependency of the ionic mobility
@@ -226,14 +225,14 @@ experimental data from literature in \cref{sec:epnp-ns:parameterization}.
 \label{sec:epnp-ns:model}
 %
 
-The use of \emph{continuum} or \emph{mean-field} representations for both the nanopore and the electrolyte
-enables us to efficiently compute the steady-state ion and water fluxes under almost any condition. The
-dynamic behavior of our complete system is described by the coupled Poisson, Nernst-Planck and Navier-Stokes
-equations, a set of partial differential equations that describe the electrostatic field, the total ionic flux
-and the fluid flow, respectively~\cite{Eisenberg-1996,Cervera-2005,Lu-2012}. To improve upon the quantitative
-accuracy of the \gls{pnp-ns} equations for nanopore simulations, we developed an \emph{extended} version of
-these equations ({\gls{epnp-ns}}) and implemented it in the commercial finite element solver {COMSOL}
-Multiphysics (v5.4, COMSOL Inc., Burlington, MA, USA). 
+The use of continuum or mean-field representations for both the nanopore and the electrolyte enables us to
+efficiently compute the steady-state ion and water fluxes under almost any condition. The dynamic behavior of
+our complete system is described by the coupled Poisson, Nernst-Planck and Navier-Stokes equations, a set of
+partial differential equations that describe the electrostatic field, the total ionic flux and the fluid flow,
+respectively~\cite{Eisenberg-1996,Cervera-2005,Lu-2012}. To improve upon the quantitative accuracy of the
+\gls{pnp-ns} equations for nanopore simulations, we developed an extended version of these equations
+({\gls{epnp-ns}}) and implemented it in the commercial finite element solver {COMSOL} Multiphysics (v5.4,
+COMSOL Inc., Burlington, MA, USA). 
 
 \subsection{Electrostatic field}
 %
@@ -249,9 +248,9 @@ We will make use of Poisson's equation to evaluate the electric potential
 \end{align}
 %
 with $\potential$ the electric potential, $\absperm$ the vacuum permittivity
-(\SI{8.85419e-12}{\farad\per\meter}) and $\relperm$ local relative permittivity. The pore's \emph{fixed}
-charge distribution, $\scdpore$,  can be derived directly from the full atom model of the pore
-(see~\cref{eq:scdpore}). The \emph{ionic} charge density in the fluid is given by
+(\SI{8.85419e-12}{\farad\per\meter}) and $\relperm$ local relative permittivity. The pore's fixed charge
+distribution, $\scdpore$,  can be derived directly from the full atom model of the pore
+(see~\cref{eq:scdpore}). The ionic charge density in the fluid is given by
 %
 \begin{align}\label{eq:scdion}
   \scdion = \faraday\sum_{i}\chargen_{i}\concentration_{i}
@@ -310,10 +309,10 @@ and at steady state
 with $\diffusion_{i}$ the ion diffusion coefficient, $\concentration_{i}$ the ion concentration,
 $\chargen_{i}$ the ion charge number, $\mobility_{i}$ the electrophoretic mobility of ion $i$. $\potential$ is
 the electrostatic potential, $\velocity$ the fluid velocity and $\avogadro$ Avogadro's constant
-(\SI{6.022e23}{\per\mole}). $\ionsize_{i}$ and $\ionsize_{0}$ are \emph{steric} cubic diameters of
-respectively ions and water molecules. Because currently there are no experimentally verified values available
-for $\ionsize_{i}$ and $\ionsize_{0}$, we set them to \SI{0.5}{\nm} (max. \SI{13.3}{\Molar}) and
-\SI{0.311}{\nm} (max. \SI{55.2}{\Molar}), respectively~\cite{Bazant-2009}.
+(\SI{6.022e23}{\per\mole}). $\ionsize_{i}$ and $\ionsize_{0}$ are steric cubic diameters of respectively ions
+and water molecules. Because currently there are no experimentally verified values available for
+$\ionsize_{i}$ and $\ionsize_{0}$, we set them to \SI{0.5}{\nm} (max. \SI{13.3}{\Molar}) and \SI{0.311}{\nm}
+(max. \SI{55.2}{\Molar}), respectively~\cite{Bazant-2009}.
 
 The reduction of the ionic motility at increasing salt concentrations and in proximity to the nanopore walls
 was implemented self-consistently by replacing $\diffusion_{i}$ and $\mobility_{i}$ with the expressions
@@ -323,6 +322,7 @@ was implemented self-consistently by replacing $\diffusion_{i}$ and $\mobility_{
       \diffusion_{i}^0 \diffusion_{i}^c(\avionconc) \diffusion_{i}^w(\walldistance)  \\
   \mobility_{i}(\avionconc,\walldistance) ={}&
       \mobility_{i}^0 \mobility_{i}^c(\avionconc) \mobility_{i}^w(\walldistance)
+  \text{ ,}
 \end{align}
 %
 where $\diffusion_{i}^0$ and $\mobility_{i}^0$ represent the values at infinite dilution. The concentration
@@ -408,6 +408,7 @@ and a concentration dependency for the $\density$ by replacing their constant va
     \viscosity^0 \viscosity^c(\avionconc) \viscosity^w(\walldistance) \\
   \density(\avionconc) ={}&
     \density^0 \density^c(\avionconc)
+  \text{ ,}
 \end{align}
 %
 where $\viscosity^0$ and $\density^0$ are the values at infinite dilution (\ie~pure water). The empirical
@@ -502,74 +503,6 @@ $\mobility_{i}^w=1$, $\viscosity^w=1$).
     %
   \end{threeparttable}
 \end{table}
-%
-
-%
-\begin{landscape}
-  \begin{threeparttable}[p]
-    \centering
-       \captionsetup{width=18cm}
-    \caption{Overview of the \ce{NaCl} fitting parameters used for interpolation.}
-    \label{tab:corrections_parameters}
-    %
-    \sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
-    \renewcommand{\arraystretch}{2}
-    %
-    \scriptsize
-    \begin{tabularx}{18cm}{@{}
-            l l S[table-format=1.3] S[table-format=-1.2(2)e-1] S[table-format=-1.2(2)e-1]
-            S[table-format=-1.2(2)e-1] S[table-format=-1.2(2)e-1] S[table-format=>1.2] l @{}}
-      \toprule
-        & & {Inf. dil.} & \multicolumn{4}{c}{Fitting parameters} & & \\
-      \cmidrule(r){3-3} \cmidrule(l){4-7} Property & Eq. & $P_{0}$ & $P_{1}$ & $P_{2}$ & $P_{3}$ & $P_{4}$ &
-      $R^{2}$ & References \\
-      \midrule
-      $\diffusion_{\Na{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 1.334 \tnote{a} & 2.02(14)e-1 &
-      -3.05(41)e-1 & 2.19(38)e-1 & -3.13(108)e-2 & >0.99 & \cite{Mills-1989} \\
-      %
-      $\diffusion_{\Cl{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 2.032 \tnote{a} & 1.49(30)e-1 &
-      -4.94(904)e-2 & 3.40(826)e-2 & 1.43(230)e-2 & >0.99 & \cite{Mills-1989} \\
-      %
-      $\transportn_{\Na{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 0.3963 & 9.38(164)e-2 & 2.86(324)e-3 &
-      -1.88(652)e-2 & 4.51(275)e-3 & 0.98 &
-      \cite{Esteso-1976,Haynes-2017,DellaMonica-1979,Panopoulos-1986,Schonert-2013}\\
-      %
-      $\mobility_{\Na{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 5.192 \tnote{b} & 7.91(6)e-1 &
-      -3.53(17)e-1 & 1.46(15)e-1 & 9.23(389)e-3 & >0.99 &
-      \cite{Bianchi-1989,Currie-1960,Goldsack-1976,DellaMonica-1979} \\
-      %
-      $\mobility_{\Cl{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 7.909 \tnote{b} & 6.29(6)e-1 &
-      -4.29(17)e-1 & 2.12(14)e-1 & -1.07(37)e-2 & >0.99 &
-      \cite{Bianchi-1989,Currie-1960,Goldsack-1976,DellaMonica-1979} \\
-      %
-      $\viscosity^c(c)$ & \cref{eq:epnpns_concentration_solv_eta} & 0.8904 \tnote{c} & 7.56(27)e-3 &
-      7.77(4)e-2 & 1.19(1)e-2 & 5.95(35)e-4 & >0.99 & \cite{Hai-Lang-1996} \\
-      %
-      $\density^c(c)$ & \cref{eq:epnpns_concentration_solv_rho} & 0.997 \tnote{d} & 4.06(1)e-2 & -6.39(16)e-4
-      & & & >0.99 & \cite{Hai-Lang-1996} \\
-      %
-      $\permittivity_{r,\text{f}}^c(c)$ & \cref{eq:epnpns_concentration_solv_epsr} & 78.15 & 3.08(0)e1 &
-      1.15(0)e1 & & & & \cite{Buchner-1999,Gavish-2016} \\
-      %
-      $\diffusion_{i}^w(d)$ & \cref{eq:epnpns_distance_d} & & 6.2 & 0.01 & & & &
-      \cite{Makarov-1998,Simakov-2010,Pederson-2015} \\
-      %
-      $\mobility_{i}^w(d)$ & \cref{eq:epnpns_distance_d} & & 6.2 & 0.01 & & & &
-      \cite{Makarov-1998,Simakov-2010,Pederson-2015} \\
-      %
-      $\viscosity^w(d)$ & \cref{eq:epnpns_distance_eta} & & 3.36(23) & 1.47(23)e-1 & & & 0.97 &
-      \cite{Pronk-2014} \\
-      \bottomrule
-    \end{tabularx}
-    %
-    \begin{tablenotes}
-      \item[a] Unit and scaling: \SI{e-9}{\square\meter\per\second}
-      \item[b] Unit and scaling: \SI{e-8}{\square\meter\per\second\per\volt}
-      \item[c] Unit and scaling: \SI{e-4}{\pascal\second}
-      \item[d] Unit and scaling: \SI{e3}{\kilo\gram\per\cubic\meter}
-    \end{tablenotes}
-  \end{threeparttable}
-\end{landscape}
 %
 
 
@@ -862,6 +795,7 @@ developed by Gavish \etal{}~\cite{Gavish-2016}
               - \left( 1 - \dfrac{P_1}{P_0}\right)
               L \left( \dfrac{3 P_2}{P_0 - P_1} \concentration \right)
       \right]
+  \text{ ,}
 \end{align}
 %
 where $L$ is the Langevin function ($L(x) = \coth{(x)} - 1/x$), $P_0$ the value at infinite dilution, $P_1$
@@ -879,13 +813,12 @@ permittivities for concentrations above saturation were capped as before (\ie~$\
 %
 
 All concentration dependent parameters use the local ionic strength rather than their individual ion
-concentrations. Though valid for \emph{electroneutral} bulk solutions, this approximation no longer holds
-inside the electrical double layer (\ie~near charged surfaces or inside small nanopores), where local
-electroneutrality is violated. The main reasons for making this simplification regardless are the lack of
-non-bulk experimental data and the absence of a tractable analytical model. Furthermore, we will see
-in~\cref{ch:transport} that the current implementation of our concentration dependent functions will lead to
-an excellent agreement with the experimental data in all but the most extreme cases, justifying our choice
-\textit{a posteriori}.
+concentrations. Though valid for electroneutral bulk solutions, this approximation no longer holds inside the
+electrical double layer (\ie~near charged surfaces or inside small nanopores), where local electroneutrality
+is violated. The main reasons for making this simplification regardless are the lack of non-bulk experimental
+data and the absence of a tractable analytical model. Furthermore, we will see in~\cref{ch:transport} that the
+current implementation of our concentration dependent functions will lead to an excellent agreement with the
+experimental data in all but the most extreme cases, justifying our choice \textit{a posteriori}.
 
 
 %
@@ -901,6 +834,7 @@ from Makarov \etal{}~\cite{Makarov-1998}. The function is a sigmoidal given by
 %
 \begin{align}\label{eq:epnpns_distance_d}
   X_{i}^w (\walldistance) = 1 - \exp{-P_1 (\walldistance - P_2)}
+  \text{ ,}
 \end{align}
 %
 with $X$ either $\diffusion$ (diffusion) or $\mobility$ (mobility) and $i$ either \Na{} or \Cl{} and $P_1$
@@ -924,7 +858,7 @@ values reported by Wilson \etal{}~\cite{Wilson-2019}.
 %
 
 %
-\begin{figure*}[!t]
+\begin{figure*}[b]
   \centering
 
   %
@@ -963,6 +897,76 @@ values reported by Wilson \etal{}~\cite{Wilson-2019}.
 \end{figure*}
 %
 
+
+%
+\begin{landscape}
+  \begin{threeparttable}[p]
+    \centering
+       \captionsetup{width=18cm}
+    \caption{Overview of the \ce{NaCl} fitting parameters used for interpolation.}
+    \label{tab:corrections_parameters}
+    %
+    \sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
+    \renewcommand{\arraystretch}{2}
+    %
+    \scriptsize
+    \begin{tabularx}{18cm}{@{}
+            l l S[table-format=1.3] S[table-format=-1.2(2)e-1] S[table-format=-1.2(2)e-1]
+            S[table-format=-1.2(2)e-1] S[table-format=-1.2(2)e-1] S[table-format=>1.2] l @{}}
+      \toprule
+        & & {Inf. dil.} & \multicolumn{4}{c}{Fitting parameters} & & \\
+      \cmidrule(r){3-3} \cmidrule(l){4-7} Property & Eq. & $P_{0}$ & $P_{1}$ & $P_{2}$ & $P_{3}$ & $P_{4}$ &
+      $R^{2}$ & References \\
+      \midrule
+      $\diffusion_{\Na{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 1.334 \tnote{a} & 2.02(14)e-1 &
+      -3.05(41)e-1 & 2.19(38)e-1 & -3.13(108)e-2 & >0.99 & \cite{Mills-1989} \\
+      %
+      $\diffusion_{\Cl{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 2.032 \tnote{a} & 1.49(30)e-1 &
+      -4.94(904)e-2 & 3.40(826)e-2 & 1.43(230)e-2 & >0.99 & \cite{Mills-1989} \\
+      %
+      $\transportn_{\Na{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 0.3963 & 9.38(164)e-2 & 2.86(324)e-3 &
+      -1.88(652)e-2 & 4.51(275)e-3 & 0.98 &
+      \cite{Esteso-1976,Haynes-2017,DellaMonica-1979,Panopoulos-1986,Schonert-2013}\\
+      %
+      $\mobility_{\Na{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 5.192 \tnote{b} & 7.91(6)e-1 &
+      -3.53(17)e-1 & 1.46(15)e-1 & 9.23(389)e-3 & >0.99 &
+      \cite{Bianchi-1989,Currie-1960,Goldsack-1976,DellaMonica-1979} \\
+      %
+      $\mobility_{\Cl{}}^c(c)$ & \cref{eq:concentration_d_mu_tna} & 7.909 \tnote{b} & 6.29(6)e-1 &
+      -4.29(17)e-1 & 2.12(14)e-1 & -1.07(37)e-2 & >0.99 &
+      \cite{Bianchi-1989,Currie-1960,Goldsack-1976,DellaMonica-1979} \\
+      %
+      $\viscosity^c(c)$ & \cref{eq:epnpns_concentration_solv_eta} & 0.8904 \tnote{c} & 7.56(27)e-3 &
+      7.77(4)e-2 & 1.19(1)e-2 & 5.95(35)e-4 & >0.99 & \cite{Hai-Lang-1996} \\
+      %
+      $\density^c(c)$ & \cref{eq:epnpns_concentration_solv_rho} & 0.997 \tnote{d} & 4.06(1)e-2 & -6.39(16)e-4
+      & & & >0.99 & \cite{Hai-Lang-1996} \\
+      %
+      $\permittivity_{r,\text{f}}^c(c)$ & \cref{eq:epnpns_concentration_solv_epsr} & 78.15 & 3.08(0)e1 &
+      1.15(0)e1 & & & & \cite{Buchner-1999,Gavish-2016} \\
+      %
+      $\diffusion_{i}^w(d)$ & \cref{eq:epnpns_distance_d} & & 6.2 & 0.01 & & & &
+      \cite{Makarov-1998,Simakov-2010,Pederson-2015} \\
+      %
+      $\mobility_{i}^w(d)$ & \cref{eq:epnpns_distance_d} & & 6.2 & 0.01 & & & &
+      \cite{Makarov-1998,Simakov-2010,Pederson-2015} \\
+      %
+      $\viscosity^w(d)$ & \cref{eq:epnpns_distance_eta} & & 3.36(23) & 1.47(23)e-1 & & & 0.97 &
+      \cite{Pronk-2014} \\
+      \bottomrule
+    \end{tabularx}
+    %
+    \begin{tablenotes}
+      \item[a] Unit and scaling: \SI{e-9}{\square\meter\per\second}
+      \item[b] Unit and scaling: \SI{e-8}{\square\meter\per\second\per\volt}
+      \item[c] Unit and scaling: \SI{e-4}{\pascal\second}
+      \item[d] Unit and scaling: \SI{e3}{\kilo\gram\per\cubic\meter}
+    \end{tablenotes}
+  \end{threeparttable}
+\end{landscape}
+%
+
+
 \subsubsection{Viscosity.}
 %
 Analogously to the diffusivity of ions, the movement of water molecules near a protein wall is also
@@ -971,6 +975,7 @@ we fitted the following logistic curve to the molecular dynamics data from Pronk
 %
 \begin{align}\label{eq:epnpns_distance_eta}
   \viscosity^w (\walldistance) = 1 + \exp{ \left( -P_1 (\walldistance - P_2) \right) }
+  \text{ ,}
 \end{align}
 %
 with $P_1$ and $P_2$ the fitting parameters, representing the slope of the sigmoidal and the offset of the
@@ -983,6 +988,9 @@ in a values of $\viscosity_0 / \viscosity^w (\SI{0}{\nm}) = 0.37$ (\ie~at the pr
 \cref{fig:epnpns_distance_eta}). The relative fitting residuals (\cref{fig:epnpns_distance_eta}, left panel)
 for $\walldistance \ge \mSI{0}{\nm}$ (the utilized portion of the function) are typically
 \SI{<\pm5}{\percent}.
+
+
+
 
 
 \section{Conclusion}
