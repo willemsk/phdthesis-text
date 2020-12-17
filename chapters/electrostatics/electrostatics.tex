@@ -49,7 +49,7 @@ In this chapter, the electrostatic properties of the \glsfirst{plyab}, \glsfirst
 nanopores are investigated \textit{in silico} using the \glsfirst{pbe}, corroborating results published in
 previous studies. We demonstrate the extent with which their electrostatic potentials can be manipulated by
 modification of specific amino acids of the pore on the one hand, and by altering the ionic strength and the
-pH of the electrolyte on the other. Additionally we use electrostatic energy computations to analyze the
+pH of the electrolyte on the other. Additionally, we use electrostatic energy computations to analyze the
 translocation of \gls{ssdna} and \gls{dsdna} through respectively \gls{frac} and \gls{clya} nanopores. \\
 %
 
@@ -139,14 +139,10 @@ of the same magnitude, a phenomenon called ionic current
 rectification~\cite{White-2008,Lin-2015,Hsu-2017b,Valisko-2019}. Charges that are not directly exposed to the
 electrolyte may also respond to changes in the electrostatic field by inducing conformational changes. These
 typically result in either an opening or closure of the channel, as is the case in the \gls{kcsa} ion
-channel~\cite{Kopec-2019}. This behavior is not limited to ion channels however, and can even be engineered in
+channel~\cite{Kopec-2019}. This behavior is not limited to ion channels however and can even be engineered in
 larger pores. The \gls{ahl} variant \gls{7r-ahl}---in which 49 ($7\times7$) positively charged residues were
 added in the stem region---rapidly closes and opens under negative and positive bias voltages,
 respectively~\cite{Maglia-2009}.
-
-% TODO: add more here, but what?
-% Add section for larger molecules, EOF?
-%~\cite{Zhou-2020}
 
 In this chapter, we have investigated the electrostatic properties of the several experimentally relevant
 variants of the biological nanopores \glsfirst{plyab} (\SI{5.5}{\nm} diameter), \glsfirst{frac} (\SI{1.6}{\nm}
@@ -155,15 +151,15 @@ atomistic models. After describing our computational methods, we begin with an a
 potential distribution within the wild-type \gls{plyab}, \gls{plyab-e2} and \gls{plyab-r}, at
 \SIlist{0.3;1.0}{\Molar} ionic strength. These two pores have oppositely charged constrictions and showed
 different protein capture characteristics in experiments. These could be attributed to a significantly reduced
-\gls{eof} in \gls{plyab-r}~\cite{Huang-2020}, and are supported by our computed electrostatic potentials.
+\gls{eof} in \gls{plyab-r}~\cite{Huang-2020} and are supported by our computed electrostatic potentials.
 
 Next, we switch to the much smaller \gls{wtfrac} (wild-type) and \gls{refrac} pores, who also have oppositely
 charged constrictions and were used in two separate studies. In the first~\cite{Huang-2017}, the opposing
 response of the \glsfirst{eof} strength to lowering of the electrolyte pH from \numrange{7.5}{4.5} revealed
 that the capture of peptides by \gls{frac} is driven primarily by the \gls{eof}. In the
 second~\cite{Wloka-2016}, it was shown that, unlike its wild-type counterpart, \gls{refrac} was able to
-translocate both \gls{ssdna} and \gls{dsdna}. We show that the pH-dependency of the \gls{eof} is in agreement
-with our computations, and that the energy barrier for \gls{ssdna} translocation is significantly lowered for
+translocate both \gls{ssdna} and \gls{dsdna}. We show that the pH-dependency of the \gls{eof} agrees with our
+computations, and that the energy barrier for \gls{ssdna} translocation is significantly lowered for
 \gls{refrac}.
 
 Lastly, we turn to \gls{clya}, for which we analyzed several variants of \gls{clya-as} at ionic strengths of
@@ -172,21 +168,6 @@ Lastly, we turn to \gls{clya}, for which we analyzed several variants of \gls{cl
 translocation electrostatic energy calculations. Finally, we show that the strong repulsion between the
 negatively charged constriction and the \gls{dna} confines the latter to the center of the
 pore~\cite{Bayoumi-2020}.
-
-
-% Adjusting and finetuning the electrostatic interactions between the nanopore and Enhanced \gls{dna}
-% translocation by manipulation of charges\cite{Maglia-2008}
-
-% \cite{Mohammad-2008} Controlling a Single Protein in a Nanopore through Electrostatic Traps 
-
-% Tuning peptides capture dynamics by aHL by changing the electrostatics\cite{Asandei-2015b}
-
-% Enhancement of electro-osmotic flow by lowering pH \cite{Asandei-2016}
-
-% Electrostatic trap\cite{Buchsbaum-2013}
-
-% % at the direct interaction between the nanopore and analyte surface, induced by the electrostatic
-% attraction between the two molecules, is essential for protein isoform detection \cite{Fahie-2015b}
 
 
 %
@@ -252,7 +233,7 @@ monomers in their water-soluble conformations, which can be used, together with 
 C\ta{} atoms of the full pore, to create a full atom model of \gls{plyab} \textit{via} constrained homology
 modeling and \gls{mdff}.
 
-\paragraph{Construction of an artificial full-atom `prepore' complex.}
+\paragraph{Construction of an artificial full atom `prepore' complex.}
 %
 First, an artificial `prepore' full atom structure was constructed by aligning 13 copies of the soluble
 \gls{plyb} monomer and 26 copies of the \gls{plya} monomer to the C\ta{} atoms of the \gls{cryo-em} structure
@@ -299,8 +280,8 @@ harmonic constraints on the C\ta{} atoms (force constant $k =
 
 \paragraph{On the \gls{frac} crystal structure.}
 %
-Next to the protein chains, the crystal structure of \gls{frac} (\pdbid{4TSY}~\cite{Tanaka-2015}) contains
-also several fragments of the lipid \gls{sph} that form structural part of the pore itself
+Next to the protein chains, the crystal structure of \gls{frac} (\pdbid{4TSY}~\cite{Tanaka-2015}) also
+contains several fragments of the lipid \gls{sph} that form structural part of the pore itself
 (\cref{sec:np:frac,fig:nanopores_frac}). Given that their charged headgroups are positioned outside of the
 \lumen{} of the pore, we do not expect these lipids to contribute significantly to its electrostatics.
 Therefore, we opted not to include these in our homology models and simulations.
@@ -511,8 +492,8 @@ The \gls{pbe} solver \gls{apbs}~\cite{Jurrus-2018,Baker-2001} requires several i
 (\ie~geometry, fixed charge distribution, relative permittivity) and the electrolyte medium (\ie~ion
 concentration, ion size and relative permittivity) and the computational system itself (\ie~grid size, grid
 spacing, boundary conditions). These are provided by the user in two input files: (1) a configuration file
-that contains all user-defined properties and (2) a ``PQR'' file that contains a coordinate, radius and
-partial charge for every atom in the system. The PQR format is similar to the PDB format, and can be generated
+that contains all user-defined properties and (2) a ``PQR'' file that contains a coordinate, radius, and
+partial charge for every atom in the system. The PQR format is similar to the PDB format and can be generated
 from a PDB file using the \gls{pdb2pqr} software package~\cite{Jurrus-2018,Dolinsky-2004,Dolinsky-2007}. We
 used the atom radius and partial charge parameters of the \gls{charmm36} force field~\cite{Huang-2013} for all
 calculations except the \gls{frac} only pore, where we used the \gls{parse} force
@@ -800,7 +781,7 @@ and hence depends not only on the electrostatic potential of the system (\text{v
 the choice of relative permittivities (\textit{via} $\permittivity$) and ionic properties (\textit{via}
 $\ionaccess$). \Cref{eq:pbe_energy} can be evaluated directly by \gls{apbs} by including the \code{calcenergy}
 keyword its the input file, which enables the rapid evaluation of the electrostatic energies of complex
-biomolecular systems. For example, the free electrostatic energy change caused by placing an another molecule
+biomolecular systems. For example, the free electrostatic energy change caused by placing another molecule
 (\ie~`particle') inside a nanopore ($\energyelec$) can be computed using~\cite{Homeyer-2015}
 %
 \begin{equation}\label{eq:electrostatic_energy}
@@ -847,22 +828,21 @@ obtained with engineered versions~\cite{Soskine-Biesemans-2015,Galenkamp-2020}. 
 mandate that the protein physically fits inside the pore, which puts a strict upper size limit. Given that
 many eukaryotic proteins (average molecular weight of \SI{\approx50}{\kDa}~\cite{Kozlowski-2016}) exceed
 \SI{5}{\nm} in diameter, only \gls{clya} has been used successfully so far. Compounding the lack of suitable
-nanopores is that, for more than two decades, nanopore research was focused primarily towards \gls{dna}
-analysis, resulting in a wide selection of biological nanopores with narrow diameters
-(\SIrange{\approx1}{2}{\nm}) entries. With a \lumen{} of \SI{\approx7.2}{\nm} in diameter, the \gls{plyab}
-nanopore (see \cref{sec:np:plyab,fig:nanopores_plyab}) is the ideal candidate for analyzing larger globular
-proteins. Huang \etal. employed directed evolution to improve the electrophysiological stability of the
-wild-type pore, resulting in the variants \gls{plyab-e2} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, N107D,
-G218R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues}, middle) and \gls{plyab-r} (\gls{plya}: C62S,
-C94S; \gls{plyb} N26D, K255E, E260R, E270R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues},
-right)~\cite{Huang-2020}. Notably, \gls{plyab-r} showed significantly altered behavior when capturing
-negatively charged proteins. In \gls{plyab-e2}, blockades are only observed for the relatively small
-(\SI{24}{\kDa}) \tb-casein when it was added at the \transi{} side (at positive bias voltages), and not for
-the larger (\SI{66.5}{\kDa}) \gls{bsa}. \gls{plyab-r}, on the other hand, exhibited blockades for both
-\tb-casein and \gls{bsa}, and from either the \cisi{} (at positive bias voltages) or \transi{} (at positive
-bias voltages) side. In the following section we will describe the electrostatics of these \gls{plyab}
-variants, discuss the implications of their differences, and finally link them to the experimentally observed
-differences.
+nanopores is that, for more than two decades, nanopore research was focused primarily on \gls{dna} analysis,
+resulting in a wide selection of biological nanopores with narrow diameters (\SIrange{\approx1}{2}{\nm})
+entries. With a \lumen{} of \SI{\approx7.2}{\nm} in diameter, the \gls{plyab} nanopore (see
+\cref{sec:np:plyab,fig:nanopores_plyab}) is the ideal candidate for analyzing larger globular proteins. Huang
+\etal. employed directed evolution to improve the electrophysiological stability of the wild-type pore,
+resulting in the variants \gls{plyab-e2} (\gls{plya}: C62S, C94S; \gls{plyb}: N26D, N107D, G218R, A328T,
+C441A, A464V; \cref{fig:plyab_mutants_residues}, middle) and \gls{plyab-r} (\gls{plya}: C62S, C94S; \gls{plyb}
+N26D, K255E, E260R, E270R, A328T, C441A, A464V; \cref{fig:plyab_mutants_residues}, right)~\cite{Huang-2020}.
+Notably, \gls{plyab-r} showed significantly altered behavior when capturing negatively charged proteins. In
+\gls{plyab-e2}, blockades are only observed for the relatively small (\SI{24}{\kDa}) \tb-casein when it was
+added at the \transi{} side (at positive bias voltages), and not for the larger (\SI{66.5}{\kDa}) \gls{bsa}.
+\gls{plyab-r}, on the other hand, exhibited blockades for both \tb-casein and \gls{bsa}, and from either the
+\cisi{} (at positive bias voltages) or \transi{} (at positive bias voltages) side. In the following section we
+will describe the electrostatics of these \gls{plyab} variants, discuss the implications of their differences,
+and finally link them to the experimentally observed differences.
 
 
 %
@@ -933,11 +913,11 @@ additional negative charge in the center of the \transi{} \lumen{} (N107D) and a
 \transi{} entry (G218R). \Gls{plyab-r} (\cref{fig:plyab_mutants_residues}, right) hosts three
 negative-to-positive (E260R, E261R, E270R) and one positive-to-negative (K255E) charge reversals inside the
 \cisi{} constriction. At an ionic strength of \SI{0.3}{\Molar}, the effect of these mutations is reflected
-clearly in the electrostatic potentials distributions within these pore
+clearly in the electrostatic potential distributions within these pore
 (\cref{fig:plyab_mutants_potential_0300}). Whereas the radially averaged potential, $\radpot$, represents the
 average potential within a 2D-cross-section of the pore (\cref{fig:plyab_mutants_potential_0300}, left), the
 cylindrically averaged potential, $\cylpot$, is the average potential along the length of the pore and within
-a the radius of the narrowest part of the channel, set here to \SI{25}{\angstrom}
+the radius of the narrowest part of the channel, set here to \SI{25}{\angstrom}
 (\cref{fig:plyab_mutants_potential_0300}, right). From an electrostatic point-of-view, \gls{plyab-e2} is
 virtually identical to the wild-type, with the exception of a slightly more negative constriction (peak
 $\cylpot$ changes from \SIrange{-0.35}{-0.4}{\kTe} at $z = \mSI{90}{\angstrom}$) and a lightly more positive
@@ -960,7 +940,7 @@ uniform, positively charged \gls{edl}. Hence, these pores are expected to genera
 electro-osmotic flow from \cisi{} to \transi{} at negative voltages (and \textit{vice versa} at positive
 voltages). In \gls{plyab-r}, the negative potential inside the \transi{} \lumen{} is reversed abruptly to a
 high positive value at the \cisi{} constriction. Indeed, the \gls{edl} inside the constriction of
-\gls{plyab-r} is negatively charged, and will exert the opposite force on the fluid as the \gls{edl} in the
+\gls{plyab-r} is negatively charged and will exert the opposite force on the fluid as the \gls{edl} in the
 \transi{} \lumen{}. The resulting direction of the electro-osmotic flow will depend on whether the `tug of
 war' game is won by the \cisi{} or \transi{} side of the pore. Regardless of the final direction of the
 \gls{eof} in \gls{plyab-r}, this competition will significantly reduce the magnitude of the \gls{eof} compared
@@ -1159,7 +1139,7 @@ this is a logical result.
 %
 
 Whereas most residues have a unitary charge at \pH{7.5}, this is no longer the case at \pH{4.5}. As discussed
-in the methods of this chapter (\cref{sec:elec:methods:elec}), and corroborated by the effective $\pKa$
+in the methods of this chapter (\cref{sec:elec:methods:elec}) and corroborated by the effective $\pKa$
 analysis in the previous paragraph, most of \gls{frac}'s acidic residues will be not be fully (de)protonated
 at \pH{4.5}. Translated to electrostatic simulations, this means that at \pH{4.5}, these residues will carry,
 on average, a charge between \SIrange{-1}{0}{\ec} (\cref{fig:frac_mutants_partialcharge_residues}), depending
@@ -1332,7 +1312,7 @@ When translocating the \gls{ssdna} model from \cisi{} to \transi{}
 (\cref{fig:frac_mutants_bead-ssdna_1000_energy}), there is virtually no change in $\energyelec$ observed
 between the \gls{dna} entering the pore ($\zdna = \mSI{150}{\angstrom}$,
 \cref{fig:frac_mutants_bead-ssdna_1000_potential}, left) up until the moment it reaches the top of the
-constriction ($\zdna = \mSI{110}{\angstrom}$). Entering the constriction however, is accompanied by a steep
+constriction ($\zdna = \mSI{110}{\angstrom}$). Entering the constriction, however, is accompanied by a steep
 increase of $\energyelec$ between $ \mSI{110}{\angstrom} > \zdna > \mSI{85}{\angstrom}$
 (\cref{fig:frac_mutants_bead-ssdna_1000_potential}, right) from \SI{\approx0}{\kT} to \SI{38}{\kT} and
 \SI{14}{\kT} for \gls{wtfrac} and \gls{refrac}, respectively. Both energy changes are positive, and hence
@@ -1645,7 +1625,7 @@ a maximum when the \gls{dna} starts to exit the pore from the \transi{} side ($\
 visible, with \gls{clya-rr56k} having a significantly lower energy (\SI{\approx10}{\kT}) compared to
 \gls{clya-rr56}. As the \gls{dna} moves through the constriction, its energy levels appear to fluctuate by a
 few \si{\kT} with a period of \SI{\approx30}{\angstrom}. This phenomenon is even more prominent at high salt
-concentrations, and will hence be discussed in the next section. 
+concentrations and will hence be discussed in the next section. 
 
 
 %
@@ -1793,7 +1773,7 @@ strengths~\cite{Franceschini-2013,Franceschini-2016}.
 As the \gls{dsdna} traverses the constriction, its energy is observed to fluctuate in a sinusoidal manner with
 an amplitude of \SI{2.5}{\kT} and a period of \SI{36}{\angstrom} (\cref{fig:clya_mutants_dsdna_2500_energy}).
 Likely, the peaks (\cref{fig:clya_mutants_dsdna_2500_potential}, top and bottom) and valleys
-(\cref{fig:clya_mutants_dsdna_2500_potential}, middle) correlate with the precise amount of negative charges
+(\cref{fig:clya_mutants_dsdna_2500_potential}, middle) correlate with the precise number of negative charges
 present inside the constriction, which in turn corresponds to how much of the B-\gls{dna}'s minor groove
 (\ie~high charge density) or major groove (\ie~low charge density) occupies the constriction. Given that, from
 a geometric point of view, moving a B-\gls{dna} strand up or down is identical to rotating it around its
@@ -1873,7 +1853,7 @@ $x = r \cos{\phi}$ and $y = r \sin{\phi}$:
 %
 resulting in 177 unique systems (\ie~1 reference system with only the pore, 88 reference systems with only the
 DNA and 88 systems containing the pore and the DNA). The electrostatic potentials and energies at an ionic
-strength of \SI{2}{\Molar} where computed as before with \gls{apbs}, using two sequential focussing
+strength of \SI{2}{\Molar} where computed as before with \gls{apbs}, using two sequential focusing
 calculations (coarse grid: \apbsgrid{500}{500}{700}{\angstrom} size with
 \apbsgrid{1.42}{1.42}{0.87}{\angstrom} spacing; fine grid: \apbsgrid{175}{175}{400}{\angstrom} size with
 \apbsgrid{0.50}{0.50}{0.50}{\angstrom} spacing). The energy cost (or gain) for moving the \gls{dna} away from
@@ -1935,10 +1915,10 @@ The electrostatic interactions between nanopores and analyte molecules can play 
 properties of nanopores. In this chapter, I have investigated the influence of ionic strength and solution pH
 on the distribution of the equilibrium electrostatic potential (\ie~without an external electric field) within
 several variants of the \gls{plyab}, \gls{frac} and \gls{clya} nanopores. This enabled us to provide insights
-into experimentally observed properties such a as ion selectivity, and postulate the influence on second order
+into experimentally observed properties such a as ion selectivity and postulate the influence on second order
 effects such as the electro-osmotic flow. Self-consistent computation of the electrostatic interaction
 energies between a translocating \gls{dna} strand and the \gls{frac} and \gls{clya} nanopores, provided
-further insights into the \gls{dna} translocation mechanisms of there pores, confirming experimental
+further insights into the \gls{dna} translocation mechanisms of these pores, confirming experimental
 observations.
 
 The large (interior) size of the \gls{plyab} nanopore makes it particularly well-suited for studying large

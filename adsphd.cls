@@ -542,6 +542,7 @@
 
 \RequirePackage{framed} % voor shaded environment
 
+\RequirePackage{verse}
 
 % To easily change line spacing
 \RequirePackage{setspace}
@@ -1878,7 +1879,7 @@ without written permission from the publisher.
   %\parbox[c][20mm]{151.2mm+\rbleed}{
   \flushright
   %\vspace{-3mm}
-  \color{white}{
+  \textcolor{white}{
   {\scriptsize {\sffamily\MakeUppercase\@faculty}}\\[-1mm]
   {\scriptsize {\sffamily\MakeUppercase\@department}}\\[-1mm]
   \ifdefempty{\@researchgroup}{}{{\scriptsize {\sffamily\MakeUppercase\@researchgroup}}\\[-1mm]}

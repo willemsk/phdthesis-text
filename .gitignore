@@ -42,3 +42,4 @@ VERSION
 *.fls
 
 .vscode
+extract/*

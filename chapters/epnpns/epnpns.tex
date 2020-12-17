@@ -113,13 +113,13 @@ proteins are subject to the same Coulombic (electrophoretic) and hydrodynamic (e
 forces~\cite{Wong-2007,Grosberg-2010,Muthukumar-2010,Muthukumar-2014}. This guides them towards---and often
 through---the nanopore, resulting in a temporary disruption of the baseline ionic conductance. Naively
 speaking, for any given analyte molecule, the rate of these resistive pulses is proportional to its
-concentration in the reservoir, whereas their duration, magnitude and intra-pulse fluctuations contain a
-wealth of information on its physical properties (\eg~size, shape and
+concentration in the reservoir, whereas their duration, magnitude, and intra-pulse fluctuations contain a
+wealth of information on its physical properties (\eg~size, shape, and
 charge)~\cite{Howorka-2009,Ying-2019,Lu-2020}. Hence, the unique `fingerprints' provided by the
 (sub-)nanometer-sized sensing volume of a nanopore can reveal information that is typically inaccessible to
-bulk measurements, such hidden intermediate states, dynamic noncovalent interactions and the presence of
+bulk measurements, such hidden intermediate states, dynamic noncovalent interactions, and the presence of
 subpopulations~\cite{Ying-2019,Lu-2020}. Notably, nanopores have been used to create ultra-long reads of
-individual DNA strands~\cite{Jain-2018}, to determine the shape, volume and dipole moment of
+individual DNA strands~\cite{Jain-2018}, to determine the shape, volume, and dipole moment of
 proteins~\cite{Yusko-2017,Houghtaling-2019}, and to investigate the kinetics of single enzymes tethered
 to~\cite{Derrington-2015,Harrington-2019} or trapped within~\cite{Li-2020,Galenkamp-2020} the pore. Because
 each current blockade is modulated by the complex interactions between the translocating molecule and the
@@ -851,7 +851,7 @@ center-to-center distance between the ion and the nearest heavy atom, meaning th
 \SI{0.22}{\nm} would already be inside our geometry (\ie~within the van der Waals radius of the heavy atom),
 and the other half would be inaccessible to ions due to excluded volume effects. Because we are not modeling
 the latter, we opted to assign the full offset given by $P_2$ to the heavy atom, effectively assuming that all
-ion-inaccessible space is already taken into account by our geometry. Our choice of parameters leads to a
+ion-inaccessible space is already taken into account by our geometry. Our choice of parameters leads to
 values of $X_{i}^w (\mSI{0}{\nm}) = 0.06$ (\ie~at the wall boundary) and $X_{i}^w (\mSI{0.75}{\nm}) = 0.99$
 (\ie~\SI{0.75}{\nm} within the electrolyte, \cref{fig:epnpns_distance_d}), which roughly corresponds to the
 values reported by Wilson \etal{}~\cite{Wilson-2019}.
@@ -900,9 +900,10 @@ values reported by Wilson \etal{}~\cite{Wilson-2019}.
 
 %
 \begin{landscape}
+  \hspace{-1.5cm}
   \begin{threeparttable}[p]
     \centering
-       \captionsetup{width=18cm}
+       \captionsetup{width=19.25cm}
     \caption{Overview of the \ce{NaCl} fitting parameters used for interpolation.}
     \label{tab:corrections_parameters}
     %
@@ -910,7 +911,7 @@ values reported by Wilson \etal{}~\cite{Wilson-2019}.
     \renewcommand{\arraystretch}{2}
     %
     \scriptsize
-    \begin{tabularx}{18cm}{@{}
+    \begin{tabularx}{19.25cm}{@{}
             l l S[table-format=1.3] S[table-format=-1.2(2)e-1] S[table-format=-1.2(2)e-1]
             S[table-format=-1.2(2)e-1] S[table-format=-1.2(2)e-1] S[table-format=>1.2] l @{}}
       \toprule
@@ -983,7 +984,7 @@ sigmoid's center from 0, respectively. Prior to the fitting, the viscosity data 
 using by hydrodynamic radius, such that $\walldistance = \SI{0}{\nm}$ represents the mean distance from the
 wall for each protein, regardless of its size. Additionally, we normalized and inverted the relative
 viscosities ($\viscosity_0 / \viscosity^w$) allowing us to fit values between 0 and 1. Our parameters result
-in a values of $\viscosity_0 / \viscosity^w (\SI{0}{\nm}) = 0.37$ (\ie~at the protein wall) and $\viscosity_0
+in values of $\viscosity_0 / \viscosity^w (\SI{0}{\nm}) = 0.37$ (\ie~at the protein wall) and $\viscosity_0
 / \viscosity^w (\SI{1.45}{\nm}) = 0.99$ (\ie~\SI{1.45}{\nm} within the electrolyte,
 \cref{fig:epnpns_distance_eta}). The relative fitting residuals (\cref{fig:epnpns_distance_eta}, left panel)
 for $\walldistance \ge \mSI{0}{\nm}$ (the utilized portion of the function) are typically
@@ -1004,7 +1005,7 @@ biological nanopores. Our \gls{epnp-ns} equations combine many of the improvemen
 literature, in addition to several new corrections. These include the finite size of the ions (\ie~steric
 repulsion between ions), self-consistent concentration- and positional-dependent parametrization of the ionic
 transport coefficients (\ie~diffusion coefficient and mobility) and of the electrolyte properties
-(\ie~density, viscosity and relative permittivity).
+(\ie~density, viscosity, and relative permittivity).
 
 Most electrolyte properties depend on the salt concentration. Typically, ion self-diffusion coefficients,
 ionic conductivities, and relative permittivity decrease with concentrations, whereas density and  viscosity

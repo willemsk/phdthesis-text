@@ -1,14 +1,6 @@
 \documentclass[faculty=fw,department=nat,phddegree=fys,10pt,final]{adsphd}
-% \documentclass[faculty=fw,department=nat,phddegree=fys,10pt]{adsphd}
+% \documentclass[faculty=fw,department=nat,phddegree=fys,10pt,online]{adsphd}
 
-
-%\documentclass[showinstructions,showlabels,coverfontpercent=100,faculty=firw,department=cws,phddegree=cws]{adsphd}
-%\documentclass[croppedpdf,showinstructions,faculty=firw,department=cws,phddegree=cws]{adsphd}
-%\documentclass[online,faculty=firw,department=cws,phddegree=cws]{adsphd}
-%\documentclass[print,bleed,cropmarks,faculty=firw,department=cws,phddegree=cws]{adsphd} % include bleed for the print service
-%\documentclass[print,faculty=firw,department=cws,phddegree=cws]{adsphd}
-%\documentclass[final,faculty=firw,department=cws,phddegree=cws]{adsphd}
-%\documentclass[showinstructions,faculty=firw,department=cws,phddegree=cws,epub]{adsphd}
 
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 % !!                                                               !!
@@ -52,7 +44,7 @@
 
 
 % Set spine width:
-\setlength{\adsphdspinewidth}{9mm}
+\setlength{\adsphdspinewidth}{15.25mm}
 
 %% Set bleeds
 %\setlength{\defaultlbleed}{7mm}
@@ -62,6 +54,11 @@
 \setcustomcoverpage{mycoverpage.tex} % mycoverpage.tex is the default
 
 %%% COVER: End settings %%%
+
+% Verse package
+\newcommand{\attrib}[1]{%
+\nopagebreak{\raggedleft\normalsize #1\par}}
+
 
 % PDFTeX page group warning
 \pdfsuppresswarningpagegroup=1
@@ -240,7 +237,6 @@
 \makeatother
 
 
-
 % User commands
 
 \input{mycommands.tex}
@@ -290,30 +286,19 @@
 \mainmatter % to get \pagenumbering{arabic}
 
 % Show instructions on a separate page
-\instructionschapters\cleardoublepage
+\cleardoublepage
 
-
-
-% \part{Introduction}
-% %
-% \cleardoublepage
-% %
+% Introduction
 \includechapter{nanopores}
 \includechapter{aims}
 
-% \part{Results}
-% %
-% \cleardoublepage
-% %
+% Results
 \includechapter{electrostatics}
 \includechapter{trapping}
 \includechapter{epnpns}
 \includechapter{transport}
 
-% \part{Conclusions}
-% %
-% \cleardoublepage
-% %
+% Conclusions
 \includechapter{conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

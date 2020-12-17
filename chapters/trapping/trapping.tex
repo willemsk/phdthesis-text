@@ -1277,7 +1277,7 @@ model for the molecule are directly related to the independently fitted paramete
 model. In conclusion, this means that it should be possible to predict the dwell times of similar experiments
 by obtaining parameters directly from these types of \gls{apbs} simulations. Interestingly, some \DHFRt{}
 variants showed several well-defined current blockade levels, indicating the presence of several stable energy
-minima within the pore. Even though we did not investigate this phenomena in detail, we did observe the
+minima within the pore. Even though we did not investigate this phenomenon in detail, we did observe the
 presence multiple minima in the electrostatic energy landscape of \DHFRt{}. These findings suggest that the
 distinct current blockades observed experimentally might correspond to different physical locations of the
 protein along the length of \gls{clya}.
@@ -1321,7 +1321,7 @@ The electrostatic energy landscape of a coarse-grained \gls{dhfr} molecule trans
 was prepared \textit{via} homology modeling with MODELLER software package~\cite{Sali-1993} from the wild-type
 \gls{clya} crystal structure (\pdbid{2WCD}~\cite{Mueller-2009}) and its energy was further minimized using the
 \gls{vmd}~\cite{Humphrey-1996} and \gls{namd} programs~\cite{Phillips-2005}. A coarse-grained bead model of
-\gls{dhfr} was placed a various locations along the central axis of the pore using custom \code{Python} code
+\gls{dhfr} was placed at various locations along the central axis of the pore using custom \code{Python} code
 and the \code{Biopython} package~\cite{Cock-2009}. The bead model of \DHFRt{} consisted of a `body' of seven
 negatively charged beads  (\SI{-1.43}{\ec}) beads (\SI{1.6}{\nm} diameter) in a spherical configuration and a
 `tail' of nine smaller beads (\SI{1}{\nm} diameter, \SI{0.6}{\nm} spacing) in a linear configuration with
@@ -1334,7 +1334,7 @@ $z_{\rm{body}}=\SI{-12.5}{\nm}$ to $\SI{27.5}{\nm}$ relative to the center of th
 \SI{0.5}{\nm} inside the pore) was computed by \cref{eq:electrostatic_energy}. To this end, all systems were
 solved using the non-linear \gls{pbe} (\code{npbe}) in two steps with the automatic solver (\code{mg-auto}):
 (1) a coarse calculation in a box of \SI{40x40x110}{\nm} with grid lengths of \SI{0.138x0.138x0.122}{\nm} and
-multiple Debye-H\"{u}ckel boundary conditions (\code{bcfl mdh}), followed by (2) a finer focussing calculation
+multiple Debye-H\"{u}ckel boundary conditions (\code{bcfl mdh}), followed by (2) a finer focusing calculation
 in a box of \SI{15x15x70}{\nm} with grid lengths of \SI{0.052x0.052x0.052}{\nm} that used the values of the
 coarse calculation at its boundaries. The monovalent salt concentration was set to \SI{0.150}{\Molar} with a
 radius of \SI{0.2}{\nm} for both ions. The solvent and solute relative permittivities were set to \num{78.15}
@@ -1357,7 +1357,7 @@ proteins they encode were overexpressed overnight at \SI{25}{\celsius} in a liqu
 bacterial cells were harvested by centrifugation, the overexpressed proteins were released into solution
 through lysis---using a combination of at least a single freeze-thaw cycle, incubation with lysozyme, and
 probe tip sonification. Finally, the \gls{dhfr} proteins were purified from the lysate with affinity
-chromotography with Strep-Tactin\textsuperscript{\textregistered} Sepharose\textsuperscript{\textregistered}
+chromatography with Strep-Tactin\textsuperscript{\textregistered} Sepharose\textsuperscript{\textregistered}
 (IBA Lifesciences, Goettingen, Germany), aliquoted, and stored at \SI{-20}{\celsius} until further use.
 
 
@@ -1367,7 +1367,7 @@ chromotography with Strep-Tactin\textsuperscript{\textregistered} Sepharose\text
 \gls{clya-as} oligomers were prepared as described previously~\cite{Soskine-2013}, and full details can be
 found in \cref{sec:trapping_appendix:dhfr_cloning}. Briefly, the \gls{clya-as} monomers were overexpressed and
 purified in a manner similar to that for \gls{dhfr}, with the largest difference being the use of
-\ce{Ni-NTA}-based affinity chromotography. After purification, \gls{clya-as} monomers were oligomerized in
+\ce{Ni-NTA}-based affinity chromatography. After purification, \gls{clya-as} monomers were oligomerized in
 \SI{0.5}{\percent} \textbeta-dodecylmaltoside (GLYCON Biochemicals GmbH, Luckenwalde, Germany) at
 \SI{37}{\celsius} for \SI{30}{\minute}. The type I oligomer (12-mer) was isolated by gel extraction from a
 blue native \gls{page}.
