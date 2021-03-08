@@ -4,9 +4,12 @@ PhD dissertation, Kherim Willems, December 2020. Defended January 8th, 2021.
 
 This is the home of my PhD thesis, which revolves around the modeling of biological nanopores.
 
-## PDF downloads
+Licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
 
-arXiv mirror:
+## Releases (PDFs)
+
+* [Lastest GitHub release (v1.3)](https://github.com/willemsk/phdthesis-text/releases/tag/v1.3)
+* arXiv mirror
 
 ## Thesis outline
 
@@ -102,3 +105,7 @@ rigorous and self-consistent, such as the ePNP-NS equations. Further improvement
 from an after-the-fact analysis method to a powerful design tool for nanopore researchers, providing a means
 to automatically screen the properties of novel nanopores, or to predict the ionic current signal produced by
 arbitrary molecules.
+
+## Acknowledgments
+
+Special thanks to [Wannes Meert](http://www.wannesm.be/) for providing the LaTeX template at [github.com/wannesm/adsphd](https://github.com/wannesm/adsphd).
