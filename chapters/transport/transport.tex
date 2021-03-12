@@ -410,12 +410,12 @@ distribution of the space charge density of each atom $i$ around its respective 
 $(r_i,z_i)$ such that
 %
 \begin{align}\label{eq:scdpore}
-  \scdpore(r,z) = \dsum_{i} \dfrac{\echarge\partialcharge_{i}}{\pi(\stdev\atomradius_{i})^2}
+  \scdpore(r,z) = \dsum_{i} \dfrac{\ec\partialcharge_{i}}{\pi(\stdev\atomradius_{i})^2}
             \exp{\left(-\dfrac{(r-r_i)^2 + (z-z_i)^2}{(\stdev\atomradius_{i})^2}\right)}
   \text{ ,}
 \end{align}
 %
-where $\atomradius_{i}$ is the atom radius, $\sigma = 0.5$ is the sharpness factor and $\echarge$ is the
+where $\atomradius_{i}$ is the atom radius, $\sigma = 0.5$ is the sharpness factor and $\ec$ is the
 elementary charge. To embed $\scdpore$ with sufficient detail, yet efficiently, into a numeric solver, the
 spatial coordinates were discretized with a grid spacing of \SI{0.005}{\nm} in the domain of $\scdpore$ and
 precomputed values were used during the solver runtime. All partial charges (at \pH{7.5}) and radii were taken
@@ -1150,7 +1150,7 @@ the constriction. A summary of the most salient $\radeqpot$ values can be found 
     (\subref{fig:transport_energy_profiles})
     %
     Radially averaged non-equilibrium electrostatic energy landscape for single ions, $\radenergy =
-    \chargen_{i} \echarge \radpot$, as calculated directly from the radial electrostatic potential at $\vbias
+    \chargen_{i} \ec \radpot$, as calculated directly from the radial electrostatic potential at $\vbias
     = \mSIlist{+150;-150}{\mV}$ for monovalent cations and anions. The gray arrows indicate the direction in
     which the ions must travel in order for them to contribute positively to the ionic current.
     %
@@ -1159,9 +1159,8 @@ the constriction. A summary of the most salient $\radeqpot$ values can be found 
     Height of the electrostatic energy barrier ($\Delta E_{\text{B},\mathit{trans}}$) at the \transi{}
     constriction as a function of the bulk salt concentration. Note that $\Delta E_{\text{B},\mathit{trans}}$
     is much higher for negative voltages and rises logarithmically at lower concentrations. The divergence
-    between \SI[explicit-sign=+]{0}{\mV} and \SI[explicit-sign=-]{0}{\mV} for $\cbulk < \mSI{0.3}{\Molar}$
-    highlights the difference in barrier height when traversing the pore from \cisi{} to \transi{} or
-    \textit{vice versa}.
+    between \SI{+0}{\mV} and \SI{-0}{\mV} for $\cbulk < \mSI{0.3}{\Molar}$ highlights the difference in
+    barrier height when traversing the pore from \cisi{} to \transi{} or \textit{vice versa}.
     %
   }\label{fig:transport_energy}
 \end{figure}
@@ -1174,7 +1173,7 @@ To link back the observed ionic conductance properties to the electrostatic pote
 $\radenergy$, the radially averaged electrostatic energy for a monovalent ion
 %
 \begin{equation}\label{eq:epnp-ns_radenergy}
-  \radenergy = \chargen_{i} \echarge \radpot
+  \radenergy = \chargen_{i} \ec \radpot
   \text{ ,}
 \end{equation}
 %

@@ -1161,14 +1161,14 @@ As evidenced by the radially averaged cross-sections and the cylindrical average
 the constriction from negative to positive. Because arginine is significantly bulkier compared to glutamate,
 the charged groups are packed closer together inside the constriction, resulting in a increase of the peak
 cylindrically averaged potential ($\cylpot$) from \SI{\approx-2.5}{\kTe} in \gls{wtfrac} to
-\SI[retain-explicit-plus]{\approx+5}{\kTe} in \gls{refrac}. The central part of \gls{frac} (at $z \approx
+\SI{\approx+5}{\kTe} in \gls{refrac}. The central part of \gls{frac} (at $z \approx
 \mSI{30}{\angstrom}$) is strongly positive, whereas the rest of the \cisi{} side ($z > \mSI{30}{\angstrom}$)
 is negative.
 
 Lowering the pH to \num{4.5} has a large effect on the constriction of \gls{wtfrac}, which becomes
 significantly less negative. The $\cylpot$ amplitude inside the constriction reduces by \SI{40}{\percent},
-from \SIrange{-2.5}{-1.5}{\kTe}). In contrast, maximum $\cylpot$ value inside the constriction of \gls{refrac}
-remains steady at \SI[retain-explicit-plus]{+5}{\kTe}. Finally, at low pH, the interior walls of the larger
+from \SIrange{-2.5}{-1.5}{\kTe}. In contrast, maximum $\cylpot$ value inside the constriction of \gls{refrac}
+remains steady at \SI{+5}{\kTe}. Finally, at low pH, the interior walls of the larger
 \cisi{} side ($z > \mSI{30}{\angstrom}$) also reverse their potential, become predominantly positive instead
 of negative in both \gls{frac} variants.
 
@@ -1192,7 +1192,7 @@ permeable ion and the net number of water molecules flowing through the pore ($\
 using~\cite{Piguet-2014}
 %
 \begin{equation}\label{eq:water_flux_permeability}
-  \flux_{w} = N_{w} \dfrac{\current(\vbias)}{\echarge} 
+  \flux_{w} = N_{w} \dfrac{\current(\vbias)}{\ec} 
     \left[ \dfrac%
         {1 - \permeabilityratio{\ce{K+}}{\ce{Cl-}}}%
         {1 + \permeabilityratio{\ce{K+}}{\ce{Cl-}}}%
@@ -1201,7 +1201,7 @@ using~\cite{Piguet-2014}
 \end{equation}
 %
 with $N_{w}$ the average number of water molecules per ion (\ie~the hydration shell), $\current$ the ionic
-current through the pore at a given bias voltage, $\vbias$, and $\echarge$ the elementary charge. Note that
+current through the pore at a given bias voltage, $\vbias$, and $\ec$ the elementary charge. Note that
 \cref{eq:water_flux_permeability} likely underestimates the true water flux, as it does not take the
 additional drag on the fluid---due to the unidirectional movement of the electrical double layer---into
 account (see~\cref{sec:np:eof}).

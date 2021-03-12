@@ -742,7 +742,7 @@ Possibly, the inability of \DHFR{8}{O2} and \DHFR{9}{O2} to bind the substrate i
     (\subref{fig:trapping_nadph_ires})
     %
     Dependence of the $\iresp$ on the applied potential for \DHFR{7}{O2} and \DHFR{7}{O2} bound to
-    \gls{nadph}\@. All current traces were collected in \SI{250}{\mM} \ce{NaCl} and \ce{15}{\mM}
+    \gls{nadph}\@. All current traces were collected in \SI{250}{\mM} \ce{NaCl} and \SI{15}{\mM}
     \ce{Tris-HCl}, \pH{7.5}, at \SI{23}{\celsius}, by applying a Bessel low-pass filter with a
     \SI{2}{\kilo\hertz} cutoff and sampled at \SI{10}{\kilo\hertz}.
     %
@@ -1333,13 +1333,14 @@ the electrostatic was energy computed with \gls{apbs}. The net electrostatic ene
 $z_{\rm{body}}=\SI{-12.5}{\nm}$ to $\SI{27.5}{\nm}$ relative to the center of the bilayer, with steps of
 \SI{0.5}{\nm} inside the pore) was computed by \cref{eq:electrostatic_energy}. To this end, all systems were
 solved using the non-linear \gls{pbe} (\code{npbe}) in two steps with the automatic solver (\code{mg-auto}):
-(1) a coarse calculation in a box of \SI{40x40x110}{\nm} with grid lengths of \SI{0.138x0.138x0.122}{\nm} and
-multiple Debye-H\"{u}ckel boundary conditions (\code{bcfl mdh}), followed by (2) a finer focusing calculation
-in a box of \SI{15x15x70}{\nm} with grid lengths of \SI{0.052x0.052x0.052}{\nm} that used the values of the
-coarse calculation at its boundaries. The monovalent salt concentration was set to \SI{0.150}{\Molar} with a
-radius of \SI{0.2}{\nm} for both ions. The solvent and solute relative permittivities were set to \num{78.15}
-and \num{10}, respectively~\cite{Li-2013}. Both the charge density and the ion accessibility maps were
-constructed using cubic B-spline discretization (\code{chgm spl2} and \code{srfm spl2}).
+(1) a coarse calculation in a box of \SIgrid{40;40;110}{\nm} with grid lengths of
+\SIgrid{0.138;0.138;0.122}{\nm} and multiple Debye-H\"{u}ckel boundary conditions (\code{bcfl mdh}), followed
+by (2) a finer focusing calculation in a box of \SIgrid{15;15;70}{\nm} with grid lengths of
+\SIgrid{0.052;0.052;0.052}{\nm} that used the values of the coarse calculation at its boundaries. The
+monovalent salt concentration was set to \SI{0.150}{\Molar} with a radius of \SI{0.2}{\nm} for both ions. The
+solvent and solute relative permittivities were set to \num{78.15} and \num{10}, respectively~\cite{Li-2013}.
+Both the charge density and the ion accessibility maps were constructed using cubic B-spline discretization
+(\code{chgm spl2} and \code{srfm spl2}).
 
 
 \subsection{Protein mutagenesis, overexpression, and purification}

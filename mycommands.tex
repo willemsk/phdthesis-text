@@ -1,4 +1,50 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% siunitx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Units
+
+\DeclareSIUnit \angstrom {\text {Å}}
+\DeclareSIUnit \molar {\mole\per\cubic\deci\metre}
+\DeclareSIUnit \Molar {\textsc{M}}
+\DeclareSIUnit \atm {\textsc{atm}}
+\DeclareSIUnit \dalton {\textsc{D\!a}}
+\DeclareSIUnit \bp {\textsc{bp}}
+
+\makeatletter
+\DeclareSIUnit\elementarycharge{\protect \protect \unhbox \voidb@x \hbox {\protect $\relax e$}}
+\makeatother
+
+\DeclareSIUnit \kT {\textit{k}\textsubscript{B} \textit{T}}
+\DeclareSIUnit \kTe { \kT\per\elementarycharge }
+\DeclareSIUnit \cal { \text{cal} }
+\DeclareSIUnit \photon { \text{photon} }
+\DeclareSIUnit \kDa { \kilo \dalton }
+\DeclareSIUnit \uM  { \micro \Molar }
+\DeclareSIUnit \mM  { \milli \Molar }
+\DeclareSIUnit \nM  { \nano \Molar }
+\DeclareSIUnit \nS  { \nano \siemens }
+\DeclareSIUnit \pN  { \pico \newton }
+\DeclareSIUnit \dC { \degreeCelsius}
+\DeclareSIUnit \mps { \meter \per \second}
+\DeclareSIUnit \mmps { \milli \meter \per \second}
+\DeclareSIUnit \cnmpnspv { \cubic\nano\meter\per\nano\second\per\volt}
+
+
+% Math mode SI wrapping
+\newcommand{\mSI}[2]{\text{\SI{#1}{#2}}}
+\newcommand{\msi}[2]{\text{\si{#1}{#2}}}
+\newcommand{\mSIrange}[3]{\text{\SIrange{#1}{#2}{#3}}}
+\newcommand{\mSIlist}[2]{\text{\SIlist{#1}{#2}}}
+
+% Other wrappers
+\newcommand{\SIgrid}[2]{%
+   \SIlist[list-separator = $\times$, list-final-separator = $\times$, list-units = single]%
+   {#1}{#2}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General: Markup and shothands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -98,7 +144,7 @@
 % Faraday constant
 \newcommand\faraday{\mathcal{F}}
 % Elementary charge
-\newcommand\echarge{e}
+\newcommand\ec{e}
 % Thermal energy, kBT
 \newcommand\kbt{\boltzmann \temperature}
 % Thermal voltage
@@ -561,44 +607,6 @@
 \newcommand{\pottrans}{\potential_{\text{pore}}^{\text{\transi}}}
 % Surface potential
 \newcommand{\surfpot}{\potential_0}
-
-% Units
-\DeclareSIUnit{\molar}{\mole\per\cubic\deci\metre}
-\DeclareSIUnit{\Molar}{\textsc{M}}
-\DeclareSIUnit{\atm}{\textsc{atm}}
-\DeclareSIUnit{\dalton}{\textsc{D\!a}}
-\DeclareSIUnit{\bp}{\textsc{bp}}
-\DeclareSIUnit{\kT}{\textit{k}\textsubscript{B} \textit{T}}
-\DeclareSIUnit{\kTe}{\kT\per\elementarycharge}
-\DeclareSIUnit{\cal}{cal}
-\DeclareSIUnit{\photon}{photon}
-\newcommand\kDa{\kilo\dalton}
-\newcommand\uM{\micro\Molar}
-\newcommand\mM{\milli\Molar}
-\newcommand\nM{\nano\Molar}
-\newcommand\mV{\milli\volt}
-\newcommand\pA{\pico\ampere}
-\newcommand\nS{\nano\siemens}
-\newcommand\um{\micro\meter}
-\newcommand\nm{\nano\meter}
-\newcommand\ms{\milli\second}
-\newcommand\us{\micro\second}
-\newcommand\ns{\nano\second}
-\newcommand\ps{\pico\second}
-\newcommand\fs{\femto\second}
-\newcommand\pN{\pico\newton}
-\newcommand\ec{\elementarycharge}
-\newcommand\dC{\degreeCelsius}
-\newcommand\mps{\meter\per\second}
-\newcommand\mmps{\milli\meter\per\second}
-\newcommand\cnmpnspv{\cubic\nano\meter\per\nano\second\per\volt}
-
-% Math mode SI wrapping
-\newcommand{\mSI}[2]{\text{\SI{#1}{#2}}}
-\newcommand{\msi}[2]{\text{\si{#1}{#2}}}
-\newcommand{\mSIrange}[3]{\text{\SIrange{#1}{#2}{#3}}}
-\newcommand{\mSIlist}[2]{\text{\SIlist{#1}{#2}}}
-
 
 % Copyright 
 \newcommand{\reprRSC}[1]%

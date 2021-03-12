@@ -1304,7 +1304,7 @@ solution---expressed through Boltzmann statistics---and reads~\cite{Gouy-1910,Ch
 %
 where $\potential(\vec{r})$ is the electrostatic potential at position $\vec{r}$ and $\scd(\vec{r})$ is the
 charge density. Linearizing the exponential term in \cref{eq:nanopores_pbe} with a truncated Taylor expansion
-(valid for $\left| \chargeni \echarge \potential \right| (\kbt)^{-1} < 1$) yields the linearized \gls{pbe}
+(valid for $\left| \chargeni \ec \potential \right| (\kbt)^{-1} < 1$) yields the linearized \gls{pbe}
 %
 \begin{equation}\label{eq:nanopores_pbe_linear}
   \nabla^2 \potential(\vec{r})
@@ -1353,14 +1353,14 @@ Stern layer thickness. The value of $\chargedensrelaxtime$ for a nanopore lies i
 \gls{bnp}), $\diffusion = \mSI{2}{\square\nm\per\ns}$ (\eg~\ce{K+} and \ce{Cl-} ions), $\dbl = \mSI{1}{\nm}$
 (\ie~physiological ionic strength), and $\stl = \mSI{0.1}{\nm}$ (the average ionic radius),
 $\chargedensrelaxtime = \mSI{4.5}{\ns}$. In comparison, the dwell time of a large analyte molecule at any
-given position within a biological nanopore ranges from \SI{1}{\us}~to~{1}{\second}. For example, at
+given position within a biological nanopore ranges from \SI{1}{\us}~to~\SI{1}{\second}. For example, at
 \SI{+100}{\mV}, \gls{dsdna} translocates through \gls{clya} at a rate of \SI{\approx1}{\bp} every
 \SI{7000}{\ns} (\SI{290}{\bp} in \SI{2}{\ms})~\cite{Franceschini-2013}. Hence, given the three
 order-of-magnitude separation in timescales of these two phenomena, it is reasonable to assume that the ions
 respond instantaneously to any change in within the nanopore--analyte system. In other words, the ionic
 atmosphere can always be considered to be at equilibrium with respect to the pore and the analyte. As we shall
 see in the results chapters, this assumption will allow us to calculate meaningful energies and forces with
-`steady-state' solutions, rather necessitating the use of complex time-dependent analysis.
+`steady-state' solutions, rather than necessitating the use of complex time-dependent analysis.
 
 
 \subsection{The electric field: the potentials they are a-changin'}
@@ -1637,7 +1637,7 @@ or not, giving rise to a unidirectional fluid flow---the \glsfirst{eof}~\cite{Bo
 As with the electrical field, tractable analytical formulas that accurately describe the \gls{eof} generated
 by (biological) nanopores are not possible due to their complex geometries and charge distributions.
 Nevertheless, considerable insights can be gained by simplifying the pore geometry and its surface charge
-density. For low surface charge potentials (\ie~$\left| \echarge \potential\right| / (\kbt) \le 1$), the
+density. For low surface charge potentials (\ie~$\left| \ec \potential\right| / (\kbt) \le 1$), the
 volumetric flowrate ($\flowrate$) of water molecules through an infinitely long, cylindrical nanopore with
 radius $\radiusa$ is given by~\cite{Laohakunakorn-2015}
 %
@@ -2542,7 +2542,7 @@ concentration gradient (from high to low concentration), and it is proportional 
 individual molecule. Similarly, the electromigratory flux drives the movement of charged molecules with
 (positive charge) or against (negative charge) the electric potential gradient (\ie~the electric field),
 proportional to their mobility. Note that the Einstein relation,
-$\mobility=\frac{\echarge}{\kbt}\chargen\diffusion$, which dictates that the diffusion coefficient is
+$\mobility=\frac{\ec}{\kbt}\chargen\diffusion$, which dictates that the diffusion coefficient is
 directly proportional to the electric mobility, only holds at infinite dilution (\ie~$\concentration \to 0$),
 and hence should not be used at finite concentrations (even though is often is). Finally, the convective flux
 represents the molecules that are dragged along by the movement of the fluid itself, irrespective of their
