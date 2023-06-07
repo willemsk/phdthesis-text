@@ -8,8 +8,8 @@ Licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
 
 ## Releases (PDFs)
 
-* [Lastest GitHub release (v1.3)](https://github.com/willemsk/phdthesis-text/releases/tag/v1.3)
-* arXiv mirror
+* [Lastest GitHub release (v1.4)](https://github.com/willemsk/phdthesis-text/releases/tag/v1.4)
+* [arXiv mirror](https://arxiv.org/abs/2103.05043)
 
 ## Thesis outline
 
@@ -17,7 +17,7 @@ Licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
   * Chapter 1. Biological nanopores
   * Chapter 2. Aims
 * **Part II. Results**
-  * Chapter 3. Equilibirum electrostatics of biological nanopores
+  * Chapter 3. Equilibrium electrostatics of biological nanopores
   * Chapter 4. Trapping of a single protein inside a nanopore
   * Chapter 5. An improved PNP-NS framework
   * Chapter 6. Modeling the transport of ions and water through ClyA
