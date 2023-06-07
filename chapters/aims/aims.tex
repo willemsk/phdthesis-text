@@ -16,12 +16,12 @@
 }}
 
 
-Given their introduction in \cref{ch:nanopores}, it should stand without doubt that nanopores---and biological
-ones in particular---have become powerful single molecule sensing tools. Among the key strengths of nanopores
-are their ability to interrogate individual molecules label-free, at high sampling frequencies and with long
+Given their introduction in \cref{ch:nanopores}, it should stand without a doubt that nanopores---and biological
+ones in particular---have become powerful single-molecule sensing tools. Among the key strengths of nanopores
+are their ability to interrogate individual molecules label-free, at high sampling frequencies, and with long
 observation times. Whereas over the past 25 years nanopore research was driven by genomics, researchers are
 now recognizing these advantages may be useful also in other fields, including proteomics, metabolomics,
-single-molecule enzymology~\cite{Willems-VanMeervelt-2017} and biosensing. This expanding application space
+single-molecule enzymology~\cite{Willems-VanMeervelt-2017}, and biosensing. This expanding application space
 also presents an increasing challenge: translating the `two-dimensional' nanopore current into a meaningful
 set of information. Even though complementary experimental techniques may alleviate the problem, it is here
 that modeling approaches---be it analytical or computational---can bestow researchers with a thorough
@@ -42,12 +42,12 @@ study all the properties of the nanopore itself (\textbf{Objective~4}).
 Due to their proteinaceous nature, the primary computational tool for studying biological nanopores are
 \glsfirst{md} simulations, where every atom is modeled explicitly. Unfortunately, the wealth of information
 accessible through \gls{md} simulations comes at a heavy computational cost: often necessitating the use of
-months of supercomputer time. Even though we will still make use of \gls{md} to construct realistic and well
-equilibrated homology models of various biological nanopores, most simulations in this work will be based on
-continuum, rather than discrete representations of the nanopore systems. In~\cref{ch:electrostatics} we will
+months of supercomputer time. Even though we will still make use of \gls{md} to construct realistic and
+well-equilibrated homology models of various biological nanopores, most simulations in this work will be based
+on continuum, rather than discrete, representations of the nanopore systems. In~\cref{ch:electrostatics} we will
 show how the \glsfirst{pb} equation can be employed to quantify the equilibrium (\ie~without an external bias
 voltage) electrostatic interactions between a nanopore and the surrounding electrolyte on the one hand, and
-its analyte molecules on the other. Nanopores are governed by more than just electrostatics however, and thus
+its analyte molecules on the other. Nanopores are governed by more than just electrostatics, however, and thus
 in~\cref{ch:epnpns} we develop the \gls{epnp-ns} equations: a simulation framework that introduces several
 self-consistent corrections to the electrolyte properties in an attempt to mitigate the shortcomings of the
 classical {PNP-NS} equations at the nanoscale and beyond infinite dilution. Because the \gls{epnp-ns}
@@ -61,7 +61,7 @@ insights.
 %
 
 The interior walls of most biological nanopores are typically lined with charged amino acids. Hence, it is
-unsurprising that electrostatic interactions often play a determining role in the overall behavior of a pore.
+not surprising that electrostatic interactions often play a determining role in the overall behavior of a pore.
 In~\cref{ch:electrostatics}, we use the \gls{pb} equations to calculate the electrostatic potential within the
 several variants of the \glsfirst{plyab}~\cite{Huang-2020}, \glsfirst{frac}~\cite{Wloka-2016,Huang-2017} and
 \glsfirst{clya}~\cite{Franceschini-2016} nanopores and investigate the effect of ionic strength and pH on
@@ -85,9 +85,9 @@ it to bind to \gls{mtx}, a small negatively charged inhibitor
 (\SI{454}{\dalton})~\cite{Soskine-Biesemans-2015}. Moreover, the dwell time of \DHFRt was found to depend
 strongly and non-monotonously on the magnitude applied bias voltage~\cite{Biesemans-2015}. The physical
 mechanisms behind this behavior are elucidated in~\cref{ch:trapping}, using a combination of experiments,
-electrostatic energy calculations and an analytical `double energy barrier' model. The latter captures the
+electrostatic energy calculations, and an analytical `double energy barrier' model. The latter captures the
 essential physics governing the escape of \DHFRt{} from either the \cisi{} or \transi{} sides of \gls{clya},
-and the fitting to an extensive set of experimental data will yield quantitative values for magnitude of the
+and the fitting to an extensive set of experimental data will yield quantitative values for the magnitude of the
 electrophoretic, electro-osmotic, electrostatic, and steric forces acting on proteins captured by \gls{clya}.
 
 
@@ -108,7 +108,7 @@ range of ionic strengths (\SIrange{0.005}{5}{\Molar}~\ce{NaCl}) and bias voltage
 (\SIrange{-200}{+200}{\mV}), we will be able to gauge the accuracy of the
 \gls{epnp-ns} equations for predicting nanoscale conductances. Furthermore, it will allow us to paint a
 quantitative picture of nanopore properties that are difficult to access experimentally, including ion
-selectivity, ion concentrations, (non)equilibrium electrostatic potentials and the electro-osmotic flow.
+selectivity, ion concentrations, (non)equilibrium electrostatic potentials, and the electro-osmotic flow.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

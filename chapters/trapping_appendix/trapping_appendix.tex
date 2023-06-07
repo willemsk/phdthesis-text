@@ -24,8 +24,8 @@
 
 When measuring the dwell time of molecules in bound states such as when they are trapped in nanopores, we
 typically obtain a distribution of dwell times whose appearance yields direct information about the kinetics
-of the bound state. In this section we will discuss how to extract kinematic information from such
-distributions and how distributions of multi-level bound states look like.
+of the bound state. In this section, we will discuss how to extract kinematic information from such
+distributions and what the distributions of multi-level bound states look like.
 
 
 \subsubsection{Single bound state}
@@ -33,10 +33,10 @@ distributions and how distributions of multi-level bound states look like.
 \label{sec:trapping_appendix:single_bound_state}
 %
 
-The simplest scenario is the decay of a single bound state. Suppose we measure the duration of the bound state
+The simplest scenario is the decay of a single, bound state. Suppose we measure the duration of the bound state
 many times in an experiment. This involves measuring the time trace noting the capture and release times and
 then plotting a histogram of events vs.~dwell time in the bound state. Since the energy obtained for the
-release of the molecule is thermal, the process is stochastic in nature and with growing event number the
+release of the molecule is thermal, the process is stochastic in nature and with growing event numbers the
 histogram approaches the underlying distribution associated with the kinetics of escaping from the bound
 state.
 
@@ -49,9 +49,9 @@ the bound state is given by the typical exponential distribution
 \end{align*}
 %
 The nature of the distribution function $f$ is sometimes confusing as it is often used interchangeably and
-without notational clarity as both a probability distribution and as an event distribution. In an experiment
+without notational clarity as both a probability distribution and an event distribution. In an experiment
 where we count events in time series data, we gather statistical data on the event distribution rather than on
-the probability distribution. In the simple case of a single bound state, this event distribution is given by
+the probability distribution. In the simple case of a single, bound state, this event distribution is given by
 %
 \begin{align}\label{eq:event_distri}
     F(t) = F_0 \;f(t)
@@ -143,7 +143,7 @@ Now let us take a look at the general $N$-level system. It can be described by t
 where $f_i$ is the probability distribution of the $i$-th state and $N$ is the total number of states. Here we
 assume that each bound state can decay into another state \textit{via} the rate $m_{ij}$. If we choose one or
 more of the states to represent a free state where the molecule escapes, we can in principle describe trapping
-events with arbitrary number of transitions in between meta states before the escape of the molecule. The
+events with an arbitrary number of transitions between meta states before the escape of the molecule. The
 rates $m_{ij}$ of \cref{eq:multi_ode} are not entirely unrelated as they need to conserve probability. An
 obvious choice is to simply express the decrease of probability of a state as the increase of the other
 states:
@@ -205,7 +205,7 @@ related to the rates.
 
 \subsubsection{Interpretation of experimental data}
 
-Extracting events from time series data and plotting a histogram of the dwell time will yield the event
+Extracting events from time-series data and plotting a histogram of the dwell time will yield the event
 distribution function. In a multi-state system, the observed event may be a consequence of multiple different
 states with transition rates between each other. If the experiment or the data analysis technique does not
 distinguish between these states but groups them together, what we observe may be the sum of multiple event
@@ -232,7 +232,7 @@ $\alpha,\dots,\beta$, it also contains all interactions between the states $\alp
 states. Note that we only need a single overall event normalization $F_0$ since the probabilities of finding
 the molecule in one of the many states at $t=0$ is set by the initial conditions chosen when solving the
 \gls{ode} of \cref{eq:multi_ode}. All differences between the distributions at time $t$ are then a consequence
-of the intrinsic rates in between states.
+of the intrinsic rates between states.
 
 Suppose we measure such a system and now we want to extract the kinetics of the process. The compound event
 distribution function can be split up into exponential terms using \cref{eq:ansatz}
@@ -345,20 +345,20 @@ differences in rates (\ie~$\rate^\xi_{\ell m}$ varies systematically between exp
 can be easily extended to generalize the computation of average dwell times in the presence of systematic
 errors.
 
-Lastly we want to quantify how event distributions behave when two independent processes are measured within
-the same event distribution. An example for this would be that the molecule is captured into a completely
+Lastly, we want to quantify how event distributions behave when two independent processes are measured within
+the same event distribution. An example of this would be that the molecule is captured into a completely
 separate state from which it has an escape rate with kinetics that are different from the actual state we want
-to measure. This could potentially be a meta state with negligible transition rate to the main trapping
+to measure. This could potentially be a meta state with a negligible transition rate to the main trapping
 mechanism or it could simply be a capture in a different orientation.
 
-In that case we find that the total measured event distribution function is given by
+In that case, we find that the total measured event distribution function is given by
 %
 \begin{align}\label{eq:two_population_distribution}
     \mathcal{F} = F^A_{\alpha,\ldots,\beta} + F^B_{\gamma,\ldots,\delta}
     \text{ .}
 \end{align}
 %
-The main observation in that case is that $F^A$ and $F^B$ may contain completely different rates and that the
+The main observation, in that case, is that $F^A$ and $F^B$ may contain completely different rates and that the
 rates of $F^A$ and $F^B$ are not related as in \cref{eq:finalcoeffs}. A way to distinguish these types of
 distribution functions would be to quantify the capture ratio $F^A_0/F^B_0$ in terms of experimental
 conditions. Modifying the capture ratio would then yield predictable behavior of the ratio $F^A/F^B$ which can
@@ -444,7 +444,7 @@ thermal equilibrium is given by the usual (normalized) Boltzmann distribution
     \text{ .}
 \end{align*}
 %
-Then the scattering rate $\rate$ into a some final state can be expressed as
+Then the scattering rate $\rate$ into some final state can be expressed as
 %
 \begin{align}\label{eq:rate}
     \rate = \int_0^\infty d\kinetic\; Z \;c(\kinetic)\;f(\kinetic)
@@ -459,8 +459,8 @@ well. We will view the escape rate of the molecule from the potential well as an
 event that takes it over the barrier.
 
 In order to derive an approximation to this rate, we will assume that the molecule cannot escape (\ie~tunnel)
-as long as its kinetic energy is less then the required energy barrier that needs to be overcome. On the other
-hand, if the molecule acquires a kinetic energy equal or larger to the barrier, the transition rate $c$ is
+as long as its kinetic energy is less than the required energy barrier that needs to be overcome. On the other
+hand, if the molecule acquires kinetic energy equal to or larger than the barrier, the transition rate $c$ is
 assumed to be constant. Thus we have
 %
 \begin{align*}
@@ -508,8 +508,8 @@ barrier contribution from the electrostatic interactions can be expressed as
 %
 where $\Ntag$ is the signed net number of charges on the molecule being trapped in the electrostatic potential
 well. Since the molecule is large and charges may be located outside of the potential well, not all charges
-modify the barrier. For our present purpose we will refer to the number of charges in the well as the tag
-charge number in reference to the term used in \cref{ch:trapping}. Thus, $\potbar_{\rm tag}^\cis$ is the
+modify the barrier. For our present purpose, we will refer to the number of charges present in the well as the tag
+charge number, in reference to the term used in \cref{ch:trapping}. Thus, $\potbar_{\rm tag}^\cis$ is the
 barrier height change due to a change in the tag charge number $\Ntag$. The electrostatic barrier
 contributions that are independent of $\Ntag$ are absorbed into the constant $\barrier^{\cis}_{\static,0}$.
 
@@ -563,7 +563,7 @@ where $\Nnet = \Ntag +\Nbody$ is the signed net number of charges on the molecul
 charge $\Nbody$ in reference to the terms in \cref{ch:trapping}. Moreover, $L$ is the length of the potential
 drop from \cisi{} to \transi{} (cf.~\cref{fig:single_barrier}).
 
-Likewise we can compute the change in barrier height due to the osmotic component as
+Likewise, we can compute the change in barrier height due to the osmotic component as
 %
 \begin{align*}
     \barrier^\cis_{\osm} = \Eosm(\xcis) - \Eosm(\xmin)
@@ -684,8 +684,8 @@ with the applied bias.  Data that exhibits a maximum as a function of $\vbias$, 
 \label{sec:trapping_appendix:double_barrier}
 %
 
-Now let us assume that there is a second barrier as illustrated in \cref{fig:second_barrier}, so that the
-molecule can escape towards the \transi{} side with finite probability. We can define the barrier to the
+Now let us assume that there is a second barrier as illustrated in \cref{fig:second_barrier} so that the
+molecule can escape towards the \transi{} side with a finite probability. We can define the barrier to the
 \transi{} side in complete analogy to the \cisi{} barrier of \cref{eq:cisbarrier} as
 %
 \begin{align*}
@@ -696,8 +696,8 @@ molecule can escape towards the \transi{} side with finite probability. We can d
         \text{ .}
 \end{align*}
 %
-Note, however, the opposite sign in front of the external barrier contributions since the external force
-points in the same direction as the \transi{} exit rather than opposite.
+Note, however, the opposite sign in front of the external barrier contribution. This indicated that
+the external force points in the same direction as the \transi{} exit, rather than the opposite.
 
 Then the dwell time is given by the inverse of the sum of rates over either barrier
 %
@@ -811,7 +811,7 @@ nanopore with a narrow \transi{} constriction as shown in the \cref{ch:trapping}
     (\subref{fig:trapping_traces_body})
     %
     Typical current traces of the various \DHFR{4}{S} body charge variants (\DHFR{4}{C}, \DHFR{4}{I},
-    \DHFR{4}{O1} and \DHFR{4}{O2}) at \SI{-80}{\mV} applied bias. The C, I and O1 mutants have the same net
+    \DHFR{4}{O1} and \DHFR{4}{O2}) at \SI{-80}{\mV} applied bias. The C, I, and O1 mutants have the same net
     charge, but the location of their charges differs, which results in significantly different dwell times.
     %
     %
@@ -846,11 +846,11 @@ current levels observed for the different \gls{dhfr} variants reflect the reside
 different physical locations inside the nanopore~\cite{Soskine-2012}.
 
 The collected time series data may contain capture events that transition to several meta states before the
-molecule escapes the nanopore. For the purpose of our data analysis, we count the dwell time of an event as
+molecule escapes the nanopore. For our data analysis, we count the dwell time of an event as
 the elapsed time from the capture up until the escape, irrespective of how many transitions to meta states
 have been observed. Thus, the complex kinetics of the molecule in the captured state are simply summed over in
 the resulting dwell time event histograms (\cref{eq:compound_distri}). For the scope of this work, we make the
-assumptions that (1) there is only one dominant capture process involved and that (2) the molecules escape
+assumptions that (1) there is only one dominant capture process involved and that (2) the molecule's escape
 from the nanopore is dominated by a single rate, such that the dwell time distribution can then be
 approximated by a single exponential. Since a maximum likelihood fit of a single or multi-exponential
 distribution function is well represented by the arithmetic mean, we use the arithmetic mean directly as the
@@ -982,17 +982,17 @@ The double barrier model of \cref{eq:double_barrier_complex} in its current form
 the body charge variations of \gls{dhfr}\@. Consider for example the body charge variants \DHFR{4}{I},
 \DHFR{4}{C}, and \DHFR{4}{O1} which share the same number of body charges, so that our model would predict the
 same dwell time (\cref{fig:trapping_model_comparison_body_complex}). However, the body charges of these
-variations are at different locations and as a consequence they exhibit different dwell times as can be seen
+variations are at different locations and as a consequence, they exhibit different dwell times as can be seen
 in \cref{fig:trapping_dwell_times_body_data} of \cref{ch:trapping}. The reason for this is that the model
-describes the trapping mechanism as a function of the tag charge number $\Ntag$ only, while body charge
-related barrier modifications are absorbed into the constant terms $\barrier^{\cis/\trans}_{\static,0}$ of
+describes the trapping mechanism as a function of the tag charge number $\Ntag$ only, while body charge-related
+barrier modifications are absorbed into the constant terms $\barrier^{\cis/\trans}_{\static,0}$ of
 \cref{eq:static-barrier}.
 
 If we wanted to modify \cref{eq:static-barrier} such that it can account for changes in the trapping behavior
 we would need to account for the location of the body charges as is evident from the dwell time data sets of
 \DHFR{4}{I}, \DHFR{4}{C}, and \DHFR{4}{O1}. Such a model would drastically increase in complexity and it is
-not clear whether it can still be formulated analytically in a reasonable way. In that case it may in fact be
-more workable to use a more refined APBS simulations or even a full molecular dynamics simulation to compute
+not clear whether it can still be formulated analytically in a reasonable way. In that case, it may in fact be
+more workable to use more refined APBS simulations or even a full molecular dynamics simulation to compute
 parameters for the trapping.
 
 %
@@ -1364,7 +1364,7 @@ circulating through a metal case in direct contact with the bottom and sides of 
 \subsubsection{Data recording and event analysis}
 %
 
-Electrical signals from planar lipid bilayer recordings were amplified using an Axopatch 200B patch clamp
+Electrical signals from planar lipid bilayer recordings were amplified using an Axopatch 200B patch-clamp
 amplifier (Axon Instruments, San Jose, USA) and digitized with a Digidata 1440 A/D converter (Axon
 Instruments, San Jose, USA). Data were recorded using the Clampex 10.5 software (Molecular Devices, San Jose,
 USA) and the subsequent event analysis was carried out with the \code{Clampfit} software (Molecular Devices).

@@ -48,14 +48,14 @@ This chapter was published as:
 %
 
 In this chapter we apply the \glsfirst{epnp-ns} equations introduced in \cref{ch:epnpns} to the biological
-nanopore \glsfirst{clya}. To this end, we set-up a 2D-axisymmetric representation of the geometry and charge
+nanopore \glsfirst{clya}. To this end, we set up a 2D-axisymmetric representation of the geometry and charge
 distribution of the pore, and numerically solved the \gls{epnp-ns} equations using \glsfirst{fea} for a wide
 range of bias voltages and ionic strengths. This allowed us to validate our model against experimental data
 and investigate \gls{clya}'s transport properties in detail.
 %
 
 %
-To improve readability and to allow for a better integration of the supplementary information into the main
+To improve readability and to allow for better integration of the supplementary information into the main
 chapter text, the original manuscript was split into \cref{ch:epnpns,ch:transport}, detailing the theory of
 the framework and its application to the \gls{clya} nanopore, respectively. The remainder of the supplementary
 information can be found in \cref{ch:transport_appendix}. The text and figures of this chapter represent
@@ -141,8 +141,8 @@ computational cost~\cite{Cervera-2005,Lu-2012,Pederson-2015}. However, this requ
 3D atomic structure and charge distribution to a realistic 2D-axisymmetric model.
 
 We will start this chapter by describing the process of creating such a 2D-axisymmetric model of a nanopore
-from a 3D full atom homology model (\cref{sec:transport:model}). This followed by the validation of the model
-by means of direct comparison of simulated and experimentally measured ionic conductances, and a thorough
+from a 3D full atom homology model (\cref{sec:transport:model}). This is followed by the validation of the model
+through a direct comparison of simulated and experimentally measured ionic conductances, and a thorough
 characterization of the influence of the bulk ionic strength and the applied bias voltage on cation and anion
 concentrations inside the pore, the electrostatic potential distribution and magnitude of the electro-osmotic
 flow (\cref{sec:transport:results}). Finally, we touch upon our key findings and their impact
@@ -208,7 +208,7 @@ flow (\cref{sec:transport:results}). Finally, we touch upon our key findings and
     %
     (\subref{fig:transport_model_outline})
     %
-    The 2D-axisymmetric geometry was derived directly from the all-atom model using a the radially averaged
+    The 2D-axisymmetric geometry was derived directly from the all-atom model using the radially averaged
     atomic density (see methods for details). Hence, it closely follows the outline of a \ang{30} wedge out of
     the homology model.
     %
@@ -259,7 +259,7 @@ was applied at the bilayer's external boundary ($-\vec{n}\cdot\left(\absperm \re
 
 
 
-\subsection{From full atom to a 2D-axisymmetric}
+\subsection{From full-atom to a 2D-axisymmetric}
 %
 \label{sec:transport:pore_geometry}
 %
@@ -303,7 +303,7 @@ Interestingly, the $\bfactor_i$ of our \gls{md} simulation does not show much ag
 \pdbid{2WCD} crystal structure, but it reproduces the more flexible regions observed in the (newer)
 \pdbid{6MRT} \gls{cryo-em} structure (\ie~residue numbers \numrange{7}{20}, \numrange{95}{105},
 \numrange{180}{200} and \numrange{260}{280}). Peng and coworkers also started from the \pdbid{2WCD} crystal
-structure to generate their refined \gls{clya} model, albeit using a high resolution \gls{cryo-em} map as a
+structure to generate their refined \gls{clya} model, albeit using a high-resolution \gls{cryo-em} map as a
 restraint. Hence, the similarities in flexibility between our model and \pdbid{6MRT} are encouraging that the
 \gls{md} relaxes the structure properly. Finally, we also visualized the \gls{md} $\bfactor_i$ on the interior
 and exterior molecular surface of \gls{clya-as} (\cref{fig:transport_bfactor_surface}). This shows that the
@@ -353,7 +353,7 @@ in~\cref{sec:transport_appendix:radius_comparision} (\cref{fig:transport_radius_
     %
     (\subref{fig:transport_bfactor_scatter})
     %
-    The data from the heatmap, averaged over all frames and plotted together with the B-factors given by the
+    The data from the heatmap averaged over all frames and plotted together with the B-factors given by the
     crystal (\pdbid{2WCD}~\cite{Mueller-2009} and \gls{cryo-em} \pdbid{6MRT}~\cite{Peng-2019}) structures of
     the wild-type \gls{clya} dodecamer.
     %
@@ -392,8 +392,8 @@ where for each atom $i$, $R_i$ is its Van der Waals radius, $d_i$ is the distanc
 z)$ from the atom center $(x_i, y_i, z_i)$ and $\stdev = 0.93$ is a width factor. After averaging all 50
 density maps in 3D, the resulting map was then radially averaged along the $z$-axis, relative to the center of
 the pore, to obtain a 2D-axisymmetric density map. The contour line at \SI{25}{\percent} density was used as
-the nanopore simulation geometry, after manual removal of overlapping and superfluous vertices to improve the
-quality of the final computational mesh. This 2D-axisymmetric geometry closely follows the outline of a
+the nanopore simulation geometry, after the manual removal of overlapping and superfluous vertices to improve
+the quality of the final computational mesh. This 2D-axisymmetric geometry closely follows the outline of a
 \SI{30}{\degree} `wedge' of the full atom structure (\cref{fig:transport_model_outline}).
 
 \subsubsection{Computing an axially symmetric charge density from the atomic charge density.}
@@ -438,12 +438,12 @@ degree of rotational symmetry (\cref{fig:transport_clya_top}). To successfully e
 framework to non-axisymmetric pores---such as \gls{ompf}~\cite{Yamashita-2008} or
 \gls{ompg}~\cite{Subbarao-2006}---and very narrow nanopores---such as \gls{ahl}~\cite{Song-1996},
 \gls{frac}~\cite{Tanaka-2015}, or \gls{mspa}~\cite{Faller-2004}---these equations should be solved for a full
-3D representation. For narrow pores the radial averaging of the geometry might remove features essential for
+3D representation. For narrow pores, the radial averaging of the geometry might remove features essential for
 correctly modeling the fluidic properties, such as internal corrugations or opposing charges within the same
 radial plane. Even though this will significantly increase the computational cost, it would still be
 significantly faster than either \gls{bd} or \gls{md} approaches (\ie~hours per data point instead of days).
 
-Describing a methodology for setting up a 3D model is beyond of the scope of this chapter. We expect it to
+Describing a methodology for setting up a 3D model is beyond the scope of this chapter. We expect it to
 follow along the same lines as the approach outlined above, with the exception that the actual molecular
 surface and charge distribution of the pore (see the methodology used by the
 \gls{apbs}~\cite{Baker-2001,Jurrus-2018} for a potential approach) could be used instead of a radially
@@ -457,15 +457,15 @@ rather than cylindrical ($r$,~$\phi$,~$z$) coordinates, but can otherwise remain
 %
 
 The \gls{iv} relationships of many nanopores, \gls{clya} included, often deviate significantly from Ohm's law.
-This is because the ionic flux arises from a complex interplay between the pore's geometry (\eg~size, shape
+This is because the ionic flux arises from a complex interplay between the pore's geometry (\eg~size, shape,
 and charge distribution), the properties of the surrounding electrolyte (\eg~salt concentration viscosity and
-relative permittivity) and the externally applied conditions (\eg~bias voltage, temperature and pressure). The
+relative permittivity), and the externally applied conditions (\eg~bias voltage, temperature, and pressure). The
 ability of a computational model to quantitatively predict the ionic current of a nanopore over a wide range
 of bias voltages and salt concentrations strongly indicates that it captures the essential physics governing
-the nanofluidic transport. Hence, to validate our model, we experimentally measured the single channel ionic
+the nanofluidic transport. Hence, to validate our model, we experimentally measured the single-channel ionic
 conductance of \gls{clya} at a wide range of experimentally relevant salt concentrations ($\cbulk$) and bias
 voltages ($\vbias$). We compared these experimental data with the simulated ionic transport properties in
-terms of current, conductance, rectification and ion selectivity, of both the classical \gls{pnp-ns} and the
+terms of current, conductance, rectification, and ion selectivity, of both the classical \gls{pnp-ns} and the
 newly developed \gls{epnp-ns} equations---finding a quantitative match between the experiment and the
 simulations.
 
@@ -528,7 +528,7 @@ reservoir boundary $S$, and $\normvec$ the unit vector normal to $S$. The curren
       \text{ ,}
 \end{align}
 %
-with $\sigma$ the (concentration dependent) bulk electrolyte conductivity. The \cisi{} and \transi{} chambers
+with $\sigma$ the (concentration-dependent) bulk electrolyte conductivity. The \cisi{} and \transi{} chambers
 have have heights and diameters of $l_{\text{cis}}=\text{\SI{10}{\nm}}$ and
 $l_{\text{trans}}=\text{\SI{4}{\nm}}$, and $d_{\text{cis}}=\text{\SI{6}{\nm}}$ and
 $d_{\text{trans}}=\text{\SI{3.3}{\nm}}$, respectively~\cite{Soskine-2013}.
@@ -656,7 +656,7 @@ are not usually tested experimentally. Finally, the bulk model managed to captur
 well at high salt concentrations and positive bias voltages, indicating that, under these conditions, the
 distribution of ions inside the pore is similar to the bulk electrolyte. In contrast, this simple model
 faltered in the negative voltage regime, indicating that the resistance of the pore is not only determined by
-its geometry (\ie~the diameter and length of the `resistor'), but that it strongly modulated by its
+its geometry (\ie~the diameter and length of the `resistor') but that it is strongly modulated by its
 electrostatic properties.
 
 The ability of a nanopore to conduct ions can be best expressed by its conductance: $\conductance = \current /
@@ -697,7 +697,7 @@ The difference in ionic conduction at opposing bias voltages is also known as th
 with $\conductance(+\vbias)$ and $\conductance(-\vbias)$ the conductance of the pore at opposing bias voltages
 of the same magnitude. The ionic current rectification is a phenomenon often observed in nanopores that are
 both charged, and contain a degree of geometrical asymmetry along the central axis of the
-pore~\cite{Constantin-2007,White-2008,Wang-2014}. The latter can be either intrinsic to geometry of nanopore,
+pore~\cite{Constantin-2007,White-2008,Wang-2014}. The latter can be either intrinsic to the geometry of nanopore,
 or due to deformations in response to the electric field (\ie~gating or electrostriction). As can be seen in
 \cref{fig:transport_ioncurrent_icr_heatmap}, \gls{clya} exhibits a strong degree of rectification, which is to
 be expected given its predominantly negatively charged interior and asymmetric \cisi{} (\SI{\approx6}{\nm})
@@ -722,18 +722,18 @@ length is \SI{\approx1.4}{\nm} at $\cbulk=\mSI{0.05}{\Molar}$). This effectively
 from the interior of the pore and attracts as many counter-ions (\Na) as needed to screen the fixed charges of
 the pore. As a result, \Cl{} ions do not contribute to ionic current and the conductance is dominated by \Na{}
 ions attracted by \gls{clya}'s `surface' charges~\cite{Uematsu-2018}. The presence of only a single ion type
-inside the pore at low ionic strength may also offer an explanation as to why the \gls{epnp-ns} equations are
+inside the pore at low ionic strength may also explain why the \gls{epnp-ns} equations are
 more accurate at higher ionic strengths ($\cbulk\ge\mSI{0.15}{\Molar}$). Because our ionic mobilities are
-derived from bulk ionic conductances (\ie~for unconfined ions in a locally electroneutral environment) it is
-likely that our mobility model begins to break down under conditions where only a single ion type is
+derived from bulk ionic conductances (\ie~for unconfined ions in a locally electroneutral environment) our
+mobility model likely begins to break down under conditions where only a single ion type is
 present~\cite{Duan-2010}. Another cause of the discrepancies could be a slight narrowing of the nanopore at
 low salt concentrations, which cannot be captured by our simulation due to the static nature of its geometry
 and charge distributions. Nevertheless, our simplified 2D-axisymmetric model, in conjunction with the
-\gls{epnp-ns} equations, is able to accurately predict the ionic current flowing through \gls{clya} for a wide
+\gls{epnp-ns} equations, can accurately predict the ionic current flowing through \gls{clya} for a wide
 range of experimentally relevant ionic strengths and bias voltages. This suggests that our continuum system
 can accurately capture the essential physical phenomena that drive the ion and water transport through the
 nanopore both \emph{qualitatively} and \emph{quantitatively}. Hence, we expect the distribution of the
-resulting properties (\eg~ion concentrations, ion fluxes, electric field and water velocity) to closely
+resulting properties (\eg~ion concentrations, ion fluxes, electric field, and water velocity) to closely
 correspond to their true values.
 
 \subsubsection{Cation selectivity.}
@@ -755,11 +755,11 @@ by the fraction of the total current that is carried by \Na{} ions: the apparent
 \end{align}
 %
 with $\pna$ the cation permeability ratio, and $\gna$ and $\gcl$ the cation and anion contributions to the
-total conductance. As expected from its negatively charged interior, we found \gls{clya} to be cation
-selective (\ie~$\tna > 0.5$) for all investigated voltages up to a bulk salt concentration of $\cbulk \approx
-\mSI{2}{\Molar}$ \ce{NaCl} (0.5 contour line in \cref{fig:transport_ioncurrent_tsodium_heatmap}). Above this
-concentration, $\tna$ falls to a minimum of value of 0.45 at $\cbulk\approx\mSI{5}{\Molar}$, which is still
-\num{\approx1.27} times its bulk electrolyte value of 0.35. This shows that---even at saturating
+total conductance. As expected from its negatively charged interior, we found \gls{clya} to be 
+cation-selective (\ie~$\tna > 0.5$) for all investigated voltages up to a bulk salt concentration of 
+$\cbulk \approx \mSI{2}{\Molar}$ \ce{NaCl} (0.5 contour line in \cref{fig:transport_ioncurrent_tsodium_heatmap}).
+Above this concentration, $\tna$ falls to a minimum value of 0.45 at $\cbulk\approx\mSI{5}{\Molar}$,
+which is still \num{\approx1.27} times its bulk electrolyte value of 0.35. This shows that---even at saturating
 concentrations where the Debye length is \SI{<0.2}{\nm}---\gls{clya} enhances the transport of cations. Below
 \SI{2}{\Molar}, the ion selectivity increases logarithmically with decreasing salt concentrations, but it also
 becomes more sensitive to the direction and magnitude of the electric field:  with negative bias voltages
@@ -771,7 +771,7 @@ Using the reversal potential method, Franceschini \etal{}~\cite{Franceschini-201
 selectivity to be $\tna=0.66$ ($\pna=1.9$). This corresponds well to the average between the \cisi{}
 ($\cbulk=\mSI{1}{\Molar}$, $\tna=0.57$, $\pna=1.3$) and \transi{} ($\cbulk=\mSI{0.15}{\Molar}$, $\tna=0.84$,
 $\pna=5.4$) reservoir concentrations used in their experiment. Therefore, this suggests that although
-measuring the reversal potential gives valuable insights into the selectivity ion channels and small
+measuring the reversal potential gives valuable insights into the selectivity of ion channels and small
 nanopores, it does not describe the ion selectivity under symmetric conditions. In addition, the \gls{ghk}
 equation does not consider the ionic flux due to the electro-osmotic flow and assumes that the Nernst-Einstein
 relation holds for all used concentrations. These two effects should not be ignored as they contribute
@@ -840,11 +840,11 @@ concentration. Tabulated data of the ion selectivity for selected voltages and c
 %
 
 
-Following the validation of the model in previous section, we now proceed by describing the local ionic
+Following the validation of the model in the previous section, we now proceed by describing the local ionic
 concentrations inside \gls{clya}. Detailed knowledge of the ionic environment can be valuable to
 experimentalists who seek to trap and study single enzymes with
 \gls{clya}~\cite{Soskine-Biesemans-2015,VanMeervelt-2017,Galenkamp-2018}. Moreover, it gives insight into the
-origin of the ion current rectification, ion selectivity and the electro-osmotic flow. Note that the figures
+origin of the ion current rectification, ion selectivity, and the electro-osmotic flow. Note that the figures
 below were obtained from a nanoscale continuum steady-state simulation, they represent a time-averaged
 situation on the order of \SIrange{10}{100}{\ns}~\cite{Im-2002}.
 
@@ -865,7 +865,7 @@ the overall availability of ions improves and the extreme concentration differen
 bulk are no longer required to offset the fixed charges lining \gls{clya}'s interior walls. For example,
 increasing the reservoir concentration at equilibrium ($\vbias = \mSI{0}{\mV}$) from
 \SIrange{0.005}{0.05}{\Molar} causes $\pavNa$ to fall an order of magnitude (\numrange{34}{4.4}) and $\pavCl$
-to rise an order of magnitude (\numrange{0.05}{0.31}). Even though  at physiological ionic strength ($\cbulk =
+to raise an order of magnitude (\numrange{0.05}{0.31}). Even though at physiological ionic strength ($\cbulk =
 \mSI{0.15}{\Molar}$) their concentrations still differ significantly from those in the reservoir ($\pavNa =
 2.1$ and $\pavCl = 0.58$), they do approach bulk-like values ($1.14 \ge \pavNa \ge 1$ and $0.89 \le \pavCl \le
 1$) at higher concentrations ($\cbulk \ge \mSI{1}{\Molar}$).
@@ -928,7 +928,7 @@ and the \lumen{} ($ z = \mSI{5}{\nm}$), which also clearly shows the extent of t
     %
     (\subref{fig:transport_charge_contours})
     %
-    Cross-section contour plots of the ion space charge density ($\scdion$), expressed as number of elementary
+    Cross-section contour plots of the ion space charge density ($\scdion$), expressed as the number of elementary
     charges per \si{\cubic\nano\meter}, at $\vbias = \mSI{0}{\mV}$ and for $\cbulk =
     \mSIlist{0.05;0.15;0.5;5}{\Molar}$.
     %
@@ -1035,7 +1035,7 @@ reservoir but also the significant imbalance between cations and anions~\cite{Wa
     %
     (\subref{fig:transport_potential_contours})
     %
-    As a result of these fixed charges \gls{clya} exhibits a complex electrostatic potential ($\potential$)
+    As a result of these fixed charges, \gls{clya} exhibits a complex electrostatic potential ($\potential$)
     landscape at equilibrium (\ie~at $\vbias = \mSI{0}{\mV}$), and whose values inside the pore we have
     plotted for several key concentrations ($\cbulk = \mSIlist{0.05;0.15;0.5;5}{\Molar}$). Note that even at
     physiological salt concentrations ($\cbulk = \mSI{0.15}{\Molar}$), the negative electrostatic potential
@@ -1097,9 +1097,9 @@ averages (\cref{fig:transport_potential_profiles}) demonstrate this effect aptly
 where $R(z)$ is taken as the \gls{clya}'s radius inside the pore ($-1.85 \le z \le \mSI{12.25}{\nm}$), and as
 fixed values of \SI{4}{\nm} and \SI{2}{\nm} inside the \cisi{} ($z > \mSI{12.25}{\nm}$) and \transi{} (($z <
 \mSI{-1.85}{\nm}$) reservoirs, respectively. Starting from the \cisi{} entry ($z \approx \SI{10}{\nm}$), the
-electrostatic potential is dominated by the acidic residues D114, D121 and D122, resulting in a rapid
+electrostatic potential is dominated by the acidic residues D114, D121, and D122, resulting in a rapid
 reduction of $\radeqpot$ upon entering the pore. Next, $\radeqpot$ slowly decreases up until the middle of the
-\lumen{} ($z \approx \mSI{5}{\nm}$), where the next set of negative residues, namely E53, E57 and D64, lower
+\lumen{} ($z \approx \mSI{5}{\nm}$), where the next set of negative residues, namely E53, E57, and D64, lower
 it even further. After a brief increase, $\radeqpot$ attains its maximum amplitude inside the \transi{}
 constriction ($z \approx \mSI{0}{\nm}$) due to the close proximity of the amino acids E7, E11, E18, D21 and
 D25, and then quickly falls to \num{0} inside the \transi{} reservoir.
@@ -1108,7 +1108,7 @@ At low ionic strengths ($\cbulk < \mSI{0.05}{\Molar}$), the lack of sufficient i
 relatively high negative potentials throughout the entire pore. For example, at low concentrations ($\cbulk =
 \mSI{0.05}{\Molar}$), the $\radeqpot$ inside the constriction ramps up to a value of \SI{-86}{\mV}
 (\SI{-3.35}{\kTe}), which significantly exceeds the single ion thermal voltage $\si{\kTe} = \mSI{25.7}{\mV}$.
-Hence, on the one hand they prohibit anions such as \Cl{} from entering the pore, and on the other they
+Hence, on the one hand, they prohibit anions such as \Cl{} from entering the pore, and on the other hand, they
 attract cations such as \Na{} and trap them inside the pore. For intermediate concentrations ($0.05 \le \cbulk
 < \mSI{0.5}{\Molar}$) the influence of the negative charges becomes increasingly confined to several
 `hotspots' near the nanopore walls, most notably at entry of the pore ($10 < z < \mSI{12}{\nm}$), in the
@@ -1222,7 +1222,7 @@ from the much lower \Cl{} concentrations at negative voltages
 
 Many biological nanopores contain constrictions that play crucial roles in shaping their ionic conductance
 properties~\cite{Maglia-2008,Franceschini-2016,Huang-2017}. The reason for this is two-fold, (1) the narrowest
-part dominates the overall resistance of the pore and (2) confinement of charged residues results in much
+part dominates the overall resistance of the pore, and (2) confinement of charged residues results in much
 larger electrostatic energy barriers. With its highly negatively charged \transi{} constriction, \gls{clya}'s
 affinity for transport of anions is diminished and that for cations is enhanced compared to bulk, even at high
 ionic strengths (\cref{fig:transport_ioncurrent_tsodium_concentration})~\cite{Soskine-2013}. To further
@@ -1263,7 +1263,7 @@ peptides~\cite{Huang-2017,Li-2018,Huang-2019}, and proteins~\cite{Soskine-2012,S
 Soskine-Biesemans-2015,Biesemans-2015,Wloka-2017,Galenkamp-2018,Willems-Ruic-Biesemans-2019}. Because the drag
 exerted by the \gls{eof} depends primarily on the size and shape of the biomolecule of interest and not on its
 charge~\cite{Willems-Ruic-Biesemans-2019}, it can be employed to capture molecules even against the electric
-field~\cite{Soskine-2012}. The \gls{eof} is a consequence of interaction between the fixed charges on the
+field~\cite{Soskine-2012}. The \gls{eof} is a consequence of the interaction between the fixed charges on the
 nanopore walls and mobile charges in the electrolyte and can be described by two closely related mechanisms:
 (1) the excess transport of the hydration shell water molecules in one direction due to the pore's ion
 selectivity, and (2) the viscous drag exerted by the unidirectional movement of the electrical double layer
@@ -1272,7 +1272,7 @@ diameter close to that of the hydrated ions (\SI{\le1}{\nm}) such as \gls{ahl} o
 \gls{frac}~\cite{Huang-2017,Huang-2019}, whereas the second is expected to be stronger for larger pores
 (\SI{>1}{\nm}), such as \gls{clya}~\cite{Soskine-2012,Willems-Ruic-Biesemans-2019} or most solid-state
 nanopores~\cite{Mao-2014,Laohakunakorn-2015}. In our simulation, the \gls{eof} is generated according to the
-second mechanism by coupling of the Navier-Stokes and the Poisson-Nernst-Planck equations through a volume
+second mechanism by coupling the Navier-Stokes and the Poisson-Nernst-Planck equations through a volume
 force ($\volumeforce$, \cref{eq:ion_force_density}). This coupling dictates that the electric field exerts a
 net force on the fluid if it contains a net ionic charge density---as is the case for the electrical double
 layer lining the walls of \gls{clya} (\cref{fig:transport_charge_total}).
@@ -1327,7 +1327,7 @@ layer lining the walls of \gls{clya} (\cref{fig:transport_charge_total}).
     (\subref{fig:transport_flow_contour})
     %
     Contour plot of the \gls{eof} velocity magnitude $U$ at \SI{0.5}{\Molar} and \SI{-100}{\mV} bias voltage.
-    The arrows  on the streamlines indicate the direction of the flow. As observed
+    The arrows on the streamlines indicate the direction of the flow. As observed
     experimentally~\cite{Soskine-2013} and expected from a negatively charged conical nanopore, the \gls{eof}
     follows the direction of the cation (\ie~from \cisi{} to \transi{} under negative bias voltages and
     \textit{vice versa} for positive ones). Note that in contrast to \gls{plyab-r}, whose oppositely charged
@@ -1360,7 +1360,7 @@ layer lining the walls of \gls{clya} (\cref{fig:transport_charge_total}).
 \end{figure*}
 %
 
-\subsubsection{Direction, magnitude and distribution of the water velocity.}
+\subsubsection{Direction, magnitude, and distribution of the water velocity.}
 %
 As expected, given \gls{clya}'s negatively charged interior surface and the resulting positively charged
 electrical double layer, the direction of the net water flow inside \gls{clya} follows the electric field:
@@ -1402,7 +1402,7 @@ rapidly increases with ionic strength until a peak value is reached at $\cbulk \
 followed by a gradual logarithmic decline (\cref{fig:transport_flow_conductance}). For example, at $\vbias =
 \mSI{-150}{\mV}$, $\flowcond$ first increases from \SI{1.85}{\cnmpnspv} at \SI{0.005}{\Molar} to
 \SI{11.3}{\cnmpnspv} at \SI{0.5}{\Molar}, followed by a gradual decline to \SI{4.00}{\cnmpnspv} at
-\SI{5}{\Molar}. As with the ionic conductance, more details on the effect of the concentration, wall distance
+\SI{5}{\Molar}. As with the ionic conductance, more details on the effect of the concentration, wall distance,
 and steric corrections on the electro-osmotic conductance can be found
 in~\cref{sec:transport:comparison_corrections} (\cref{fig:transport_comparison_water}).
 
@@ -1475,7 +1475,7 @@ we expect them to play an important role in the detailed trapping dynamics of pr
 \label{sec:transport:comparison_corrections}
 %
 
-To estimate the influence to which each group of corrections (\ie~the wall distance, concentration and steric
+To estimate the influence to which each group of corrections (\ie~the wall distance, concentration, and steric
 effects) on the conductance properties of \gls{clya-as}, we performed a set of simulations for the following
 conditions: \gls{epnp-ns} without wall distance corrections (`ePNP-NS no WDF'; $\diffusion_{i}^w=1$,
 $\mobility_{i}^w=1$, $\viscosity^w=1$), \gls{epnp-ns} without concentration-dependent corrections (`ePNP-NS no
@@ -1533,7 +1533,7 @@ conductances of these models, normalized over the values obtained with the full 
 
 Disabling the wall distance corrections yields a higher (\SI{\approx10}{\percent} increase) ionic conductance
 compared to the full \gls{epnp-ns} equations (\cref{fig:transport_comparison_ionic}, blue curve). In effect,
-the implementation of the wall distance corrections results in an smaller effective pore size.  The influence
+the implementation of the wall distance corrections results in smaller effective pore sizes.  The influence
 on the water flow is stronger, with the reduction of the viscosity near the wall giving rise to a
 \SIrange{25}{50}{\percent} increase in the water flow (\cref{fig:transport_comparison_water}, blue curve).
 
@@ -1544,7 +1544,7 @@ on the water flow is stronger, with the reduction of the viscosity near the wall
 The removal of the concentration-dependent corrections has a large influence on the simulated results. The
 ionic conductance increases dramatically: from \SIlist{5;13;29;152}{\percent} at
 \SIlist{0.005;0.05;0.5;5}{\Molar}, respectively (\cref{fig:transport_comparison_ionic}, red curve). This is
-expected however, given that the large reduction of both diffusion coefficients and ionic mobilities with
+expected, however, given that the large reduction of both diffusion coefficients and ionic mobilities with
 increasing salt concentrations is not taken into account. The influence on the water flow shows only a limited
 effect from \SI{0.005}{\Molar} (\SI{9}{\percent} decrease) to \SI{1}{\Molar} (\SI{2}{\percent} increase),
 followed by a rapid increase of \SI{82}{\percent} between \SIlist{1;5}{\Molar}
@@ -1559,7 +1559,7 @@ The steric corrections appear to have little influence on the ionic conductance,
 at most \SI{\pm3}{\percent} over the entire concentration range (\cref{fig:transport_comparison_ionic}, brown
 curve). The effect on the water flow is larger, with a decrease of \SI{10}{\percent} at \SI{0.5}{\Molar}
 (\cref{fig:transport_comparison_water}, brown curve). By placing an upper limit on the total ion concentration
-(\SI{\approx13.3}{\Molar} in our case), the steric corrections prevent excessive screening of fixed charges by
+(\SI{\approx13.3}{\Molar} in our case), the steric corrections prevent the excessive screening of fixed charges by
 nonphysical ionic strengths (\ie~concentrations that would require fitting more ions into a given space than
 what is physically possible). This is an essential mechanic that allows one to realistically model the
 electrical double layer near surfaces with high charge densities---as is the case for most biological
@@ -1572,15 +1572,15 @@ nanopores.
 %
 
 The use of computationally inexpensive continuum models is pervasive in the solid-state nanopore field, but
-their application to the structurally more complex biological nanopores has been limited to date. We made use
+their application to structurally more complex biological nanopores has been limited to date. We made use
 of the radial symmetry of the biological nanopore \gls{clya} to create a 2D-axisymmetric model of the pore
 which, in conjunction with the \gls{epnp-ns} equations, is able to accurately describe the ionic current of
 \gls{clya} for a wide range of experimentally relevant ionic strengths and bias voltages. Our approach shows
-that continuum modeling of biological nanopores is not only feasible, but can also be predictive. Our results
+that continuum modeling of biological nanopores is not only feasible but can also be predictive. Our results
 describe in great detail the properties of \gls{clya}, such as its true ion selectivity, the differences
-between cation and anion concentrations inside the pore, the distribution and magnitude of the electrostatic
+between cation and anion concentrations inside the pore, the distribution, and magnitude of the electrostatic
 potential, the velocity of the electro-osmotic flow and the presence of highly localized `hotspots' of osmotic
-pressure. These findings do not only provide valuable insights into physical mechanisms of nanoscale
+pressure. These findings do not only provide valuable insights into the physical mechanisms of nanoscale
 transport, but they also reveal a great deal about the conditions within the pore itself. For example, strong
 deviations from bulk values, such as the depletion of anions from the \lumen{} of \gls{clya} at negative bias
 voltages, may have a profound impact on the activity and structure of trapped proteins.
@@ -1590,7 +1590,7 @@ accuracy for continuum simulations of nanoscale transport phenomena. We expect o
 principles to be transferable to other biological nanopores and nanoscale transport systems. We believe our
 model constitutes a powerful and practical tool that can aid with (1) elucidating the link between ionic
 current observed during a nanopore experiment and the actual physical phenomenon, (2) describing the
-electrophoretic and electro-osmotic properties of any biological nanopore and (3) guiding the rational design
+electrophoretic and electro-osmotic properties of any biological nanopore, and (3) guiding the rational design
 of new variants of existing nanopores. For example, by further expanding and automating our framework, it
 could be used as a probe to gauge---and tailor---the properties of specific nanopore
 mutants~\cite{Huang-2020,Cao-2019}, or to study the dynamics of translocating proteins by computing the forces
@@ -1607,7 +1607,7 @@ crucial role in designing the next generation of (biological) nanopore-based bio
 \subsection{{ClyA-AS} expression and purification}
 %
 
-\Gls{clya-as} monomers were expressed, purified and oligomerized using methods described in detail
+\Gls{clya-as} monomers were expressed, purified, and oligomerized using methods described in detail
 elsewhere~\cite{Soskine-2012,Soskine-2013}. Briefly, \textit{E. cloni} {EXPRESS BL21} (DE3) cells (Lucigen
 Corporation, Middleton, USA) were transformed with a {pT7-SC1} plasmid containing the \gls{clya-as} gene,
 followed by overexpression after induction with \SI{0.5}{\mM} \gls{iptg} (Carl Roth, Karlsruhe, Germany). The
@@ -1620,7 +1620,7 @@ subsequent excision of the correct oligomer band.
 \subsection{Recording of single-channel current-voltage curves}
 %
 
-Experimental current-voltage curves where measured using single-channel electrophysiology, as detailed
+Experimental current-voltage curves were measured using single-channel electrophysiology, as detailed
 elsewhere~\cite{Maglia-2010,Soskine-2012,Soskine-2013}. First, a black lipid bilayer was formed inside a
 \SI{\approx100}{\um} diameter aperture in a thin Teflon film separating two buffered electrolyte compartments.
 This was achieved by applying a droplet of \SI{5}{\percent} hexadecane in pentane (Sigma-Aldrich, Zwijndrecht,
@@ -1633,7 +1633,7 @@ and raising the buffer level over the aperture. Minute amounts (\SI{\approx0.2}{
 the lipid bilayer. Single-channel current-voltage curves were recorded using a custom pulse protocol of the
 \code{Clampex 10.4} (Molecular Devices, San Jose, USA) software package connected to AxoPatch 200B patch-clamp
 amplifier (Molecular Devices, San Jose, USA) \textit{via} a Digidata 1440A digitizer (Molecular Devices, San
-Jose, USA). Data was acquired at \SI{10}{\kHz} and filtered using a \SI{2}{\kHz} low-pass filter. Measurements
+Jose, USA). Data were acquired at \SI{10}{\kHz} and filtered using a \SI{2}{\kHz} low-pass filter. Measurements
 at different ionic strengths were performed at \SI{\approx25}{\celsius} in aqueous \ce{NaCl} (Carl Roth,
 Karlsruhe, Germany) solutions, buffered at \pH{7.5} using \SI{10}{\mM} \gls{mops} (Carl Roth, Karlsruhe,
 Germany).
